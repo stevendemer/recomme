@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 import { Inter, Ramaraja, Mulish } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 
@@ -38,7 +39,10 @@ export default function RootLayout({
           inter.className
         )}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

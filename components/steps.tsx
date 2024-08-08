@@ -1,4 +1,5 @@
 "use client";
+import { useSteps } from "@/app/store";
 import {
   Pagination,
   PaginationContent,
@@ -8,69 +9,37 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { Textarea } from "./ui/textarea";
 
 export default function Steps() {
-  const [step, setStep] = useState(0);
-
-  //   return (
-  //     <div className="absolute -top-[50px] w-full flex justify-center items-center">
-  //       <div className="flex justify-center items-center">
-  //         <Pagination>
-  //           <PaginationContent className="space-x-6">
-  //             {Array.from({ length: steps }).map((_, index) => (
-  //               <PaginationItem
-  //                 className={cn(
-  //                   active === index
-  //                     ? "bg-teal-300 text-slate-100"
-  //                     : "bg-muted text-muted-foreground",
-  //                   "rounded-lg"
-  //                 )}
-  //                 key={index}
-  //               >
-  //                 <PaginationLink
-  //                   className={cn(
-  //                     active === index && "bg-teal-200 text-foreground",
-  //                     "cursor-pointer bg-white/20"
-  //                   )}
-  //                   isActive={active === index}
-  //                 >
-  //                   {index}
-  //                 </PaginationLink>
-  //               </PaginationItem>
-  //             ))}
-  //           </PaginationContent>
-  //         </Pagination>
-  //       </div>
-  //     </div>
-  //   );
+  const { active, increase, setStep } = useSteps();
 
   return (
     <div className="absolute top-10 w-full flex justify-center">
       <Pagination>
         <PaginationContent className="space-x-6">
           {Array.from({ length: 3 }).map((_, index) => (
-            <PaginationItem
-              className={cn(
-                step === index
-                  ? "bg-teal-300 text-slate-100"
-                  : "bg-muted text-muted-foreground",
-                "rounded-lg"
-              )}
+            <PaginationLink
               key={index}
-              onClick={() => setStep(index)}
+              href="#"
+              className={cn(
+                active === index
+                  ? "bg-teal-400 text-slate-50"
+                  : "bg-teal-200 text-slate-50",
+                "cursor-pointer  border-0"
+              )}
+              isActive={active === index}
+              onClick={() => {
+                setStep(index);
+              }}
             >
-              <PaginationLink
-                className={cn(
-                  step === index && "bg-teal-200 text-foreground",
-                  "cursor-pointer bg-white/10 border-0"
-                )}
-                isActive={step === index}
-              >
-                {index + 1}
-              </PaginationLink>
-            </PaginationItem>
+              {index + 1}
+            </PaginationLink>
           ))}
         </PaginationContent>
       </Pagination>
