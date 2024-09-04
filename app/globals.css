@@ -77,3 +77,50 @@
     @apply font-heading;
   }
 }
+
+@layer utilities {
+  .submit-btn {
+    @apply rounded-[51px] px-4 py-2 text-slate-50 tracking-widest sm:p-8 shadow-sm shadow-white w-32 sm:w-44 absolute bottom-20;
+  }
+
+  .heading {
+    @apply text-[#65D9BD] font-bold text-lg sm:text-xl;
+  }
+
+  .chat-parent {
+    @apply flex items-center justify-start p-4;
+  }
+
+  .chat-content {
+    @apply relative bg-blue-500 text-[#65D9BD] p-6 rounded-2xl max-w-sm border-black border;
+  }
+
+  .chat-bubble {
+    /* @apply w-6 h-6 rounded-full border-t-[20px] border-t-transparent border-b-[11px] border-b-transparent border-r-[30px]; */
+    @apply absolute -left-4 top-1/2 transform -translate-y-1/2;
+  }
+
+  .chat-tail {
+    @apply w-0 h-0 border-t-[25px] border-t-transparent border-b-[25px] border-b-transparent border-r-[25px] rounded-r-lg;
+  }
+
+  .gradient-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: radial-gradient(
+        70% 30% at 90% 45.42%,
+        rgba(0, 117, 255, 0.216) 30%,
+        rgba(0, 117, 255, 0) 100%
+      ),
+      radial-gradient(
+        70% 30% at 10% 70%,
+        rgba(101, 217, 189, 0.5) 30%,
+        rgba(0, 255, 194, 0) 100%
+      );
+    z-index: -1;
+  }
+}

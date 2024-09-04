@@ -2,24 +2,35 @@
 import { useFormStatus } from "react-dom";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import {
+  ButtonHTMLAttributes,
+  forwardRef,
+  PropsWithChildren,
+  useState,
+} from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { useSteps } from "@/app/store";
-import { useState } from "react";
 
-export default function SubmitButton() {
+export default function SubmitButton({
+  children,
+  ...props
+}: ButtonHTMLAttributes<HTMLButtonElement>) {
   const { pending } = useFormStatus();
-  const { active, increase } = useSteps();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  if (pathname.includes("2")) {
+    return null;
+  }
 
   return (
     <Button
-      className={cn(
-        "bg-black text-slate-100 rounded-full sm:p-8 tracking-widest shadow-lg my-4"
-      )}
+      onClick={props.onClick}
+      className={cn("submit-btn")}
       disabled={pending}
-      onClick={() => {
-        increase();
-      }}
+      type="submit"
     >
-      Continue to {active}
+      {children}
     </Button>
   );
 }

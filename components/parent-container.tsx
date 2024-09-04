@@ -1,17 +1,13 @@
-import { ReactNode } from "react";
+"use client";
+import { ReactNode, useRef } from "react";
 import Steps from "./steps";
 
 function ParentContainer({ children }: { children: ReactNode }) {
   return (
-    <div className="relative bg-white/10 text-slate-600 sm:w-[70vw] w-[90vw] h-[90vh] backdrop-blur-lg shadow-xl rounded-lg flex justify-center items-center pt-32">
-      {/* White box */}
-      <div className="relative bg-white  sm:w-[65vw] w-full h-full m-5 rounded-lg shadow-lg z-10 mb-20">
-        <div className="flex items-center justify-center flex-col h-full">
-          {children}
-        </div>
+    <div className="mx-auto bg-white/30 text-neutral-500 sm:w-[80vw] w-[90vw] h-[90vh] backdrop-blur-lg rounded-3xl flex flex-col justify-center items-center pt-8 mt-4">
+      <div className="bg-white/80 w-[80vw] h-[80vh] sm:w-[75vw] my-5 rounded-3xl shadow-xl z-10 mb-10 relative">
+        {children}
       </div>
-      {/* Steps positioned outside the white box */}
-      <Steps />
     </div>
   );
 }

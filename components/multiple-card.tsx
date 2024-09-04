@@ -18,31 +18,64 @@ export default function MultipleCard() {
   };
 
   return (
-    <section className="container mx-auto py-12 md:py-16 lg:py-20">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
-        {Array.from({ length: 8 }).map((_, index) => (
+    <div className="grid grid-cols-4 gap-8 px-14 mb-4">
+      {Array.from({ length: 8 }).map((_, index) => (
+        <div key={index} className="flex flex-col gap-6">
           <div
+            onClick={() => handleClick(index)}
             key={index}
             className={cn(
-              "bg-background rounded-lg overflow-hidden shadow-xl p-2 cursor-pointer font-bold",
-              isSelected.includes(index) && "bg-teal-200 text-slate-100"
+              "bg-background rounded-2xl overflow-hidden shadow-xl p-4 cursor-pointer font-bold transition-all duration-200",
+              isSelected.includes(index) && "bg-teal-300"
             )}
-            onClick={() => handleClick(index)}
           >
-            <img
+            <Image
               src="/assets/hacker.png"
-              alt="hacker icon"
-              width={300}
-              height={200}
-              className="w-full h-48 object-cover object-center rounded-lg"
+              alt="card image"
+              className=" shadow-xl px-2 rounded-2xl"
+              width={400}
+              height={300}
+              style={{ aspectRatio: "400/300", objectFit: "cover" }}
             />
-            <div className="p-4">
-              <h3 className="text-lg font-medium mb-2">First box</h3>
-              <p className="">This is the paragraph</p>
-            </div>
           </div>
-        ))}
-      </div>
-    </section>
+        </div>
+      ))}
+    </div>
   );
+
+  // return (
+  //   <section>
+  //     <div className="grid md:grid-cols-4 gap-4 lg:gap-10 sm:grid-cols-3 grid-cols-1 w-full h-full">
+  //       {Array.from({ length: 8 }).map((_, index) => (
+  //         <div
+  //           key={index}
+  //           className={cn(
+  //             "bg-background rounded-[31px] overflow-hidden shadow-xl shadow-black/20 px-2 py-4 cursor-pointer font-bold transition-all duration-200",
+  //             isSelected.includes(index) && "bg-teal-200"
+  //           )}
+  //           onClick={() => handleClick(index)}
+  //         >
+  //           <Image
+  //             src="/assets/hacker.png"
+  //             alt="hacker icon"
+  //             className="h-full w-full object-cover object-center rounded-2xl mx-auto shadow-xl"
+  //             sizes="(max-width: 80vw)"
+  //             width={900}
+  //             height={200}
+  //           />
+  //           <div className="p-4">
+  //             {/* <h3 className="text-lg font-medium mb-2">First box</h3> */}
+  //             <p
+  //               className={cn(
+  //                 isSelected.includes(index) ? "text-white" : "text-slate-600"
+  //               )}
+  //             >
+  //               This is the paragraph
+  //             </p>
+  //           </div>
+  //         </div>
+  //       ))}
+  //     </div>
+  //   </section>
+  // );
 }
