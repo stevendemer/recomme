@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-import { Inter, Ramaraja, Mulish } from "next/font/google";
+import { Inter, Ramaraja, Mulish, Rubik } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -20,6 +20,12 @@ const mulish = Mulish({
   variable: "--font-disabled",
 });
 
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-rubik",
+});
+
 export const metadata: Metadata = {
   title: "Recomme",
 };
@@ -31,12 +37,16 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning lang="en">
+      <head>
+        <link rel="icon" href="/assets/flower.svg" sizes="any" />
+      </head>
       <body
         className={cn(
           "bg-background antiliased min-h-screen",
           mulish.className,
           ram.className,
-          inter.className
+          inter.className,
+          rubik.className
         )}
       >
         <ThemeProvider>

@@ -1,93 +1,130 @@
-"use client";
 import ParentContainer from "@/components/parent-container";
 import SubmitButton from "@/components/submit-button";
-import SwipingCard from "@/components/swiping-card";
-import PageTransition from "@/components/page-transition";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import MultipleCard from "@/components/multiple-card";
-import { AnimatePresence } from "framer-motion";
-import ImageSlider from "@/components/image-slider";
-import { Images } from "lucide-react";
-import Swipe from "@/components/forms/swipe";
-import MultiStepForm from "@/components/forms/multistep-form";
-import Steps from "@/components/steps";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
-
-const cards = [
-  {
-    image: "https://img.icons8.com/color/452/GeeksforGeeks.png",
-    color: "#55ccff",
-  },
-  {
-    image: "https://img.icons8.com/color/452/GeeksforGeeks.png",
-    color: "#e8e8e8",
-  },
-  {
-    image: "https://img.icons8.com/color/452/GeeksforGeeks.png",
-    color: "#0a043c",
-  },
-  {
-    image: "https://img.icons8.com/color/452/GeeksforGeeks.png",
-    color: "black",
-  },
-  {
-    image: "https://img.icons8.com/color/452/GeeksforGeeks.png",
-    color: "#55ccff",
-  },
-  {
-    image: "https://img.icons8.com/color/452/GeeksforGeeks.png",
-    color: "#e8e8e8",
-  },
-  {
-    image: "https://img.icons8.com/color/452/GeeksforGeeks.png",
-    color: "#0a043c",
-  },
-  {
-    image: "https://img.icons8.com/color/452/GeeksforGeeks.png",
-    color: "black",
-  },
-];
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
-  const [step, setStep] = useState(1);
-  const { control, handleSubmit } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
-  const handleNext = () => {
-    if (step < 3) {
-      setStep(step + 1);
-    }
-  };
-
   return (
-    <AnimatePresence initial={false}>
-      <main className="flex justify-center items-center gradient-bg overflow-x-hidden">
-        <ParentContainer>
-          <Steps setStep={setStep} currentStep={step} totalSteps={3} />
-          <div className="flex items-center flex-col h-full w-full relative mx-auto">
-            <h1 className="text-3xl font-bold text-slate-800 text-center max-w-5xl font-sans">
-              Lorem ipsum dolor sit amet consectetur
-            </h1>
-            {/* <form onSubmit={onSubmit}> */}
-            {step === 1 && <ImageSlider />}
+    <div className="gradient-bg flex justify-center items-center overflow-x-hidden font-rubik">
+      <ParentContainer>
+        <div className="flex flex-col items-center w-full h-full  relative">
+          {/* main message */}
+          <div className="h-full relative m-auto flex items-center flex-col justify-center">
+            <img src={"/assets/logo.svg"} alt="" />
+            <div className="relative w-full">
+              <svg
+                width="471"
+                height="446"
+                viewBox="0 0 471 446"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g filter="url(#filter0_f_330_3230)">
+                  <path
+                    d="M377 237.094L350.436 144.644C347.362 133.946 336.198 127.765 325.5 130.839L189.319 169.969C178.621 173.043 172.44 184.207 175.514 194.905L202.078 287.356C205.152 298.054 216.317 304.234 227.015 301.161L363.196 262.031C373.894 258.957 380.074 247.792 377 237.094Z"
+                    fill="url(#paint0_linear_330_3230)"
+                    fill-opacity="0.5"
+                  />
+                  <path
+                    d="M204.626 107.046L104.069 217.038C92.433 229.766 89.6598 246.172 97.8751 253.683L202.45 349.288C210.665 356.799 226.758 352.569 238.395 339.841L338.952 229.85C350.588 217.122 353.361 200.715 345.146 193.204L240.571 97.5991C232.356 90.0885 216.263 94.3182 204.626 107.046Z"
+                    fill="url(#paint1_linear_330_3230)"
+                    fill-opacity="0.5"
+                  />
+                </g>
+                <defs>
+                  <filter
+                    id="filter0_f_330_3230"
+                    x="0.151123"
+                    y="0.881714"
+                    width="470.638"
+                    height="445.124"
+                    filterUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB"
+                  >
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feBlend
+                      mode="normal"
+                      in="SourceGraphic"
+                      in2="BackgroundImageFix"
+                      result="shape"
+                    />
+                    <feGaussianBlur
+                      stdDeviation="46.5"
+                      result="effect1_foregroundBlur_330_3230"
+                    />
+                  </filter>
+                  <linearGradient
+                    id="paint0_linear_330_3230"
+                    x1="86.4957"
+                    y1="35.3934"
+                    x2="348.848"
+                    y2="285.08"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#56A2FC" />
+                    <stop offset="0.52" stop-color="#2A898F" />
+                    <stop offset="1" stop-color="#56A2FC" />
+                  </linearGradient>
+                  <linearGradient
+                    id="paint1_linear_330_3230"
+                    x1="166.788"
+                    y1="360.935"
+                    x2="168.258"
+                    y2="-120.498"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#56A2FC" />
+                    <stop offset="0.52" stop-color="#2A898F" />
+                    <stop offset="1" stop-color="#56A2FC" />
+                  </linearGradient>
+                </defs>
+              </svg>
 
-            {step === 2 && <SwipingCard />}
+              <div className="absolute inset-0 flex justify-center items-center w-[100%] h-[100%] m-2">
+                {/* background glass  */}
+                <svg
+                  width="520"
+                  height="145"
+                  viewBox="0 0 516 145"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    width="516"
+                    height="145"
+                    rx="22"
+                    fill="url(#paint0_linear_330_3233)"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear_330_3233"
+                      x1="116.5"
+                      y1="46"
+                      x2="610"
+                      y2="164.5"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="white" />
+                      <stop offset="1" stop-color="white" stop-opacity="0.09" />
+                    </linearGradient>
+                  </defs>
+                </svg>
 
-            {step === 3 && <MultipleCard />}
-            <SubmitButton
-              type={step < 3 ? "button" : "submit"}
-              onClick={() => handleNext()}
-            >
-              {step < 3 ? "Continue" : "Submit"}
-            </SubmitButton>
+                <div className="absolute inset-0 flex items-center justify-center w-[100%] h-[100%]">
+                  <img className="px-2 mb-12" src="/assets/flower.svg" alt="" />
+                  <div className="text-black p-4 text-2xl font-normal font-rubik leading-tight">
+                    Hello there! I&apos;m here to assist you. It looks like you
+                    were about to say &apos;Recommend me&apos;
+                  </div>
+                </div>
+              </div>
+            </div>
+            <Link href="/confirmation" passHref legacyBehavior>
+              <SubmitButton>Let&apos;s begin</SubmitButton>
+            </Link>
           </div>
-        </ParentContainer>
-      </main>
-    </AnimatePresence>
+        </div>
+      </ParentContainer>
+    </div>
   );
 }

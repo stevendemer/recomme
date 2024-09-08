@@ -13,6 +13,7 @@ import { useSteps } from "@/app/store";
 
 export default function SubmitButton({
   children,
+  className,
   ...props
 }: ButtonHTMLAttributes<HTMLButtonElement>) {
   const { pending } = useFormStatus();
@@ -26,7 +27,7 @@ export default function SubmitButton({
   return (
     <Button
       onClick={props.onClick}
-      className={cn("submit-btn")}
+      className={cn("submit-btn", className)}
       disabled={pending}
       type="submit"
     >

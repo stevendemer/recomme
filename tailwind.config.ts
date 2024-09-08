@@ -13,6 +13,7 @@ const config = {
     fontFamily: {
       body: "var(--font-body)",
       heading: "var(--font-heading)",
+      rubik: "var(--font-rubik)",
     },
     container: {
       center: true,
