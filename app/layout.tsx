@@ -11,13 +11,13 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const ram = Ramaraja({
   subsets: ["latin"],
   weight: ["400"],
-  variable: "--font-heading",
+  variable: "--font-ram",
 });
 
 const mulish = Mulish({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
-  variable: "--font-disabled",
+  variable: "--font-mulish",
 });
 
 const rubik = Rubik({
@@ -43,10 +43,10 @@ export default function RootLayout({
       <body
         className={cn(
           "bg-background antiliased min-h-screen",
-          mulish.className,
-          ram.className,
-          inter.className,
-          rubik.className
+          mulish.variable,
+          ram.variable,
+          inter.variable,
+          rubik.variable
         )}
       >
         <ThemeProvider>

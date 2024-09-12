@@ -11,10 +11,11 @@ export default function Home() {
           {/* main message */}
           <div className="h-full relative m-auto flex items-center flex-col justify-center">
             <img src={"/assets/logo.svg"} alt="" />
-            <div className="relative w-full">
+            <div className="relative w-full h-auto">
               <svg
                 width="471"
                 height="446"
+                className="w-full h-full aspect-auto"
                 viewBox="0 0 471 446"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -88,6 +89,7 @@ export default function Home() {
                   viewBox="0 0 516 145"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  className="w-full h-full aspect-auto"
                 >
                   <rect
                     width="516"

@@ -43,7 +43,7 @@ export default function RegistrationPage() {
               placeholder="Location"
               {...register("location", {
                 required: "Location is required",
-                minLength: { message: "Minimum length is 5", value: 5 },
+                minLength: { message: "Minimum length is 4", value: 4 },
               })}
             />
             {errors.location && (
@@ -56,7 +56,7 @@ export default function RegistrationPage() {
               placeholder="Ec Name"
               {...register("ecName", {
                 required: "EC Name is required",
-                minLength: { message: "Minimum length is 5", value: 5 },
+                minLength: { message: "Minimum length is 3", value: 3 },
               })}
             />
             {errors.ecName && (

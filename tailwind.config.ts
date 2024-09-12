@@ -12,7 +12,7 @@ const config = {
   theme: {
     fontFamily: {
       body: "var(--font-body)",
-      heading: "var(--font-heading)",
+      ram: "var(--font-ram)",
       rubik: "var(--font-rubik)",
     },
     container: {

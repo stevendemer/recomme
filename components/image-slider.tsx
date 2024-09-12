@@ -38,8 +38,8 @@ export default function ImageSlider({
       <div className="h-1/2 w-[30vw] gap-4 flex flex-col justify-center items-center bg-white rounded-2xl p-6">
         <Slider
           onValueChange={onValueChange}
-          min={0}
-          max={100}
+          min={1}
+          max={5}
           step={1}
           color="#65D9BD"
         />

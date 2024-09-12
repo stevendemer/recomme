@@ -8,6 +8,7 @@ import {
   frame,
   PanInfo,
   AnimatePresence,
+  useAnimate,
 } from "framer-motion";
 import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
@@ -19,9 +20,10 @@ export default function SwipingCard({
 }: {
   onSwipe: (direction: string) => void;
 }) {
+  const [scope, animate] = useAnimate();
   const [exit, setExit] = useState(0);
   const [hasBeenSwiped, setHasBeenSwiped] = useState(false);
-  const [isLocked, setIsLocked] = useState(false);
+  const [direction, setDirection] = useState<"left" | "right" | null>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const animControls = useAnimation();
@@ -43,28 +45,41 @@ export default function SwipingCard({
   );
 
   const handleSwipe = async (direction: "left" | "right") => {
-    const xDirection = direction === "left" ? -1500 : 1500;
-    if (!hasBeenSwiped) {
-      setHasBeenSwiped(true);
-      await animControls.start({ x: xDirection, y: xDirection, opacity: 0 });
-      setExit(xDirection);
-      toast({
-        description: `Swiped at ${direction}`,
-      });
+    // const xDirection = direction === "left" ? -1500 : 1500;
+    // if (!hasBeenSwiped) {
+    //   setHasBeenSwiped(true);
+    //   await animControls.start({ x: xDirection, y: xDirection, opacity: 0 });
+    //   setExit(xDirection);
+    //   toast({
+    //     description: `Swiped at ${direction}`,
+    //   });
+    // }
 
-      await bgAnimControls.start({
+    if (hasBeenSwiped) return;
+
+    setHasBeenSwiped(true);
+    setDirection(direction);
+
+    const xDirection = direction === "left" ? -1500 : 1500;
+
+    // Start both animations simultaneously
+    await Promise.all([
+      animControls.start({
+        x: xDirection,
+        opacity: 0,
+        transition: { duration: 1.2, bounceStiffness: 300 },
+      }),
+      bgAnimControls.start({
         background: direction === "left" ? "#dc2626" : "#4ade80",
         transition: { duration: 0.5 },
-      });
+      }),
+    ]);
 
-      setTimeout(async () => {
-        await bgAnimControls.start({
-          background: "#ffff",
-          transition: { duration: 0.5 },
-        });
-        setHasBeenSwiped(false);
-      }, 800);
-    }
+    toast({
+      description: `Swiped ${direction}`,
+    });
+
+    onSwipe(direction);
   };
 
   const handleSwipeLeft = () => handleSwipe("left");
@@ -78,17 +93,42 @@ export default function SwipingCard({
 
     //TODO TEMP SOLUTION FOR HANDLING FORM CHANGE
     if (info.offset.x > threshold) {
-      handleSwipe("right");
+      // store the card's id to send later
+      handleSwipeRight();
+
+      setDirection("right");
 
       onSwipe("right");
     } else if (info.offset.x < -threshold) {
-      handleSwipe("left");
+      handleSwipeLeft();
+
+      setDirection("left");
 
       onSwipe("left");
     } else {
       animControls.start({ x: 0, y: 0 });
     }
   };
+
+  // Use useEffect to ensure animations are only started after component mount
+  useEffect(() => {
+    animControls.start({ opacity: 1 });
+    bgAnimControls.start({ opacity: 1 });
+  }, [animControls, bgAnimControls]);
+
+  useEffect(() => {
+    if (hasBeenSwiped) {
+      setTimeout(async () => {
+        bgAnimControls.start({
+          background: "#ffff",
+          transition: { duration: 0.3 },
+        });
+        setHasBeenSwiped(false);
+        setDirection(null);
+        animControls.set({ x: 0, opacity: 1 });
+      }, 400);
+    }
+  }, [hasBeenSwiped, animControls, bgAnimControls]);
 
   return (
     <AnimatePresence>
@@ -100,7 +140,7 @@ export default function SwipingCard({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.9 }}
       >
         <motion.div
           style={{

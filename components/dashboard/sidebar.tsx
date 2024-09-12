@@ -2,7 +2,7 @@ import React from "react";
 
 export default function DashboardSidebar() {
   return (
-    <div className="h-[90vh] absolute left-20 w-96 max-w-lg rounded-3xl bg-white/30  mt-10 py-10">
+    <div className="h-[90vh] absolute left-10 w-96 max-w-lg rounded-3xl bg-white/30 mt-10 py-10">
       <div className="bg-white shadow-xl relative text-black w-72 h-full mx-auto rounded-3xl">
         <div className="flex flex-col item-center h-full w-full p-2">
           <div className="w-full h-full p-4">
@@ -36,7 +36,7 @@ export default function DashboardSidebar() {
               </defs>
             </svg>
             <div className="flex flex-col pt-16 space-y-4">
-              <div className="text-lg font-light text-slate-500 mb-8">Menu</div>
+              <div className="text-lg font-light text-slate-500 mb-2">Menu</div>
               <button className="flex items-center ml-4 text-slate-400">
                 <svg
                   width="22"
@@ -50,7 +50,9 @@ export default function DashboardSidebar() {
                     fill="#555555"
                   />
                 </svg>
-                <span className="mx-2 font-light">Home</span>
+                <span className="mx-2 font-light transition-all duration-200 hover:opacity-60">
+                  Home
+                </span>
               </button>
               <button className="flex items-center ml-4 text-slate-400">
                 <svg
@@ -65,7 +67,9 @@ export default function DashboardSidebar() {
                     fill="#6C7894"
                   />
                 </svg>
-                <span className="mx-2 font-light">Members</span>
+                <span className="mx-2 font-light transition-all duration-200 hover:opacity-60">
+                  Members
+                </span>
               </button>
               <button className="flex items-center ml-4 text-slate-400">
                 <svg
@@ -80,12 +84,14 @@ export default function DashboardSidebar() {
                     fill="#6C7894"
                   />
                 </svg>
-                <span className="mx-2 font-light">Recommendation</span>
+                <span className="mx-2 font-light hover:opacity-60 transition-all duration-200">
+                  Recommendation
+                </span>
               </button>
               <span className="mx-2 pt-8 font-light text-slate-500">
                 Settings
               </span>
-              <span className="flex items-center ml-4 text-slate-400">
+              <button className="flex items-center ml-4 text-slate-400">
                 <svg
                   width="18"
                   height="21"
@@ -98,9 +104,11 @@ export default function DashboardSidebar() {
                     fill="#6C7894"
                   />
                 </svg>
-                <span className="mx-2 font-light">Profile</span>
-              </span>
-              <span className="flex items-center ml-4 text-slate-400">
+                <span className="mx-2 font-light transition-all duration-200 hover:opacity-60">
+                  Profile
+                </span>
+              </button>
+              <button className="flex items-center ml-4 text-slate-400">
                 <svg
                   width="23"
                   height="21"
@@ -113,8 +121,10 @@ export default function DashboardSidebar() {
                     fill="#6C7894"
                   />
                 </svg>
-                <span className="mx-2 font-light">FAQ&apos;s</span>
-              </span>
+                <span className="mx-2 font-light transition-all duration-200 hover:opacity-60">
+                  FAQ&apos;s
+                </span>
+              </button>
             </div>
           </div>
         </div>
