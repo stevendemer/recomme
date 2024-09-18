@@ -5,7 +5,7 @@ export default function ActionCards({
   image,
 }: {
   title: string;
-  image: Element;
+  image: any;
 }) {
   return (
     <div className="flex flex-1 h-full relative justify-center items-center">

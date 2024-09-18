@@ -59,7 +59,7 @@ export default function CardsStack({ cards, onComplete, onSwipe }: Props) {
             exit={{ x: 1500, opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <SwipingCard src={card.image} onSwipe={handleSwipe} />
+            <SwipingCard onSwipe={handleSwipe} />
           </motion.div>
         ))}
       </AnimatePresence>
