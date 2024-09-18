@@ -11,11 +11,11 @@ export default function Swipe({
   sub: string;
 }) {
   return (
-    <div className="flex flex-col items-center p-4 ">
+    <div className="flex flex-col items-center p-4">
       <div className="w-full p-6 shadow-lg rounded-2xl">
-        <div className="flex items-center justify-center mb-6 flex-col w-full max-w-7xl">
+        <div className="flex items-center justify-center mb-6 flex-col w-full max-w-7xl h-fit">
           <div className="flex items-center justify-center mb-6">
-            <div className="relative sm:w-[15vw] w-[70vw] h-[50vh] bg-gray-200 rounded-2xl shadow-lg">
+            <div className="relative sm:w-[15vw] w-[70vw] h-[40vh] bg-gray-200 rounded-2xl shadow-lg">
               {/* image section */}
               <div className="relative flex-grow h-full w-full flex justify-center">
                 <motion.img

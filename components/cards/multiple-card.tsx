@@ -10,7 +10,7 @@ type Props = {
 
 export default function MultipleCard({ value, onChange }: Props) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-content-center h-full mx-auto gap-4 max-w-7xl p-4 mb-10 pb-24">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-content-center h-fit mx-auto gap-4 max-w-7xl p-4 mb-10 pb-24">
       {Array.from({ length: 8 }).map((_, index) => (
         <div key={index} className="w-full">
           <motion.div

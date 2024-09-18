@@ -36,48 +36,116 @@ import {
   ChevronDownCircleIcon,
   ChevronUpCircleIcon,
 } from "lucide-react";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 type Inputs = {
   location: string;
   ecName: string;
-  role: string;
+  role: ["EC Manager", "EC Member", "Other"];
 };
 
-// function Places() {
+// function PlacesAutoComplete() {
 //   const { isLoaded } = useLoadScript({
-//     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY!,
+//     googleMapsApiKey: "AIzaSyA1TOwkhouIi0rVLuXqNHUcgz0hgZFWM1M",
 //     libraries: ["places"],
 //   });
 
-//   if (isLoaded)
-//     return (
-//       <div className="text-xl text-indigo-400 font-semibold">Loading...</div>
-//     );
+//   const {
+//     ready,
+//     value,
+//     setValue,
+//     suggestions: { status, data },
+//     clearSuggestions,
+//   } = usePlacesAutoComplete({
+//     debounce: 300,
+//   });
 
-//   return <Map />;
-// }
+//   const [open, setOpen] = useState(false);
+//   const [cities, setCities] = useState<{ name: string; id: string }[]>([]);
+//   const [place, setPlace] = useState("");
 
-// function Map() {
-//   const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
-//   const [selected, setSelected] = useState<{ lat: number; lng: number } | null>(
-//     null
-//   );
+//   const ref = useRef(null);
+
+//   useOnClickOutside(ref, () => clearSuggestions());
+
+//   if (!isLoaded)
+//     return <div className="text-red-400 text-xl text-center">Loading...</div>;
+
+//   const handleSelect = async (city: { name: string; id: string }) => {
+//     setValue(city.name);
+//     clearSuggestions();
+//     setOpen(false);
+//   };
 
 //   return (
-//     <>
-//       <PlacesAutoComplete />
-//       {/* <GoogleMap
-//         zoom={10}
-//         center={center}
-//         mapContainerClassName="map-container"
+//     <div className="max-w-xl w-full">
+//       <Label className="py-6">EC Location</Label>
+//       <Autocomplete
+//         onLoad={(auto) => {
+//           auto.addListener("place_changed", () => {
+//             const place = auto.getPlace();
+//             if (place) {
+//               setPlace(place.formatted_address || "");
+//             }
+//           });
+//         }}
 //       >
-//         {selected && <Marker position={selected} />}
-//       </GoogleMap> */}
-//     </>
+//         <Input
+//           type="text"
+//           placeholder="Enter a location"
+//           className="w-full rounded-full py-6 shadow-xl mt-2"
+//           value={place}
+//           onChange={(e) => setPlace(e.currentTarget.value)}
+//         />
+//       </Autocomplete>
+//     </div>
 //   );
 // }
 
-function PlacesAutoComplete() {
+const schema = z.object({
+  location: z
+    .string({
+      required_error: "Location is required",
+    })
+    .trim(),
+  ecName: z
+    .string({
+      required_error: "Please enter your EC name",
+    })
+    .trim(),
+  role: z.enum(["EC Manager", "EC Member", "Other"], {
+    required_error: "Please select a role",
+  }),
+});
+
+export default function RegistrationPage() {
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
+    mode: "onSubmit",
+  });
+  const onSubmit: SubmitHandler<z.infer<typeof schema>> = (data) => {
+    console.log("Form submitted ", data);
+  };
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyA1TOwkhouIi0rVLuXqNHUcgz0hgZFWM1M",
     libraries: ["places"],
@@ -93,122 +161,125 @@ function PlacesAutoComplete() {
     debounce: 300,
   });
 
-  const [open, setOpen] = useState(false);
-  const [cities, setCities] = useState<{ name: string; id: string }[]>([]);
-  const [place, setPlace] = useState("");
-
   const ref = useRef(null);
 
   useOnClickOutside(ref, () => clearSuggestions());
 
   if (!isLoaded)
-    return <div className="text-red-400 text-xl text-center">Loading...</div>;
-
-  const handleSelect = async (city: { name: string; id: string }) => {
-    setValue(city.name);
-    clearSuggestions();
-    setOpen(false);
-  };
-
-  return (
-    <div className="w-full">
-      <Autocomplete
-        onLoad={(auto) => {
-          auto.addListener("place_changed", () => {
-            const place = auto.getPlace();
-            if (place) {
-              setPlace(place.formatted_address || "");
-            }
-          });
-        }}
-      >
-        <Input
-          type="text"
-          placeholder="Enter a location"
-          className="w-full rounded-full py-6 shadow-xl"
-          value={place}
-          onChange={(e) => setPlace(e.currentTarget.value)}
-        />
-      </Autocomplete>
-    </div>
-  );
-}
-
-export default function RegistrationPage() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
-  } = useForm<Inputs>({
-    mode: "onChange",
-  });
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log("Form submitted ", data);
-  };
+    return (
+      <div className="text-green-400 text-lg text-center font-body tracking-wide">
+        Loading locations...
+      </div>
+    );
 
   return (
     <div className="gradient-bg flex justify-center items-center overflow-x-hidden font-rubik">
       <ParentContainer>
-        <div className="flex flex-col items-center w-full h-full relative m-auto justify-center max-w-lg space-y-4">
+        <div className="flex flex-col items-center w-full h-full relative mx-auto justify-center max-w-xl space-y-4">
           <h1 className="text-5xl font-sans leading-tight text-black">
             Registration
           </h1>
 
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col items-center w-full h-1/3 max-w-sm space-y-2 p-6"
-          >
-            <PlacesAutoComplete />
-            {/* <Input
-                className="rounded-full shadow-xl py-6"
-                placeholder="Location"
-                {...register("location", {
-                  required: "Location is required",
-                  minLength: { message: "Minimum length is 4", value: 4 },
-                })}
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="flex flex-col items-center w-full h-1/3 max-w-sm space-y-4 p-6"
+            >
+              <FormField
+                control={form.control}
+                name="location"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel>Location</FormLabel>
+                    <FormControl>
+                      <Autocomplete
+                        onLoad={(auto) => {
+                          auto.addListener("place_changed", () => {
+                            const place = auto.getPlace();
+                            if (place) {
+                              // setPlace(place.formatted_address || "");
+                              form.setValue(
+                                "location",
+                                place.formatted_address || ""
+                              );
+                              form.trigger("location");
+                            }
+                          });
+                        }}
+                      >
+                        <Input
+                          {...field}
+                          placeholder="Enter a location"
+                          className="w-full rounded-full py-6 shadow-xl mt-2"
+                          // value={place}
+                          // onChange={(e) => setPlace(e.currentTarget.value)}
+                        />
+                      </Autocomplete>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-              {errors.location && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.location.message}
-                </p>
-              )} */}
-            <Input
-              className="rounded-full shadow-xl py-6"
-              placeholder="Ec Name"
-              {...register("ecName", {
-                required: "EC Name is required",
-                minLength: { message: "Minimum length is 3", value: 3 },
-              })}
-            />
-            {errors.ecName && (
-              <p className="mt-1 text-sm text-red-600">
-                {errors.ecName.message}
-              </p>
-            )}
+              {/* <PlacesAutoComplete /> */}
+              <FormField
+                control={form.control}
+                name="ecName"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel>EC Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        className="rounded-full shadow-xl py-6 w-full"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <Input
-              {...register("role", {
-                required: "Role is required",
-                minLength: { message: "Minimum length is 3", value: 3 },
-              })}
-              className="rounded-full shadow-xl py-6"
-              placeholder="Role"
-            />
-            {errors.role && (
-              <p className="mt-1 text-sm text-red-600">{errors.role.message}</p>
-            )}
-          </form>
-          <SubmitButton
-            type="submit"
-            disabled={!isValid}
-            className={cn(
-              isValid
-                ? "bg-black text-white hover:bg-black/80"
-                : "bg-gray-300 text-gray-500 cursor-not-allowed hover:bg-gray-200"
-            )}
-          >
-            Confirm
-          </SubmitButton>
+              <FormField
+                control={form.control}
+                name="role"
+                render={({ field }) => (
+                  <FormItem className="w-full mb-4">
+                    <FormLabel>EC Role</FormLabel>
+                    <Select
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                        form.trigger("role"); // trigger validation
+                      }}
+                      defaultValue={"EC Manager"}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a role" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className="py-6">
+                        <SelectItem value="EC Manager">EC Manager</SelectItem>
+                        <SelectItem value="EC Member">EC Member</SelectItem>
+                        <SelectItem value="Other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <SubmitButton
+                type="submit"
+                disabled={!form.formState.isValid}
+                className={cn(
+                  form.formState.isValid
+                    ? "bg-black text-white hover:bg-black/80"
+                    : "bg-gray-300 text-gray-500 cursor-not-allowed hover:bg-gray-200"
+                )}
+              >
+                Confirm
+              </SubmitButton>
+            </form>
+          </Form>
         </div>
       </ParentContainer>
     </div>

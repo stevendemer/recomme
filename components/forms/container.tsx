@@ -150,7 +150,7 @@ export default function FormContainer() {
               ></Controller>
             )}
             <SubmitButton
-              className="relative bottom-20"
+              className="m-0 "
               type={step < 3 ? "button" : "submit"}
               onClick={() => handleNext()}
               disabled={step === 3 && !isFormComplete}

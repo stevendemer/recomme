@@ -9,7 +9,7 @@ export default function ImageSlider({
   onValueChange: (v: number[]) => void;
 }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 mx-auto max-w-7xl py-12 px-4 gap-6 w-full h-full">
+    <div className="grid grid-cols-1 md:grid-cols-3 mx-auto max-w-7xl py-8 px-4 gap-6 w-full h-fit">
       <div className="overflow-hidden rounded-3xl mr-12 col-span-2">
         <img
           src="https://placehold.co/600x400"

@@ -127,7 +127,7 @@ export default function SwipingCard({
       <motion.div
         style={{ background: hasBeenSwiped ? background : "rgba(0,0,0,0)" }}
         className={cn(
-          "mt-4 mx-auto rounded-3xl w-full h-full overflow-hidden relative"
+          "mt-4 mx-auto rounded-3xl w-full h-fit overflow-hidden relative"
         )}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -213,7 +213,7 @@ export default function SwipingCard({
                     <button
                       onClick={handleSwipeLeft}
                       className={cn(
-                        "border-1 border-red-400 border-2 text-white rounded-full p-2 hover:scale-110 transition-all duration-200",
+                        "border-1 border-red-400 border-2 text-white rounded-full p-2 hover:scale-110 transition-all duration-200 mx-4",
                         hasBeenSwiped && "sm:hidden"
                       )}
                     >
@@ -223,7 +223,7 @@ export default function SwipingCard({
                     <button
                       onClick={handleSwipeRight}
                       className={cn(
-                        "border-1 border-teal-300 border-2 text-white rounded-full p-2 hover:scale-110 transition-all duration-200",
+                        "border-1 border-teal-300 border-2 text-white rounded-full p-2 hover:scale-110 transition-all duration-200 mx-4",
                         hasBeenSwiped && "sm:hidden"
                       )}
                     >

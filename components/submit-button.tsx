@@ -27,7 +27,7 @@ export default function SubmitButton({
   return (
     <Button
       onClick={props.onClick}
-      className={cn("submit-btn", className)}
+      className={cn("rounded-full px-16 py-8", className)}
       disabled={pending}
       type="submit"
     >
