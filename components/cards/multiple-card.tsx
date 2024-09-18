@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 type Props = {
   value: number[];
@@ -12,7 +13,7 @@ export default function MultipleCard({ value, onChange }: Props) {
     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-content-center h-full mx-auto gap-4 max-w-7xl p-4 mb-10 pb-24">
       {Array.from({ length: 8 }).map((_, index) => (
         <div key={index} className="w-full">
-          <div
+          <motion.div
             onClick={() => {
               if (value.includes(index)) {
                 // remove the select if already selected
@@ -24,7 +25,7 @@ export default function MultipleCard({ value, onChange }: Props) {
             }}
             key={index}
             className={cn(
-              "flex flex-col bg-background rounded-[35px] overflow-hidden shadow-xl p-4 cursor-pointer font-bold transition-all duration-200 h-full",
+              "flex flex-col bg-background rounded-[35px] overflow-hidden shadow-xl p-4 cursor-pointer font-bold transition-all duration-300 h-full",
               value.includes(index) && "bg-[#65d9bd] text-slate-100"
             )}
           >
@@ -161,7 +162,7 @@ export default function MultipleCard({ value, onChange }: Props) {
                 Corrupti ipsa amet tenetur?
               </span>
             </div>
-          </div>
+          </motion.div>
         </div>
       ))}
     </div>

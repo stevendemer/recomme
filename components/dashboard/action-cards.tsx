@@ -8,7 +8,7 @@ export default function ActionCards({
   image: Element;
 }) {
   return (
-    <div className="flex w-full h-full relative justify-center items-center">
+    <div className="flex flex-1 h-full relative justify-center items-center">
       <svg
         width="452"
         height="177"
@@ -57,9 +57,9 @@ export default function ActionCards({
           </filter>
         </defs>
       </svg>
-      <div className="absolute inset-0 w-[100%] h-[100%] flex justify-center items-center space-x-4">
+      <div className="absolute inset-0 w-[100%] h-[100%] flex justify-center items-center space-x-4 cursor-pointer">
         {image}
-        <h1 className="text-lg font-sans font-bold">{title}</h1>
+        <h1 className="text-lg font-sans font-bold font-rubik">{title}</h1>
       </div>
     </div>
   );

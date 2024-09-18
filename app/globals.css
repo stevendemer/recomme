@@ -80,7 +80,7 @@
 
 @layer utilities {
   .submit-btn {
-    @apply rounded-[51px] px-4 py-2 text-slate-50 tracking-widest sm:p-8 shadow-sm shadow-white w-32 sm:w-44;
+    @apply rounded-[51px] px-3 py-1 text-slate-50 tracking-widest sm:p-8 shadow-sm shadow-white;
   }
 
   .heading {

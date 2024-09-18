@@ -20,8 +20,7 @@ export default function SwipingCard({
 }: {
   onSwipe: (direction: string) => void;
 }) {
-  const [scope, animate] = useAnimate();
-  const [exit, setExit] = useState(0);
+  const [showButton, setShowButton] = useState(true);
   const [hasBeenSwiped, setHasBeenSwiped] = useState(false);
   const [direction, setDirection] = useState<"left" | "right" | null>(null);
   const x = useMotionValue(0);
@@ -45,41 +44,32 @@ export default function SwipingCard({
   );
 
   const handleSwipe = async (direction: "left" | "right") => {
-    // const xDirection = direction === "left" ? -1500 : 1500;
-    // if (!hasBeenSwiped) {
-    //   setHasBeenSwiped(true);
-    //   await animControls.start({ x: xDirection, y: xDirection, opacity: 0 });
-    //   setExit(xDirection);
-    //   toast({
-    //     description: `Swiped at ${direction}`,
-    //   });
-    // }
-
     if (hasBeenSwiped) return;
 
     setHasBeenSwiped(true);
     setDirection(direction);
+    setShowButton(false);
 
     const xDirection = direction === "left" ? -1500 : 1500;
-
-    // Start both animations simultaneously
-    await Promise.all([
-      animControls.start({
-        x: xDirection,
-        opacity: 0,
-        transition: { duration: 1.2, bounceStiffness: 300 },
-      }),
-      bgAnimControls.start({
-        background: direction === "left" ? "#dc2626" : "#4ade80",
-        transition: { duration: 0.5 },
-      }),
-    ]);
 
     toast({
       description: `Swiped ${direction}`,
     });
 
     onSwipe(direction);
+
+    // Start both animations simultaneously
+    await Promise.all([
+      animControls.start({
+        x: xDirection,
+        opacity: 0,
+        transition: { duration: 0.7, bounceStiffness: 300, ease: "easeIn" },
+      }),
+      bgAnimControls.start({
+        background: direction === "left" ? "#dc2626" : "#4ade80",
+        transition: { duration: 0.7, ease: "easeIn", bounceDamping: 300 },
+      }),
+    ]);
   };
 
   const handleSwipeLeft = () => handleSwipe("left");
@@ -111,22 +101,24 @@ export default function SwipingCard({
   };
 
   // Use useEffect to ensure animations are only started after component mount
-  useEffect(() => {
-    animControls.start({ opacity: 1 });
-    bgAnimControls.start({ opacity: 1 });
-  }, [animControls, bgAnimControls]);
+  // useEffect(() => {
+  //   animControls.start({ opacity: 1 });
+  //   bgAnimControls.start({ opacity: 1 });
+  // }, [animControls, bgAnimControls]);
 
   useEffect(() => {
     if (hasBeenSwiped) {
       setTimeout(async () => {
         bgAnimControls.start({
           background: "#ffff",
-          transition: { duration: 0.3 },
         });
+
+        // delete here to manage multiple cards
         setHasBeenSwiped(false);
         setDirection(null);
         animControls.set({ x: 0, opacity: 1 });
-      }, 400);
+        setShowButton(true);
+      }, 800);
     }
   }, [hasBeenSwiped, animControls, bgAnimControls]);
 
@@ -140,7 +132,7 @@ export default function SwipingCard({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.9 }}
+        transition={{ duration: 1.2 }}
       >
         <motion.div
           style={{
@@ -158,27 +150,29 @@ export default function SwipingCard({
         ></motion.div>
         <div className="flex justify-center items-center relative h-full py-4">
           {/* left button */}
-          <motion.div>
-            <button
-              onClick={handleSwipeLeft}
-              className={cn(
-                "border-1 border-red-400 border-2 text-white rounded-full p-2 hover:scale-110 transition-all duration-200 sm:block hidden",
-                hasBeenSwiped && "sm:hidden"
-              )}
-            >
-              <IoMdClose className="sm:w-8 sm:h-8 " fill="red" />
-            </button>
-          </motion.div>
+          <AnimatePresence>
+            <motion.div>
+              <button
+                onClick={handleSwipeLeft}
+                className={cn(
+                  "border-1 border-red-400 border-2 text-white rounded-full p-2 hover:scale-110 transition-all duration-200 sm:block hidden",
+                  hasBeenSwiped && "sm:hidden"
+                )}
+              >
+                <IoMdClose className="sm:w-8 sm:h-8 " fill="red" />
+              </button>
+            </motion.div>
+          </AnimatePresence>
           {/* main card image */}
           <div className="flex flex-col items-center justify-center h-96 w-[70vw] sm:h-[50vh] sm:w-[15vw] mb-6 rounded-3xl mx-16">
             <motion.img
               transition={{
-                duration: 0.5,
+                duration: 0.9,
                 type: "spring",
                 stiffness: 300,
-                ease: "easeInOut",
+                ease: "easeIn",
               }}
-              dragElastic={0.7}
+              dragElastic={0.9}
               style={{
                 x,
                 opacity,
@@ -190,9 +184,8 @@ export default function SwipingCard({
               drag="x"
               _dragX={x}
               _dragY={y}
-              src={"/assets/hacker.png"}
+              src={"/assets/flower.svg"}
               alt="card image"
-              // className="object-cover object-center rounded-[60px] h-[60vh] w-[60vw] sm:w-[20vw] mb-4 max-h-[70vh] mx-auto"
               className="object-cover object-center border-black border h-full rounded-3xl w-full"
               animate={animControls}
               dragDirectionLock
@@ -207,39 +200,58 @@ export default function SwipingCard({
                 cursor: "grab",
               }}
             />
-            <div className="flex items-center justify-center sm:hidden space-x-6 p-4">
-              <button
-                onClick={handleSwipeLeft}
-                className={cn(
-                  "border-1 border-red-400 border-2 text-white rounded-full p-2 hover:scale-110 transition-all duration-200",
-                  hasBeenSwiped && "sm:hidden"
-                )}
-              >
-                <IoMdClose className="sm:w-8 sm:h-8 " fill="red" />
-              </button>
 
+            <div className="flex items-center justify-center sm:hidden space-x-6 p-4">
+              <AnimatePresence>
+                {showButton && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <button
+                      onClick={handleSwipeLeft}
+                      className={cn(
+                        "border-1 border-red-400 border-2 text-white rounded-full p-2 hover:scale-110 transition-all duration-200",
+                        hasBeenSwiped && "sm:hidden"
+                      )}
+                    >
+                      <IoMdClose className="sm:w-8 sm:h-8 " fill="red" />
+                    </button>
+
+                    <button
+                      onClick={handleSwipeRight}
+                      className={cn(
+                        "border-1 border-teal-300 border-2 text-white rounded-full p-2 hover:scale-110 transition-all duration-200",
+                        hasBeenSwiped && "sm:hidden"
+                      )}
+                    >
+                      <FaHeart className="text-teal-300 sm:w-8 sm:h-8" />
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+          {showButton && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+            >
               <button
                 onClick={handleSwipeRight}
                 className={cn(
-                  "border-1 border-teal-300 border-2 text-white rounded-full p-2 hover:scale-110 transition-all duration-200",
+                  "border-1 border-teal-300 border-2 text-white rounded-full p-2 hover:scale-110 transition-all duration-200 sm:block hidden",
                   hasBeenSwiped && "sm:hidden"
                 )}
               >
                 <FaHeart className="text-teal-300 sm:w-8 sm:h-8" />
               </button>
-            </div>
-          </div>
-          <motion.div>
-            <button
-              onClick={handleSwipeRight}
-              className={cn(
-                "border-1 border-teal-300 border-2 text-white rounded-full p-2 hover:scale-110 transition-all duration-200 sm:block hidden",
-                hasBeenSwiped && "sm:hidden"
-              )}
-            >
-              <FaHeart className="text-teal-300 sm:w-8 sm:h-8" />
-            </button>
-          </motion.div>
+            </motion.div>
+          )}
         </div>
       </motion.div>
     </AnimatePresence>

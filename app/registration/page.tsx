@@ -110,125 +110,15 @@ function PlacesAutoComplete() {
     setOpen(false);
   };
 
-  // useEffect(() => {
-  //   if (!ready) return;
-
-  //   const autoCompleteService =
-  //     new window.google.maps.places.AutocompleteService();
-
-  //   const handleInput = (input: string) => {
-  //     if (input) {
-  //       autoCompleteService.getPlacePredictions(
-  //         { input, types: ["(cities)"] },
-  //         (predictions, status) => {
-  //           if (
-  //             status === window.google.maps.places.PlacesServiceStatus.OK &&
-  //             predictions
-  //           ) {
-  //             setCities(
-  //               predictions.map((prediction) => ({
-  //                 id: prediction.place_id,
-  //                 name: prediction.description,
-  //               }))
-  //             );
-  //           }
-  //         }
-  //       );
-  //     } else {
-  //       setCities([]);
-  //     }
-  //   };
-
-  //   handleInput(value);
-  // }, [value, ready]);
-
-  // const initAutoComplete = () => {
-  //   const autoCompleteService =
-  //     new window.google.maps.places.AutocompleteService();
-  //   const placesService = new window.google.maps.places.PlacesService(
-  //     document.createElement("div")
-  //   );
-
-  //   const handleInput = (input: any) => {
-  //     if (input) {
-  //       autoCompleteService.getPlacePredictions(
-  //         { input, types: ["(cities)"] },
-  //         (predictions, status) => {
-  //           if (
-  //             status === window.google.maps.places.PlacesServiceStatus.OK &&
-  //             predictions
-  //           ) {
-  //             setCities(
-  //               predictions.map((prediction) => ({
-  //                 id: prediction.place_id,
-  //                 name: prediction.description,
-  //               }))
-  //             );
-  //           }
-  //         }
-  //       );
-  //     } else {
-  //       setCities([]);
-  //     }
-  //   };
-
-  //   return handleInput;
-  // };
-
   return (
     <div className="w-full">
-      {/* <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            role="combobox"
-            className="w-[120px] justify-between"
-            aria-expanded={open}
-          >
-            {value ? value : "Select city..."}
-            <ChevronUpCircleIcon className="ml-2 w-4 h-4 shrink-0 opacity-50" />
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-[200px] p-0" ref={ref}>
-          <Command>
-            <CommandInput
-              value={value}
-              // onChangeCapture={(e) => setValue(e.currentTarget.value)}
-              disabled={!ready}
-              placeholder="Search for a location..."
-              onValueChange={setValue}
-            />
-            <CommandList>
-              <CommandEmpty>No location found.</CommandEmpty>
-              <CommandGroup>
-                {status === "OK" &&
-                  cities.map((city) => (
-                    <CommandItem
-                      key={city.id}
-                      onSelect={(currentValue) => {
-                        setValue(currentValue === value ? "" : currentValue);
-                        setOpen(false);
-                      }}
-                    >
-                      <Check
-                        className={cn(
-                          "mr-2 h-4 w-4",
-                          value === city.name ? "opacity-100" : "opacity-0"
-                        )}
-                      />
-                      {city.name}
-                    </CommandItem>
-                  ))}
-              </CommandGroup>
-            </CommandList>
-          </Command>
-        </PopoverContent>
-      </Popover> */}
       <Autocomplete
         onLoad={(auto) => {
           auto.addListener("place_changed", () => {
             const place = auto.getPlace();
-            setPlace(place.formatted_address || "");
+            if (place) {
+              setPlace(place.formatted_address || "");
+            }
           });
         }}
       >
@@ -257,20 +147,19 @@ export default function RegistrationPage() {
   };
 
   return (
-    <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY!}>
-      <div className="gradient-bg flex justify-center items-center overflow-x-hidden font-rubik">
-        <ParentContainer>
-          <div className="flex flex-col items-center w-full h-full relative m-auto justify-center max-w-lg space-y-4">
-            <h1 className="text-5xl font-sans leading-tight text-black">
-              Registration
-            </h1>
+    <div className="gradient-bg flex justify-center items-center overflow-x-hidden font-rubik">
+      <ParentContainer>
+        <div className="flex flex-col items-center w-full h-full relative m-auto justify-center max-w-lg space-y-4">
+          <h1 className="text-5xl font-sans leading-tight text-black">
+            Registration
+          </h1>
 
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col items-center w-full h-1/3 max-w-sm space-y-2 p-6"
-            >
-              <PlacesAutoComplete />
-              {/* <Input
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col items-center w-full h-1/3 max-w-sm space-y-2 p-6"
+          >
+            <PlacesAutoComplete />
+            {/* <Input
                 className="rounded-full shadow-xl py-6"
                 placeholder="Location"
                 {...register("location", {
@@ -283,48 +172,45 @@ export default function RegistrationPage() {
                   {errors.location.message}
                 </p>
               )} */}
-              <Input
-                className="rounded-full shadow-xl py-6"
-                placeholder="Ec Name"
-                {...register("ecName", {
-                  required: "EC Name is required",
-                  minLength: { message: "Minimum length is 3", value: 3 },
-                })}
-              />
-              {errors.ecName && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.ecName.message}
-                </p>
-              )}
+            <Input
+              className="rounded-full shadow-xl py-6"
+              placeholder="Ec Name"
+              {...register("ecName", {
+                required: "EC Name is required",
+                minLength: { message: "Minimum length is 3", value: 3 },
+              })}
+            />
+            {errors.ecName && (
+              <p className="mt-1 text-sm text-red-600">
+                {errors.ecName.message}
+              </p>
+            )}
 
-              <Input
-                {...register("role", {
-                  required: "Role is required",
-                  minLength: { message: "Minimum length is 3", value: 3 },
-                })}
-                className="rounded-full shadow-xl py-6"
-                placeholder="Role"
-              />
-              {errors.role && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.role.message}
-                </p>
-              )}
-            </form>
-            <SubmitButton
-              type="submit"
-              disabled={!isValid}
-              className={cn(
-                isValid
-                  ? "bg-blue-500 text-white hover:bg-blue-400"
-                  : "bg-gray-300 text-gray-500 cursor-not-allowed hover:bg-gray-200"
-              )}
-            >
-              Confirm
-            </SubmitButton>
-          </div>
-        </ParentContainer>
-      </div>
-    </Wrapper>
+            <Input
+              {...register("role", {
+                required: "Role is required",
+                minLength: { message: "Minimum length is 3", value: 3 },
+              })}
+              className="rounded-full shadow-xl py-6"
+              placeholder="Role"
+            />
+            {errors.role && (
+              <p className="mt-1 text-sm text-red-600">{errors.role.message}</p>
+            )}
+          </form>
+          <SubmitButton
+            type="submit"
+            disabled={!isValid}
+            className={cn(
+              isValid
+                ? "bg-black text-white hover:bg-black/80"
+                : "bg-gray-300 text-gray-500 cursor-not-allowed hover:bg-gray-200"
+            )}
+          >
+            Confirm
+          </SubmitButton>
+        </div>
+      </ParentContainer>
+    </div>
   );
 }

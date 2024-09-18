@@ -14,15 +14,15 @@ export default function MemberCards({
   members: number;
 }) {
   return (
-    <div className="flex items-center  text-slate-700 w-full h-full min-w-xl p-4">
+    <div className="flex items-center justify-center text-slate-700 w-full p-6">
       <div
         className={cn(
-          "flex flex-col items-center bg-white rounded-3xl shadow-xl h-full w-full space-y-1 p-2"
+          "flex flex-col items-center bg-white rounded-[35px] shadow-xl w-full p-4"
         )}
       >
         <div
           className={cn(
-            "rounded-full w-fit mx-2 bg-purple-500 h-full flex justify-center p-4 mt-2",
+            "rounded-full w-fit mx-4 bg-purple-500 h-full flex justify-center p-4 mt-2",
             className
           )}
         >
@@ -33,7 +33,7 @@ export default function MemberCards({
         <div className="flex items-center justify-center w-full h-full">
           <button
             className={cn(
-              "rounded-full mx-2 text-white font-rubik font-bold p-2 w-1/2 max-w-lg my-4",
+              "rounded-full text-white font-rubik font-bold w-full !px-4 !py-2",
               className
             )}
           >
