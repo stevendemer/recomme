@@ -35,5 +35,4 @@ jobs:
             cd /code/recomme
             git pull origin main
             npm ci
-            npm run build
             npm run start
