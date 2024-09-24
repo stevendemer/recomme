@@ -15,7 +15,7 @@ export default function Home() {
               <svg
                 width="471"
                 height="446"
-                className="w-full h-full aspect-auto"
+                className="w-full h-auto max-w-full"
                 viewBox="0 0 471 446"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +81,7 @@ export default function Home() {
                 </defs>
               </svg>
 
-              <div className="absolute inset-0 flex justify-center items-center w-[100%] h-[100%] m-2">
+              <div className="absolute inset-0 flex justify-center items-center w-full h-full m-2 ">
                 {/* background glass  */}
                 <svg
                   width="520"
@@ -89,7 +89,7 @@ export default function Home() {
                   viewBox="0 0 516 145"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-full h-full aspect-auto"
+                  className="w-full h-auto max-w-full"
                 >
                   <rect
                     width="516"
@@ -112,8 +112,12 @@ export default function Home() {
                   </defs>
                 </svg>
 
-                <div className="absolute inset-0 flex items-center justify-center w-[100%] h-[100%]">
-                  <img className="px-2 mb-12" src="/assets/flower.svg" alt="" />
+                <div className="absolute inset-0 flex flex-col sm:flex-row items-center justify-center w-full h-full">
+                  <img
+                    className="px-2 sm:mb-12"
+                    src="/assets/flower.svg"
+                    alt=""
+                  />
                   <div className="text-black p-4 text-2xl font-normal font-rubik leading-tight">
                     Hello there! I&apos;m here to assist you. It looks like you
                     were about to say &apos;Recommend me&apos;

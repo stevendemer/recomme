@@ -14,32 +14,29 @@ export default function MemberCards({
   members: number;
 }) {
   return (
-    <div className="flex items-center justify-center text-slate-700 w-full p-6">
-      <div
-        className={cn(
-          "flex flex-col items-center bg-white rounded-[35px] shadow-xl w-full p-4"
-        )}
-      >
-        <div
-          className={cn(
-            "rounded-full w-fit mx-4 bg-purple-500 h-full flex justify-center p-4 mt-2",
-            className
-          )}
-        >
-          {icon}
-        </div>
-
-        <h1 className="text-xl font-bold font-rubik">{text}</h1>
-        <div className="flex items-center justify-center w-full h-full">
-          <button
+    <div className="flex items-center justify-center text-slate-600 w-full bg-white rounded-3xl p-2">
+      <div className="flex flex-col items-center rounded-3xl w-full gap-4">
+        <div className={cn(" p-2 bg-white")}>
+          <div
             className={cn(
-              "rounded-full text-white font-rubik font-bold w-full !px-4 !py-2",
+              "max-w-full h-auto flex justify-center mt-2 rounded-full",
               className
             )}
           >
-            {members}
-          </button>
+            <div className="p-4">{icon}</div>
+          </div>
         </div>
+
+        <h1 className="text-xl font-bold font-rubik">{text}</h1>
+        <Button
+          size="sm"
+          className={cn(
+            "rounded-full text-white font-rubik font-bold w-28 px-4 py-2",
+            className
+          )}
+        >
+          {members}
+        </Button>
       </div>
     </div>
   );

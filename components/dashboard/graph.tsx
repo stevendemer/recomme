@@ -11,57 +11,51 @@ import {
 
 const data = [
   {
-    subject: "Math",
-    A: 120,
-    B: 110,
-    fullMark: 150,
+    subject: "Recruitment and Engagement",
+    A: 0,
+    B: 1,
+    fullMark: 5,
   },
   {
-    subject: "Chinese",
-    A: 98,
-    B: 130,
-    fullMark: 150,
+    subject: "Meeting goals",
+    A: 2,
+    B: 3,
+    fullMark: 5,
   },
   {
-    subject: "English",
-    A: 86,
-    B: 130,
-    fullMark: 150,
+    subject: "Continuous Engagement/Feedback",
+    A: 4,
+    B: 5,
+    fullMark: 5,
   },
   {
-    subject: "Geography",
-    A: 99,
-    B: 100,
-    fullMark: 150,
+    subject: "Behavioural shift / Transition",
+    A: 4,
+    B: 5,
+    fullMark: 5,
   },
   {
-    subject: "Physics",
-    A: 85,
-    B: 90,
-    fullMark: 150,
-  },
-  {
-    subject: "History",
-    A: 65,
-    B: 85,
-    fullMark: 150,
+    subject: "Ambition / Ideation",
+    A: 1,
+    B: 5,
+    fullMark: 5,
   },
 ];
 
 export default function Graph() {
   return (
-    <div className="bg-white/20 backdrop-blur-lg flex justify-center h-full w-full rounded-3xl shadow-md mx-auto container p-6">
+    <div className="bg-white/90 backdrop-blur-lg flex justify-center h-full w-full rounded-3xl shadow-md p-6">
       <ResponsiveContainer width="100%" height="90%">
         <RadarChart cx="50%" cy="50%" outerRadius="90%" data={data}>
           <PolarGrid />
           <PolarAngleAxis dataKey="subject" />
-          <PolarRadiusAxis angle={40} domain={[0, 150]} />
+          <PolarRadiusAxis angle={90} domain={[0, 5]} />
           <Radar
-            name="Mike"
+            name="EC Maturity"
             dataKey="A"
             stroke="#49DFAD"
             fill="#C1F4E4"
-            fillOpacity={0.6}
+            fillOpacity={0.7}
           />
           <Legend />
         </RadarChart>

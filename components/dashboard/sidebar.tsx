@@ -10,9 +10,9 @@ import SubmitButton from "../submit-button";
 export default function DashboardSidebar() {
   return (
     <TooltipProvider>
-      <div className="h-[90vh] relative z-20 left-10 w-96 max-w-lg rounded-3xl bg-white/30 mt-10 py-10">
-        <div className="bg-white shadow-xl relative text-black w-72 h-full mx-auto rounded-3xl">
-          <div className="flex flex-col item-center h-full w-full p-2">
+      <div className="h-screen mx-auto z-20 left-20 relative flex-shrink-0 w-96 rounded-3xl bg-white/30 py-10 hidden sm:block">
+        <div className="bg-white h-full shadow-xl text-black w-80 rounded-3xl">
+          <div className="flex flex-col h-full p-6">
             <div className="w-full h-full p-4">
               <svg
                 width="207"

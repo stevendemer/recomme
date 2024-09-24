@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label";
 import SubmitButton from "@/components/submit-button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { cn } from "@/lib/utils";
-import { Wrapper } from "@googlemaps/react-wrapper";
 import {
   Autocomplete,
   GoogleMap,
@@ -17,25 +16,8 @@ import usePlacesAutoComplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import { useMemo, useState, useEffect, useRef } from "react";
-import {
-  Command,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command";
-import { CommandEmpty, CommandList } from "cmdk";
 import { useOnClickOutside } from "usehooks-ts";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import {
-  Check,
-  ChevronDownCircleIcon,
-  ChevronUpCircleIcon,
-} from "lucide-react";
 import {
   Form,
   FormControl,
@@ -56,70 +38,13 @@ import {
 
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useToast } from "@/components/ui/use-toast";
 
 type Inputs = {
   location: string;
   ecName: string;
   role: ["EC Manager", "EC Member", "Other"];
 };
-
-// function PlacesAutoComplete() {
-//   const { isLoaded } = useLoadScript({
-//     googleMapsApiKey: "AIzaSyA1TOwkhouIi0rVLuXqNHUcgz0hgZFWM1M",
-//     libraries: ["places"],
-//   });
-
-//   const {
-//     ready,
-//     value,
-//     setValue,
-//     suggestions: { status, data },
-//     clearSuggestions,
-//   } = usePlacesAutoComplete({
-//     debounce: 300,
-//   });
-
-//   const [open, setOpen] = useState(false);
-//   const [cities, setCities] = useState<{ name: string; id: string }[]>([]);
-//   const [place, setPlace] = useState("");
-
-//   const ref = useRef(null);
-
-//   useOnClickOutside(ref, () => clearSuggestions());
-
-//   if (!isLoaded)
-//     return <div className="text-red-400 text-xl text-center">Loading...</div>;
-
-//   const handleSelect = async (city: { name: string; id: string }) => {
-//     setValue(city.name);
-//     clearSuggestions();
-//     setOpen(false);
-//   };
-
-//   return (
-//     <div className="max-w-xl w-full">
-//       <Label className="py-6">EC Location</Label>
-//       <Autocomplete
-//         onLoad={(auto) => {
-//           auto.addListener("place_changed", () => {
-//             const place = auto.getPlace();
-//             if (place) {
-//               setPlace(place.formatted_address || "");
-//             }
-//           });
-//         }}
-//       >
-//         <Input
-//           type="text"
-//           placeholder="Enter a location"
-//           className="w-full rounded-full py-6 shadow-xl mt-2"
-//           value={place}
-//           onChange={(e) => setPlace(e.currentTarget.value)}
-//         />
-//       </Autocomplete>
-//     </div>
-//   );
-// }
 
 const schema = z.object({
   location: z
@@ -142,8 +67,15 @@ export default function RegistrationPage() {
     resolver: zodResolver(schema),
     mode: "onSubmit",
   });
+
+  const { toast } = useToast();
+
   const onSubmit: SubmitHandler<z.infer<typeof schema>> = (data) => {
     console.log("Form submitted ", data);
+
+    toast({
+      description: "Form submitted ! Thanks for your time ",
+    });
   };
 
   const { isLoaded } = useLoadScript({
@@ -190,7 +122,6 @@ export default function RegistrationPage() {
                 name="location"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel>Location</FormLabel>
                     <FormControl>
                       <Autocomplete
                         onLoad={(auto) => {
@@ -226,10 +157,10 @@ export default function RegistrationPage() {
                 name="ecName"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel>EC Name</FormLabel>
                     <FormControl>
                       <Input
                         className="rounded-full shadow-xl py-6 w-full"
+                        placeholder="EC Name"
                         {...field}
                       />
                     </FormControl>
@@ -243,7 +174,6 @@ export default function RegistrationPage() {
                 name="role"
                 render={({ field }) => (
                   <FormItem className="w-full mb-4">
-                    <FormLabel>EC Role</FormLabel>
                     <Select
                       onValueChange={(value) => {
                         field.onChange(value);
@@ -256,7 +186,7 @@ export default function RegistrationPage() {
                           <SelectValue placeholder="Select a role" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent className="py-6">
+                      <SelectContent className="py-6 w-full">
                         <SelectItem value="EC Manager">EC Manager</SelectItem>
                         <SelectItem value="EC Member">EC Member</SelectItem>
                         <SelectItem value="Other">Other</SelectItem>

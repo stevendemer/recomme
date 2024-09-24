@@ -4,10 +4,9 @@ import MemberCards from "@/components/dashboard/member-cards";
 import React from "react";
 export default function Dashboard() {
   return (
-    <div className="flex flex-col p-2 rounded-3xl space-y-4 h-full w-full absolute top-20">
-      <div className="flex flex-col items-center mx-4 space-y-2 h-full">
-        <div className="bg-white/20 backdrop-blur-lg shadow-md text-black w-[60vw] p-2 rounded-3xl">
-          <div className="bg-white absolute w-full"></div>
+    <div className="flex flex-col p-2 rounded-3xl space-y-4 h-full w-full absolute top-20 max-w-screen-2xl">
+      <div className="flex flex-col items-center mx-4 space-y-2 h-full gap-4">
+        <div className="bg-white/30 backdrop-blur-md shadow-md text-black p-2 rounded-[51px]">
           <div className="flex justify-center items-center w-full">
             <ActionCards
               title="Convince someone to join"
@@ -272,7 +271,7 @@ export default function Dashboard() {
             />
           </div>
         </div>
-        <div className="bg-white/30 rounded-3xl flex  h-fit items-center justify-center mt-8 w-full p-2 max-w-screen-2xl">
+        <div className="bg-white/30 p-6 rounded-3xl flex h-fit items-center justify-center mt-6 mb-4 w-full max-w-screen-2xl space-x-8">
           <MemberCards
             members={10}
             text="Enrolment"
@@ -281,7 +280,7 @@ export default function Dashboard() {
                 width="32"
                 height="29"
                 viewBox="0 0 32 29"
-                fill="none"
+                fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <ellipse
@@ -308,7 +307,7 @@ export default function Dashboard() {
                 width="32"
                 height="29"
                 viewBox="0 0 32 29"
-                fill="none"
+                fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <ellipse
@@ -335,8 +334,8 @@ export default function Dashboard() {
                 width="32"
                 height="29"
                 viewBox="0 0 32 29"
-                fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
               >
                 <ellipse
                   cx="21.3881"
@@ -351,7 +350,7 @@ export default function Dashboard() {
                 />
               </svg>
             }
-            className="bg-orange-400/80"
+            className="bg-orange-400"
           />
 
           <MemberCards
@@ -362,8 +361,8 @@ export default function Dashboard() {
                 width="32"
                 height="29"
                 viewBox="0 0 32 29"
-                fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
               >
                 <ellipse
                   cx="21.3881"
@@ -389,8 +388,8 @@ export default function Dashboard() {
                 width="32"
                 height="29"
                 viewBox="0 0 32 29"
-                fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
               >
                 <ellipse
                   cx="21.3881"
@@ -416,8 +415,8 @@ export default function Dashboard() {
                 width="32"
                 height="29"
                 viewBox="0 0 32 29"
-                fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
               >
                 <ellipse
                   cx="21.3881"
@@ -435,10 +434,12 @@ export default function Dashboard() {
             className="bg-purple-500/80"
           />
         </div>
-        <div className="flex h-full w-full mx-auto container">
+        <div className="grid grid-cols-3 w-full h-full gap-4">
           {/* graph container */}
-          <Graph />
-          <div className="bg-white/20 w-full h-full rounded-3xl text-black font-bold basis-1/3">
+          <div className="col-span-2">
+            <Graph />
+          </div>
+          <div className="bg-white/20 rounded-3xl text-black font-bold w-full h-full">
             Recommendation
           </div>
         </div>

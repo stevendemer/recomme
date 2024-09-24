@@ -58,8 +58,13 @@ export default function FormContainer() {
         mp_slider_test: data.slideValue,
         mp_multiple_answers_test: data.selectedCards,
       })
-      .then((resp) => console.log(resp.data))
+      .then((resp) => {
+        console.log(resp.data);
+      })
       .catch((error) => console.log(error));
+    toast({
+      description: "Data submitted ! Thanks for your time",
+    });
 
     // if (
     //   getValues().selectedCards.length < 3 ||
@@ -71,11 +76,11 @@ export default function FormContainer() {
 
   const handleNext = async () => {
     const isStepValid = await trigger();
-    if (isStepValid) {
-      if (step < 3) {
-        setStep(step + 1);
-      }
+    // if (isStepValid) {
+    if (step < 3) {
+      setStep(step + 1);
     }
+    // }
   };
 
   const isFormComplete = Object.keys(dirtyFields).length === 3;
@@ -99,14 +104,14 @@ export default function FormContainer() {
                 control={control}
                 rules={{ required: true, minLength: 1 }}
                 render={({ field }) => (
-                  <>
+                  <div className="min-h-screen">
                     <ImageSlider
                       onValueChange={(value) => {
                         console.log("slider value is ", value);
                         field.onChange(value[0]);
                       }}
                     />
-                  </>
+                  </div>
                 )}
               ></Controller>
             )}
@@ -150,7 +155,7 @@ export default function FormContainer() {
               ></Controller>
             )}
             <SubmitButton
-              className="m-0 "
+              className="m-0 fixed bottom-10"
               type={step < 3 ? "button" : "submit"}
               onClick={() => handleNext()}
               disabled={step === 3 && !isFormComplete}

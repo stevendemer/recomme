@@ -4,13 +4,13 @@ import React, { PropsWithChildren } from "react";
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
   return (
-    <div className="gradient-bg relative !overflow-hidden font-rubik min-h-screen">
-      <main className="h-full w-full space-x-2">
+    <div className="gradient-bg relative overflow-hidden font-rubik min-h-screen">
+      <div className="flex h-screen">
         <DashboardSidebar />
-        <div className="p-4 w-full container mx-auto overflow-hidden">
+        <main className="p-4 flex-1 flex justify-center gap-4 h-full overflow-y-auto">
           {children}
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   );
 }
