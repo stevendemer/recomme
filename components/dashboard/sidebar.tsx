@@ -10,17 +10,16 @@ import SubmitButton from "../submit-button";
 export default function DashboardSidebar() {
   return (
     <TooltipProvider>
-      <div className="h-screen mx-auto z-20 left-20 relative flex-shrink-0 w-96 rounded-3xl bg-white/30 py-10 hidden sm:block">
-        <div className="bg-white h-full shadow-xl text-black w-80 rounded-3xl">
-          <div className="flex flex-col h-full p-6">
+      <div className="h-full max-h-screen sm:w-96 rounded-[50px] bg-white/30 p-8 mx-auto">
+        <div className="bg-white h-full shadow-xl text-black sm:w-72 rounded-[50px] p-4 mx-4 my-2">
+          <div className="flex flex-col h-full p-4">
             <div className="w-full h-full p-4">
               <svg
-                width="207"
-                height="67"
                 viewBox="0 0 207 67"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 xmlnsXlink="http://www.w3.org/1999/xlink"
+                className="h-auto w-full max-w-full"
               >
                 <rect width="207" height="67" fill="url(#pattern0_354_7736)" />
                 <defs>
@@ -49,7 +48,7 @@ export default function DashboardSidebar() {
                     Menu
                   </div>
                   <TooltipTrigger asChild>
-                    <button className="flex items-center ml-4 text-slate-400">
+                    <button className="flex items-center text-slate-400">
                       <svg
                         width="22"
                         height="20"
@@ -79,7 +78,7 @@ export default function DashboardSidebar() {
                 </Tooltip>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button className="flex items-center ml-4 text-slate-400">
+                    <button className="flex items-center text-slate-400">
                       <svg
                         width="22"
                         height="19"
@@ -113,7 +112,7 @@ export default function DashboardSidebar() {
                           sit eaque dignissimos.
                         </p>
                       </div>
-                      <SubmitButton className=" rounded-3xl">
+                      <SubmitButton className="rounded-3xl">
                         Click here
                       </SubmitButton>
                     </div>
@@ -121,7 +120,7 @@ export default function DashboardSidebar() {
                 </Tooltip>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button className="flex items-center ml-4 text-slate-400">
+                    <button className="flex items-center  text-slate-400">
                       <svg
                         width="23"
                         height="18"
@@ -151,10 +150,8 @@ export default function DashboardSidebar() {
                     </div>
                   </TooltipContent>
                 </Tooltip>
-                <span className="mx-2 pt-8 font-light text-slate-500">
-                  Settings
-                </span>
-                <button className="flex items-center ml-4 text-slate-400">
+                <span className="pt-8 font-light text-slate-500">Settings</span>
+                <button className="flex items-center  text-slate-400">
                   <svg
                     width="18"
                     height="21"
@@ -171,7 +168,7 @@ export default function DashboardSidebar() {
                     Profile
                   </span>
                 </button>
-                <button className="flex items-center ml-4 text-slate-400">
+                <button className="flex items-center  text-slate-400">
                   <svg
                     width="23"
                     height="21"

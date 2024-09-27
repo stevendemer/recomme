@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 import { Button } from "../ui/button";
+import Image from "next/image";
 
 export default function MemberCards({
   text,
@@ -9,21 +10,29 @@ export default function MemberCards({
   members,
 }: {
   text: string;
-  icon: ReactNode;
+  icon: any;
   className: string;
   members: number;
 }) {
   return (
-    <div className="flex items-center justify-center text-slate-600 w-full bg-white rounded-[40px] p-2">
-      <div className="flex flex-col items-center rounded-3xl w-full gap-4">
-        <div className={cn(" p-2 bg-white")}>
+    <div className="flex items-center justify-center text-slate-600 w-full bg-white rounded-3xl font-bold font-rubik flex-shrink max-w-full py-2">
+      <div className="flex flex-col items-center rounded-xl w-full gap-4">
+        <div className={cn("bg-white")}>
           <div
             className={cn(
-              "max-w-full h-auto flex justify-center mt-2 rounded-full",
+              "max-w-full flex justify-center mt-2 rounded-full",
               className
             )}
           >
-            <div className="p-4">{icon}</div>
+            <div className="relative p-2">
+              <Image
+                alt="avatar icon"
+                src={icon}
+                className="object-contain object-center"
+                width={40}
+                height={20}
+              />
+            </div>
           </div>
         </div>
 

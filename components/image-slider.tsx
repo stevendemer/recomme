@@ -9,7 +9,7 @@ export default function ImageSlider({
   onValueChange: (v: number[]) => void;
 }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-full">
       <div className="rounded-lg relative mx-4 max-w-md md:max-w-full">
         <Image
           src="/assets/boat.png"
@@ -38,7 +38,7 @@ export default function ImageSlider({
         </div>
       </div>
 
-      <div className="w-full items-start h-full gap-4 md:gap-8 flex flex-col justify-between mb-10 sm:mb-0 bg-white rounded-lg p-2 sm:p-8 col-span-1 sm:col-span-2">
+      <div className="w-full items-start h-full gap-4 md:gap-8 flex flex-col justify-between mb-10 sm:mb-0 bg-white rounded-3xl p-2 sm:p-8 col-span-1 sm:col-span-2">
         <Slider
           onValueChange={onValueChange}
           min={1}

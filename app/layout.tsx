@@ -43,7 +43,7 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          "bg-background antiliased min-h-screen",
+          "bg-slate-200 antiliased min-h-screen",
           mulish.variable,
           ram.variable,
           inter.variable,
