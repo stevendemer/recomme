@@ -1,0 +1,112 @@
+
+                  <svg
+                    width="52"
+                    height="39"
+                    viewBox="0 0 52 39"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M26.2185 0.749777L31.992 10.7498H20.445L26.2185 0.749777ZM11.3875 20.7849C13.7376 20.9643 17.251 20.5957 20.1357 18.9625C22.9498 17.3693 25.2185 14.5537 25.2185 9.61775H27.2185C27.2185 15.3234 24.5182 18.7796 21.121 20.7029C17.7944 22.5863 13.8543 22.979 11.2353 22.7792L11.3875 20.7849Z"
+                      fill="#65D9BD"
+                    />
+                    <path
+                      d="M26.2185 0.749777L20.445 10.7498H31.992L26.2185 0.749777ZM40.3358 20.7852C38.1124 20.9634 34.7852 20.5971 32.0535 18.9731C29.3918 17.3908 27.2185 14.5776 27.2185 9.61775H25.2185C25.2185 15.2994 27.7776 18.758 31.0315 20.6923C34.2152 22.5849 37.9866 22.9799 40.4956 22.7789L40.3358 20.7852Z"
+                      fill="#65D9BD"
+                    />
+                    <path
+                      d="M26.2185 28.2475L26.2185 1.92773"
+                      stroke="#65D9BD"
+                      stroke-width="2"
+                    />
+                    <ellipse
+                      cx="7.26813"
+                      cy="21.3785"
+                      rx="6.60407"
+                      ry="5.97223"
+                      fill="#65D9BD"
+                    />
+                    <ellipse
+                      cx="8.31049"
+                      cy="19.1769"
+                      rx="1.51825"
+                      ry="1.79797"
+                      fill="white"
+                    />
+                    <path
+                      d="M2.52454 24.4431C2.52454 22.2561 4.54138 20.6261 6.67969 21.085L8.69042 21.5165C10.0701 21.8125 11.0557 23.032 11.0557 24.4431H2.52454Z"
+                      fill="url(#paint0_linear_354_7848)"
+                    />
+                    <ellipse
+                      cx="44.4636"
+                      cy="21.3785"
+                      rx="6.60407"
+                      ry="5.97223"
+                      fill="#65D9BD"
+                    />
+                    <ellipse
+                      cx="45.5059"
+                      cy="19.1769"
+                      rx="1.51825"
+                      ry="1.79797"
+                      fill="white"
+                    />
+                    <path
+                      d="M39.72 24.4431C39.72 22.2561 41.7368 20.6261 43.8751 21.085L45.8858 21.5165C47.2656 21.8125 48.2511 23.032 48.2511 24.4431H39.72Z"
+                      fill="url(#paint1_linear_354_7848)"
+                    />
+                    <ellipse
+                      cx="25.8657"
+                      cy="32.3218"
+                      rx="6.60407"
+                      ry="5.97223"
+                      fill="#65D9BD"
+                    />
+                    <ellipse
+                      cx="26.9096"
+                      cy="30.1183"
+                      rx="1.51825"
+                      ry="1.79797"
+                      fill="white"
+                    />
+                    <path
+                      d="M21.1237 35.3845C21.1237 33.1975 23.1405 31.5676 25.2788 32.0264L27.2895 32.4579C28.6692 32.7539 29.6548 33.9734 29.6548 35.3845H21.1237Z"
+                      fill="url(#paint2_linear_354_7848)"
+                    />
+                    <defs>
+                      <linearGradient
+                        id="paint0_linear_354_7848"
+                        x1="6.7901"
+                        y1="20.1934"
+                        x2="6.7901"
+                        y2="24.4431"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="white" />
+                        <stop offset="1" stop-color="white" stop-opacity="0" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint1_linear_354_7848"
+                        x1="43.9855"
+                        y1="20.1934"
+                        x2="43.9855"
+                        y2="24.4431"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="white" />
+                        <stop offset="1" stop-color="white" stop-opacity="0" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint2_linear_354_7848"
+                        x1="25.3892"
+                        y1="31.1348"
+                        x2="25.3892"
+                        y2="35.3845"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="white" />
+                        <stop offset="1" stop-color="white" stop-opacity="0" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+ 
