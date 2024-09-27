@@ -6,10 +6,10 @@ export default function Dashboard() {
   return (
     <div className="flex flex-col rounded-3xl space-y-4 h-full w-full md:max-w-6xl sm:max-w-4xl p-4">
       <div className="flex flex-col items-center space-y-2 h-full">
-        <div className="flex flex-col items-center h-full w-full">
+        <div className="flex flex-col items-center h-full w-full gap-2">
           {/* action cards */}
-          <div className="bg-white/20 backdrop-blur-lg text-black p-8 rounded-[51px] w-full mb-4">
-            <div className="flex justify-center items-center w-full space-x-4 rounded-[50px] ">
+          <div className="bg-white/20 backdrop-blur-lg text-black rounded-[32px] w-full p-4">
+            <div className="flex justify-center items-center w-full space-x-6 rounded-[50px]">
               <ActionCards
                 title="Convince someone to join"
                 image={"/assets/user-arrow.svg"}
@@ -27,7 +27,7 @@ export default function Dashboard() {
             </div>
           </div>
           {/* member cards */}
-          <div className="bg-white/30 p-6 rounded-[50px] flex items-center justify-center mb-4 w-full space-x-6">
+          <div className="bg-white/30 p-6 rounded-[50px] flex items-center justify-center mb-4 w-full space-x-8">
             <div className="flex space-x-2 w-full ">
               <MemberCards
                 members={10}

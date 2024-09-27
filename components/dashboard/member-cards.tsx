@@ -15,8 +15,8 @@ export default function MemberCards({
   members: number;
 }) {
   return (
-    <div className="flex items-center justify-center text-slate-600 w-full bg-white rounded-3xl font-bold font-rubik flex-shrink max-w-full py-2">
-      <div className="flex flex-col items-center rounded-xl w-full gap-4">
+    <div className="flex items-center justify-center text-slate-600 w-full bg-white rounded-[32px] font-bold font-rubik flex-shrink max-w-full py-2">
+      <div className="flex flex-col items-center rounded-3xl w-full gap-4">
         <div className={cn("bg-white")}>
           <div
             className={cn(
