@@ -1,3 +1,4 @@
+import BackgroundImage from "@/components/background-image";
 import ParentContainer from "@/components/parent-container";
 import SubmitButton from "@/components/submit-button";
 import Image from "next/image";
@@ -5,13 +6,20 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="gradient-bg flex justify-center items-center overflow-x-hidden font-rubik">
-      <ParentContainer>
+    <ParentContainer>
+      <BackgroundImage>
         <div className="flex flex-col items-center w-full h-full  relative">
           {/* main message */}
-          <div className="h-full relative m-auto flex items-center flex-col justify-center">
-            <img src={"/assets/logo.svg"} alt="" />
-            <div className="relative w-full h-auto">
+          <div className="h-full relative m-auto flex items-center flex-col justify-center max-w-full">
+            <Image
+              priority
+              src={"/assets/logo.svg"}
+              alt=""
+              className="object-cover object-center"
+              width={320}
+              height={120}
+            />
+            <div className="relative w-full h-auto max-w-full">
               <svg
                 width="471"
                 height="446"
@@ -80,12 +88,9 @@ export default function Home() {
                   </linearGradient>
                 </defs>
               </svg>
-
-              <div className="absolute inset-0 flex justify-center items-center w-full h-full m-2 ">
+              <div className="absolute inset-0 flex justify-center items-center w-full h-full max-w-full">
                 {/* background glass  */}
                 <svg
-                  width="520"
-                  height="145"
                   viewBox="0 0 516 145"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -112,12 +117,17 @@ export default function Home() {
                   </defs>
                 </svg>
 
-                <div className="absolute inset-0 flex flex-col sm:flex-row items-center justify-center w-full h-full">
-                  <img
-                    className="px-2 sm:mb-12"
-                    src="/assets/flower.svg"
-                    alt=""
-                  />
+                <div className="absolute inset-0 flex flex-col sm:flex-row items-center justify-center w-full h-full space-y-4">
+                  <div className="relative h-20 w-20 sm:h-32 sm:w-32 max-w-full z-10">
+                    <Image
+                      fill
+                      priority
+                      className="px-2 sm:mb-8 pb-10"
+                      src="/assets/flower.svg"
+                      alt=""
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
                   <div className="text-black p-4 text-2xl font-normal font-rubik leading-tight">
                     Hello there! I&apos;m here to assist you. It looks like you
                     were about to say &apos;Recommend me&apos;
@@ -125,12 +135,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <Link href="/confirmation" passHref legacyBehavior>
-              <SubmitButton>Let&apos;s begin</SubmitButton>
-            </Link>
+            <div className="fixed bottom-20 flex-shrink-0 max-w-lg ">
+              <Link href="/confirmation" passHref legacyBehavior>
+                <SubmitButton>Let&apos;s begin</SubmitButton>
+              </Link>
+            </div>
           </div>
         </div>
-      </ParentContainer>
-    </div>
+      </BackgroundImage>
+    </ParentContainer>
   );
 }

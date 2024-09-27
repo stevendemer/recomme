@@ -1,15 +1,15 @@
-import ParentContainer from "@/components/parent-container";
 import SubmitButton from "@/components/submit-button";
 import Link from "next/link";
 import React from "react";
+import BackgroundImage from "@/components/background-image";
 
 export default function ConfirmationPage() {
   return (
     <div className="gradient-bg flex justify-center items-center overflow-x-hidden font-rubik">
-      <ParentContainer>
+      <BackgroundImage>
         <div className="flex flex-col items-center w-full h-full relative">
           {/* main message */}
-          <div className="h-full relative flex items-center flex-col justify-center w-full flex-shrink-0">
+          <div className="h-full relative flex items-center flex-col justify-center w-full max-w-full m-auto">
             <div className="relative w-full h-full flex items-center justify-center flex-shrink-0 max-w-screen-lg">
               <svg
                 width="1208"
@@ -170,7 +170,7 @@ export default function ConfirmationPage() {
                 </div>
               </div>
             </div>
-            <div className="flex items-center space-x-4 relative bottom-48 flex-shrink-0 max-w-lg">
+            <div className="flex items-center space-x-4 fixed bottom-20 flex-shrink-0 max-w-lg">
               <Link passHref legacyBehavior href="/registration">
                 <SubmitButton className="bg-red-400 hover:bg-red-400/80">
                   No, modify
@@ -180,7 +180,7 @@ export default function ConfirmationPage() {
             </div>
           </div>
         </div>
-      </ParentContainer>
+      </BackgroundImage>
     </div>
   );
 }

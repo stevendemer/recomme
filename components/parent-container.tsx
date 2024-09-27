@@ -1,16 +1,12 @@
-"use client";
-import { ReactNode, useRef } from "react";
-import Steps from "./steps";
+import { ReactNode } from "react";
 import SubmitButton from "./submit-button";
 
-function ParentContainer({ children }: { children: ReactNode }) {
+export default function ParentContainer({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto bg-white/30 text-neutral-500 sm:w-[65vw] w-[90vw] h-[90vh] backdrop-blur-lg rounded-3xl flex flex-col justify-center items-center pt-6 mt-4">
-      <div className="bg-white/80 w-[80vw] h-[60vh] sm:w-[60vw] my-6 rounded-3xl shadow-xl z-10 mb-2 relative flex-1">
-        {children}
+    <div className="flex justify-center items-center overflow-x-hidden font-rubik min-h-screen gradient-bg">
+      <div className="flex flex-col items-center max-w-xl min-h-screen p-4 mx-auto relative justify-center">
+        <div className="space-y-4 flex flex-col flex-shrink-0">{children}</div>
       </div>
     </div>
   );
 }
-
-export default ParentContainer;

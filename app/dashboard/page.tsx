@@ -5,7 +5,7 @@ import React from "react";
 export default function Dashboard() {
   return (
     <div className="flex flex-col p-2 rounded-3xl space-y-4 h-full w-full absolute top-20 max-w-screen-2xl">
-      <div className="flex flex-col items-center mx-4 space-y-2 h-full gap-4">
+      <div className="flex flex-col items-center mx-4 space-y-2 h-full gap-8">
         <div className="bg-white/30 backdrop-blur-md shadow-md text-black p-2 rounded-[51px]">
           <div className="flex justify-center items-center w-full">
             <ActionCards
@@ -434,13 +434,15 @@ export default function Dashboard() {
             className="bg-purple-500/80"
           />
         </div>
-        <div className="grid grid-cols-3 w-full h-full gap-4">
+        <div className="grid grid-cols-3 w-full h-full gap-6">
           {/* graph container */}
           <div className="col-span-2">
             <Graph />
           </div>
-          <div className="bg-white/20 rounded-3xl text-black font-bold w-full h-full">
-            Recommendation
+          <div className="bg-white rounded-[51px] w-full h-full">
+            <h1 className="text-center text-slate-800 font-semibold text-2xl p-2">
+              Recommendation
+            </h1>
           </div>
         </div>
       </div>

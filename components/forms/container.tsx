@@ -3,7 +3,6 @@
 import { AnimatePresence } from "framer-motion";
 import React, { PropsWithChildren, useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import ParentContainer from "../parent-container";
 import Steps from "../steps";
 import ImageSlider from "../image-slider";
 import SwipingCard from "../cards/swiping-card";
@@ -12,6 +11,7 @@ import SubmitButton from "../submit-button";
 import { useToast } from "../ui/use-toast";
 import { api } from "@/lib/axios";
 import { ROUTES } from "@/constants/routes";
+import BackgroundImage from "../background-image";
 
 type FormInputs = {
   slideValue: number;
@@ -76,11 +76,11 @@ export default function FormContainer() {
 
   const handleNext = async () => {
     const isStepValid = await trigger();
-    // if (isStepValid) {
-    if (step < 3) {
-      setStep(step + 1);
+    if (isStepValid) {
+      if (step < 3) {
+        setStep(step + 1);
+      }
     }
-    // }
   };
 
   const isFormComplete = Object.keys(dirtyFields).length === 3;
@@ -88,13 +88,13 @@ export default function FormContainer() {
   return (
     <AnimatePresence>
       <main className="flex justify-center items-center gradient-bg overflow-x-hidden h-full">
-        <ParentContainer>
+        <BackgroundImage>
           <Steps setStep={setStep} currentStep={step} totalSteps={3} />
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex items-center flex-col h-full w-full relative mx-auto space-y-4"
           >
-            <h1 className="text-3xl font-bold text-slate-600 text-center max-w-5xl mt-4">
+            <h1 className="text-3xl font-bold text-slate-600 text-center max-w-2xl mt-4">
               Lorem ipsum dolor sit
             </h1>
             {/* <form onSubmit={onSubmit}> */}
@@ -104,7 +104,7 @@ export default function FormContainer() {
                 control={control}
                 rules={{ required: true, minLength: 1 }}
                 render={({ field }) => (
-                  <div className="min-h-screen">
+                  <div className=" w-full h-full flex items-center justify-center max-w-full flex-grow">
                     <ImageSlider
                       onValueChange={(value) => {
                         console.log("slider value is ", value);
@@ -155,7 +155,7 @@ export default function FormContainer() {
               ></Controller>
             )}
             <SubmitButton
-              className="m-0 fixed bottom-10"
+              className="fixed bottom-10"
               type={step < 3 ? "button" : "submit"}
               onClick={() => handleNext()}
               disabled={step === 3 && !isFormComplete}
@@ -163,7 +163,7 @@ export default function FormContainer() {
               {step < 3 ? "Continue" : "Submit"}
             </SubmitButton>
           </form>
-        </ParentContainer>
+        </BackgroundImage>
       </main>
     </AnimatePresence>
   );
