@@ -65,13 +65,6 @@ export default function FormContainer() {
     toast({
       description: "Data submitted ! Thanks for your time",
     });
-
-    // if (
-    //   getValues().selectedCards.length < 3 ||
-    //   getValues().swipeDirection === null
-    // ) {
-    //   alert("You missed some fields");
-    // }
   };
 
   const handleNext = async () => {

@@ -135,11 +135,12 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="fixed bottom-20 flex-shrink-0 max-w-lg ">
-              <Link href="/confirmation" passHref legacyBehavior>
-                <SubmitButton>Let&apos;s begin</SubmitButton>
-              </Link>
-            </div>
+            <Link
+              className="fixed bottom-20 flex-shrink-0 max-w-lg "
+              href="/confirmation"
+            >
+              <SubmitButton>Let&apos;s begin</SubmitButton>
+            </Link>
           </div>
         </div>
       </BackgroundImage>

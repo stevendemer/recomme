@@ -15,7 +15,7 @@ import usePlacesAutoComplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useMemo, useState, useEffect, useRef, RefObject } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import { Button } from "@/components/ui/button";
 import {
@@ -66,17 +66,29 @@ const schema = z.object({
 export default function RegistrationPage() {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
-    mode: "onSubmit",
+    mode: "all",
   });
 
   const { toast } = useToast();
 
+  const ref = useRef(null);
+
+  const locationRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const roleRef = useRef<HTMLButtonElement>(null);
+
   const onSubmit: SubmitHandler<z.infer<typeof schema>> = (data) => {
     console.log("Form submitted ", data);
 
-    toast({
-      description: "Form submitted ! Thanks for your time ",
-    });
+    if (form.formState.submitCount > 4) {
+      toast({
+        description: "You have reached the maximum number of submissions",
+      });
+    } else {
+      toast({
+        description: "Form submitted ! Thanks for your time ",
+      });
+    }
   };
 
   const { isLoaded } = useLoadScript({
@@ -94,7 +106,21 @@ export default function RegistrationPage() {
     debounce: 300,
   });
 
-  const ref = useRef(null);
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    nextRef: RefObject<HTMLInputElement | HTMLButtonElement> | null
+  ) => {
+    // prevent the form from submitting when pressing enter
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (nextRef?.current) {
+        nextRef.current.focus();
+        if (nextRef.current.tagName === "BUTTON") {
+          nextRef.current.click();
+        }
+      }
+    }
+  };
 
   useOnClickOutside(ref, () => clearSuggestions());
 
@@ -134,7 +160,7 @@ export default function RegistrationPage() {
                                 "location",
                                 place.formatted_address || ""
                               );
-                              form.trigger("location");
+                              // form.trigger("location");
                             }
                           });
                         }}
@@ -143,8 +169,8 @@ export default function RegistrationPage() {
                           {...field}
                           placeholder="Enter a location"
                           className="w-full rounded-full py-5 shadow-xl mt-2"
-                          // value={place}
-                          // onChange={(e) => setPlace(e.currentTarget.value)}
+                          onKeyDown={(e) => handleKeyDown(e, nameRef)}
+                          ref={locationRef}
                         />
                       </Autocomplete>
                     </FormControl>
@@ -163,6 +189,8 @@ export default function RegistrationPage() {
                         className="rounded-full shadow-xl py-5 w-full"
                         placeholder="EC Name"
                         {...field}
+                        onKeyDown={(e) => handleKeyDown(e, roleRef)}
+                        ref={nameRef}
                       />
                     </FormControl>
                     <FormMessage />
@@ -178,12 +206,12 @@ export default function RegistrationPage() {
                     <Select
                       onValueChange={(value) => {
                         field.onChange(value);
-                        form.trigger("role"); // trigger validation
+                        // form.trigger("role"); // trigger validation
                       }}
                       defaultValue={"EC Manager"}
                     >
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger ref={roleRef}>
                           <SelectValue placeholder="Select a role" />
                         </SelectTrigger>
                       </FormControl>
@@ -201,7 +229,7 @@ export default function RegistrationPage() {
               <div className="fixed bottom-20 flex-shrink-0 max-w-lg">
                 <SubmitButton
                   type="submit"
-                  disabled={!form.formState.isValid}
+                  disabled={!form.formState.isValid || !form.formState.isDirty}
                   className={cn(
                     "flex justify-center items-center",
                     form.formState.isValid

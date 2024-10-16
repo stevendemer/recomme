@@ -13,7 +13,7 @@ import ToolTipMessage from "../tooltip-message";
 export default function DashboardSidebar() {
   return (
     <TooltipProvider>
-      <div className="h-full max-h-screen sm:w-96 rounded-[50px] bg-white/30 p-8 mx-auto">
+      <aside className="h-screen sm:w-96 rounded-[43px] bg-white/30 p-8 mx-auto">
         <div className="bg-white h-full shadow-xl text-black sm:w-72 rounded-[50px] p-4 mx-4 my-2">
           <div className="flex flex-col h-full p-4">
             <div className="relative">
@@ -117,7 +117,7 @@ export default function DashboardSidebar() {
             </div>
           </div>
         </div>
-      </div>
+      </aside>
     </TooltipProvider>
   );
 }
