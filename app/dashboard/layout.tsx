@@ -1,14 +1,41 @@
 import DashboardSidebar from "@/components/dashboard/sidebar";
-import ParentContainer from "@/components/parent-container";
+import { Metadata } from "next";
 import React, { PropsWithChildren } from "react";
+import "../globals.css";
+import { Rubik } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-rubik",
+});
+
+export const metadata: Metadata = {
+  title: "Recomme | Dashboard",
+};
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
   return (
-    <div className="gradient-bg relative font-rubik min-h-screen w-full p-2">
-      <div className="grid grid-cols-[320px_1fr] gap-0">
-        <DashboardSidebar />
-        <div className="px-10 py-2 ml-8">{children}</div>
-      </div>
-    </div>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/assets/flower.svg" sizes="any" />
+      </head>
+      <body
+        className={cn(
+          "antialiased bg-gray-200 overflow-hidden h-screen p-2",
+          rubik.variable
+        )}
+      >
+        <div className="gradient-bg font-rubik w-full h-svh max-h-svh flex md:p-8">
+          <div className="w-full mx-auto flex gap-8">
+            <div className="hidden sm:flex h-full ">
+              <DashboardSidebar />
+            </div>
+            <div className="p-2 h-full flex-1 mr-4 mt-2">{children}</div>
+          </div>
+        </div>
+      </body>
+    </html>
   );
 }

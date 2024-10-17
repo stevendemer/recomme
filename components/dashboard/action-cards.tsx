@@ -9,7 +9,7 @@ export default function ActionCards({
   image: any;
 }) {
   return (
-    <div className="flex px-2 py-4 ml-4 w-full max-w-full mx-auto relative items-center bg-white rounded-[32px] cursor-pointer">
+    <div className="flex px-4 py-4 ml-4 w-full relative items-center bg-white rounded-[32px] cursor-pointer h-full">
       <Image
         alt=""
         src={image}
@@ -17,8 +17,7 @@ export default function ActionCards({
         width={60}
         height={50}
       />
-      {/* <img src={image} alt="" className="object-contain object-center" /> */}
-      <h1 className=" text-sm sm:text-lg font-rubik font-bold text-center w-full truncate">
+      <h1 className="max-sm:text-sm  md:text-lg lg:text-xl font-rubik font-bold text-center w-full truncate">
         {title}
       </h1>
     </div>

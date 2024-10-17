@@ -2,14 +2,7 @@
 import { useFormStatus } from "react-dom";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import {
-  ButtonHTMLAttributes,
-  forwardRef,
-  PropsWithChildren,
-  useState,
-} from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { useSteps } from "@/app/store";
+import { ButtonHTMLAttributes, forwardRef } from "react";
 
 export default function SubmitButton({
   children,
@@ -17,12 +10,6 @@ export default function SubmitButton({
   ...props
 }: ButtonHTMLAttributes<HTMLButtonElement>) {
   const { pending } = useFormStatus();
-  const pathname = usePathname();
-  const router = useRouter();
-
-  if (pathname.includes("2")) {
-    return null;
-  }
 
   return (
     <Button

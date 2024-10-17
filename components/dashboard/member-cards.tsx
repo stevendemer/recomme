@@ -15,8 +15,8 @@ export default function MemberCards({
   members: number;
 }) {
   return (
-    <div className="flex items-center justify-center py-2 w-60 max-w-80 text-slate-600 bg-white rounded-[40px] font-bold font-rubik">
-      <div className="flex flex-col items-center rounded-3xl w-full gap-4">
+    <div className="flex items-center justify-center sm:w-52 p-2 max-w-60 h-auto text-slate-600 bg-white rounded-[40px] font-bold font-rubik">
+      <div className="flex flex-col items-center rounded-xl gap-2">
         <div className={cn("bg-white")}>
           <div
             className={cn(
@@ -24,7 +24,7 @@ export default function MemberCards({
               className
             )}
           >
-            <div className="relative p-4">
+            <div className="relative p-2">
               <Image
                 alt="avatar icon"
                 src={icon}
@@ -41,7 +41,7 @@ export default function MemberCards({
         </h1>
         <Button
           className={cn(
-            "rounded-full text-white font-rubik font-bold w-20 sm:w-28 px-4 py-2",
+            "rounded-full text-white font-rubik font-bold w-20 sm:w-28 py-2",
             className
           )}
         >

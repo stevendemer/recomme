@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 import { cn } from "@/lib/utils";
 
 import { Inter, Ramaraja, Mulish, Rubik } from "next/font/google";
@@ -27,7 +27,20 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: "Recomme",
+  title: {
+    template: "Recomme | %s",
+    default: "Recomme",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "/assets/flower.svg",
+        width: 1200,
+        height: 630,
+        alt: "Recomme",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -42,7 +55,7 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          "bg-slate-200 antiliased min-h-screen",
+          "bg-gray-200 antiliased",
           mulish.variable,
           ram.variable,
           inter.variable,

@@ -11,7 +11,8 @@ import SubmitButton from "../submit-button";
 import { useToast } from "../ui/use-toast";
 import { api } from "@/lib/axios";
 import { ROUTES } from "@/constants/routes";
-import BackgroundImage from "../background-image";
+import BackgroundImage from "../message-container";
+import MessageContainer from "../message-container";
 
 type FormInputs = {
   slideValue: number;
@@ -81,7 +82,7 @@ export default function FormContainer() {
   return (
     <AnimatePresence>
       <main className="flex justify-center items-center gradient-bg overflow-x-hidden h-full">
-        <BackgroundImage>
+        <MessageContainer hasLogo={false}>
           <Steps setStep={setStep} currentStep={step} totalSteps={3} />
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -148,7 +149,7 @@ export default function FormContainer() {
               ></Controller>
             )}
             <SubmitButton
-              className="fixed bottom-10"
+              className="fixed bottom-20"
               type={step < 3 ? "button" : "submit"}
               onClick={() => handleNext()}
               disabled={step === 3 && !isFormComplete}
@@ -156,7 +157,7 @@ export default function FormContainer() {
               {step < 3 ? "Continue" : "Submit"}
             </SubmitButton>
           </form>
-        </BackgroundImage>
+        </MessageContainer>
       </main>
     </AnimatePresence>
   );

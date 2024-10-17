@@ -13,9 +13,9 @@ import ToolTipMessage from "../tooltip-message";
 export default function DashboardSidebar() {
   return (
     <TooltipProvider>
-      <aside className="h-screen sm:w-96 rounded-[43px] bg-white/30 p-8 mx-auto">
-        <div className="bg-white h-full shadow-xl text-black sm:w-72 rounded-[50px] p-4 mx-4 my-2">
-          <div className="flex flex-col h-full p-4">
+      <aside className="bg-white/30 p-4 sm:w-96 flex flex-col justify-between rounded-[40px]">
+        <div className="bg-white shadow-xl text-black rounded-[50px] flex flex-col h-full">
+          <div className="flex flex-col h-full p-8">
             <div className="relative">
               <Image
                 alt="alec logo"
