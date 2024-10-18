@@ -28,10 +28,6 @@ export const description = "A radar chart with dots";
 
 const data = [
   {
-    subject: "Recruitment and Engagement",
-    A: 1,
-  },
-  {
     subject: "Meeting goals",
     A: 2,
   },
@@ -64,20 +60,14 @@ const chartConfig = {
 
 export default function Graph({ className }: { className?: string }) {
   return (
-    <Card className="rounded-[40px] h-full w-full">
-      <CardHeader>
-        <CardTitle className="text-center">Lorem ipsum</CardTitle>
-      </CardHeader>
-      <CardContent className="pb-0">
+    <Card className="rounded-[32px] h-full w-full">
+      <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="max-sm:min-h-[300px] max-md:min-h-[500px] w-full h-full text-center container mx-auto "
+          className="max-sm:min-h-[300px] max-md:min-h-[500px] w-full h-full text-center  mx-auto "
           // className="text-center md:max-h-[320px] lg:max-h-[700px] w-full h-full"
         >
-          <RadarChart
-            margin={{ top: 30, right: 30, bottom: 20, left: 30 }}
-            data={chartData}
-          >
+          <RadarChart data={chartData}>
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <PolarAngleAxis
               dataKey="subject"
@@ -91,28 +81,23 @@ export default function Graph({ className }: { className?: string }) {
                     y={index === 0 ? y - 30 : y}
                     textAnchor={textAnchor}
                     fontSize={13}
-                    fontWeight={500}
+                    fontWeight={800}
                     {...props}
                   >
-                    <tspan
-                      x={x}
-                      dy={"1rem"}
-                      fontSize={12}
-                      className="fill-muted-foreground"
-                    >
+                    <tspan x={x} dy={"1rem"} fontSize={20}>
                       {data.subject}
                     </tspan>
                   </text>
                 );
               }}
             />
-            <PolarGrid />
+            <PolarGrid stroke="#ababab" />
             <Radar
               dataKey="desktop"
               fill="#49DFAD"
-              fillOpacity={0.4}
+              fillOpacity={0.6}
               dot={{
-                r: 4,
+                r: 8,
                 fillOpacity: 1,
               }}
             />

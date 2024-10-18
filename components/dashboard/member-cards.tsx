@@ -15,7 +15,7 @@ export default function MemberCards({
   members: number;
 }) {
   return (
-    <div className="flex items-center justify-center sm:w-52 p-2 max-w-60 h-auto text-slate-600 bg-white rounded-[40px] font-bold font-rubik">
+    <div className="flex items-center justify-center sm:w-52 p-4 m-2 max-w-60 h-auto text-slate-600 bg-white rounded-[40px] font-bold font-rubik">
       <div className="flex flex-col items-center rounded-xl gap-2">
         <div className={cn("bg-white")}>
           <div

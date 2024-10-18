@@ -28,8 +28,8 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
         )}
       >
         <div className="gradient-bg font-rubik w-full h-svh max-h-svh flex md:p-8">
-          <div className="w-full mx-auto flex gap-8">
-            <div className="hidden sm:flex h-full ">
+          <div className="w-full mx-auto flex gap-8 items-center">
+            <div className="hidden sm:flex h-full flex-shrink">
               <DashboardSidebar />
             </div>
             <div className="p-2 h-full flex-1 mr-4 mt-2">{children}</div>

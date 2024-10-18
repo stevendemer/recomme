@@ -9,7 +9,7 @@ export default function ActionCards({
   image: any;
 }) {
   return (
-    <div className="flex px-4 py-4 ml-4 w-full relative items-center bg-white rounded-[32px] cursor-pointer h-full">
+    <div className="flex p-4 m-4 w-full relative items-center bg-white rounded-[32px] cursor-pointer h-full">
       <Image
         alt=""
         src={image}

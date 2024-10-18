@@ -13,9 +13,9 @@ import ToolTipMessage from "../tooltip-message";
 export default function DashboardSidebar() {
   return (
     <TooltipProvider>
-      <aside className="bg-white/30 p-4 sm:w-96 flex flex-col justify-between rounded-[40px]">
-        <div className="bg-white shadow-xl text-black rounded-[50px] flex flex-col h-full">
-          <div className="flex flex-col h-full p-8">
+      <aside className="transition-transform rounded-[40px] bg-white/30 p-4 sm:w-96 h-full flex flex-col">
+        <div className="bg-white shadow-xl text-black sm:w-80 rounded-[50px] mx-auto w-full flex flex-col h-full">
+          <div className="flex flex-col h-full p-6">
             <div className="relative">
               <Image
                 alt="alec logo"
@@ -25,7 +25,7 @@ export default function DashboardSidebar() {
                 height={200}
               />
             </div>
-            <div className="flex flex-col pt-16 space-y-4">
+            <div className="flex flex-col pt-16 p-4 space-y-4 flex-grow">
               <Tooltip>
                 <div className="text-lg font-light text-slate-500 mb-2">
                   Menu
