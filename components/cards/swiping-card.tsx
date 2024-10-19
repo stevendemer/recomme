@@ -22,6 +22,7 @@ export default function SwipingCard({
 }) {
   const [showButton, setShowButton] = useState(true);
   const [hasBeenSwiped, setHasBeenSwiped] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [direction, setDirection] = useState<"left" | "right" | null>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -42,6 +43,10 @@ export default function SwipingCard({
     [-160, -150, -140, -130, -120, -100, 0, 100, 120, 130, 140, 150, 160],
     [0, 0.4, 0.5, 0.6, 0.7, 0.8, 1, 0.8, 0.7, 0.6, 0.5, 0.4, 0]
   );
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleSwipe = async (direction: "left" | "right") => {
     if (hasBeenSwiped) return;
@@ -100,14 +105,8 @@ export default function SwipingCard({
     }
   };
 
-  // Use useEffect to ensure animations are only started after component mount
-  // useEffect(() => {
-  //   animControls.start({ opacity: 1 });
-  //   bgAnimControls.start({ opacity: 1 });
-  // }, [animControls, bgAnimControls]);
-
   useEffect(() => {
-    if (hasBeenSwiped) {
+    if (hasBeenSwiped && isMounted) {
       setTimeout(async () => {
         bgAnimControls.start({
           background: "#ffff",
@@ -120,7 +119,7 @@ export default function SwipingCard({
         setShowButton(true);
       }, 800);
     }
-  }, [hasBeenSwiped, animControls, bgAnimControls]);
+  }, [hasBeenSwiped, animControls, bgAnimControls, isMounted]);
 
   return (
     <AnimatePresence>

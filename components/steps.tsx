@@ -28,7 +28,6 @@ export default function Steps({
   totalSteps: number;
   setStep: (x: number) => void;
 }) {
-  // const { active, increase, setStep, reset } = useSteps();
   const [currentIndex, setCurrentIndex] = useState(0);
   const pathname = usePathname();
   const [steps, setSteps] = useState([]);
@@ -51,7 +50,7 @@ export default function Steps({
   ];
 
   return (
-    <div className="sm:flex hidden items-center justify-center p-4 relative top-0">
+    <div className="sm:flex hidden items-center justify-center p-4">
       <div className="flex items-center">
         {Array.from({ length: totalSteps }).map((_, index) => {
           const isActive = index + 1 === currentStep;

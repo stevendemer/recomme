@@ -13,6 +13,7 @@ import { api } from "@/lib/axios";
 import { ROUTES } from "@/constants/routes";
 import BackgroundImage from "../message-container";
 import MessageContainer from "../message-container";
+import { cn } from "@/lib/utils";
 
 type FormInputs = {
   slideValue: number;
@@ -70,10 +71,8 @@ export default function FormContainer() {
 
   const handleNext = async () => {
     const isStepValid = await trigger();
-    if (isStepValid) {
-      if (step < 3) {
-        setStep(step + 1);
-      }
+    if (step < 3) {
+      setStep(step + 1);
     }
   };
 
@@ -81,84 +80,80 @@ export default function FormContainer() {
 
   return (
     <AnimatePresence>
-      <main className="flex justify-center items-center gradient-bg overflow-x-hidden h-full">
-        <MessageContainer hasLogo={false}>
-          <Steps setStep={setStep} currentStep={step} totalSteps={3} />
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex items-center flex-col h-full w-full relative mx-auto space-y-4"
+      <MessageContainer hasLogo={false}>
+        <Steps setStep={setStep} currentStep={step} totalSteps={3} />
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex items-center justify-center flex-col h-full w-full relative mx-auto space-y-4"
+        >
+          <h1 className="text-3xl font-bold text-slate-600 text-center max-w-2xl mt-4">
+            Lorem ipsum dolor sit
+          </h1>
+          {/* <form onSubmit={onSubmit}> */}
+          {step === 1 && (
+            <Controller
+              name="slideValue"
+              control={control}
+              rules={{ required: true, minLength: 1 }}
+              render={({ field }) => (
+                <div className=" w-full h-full flex items-center justify-center max-w-full flex-grow">
+                  <ImageSlider
+                    onValueChange={(value) => {
+                      console.log("slider value is ", value);
+                      field.onChange(value[0]);
+                    }}
+                  />
+                </div>
+              )}
+            ></Controller>
+          )}
+
+          {step === 2 && (
+            <Controller
+              name="swipeDirection"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <>
+                  <SwipingCard
+                    onSwipe={(direction) => {
+                      if (direction === "right") {
+                        field.onChange([1, 2]);
+                      }
+                      handleNext();
+                      // field.onChange(direction);
+                    }}
+                  />
+                </>
+              )}
+            ></Controller>
+          )}
+
+          {step === 3 && (
+            <Controller
+              control={control}
+              name="selectedCards"
+              rules={{
+                required: true,
+                minLength: { value: 3, message: "Pick at least 3 options" },
+              }}
+              render={({ field }) => (
+                <>
+                  <MultipleCard value={field.value} onChange={field.onChange} />
+                </>
+              )}
+            ></Controller>
+          )}
+          <SubmitButton
+            className={cn("fixed bottom-20", step === 2 && "hidden")}
+            type={step < 3 ? "button" : "submit"}
+            onClick={() => handleNext()}
+            disabled={step === 3 && !isFormComplete}
           >
-            <h1 className="text-3xl font-bold text-slate-600 text-center max-w-2xl mt-4">
-              Lorem ipsum dolor sit
-            </h1>
-            {/* <form onSubmit={onSubmit}> */}
-            {step === 1 && (
-              <Controller
-                name="slideValue"
-                control={control}
-                rules={{ required: true, minLength: 1 }}
-                render={({ field }) => (
-                  <div className=" w-full h-full flex items-center justify-center max-w-full flex-grow">
-                    <ImageSlider
-                      onValueChange={(value) => {
-                        console.log("slider value is ", value);
-                        field.onChange(value[0]);
-                      }}
-                    />
-                  </div>
-                )}
-              ></Controller>
-            )}
-
-            {step === 2 && (
-              <Controller
-                name="swipeDirection"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <>
-                    <SwipingCard
-                      onSwipe={(direction) => {
-                        if (direction === "right") {
-                          field.onChange([1, 2]);
-                        }
-                        // field.onChange(direction);
-                      }}
-                    />
-                  </>
-                )}
-              ></Controller>
-            )}
-
-            {step === 3 && (
-              <Controller
-                control={control}
-                name="selectedCards"
-                rules={{
-                  required: true,
-                  minLength: { value: 3, message: "Pick at least 3 options" },
-                }}
-                render={({ field }) => (
-                  <>
-                    <MultipleCard
-                      value={field.value}
-                      onChange={field.onChange}
-                    />
-                  </>
-                )}
-              ></Controller>
-            )}
-            <SubmitButton
-              className="fixed bottom-20"
-              type={step < 3 ? "button" : "submit"}
-              onClick={() => handleNext()}
-              disabled={step === 3 && !isFormComplete}
-            >
-              {step < 3 ? "Continue" : "Submit"}
-            </SubmitButton>
-          </form>
-        </MessageContainer>
-      </main>
+            {step < 3 ? "Continue" : "Submit"}
+          </SubmitButton>
+        </form>
+      </MessageContainer>
     </AnimatePresence>
   );
 }

@@ -15,7 +15,15 @@ import usePlacesAutoComplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
-import { useMemo, useState, useEffect, useRef, RefObject } from "react";
+import {
+  useMemo,
+  useState,
+  useEffect,
+  useRef,
+  RefObject,
+  LegacyRef,
+  MutableRefObject,
+} from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import { Button } from "@/components/ui/button";
 import {
@@ -42,6 +50,7 @@ import { useToast } from "@/components/ui/use-toast";
 import ParentContainer from "@/components/parent-container";
 import Spinner from "@/components/spinner";
 import MessageContainer from "@/components/message-container";
+import { useRouter } from "next/navigation";
 
 type Inputs = {
   location: string;
@@ -70,14 +79,21 @@ export default function RegistrationPage() {
     resolver: zodResolver(schema),
     mode: "onChange",
   });
+  const router = useRouter();
 
   const { toast } = useToast();
 
   const ref = useRef(null);
 
-  const locationRef = useRef<HTMLInputElement>(null);
+  const locationRef = useRef<any>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const roleRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (locationRef.current) {
+      locationRef?.current.focus();
+    }
+  }, []);
 
   const onSubmit: SubmitHandler<z.infer<typeof schema>> = (data) => {
     console.log("Form submitted ", data);
@@ -90,6 +106,8 @@ export default function RegistrationPage() {
       toast({
         description: "Form submitted ! Thanks for your time ",
       });
+
+      router.push("/thankyou");
     }
   };
 
@@ -133,6 +151,8 @@ export default function RegistrationPage() {
       </div>
     );
 
+  const watchFields = form.watch(["location", "ecName", "role"]);
+
   return (
     <MessageContainer>
       <div className="w-full h-auto space-y-4 grid place-items-center relative">
@@ -141,8 +161,9 @@ export default function RegistrationPage() {
         </h1>
 
         <form
-          onSubmit={form.handleSubmit(onSubmit)}
+          // onSubmit={form.handleSubmit(onSubmit)}
           className="grid place-items-center w-fit h-full gap-y-6 p-6"
+          onSubmit={form.handleSubmit(onSubmit)}
         >
           <Autocomplete
             className="w-full"
@@ -161,22 +182,21 @@ export default function RegistrationPage() {
               placeholder="Enter a location"
               className="w-full rounded-full py-5 shadow-xl mt-2 pl-6"
               onKeyDown={(e) => handleKeyDown(e, nameRef)}
-              ref={locationRef}
+              {...form.register("location", { required: true })}
             />
           </Autocomplete>
           <Input
-            {...form.register("ecName")}
             className="rounded-full shadow-xl py-5 w-full pl-6"
             placeholder="EC Name"
             onKeyDown={(e) => handleKeyDown(e, roleRef)}
-            ref={nameRef}
+            {...form.register("ecName", { required: true })}
           />
 
           <Select
-            {...form.register("role")}
+            name="role"
             onValueChange={(value) => {
-              // field.onChange(value);
               // form.trigger("role"); // trigger validation
+              form.setValue("role", value);
             }}
             defaultValue={"EC Manager"}
           >
