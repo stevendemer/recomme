@@ -14,6 +14,7 @@ import { ROUTES } from "@/constants/routes";
 import BackgroundImage from "../message-container";
 import MessageContainer from "../message-container";
 import { cn } from "@/lib/utils";
+import TinderCard from "../cards/tinder-card";
 
 type FormInputs = {
   slideValue: number;
@@ -115,7 +116,7 @@ export default function FormContainer() {
               rules={{ required: true }}
               render={({ field }) => (
                 <>
-                  <SwipingCard
+                  {/* <SwipingCard
                     onSwipe={(direction) => {
                       if (direction === "right") {
                         field.onChange([1, 2]);
@@ -123,7 +124,8 @@ export default function FormContainer() {
                       handleNext();
                       // field.onChange(direction);
                     }}
-                  />
+                  /> */}
+                  <TinderCard />
                 </>
               )}
             ></Controller>

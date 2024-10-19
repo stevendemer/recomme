@@ -107,17 +107,15 @@ export default function SwipingCard({
 
   useEffect(() => {
     if (hasBeenSwiped && isMounted) {
-      setTimeout(async () => {
-        bgAnimControls.start({
-          background: "#ffff",
-        });
+      bgAnimControls.start({
+        background: "#ffff",
+      });
 
-        // delete here to manage multiple cards
-        setHasBeenSwiped(false);
-        setDirection(null);
-        animControls.set({ x: 0, opacity: 1 });
-        setShowButton(true);
-      }, 800);
+      // delete here to manage multiple cards
+      setHasBeenSwiped(false);
+      setDirection(null);
+      animControls.set({ x: 0, opacity: 1 });
+      setShowButton(true);
     }
   }, [hasBeenSwiped, animControls, bgAnimControls, isMounted]);
 
@@ -185,7 +183,7 @@ export default function SwipingCard({
               _dragY={y}
               src={"/assets/flower.svg"}
               alt="card image"
-              className="object-cover object-center border-black border h-full rounded-3xl w-full"
+              className="object-cover object-center h-full rounded-3xl w-full"
               animate={animControls}
               dragDirectionLock
               onDragEnd={handleDragEnd}
