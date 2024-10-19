@@ -63,10 +63,6 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-rubik);
-  }
 
   h1,
   h2,

@@ -13,7 +13,7 @@ import ToolTipMessage from "../tooltip-message";
 export default function DashboardSidebar() {
   return (
     <TooltipProvider>
-      <aside className="transition-transform rounded-[40px] bg-white/30 p-4 sm:w-96 h-full flex flex-col">
+      <aside className="transition-transform rounded-[40px] bg-white/30 p-4 sm:w-96 h-full flex flex-col sidebar">
         <div className="bg-white shadow-xl text-black sm:w-80 rounded-[50px] mx-auto w-full flex flex-col h-full">
           <div className="flex flex-col h-full p-6">
             <div className="relative">
@@ -31,7 +31,7 @@ export default function DashboardSidebar() {
                   Menu
                 </div>
                 <TooltipTrigger asChild>
-                  <button className="flex items-center text-slate-400">
+                  <button className="flex items-center text-slate-400 home-btn">
                     <Image
                       alt=""
                       src="/assets/home.svg"
@@ -53,7 +53,7 @@ export default function DashboardSidebar() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="flex items-center text-slate-400">
+                  <button className="flex items-center text-slate-400 members-btn">
                     <Image
                       width={23}
                       height={23}
@@ -75,7 +75,7 @@ export default function DashboardSidebar() {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="flex items-center  text-slate-400">
+                  <button className="flex items-center  text-slate-400 recom-btn">
                     <Image
                       alt=""
                       width={23}
@@ -97,7 +97,7 @@ export default function DashboardSidebar() {
                 </TooltipContent>
               </Tooltip>
               <span className="pt-8 font-light text-slate-500">Settings</span>
-              <button className="flex items-center  text-slate-400">
+              <button className="flex items-center  text-slate-400 profile-btn">
                 <Image
                   alt=""
                   src="/assets/profile.svg"
@@ -108,7 +108,7 @@ export default function DashboardSidebar() {
                   Profile
                 </span>
               </button>
-              <button className="flex items-center  text-slate-400">
+              <button className="flex items-center  text-slate-400 faq-btn">
                 <Image alt="" src="/assets/faq.svg" width={23} height={23} />
                 <span className="mx-2 font-light transition-all duration-200 hover:opacity-60">
                   FAQ&apos;s

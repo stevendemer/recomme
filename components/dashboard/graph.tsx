@@ -67,7 +67,15 @@ export default function Graph({ className }: { className?: string }) {
           className="max-sm:min-h-[300px] max-md:min-h-[500px] w-full h-full text-center  mx-auto "
           // className="text-center md:max-h-[320px] lg:max-h-[700px] w-full h-full"
         >
-          <RadarChart data={chartData}>
+          <RadarChart
+            margin={{
+              top: 20,
+              right: 20,
+              bottom: 20,
+              left: 20,
+            }}
+            data={chartData}
+          >
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <PolarAngleAxis
               dataKey="subject"
@@ -81,10 +89,10 @@ export default function Graph({ className }: { className?: string }) {
                     y={index === 0 ? y - 30 : y}
                     textAnchor={textAnchor}
                     fontSize={13}
-                    fontWeight={800}
+                    fontWeight={700}
                     {...props}
                   >
-                    <tspan x={x} dy={"1rem"} fontSize={20}>
+                    <tspan x={x} dy={"1rem"} fontSize={13}>
                       {data.subject}
                     </tspan>
                   </text>

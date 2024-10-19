@@ -8,41 +8,36 @@ import cloud from "@/public/assets/cloud.svg";
 import glass from "@/public/assets/glass.svg";
 import flower from "@/public/assets/flower.svg";
 import logo from "@/public/assets/logo.svg";
+import bg from "@/public/assets/bg.svg";
 
 export default function Home() {
   return (
-    <ParentContainer>
-      <MessageContainer buttonLength={1}>
-        <div className="relative m-auto flex items-center justify-between flex-col sm:gap-y-28 max-w-full">
-          <div className="relative w-full h-auto max-w-full">
-            <Image src={cloud} alt="" />
-            <div className="absolute inset-0 flex justify-center items-center w-full h-full max-w-full">
-              {/* background glass  */}
+    <MessageContainer buttonLength={1}>
+      <div className="relative flex items-center justify-center flex-col w-full h-full">
+        <div className="flex items-center justify-center relative m-auto">
+          <Image
+            src={cloud}
+            alt="cloud background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute z-50 bg-white/60 backdrop-blur-lg h-auto w-fit p-6 rounded-3xl flex flex-col items-center space-y-4 sm:space-y-0 sm:flex-row">
+            <div className="flex gap-x-4 items-start">
               <Image
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                src={glass}
-                alt=""
+                width={120}
+                height={90}
+                priority
+                src={flower}
+                alt="flower"
+                className="px-2"
               />
-              <div className="absolute inset-0 flex flex-col sm:flex-row items-center justify-center w-full h-full space-y-4">
-                <div className="relative h-20 w-20 sm:h-40 sm:w-40 max-w-full z-10">
-                  <Image
-                    fill
-                    priority
-                    className="px-2 sm:mb-8 pb-10"
-                    src={flower}
-                    alt=""
-                  />
-                </div>
-                <p className="text-black p-4 text-2xl font-normal font-rubik leading-tight">
-                  Hello there! I&apos;m here to assist you. It looks like you
-                  were about to say &apos;Recommend me&apos;
-                </p>
-              </div>
+              <p className="text-black text-lg sm:text-xl font-rubik leading-tight text-center sm:text-left">
+                Hello there! I&apos;m here to assist you. It looks like you were
+                about to say &apos;Recommend me&apos;
+              </p>
             </div>
           </div>
         </div>
-      </MessageContainer>
-    </ParentContainer>
+      </div>
+    </MessageContainer>
   );
 }

@@ -68,7 +68,7 @@ const schema = z.object({
 export default function RegistrationPage() {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
-    mode: "all",
+    mode: "onChange",
   });
 
   const { toast } = useToast();
@@ -126,80 +126,86 @@ export default function RegistrationPage() {
 
   useOnClickOutside(ref, () => clearSuggestions());
 
-  if (!isLoaded) return <Spinner size="md" />;
+  if (!isLoaded)
+    return (
+      <div className="flex justify-center h-screen items-center">
+        <Spinner size="xl" />
+      </div>
+    );
 
   return (
-    <ParentContainer>
-      <MessageContainer buttonLength={1}>
-        <div className="flex flex-col items-center w-full h-full relative justify-center space-y-4">
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col items-center justify-center w-full h-full gap-y-6 p-6"
+    <MessageContainer>
+      <div className="w-full h-auto space-y-4 grid place-items-center relative">
+        <h1 className="text-3xl sm:text-5xl font-sans leading-tight text-black">
+          Registration
+        </h1>
+
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="grid place-items-center w-fit h-full gap-y-6 p-6"
+        >
+          <Autocomplete
+            className="w-full"
+            onLoad={(auto) => {
+              auto.addListener("place_changed", () => {
+                const place = auto.getPlace();
+                if (place) {
+                  // setPlace(place.formatted_address || "");
+                  form.setValue("location", place.formatted_address || "");
+                  // form.trigger("location");
+                }
+              });
+            }}
           >
-            <h1 className="text-3xl sm:text-5xl font-sans leading-tight text-black">
-              Registration
-            </h1>
-
-            <Autocomplete
-              onLoad={(auto) => {
-                auto.addListener("place_changed", () => {
-                  const place = auto.getPlace();
-                  if (place) {
-                    // setPlace(place.formatted_address || "");
-                    form.setValue("location", place.formatted_address || "");
-                    // form.trigger("location");
-                  }
-                });
-              }}
-            >
-              <Input
-                placeholder="Enter a location"
-                className="w-full rounded-full py-5 shadow-xl mt-2"
-                onKeyDown={(e) => handleKeyDown(e, nameRef)}
-                ref={locationRef}
-              />
-            </Autocomplete>
             <Input
-              className="rounded-full shadow-xl py-5 w-full"
-              placeholder="EC Name"
-              onKeyDown={(e) => handleKeyDown(e, roleRef)}
-              ref={nameRef}
+              placeholder="Enter a location"
+              className="w-full rounded-full py-5 shadow-xl mt-2 pl-6"
+              onKeyDown={(e) => handleKeyDown(e, nameRef)}
+              ref={locationRef}
             />
+          </Autocomplete>
+          <Input
+            {...form.register("ecName")}
+            className="rounded-full shadow-xl py-5 w-full pl-6"
+            placeholder="EC Name"
+            onKeyDown={(e) => handleKeyDown(e, roleRef)}
+            ref={nameRef}
+          />
 
-            <Select
-              onValueChange={(value) => {
-                // field.onChange(value);
-                // form.trigger("role"); // trigger validation
-              }}
-              defaultValue={"EC Manager"}
+          <Select
+            {...form.register("role")}
+            onValueChange={(value) => {
+              // field.onChange(value);
+              // form.trigger("role"); // trigger validation
+            }}
+            defaultValue={"EC Manager"}
+          >
+            <SelectTrigger ref={roleRef}>
+              <SelectValue placeholder="Select a role" />
+            </SelectTrigger>
+            <SelectContent className="py-5 w-full">
+              <SelectItem value="EC Manager">EC Manager</SelectItem>
+              <SelectItem value="EC Member">EC Member</SelectItem>
+              <SelectItem value="Other">Other</SelectItem>
+            </SelectContent>
+          </Select>
+
+          <div className="fixed bottom-20 flex-shrink-0 max-w-lg">
+            <SubmitButton
+              type="submit"
+              disabled={!form.formState.isValid}
+              className={cn(
+                "flex justify-center items-center",
+                form.formState.isValid
+                  ? "bg-black text-white hover:bg-black/80"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed hover:bg-gray-200"
+              )}
             >
-              <SelectTrigger ref={roleRef}>
-                <SelectValue placeholder="Select a role" />
-              </SelectTrigger>
-              <SelectContent className="py-5 w-full">
-                <SelectItem value="EC Manager">EC Manager</SelectItem>
-                <SelectItem value="EC Member">EC Member</SelectItem>
-                <SelectItem value="Other">Other</SelectItem>
-              </SelectContent>
-            </Select>
-
-            {/* <div className="fixed bottom-20 flex-shrink-0 max-w-lg">
-                <SubmitButton
-                  type="submit"
-                  disabled={!form.formState.isValid || !form.formState.isDirty}
-                  className={cn(
-                    "flex justify-center items-center",
-                    form.formState.isValid
-                      ? "bg-black text-white hover:bg-black/80"
-                      : "bg-gray-300 text-gray-500 cursor-not-allowed hover:bg-gray-200"
-                  )}
-                >
-                  Confirm
-                </SubmitButton>
-              </div> */}
-          </form>
-        </div>
-      </MessageContainer>
-    </ParentContainer>
+              Confirm
+            </SubmitButton>
+          </div>
+        </form>
+      </div>
+    </MessageContainer>
   );
 }

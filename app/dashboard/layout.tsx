@@ -4,6 +4,9 @@ import React, { PropsWithChildren } from "react";
 import "../globals.css";
 import { Rubik } from "next/font/google";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
+
+const Tour = dynamic(() => import("../../components/tour"), { ssr: false });
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -27,6 +30,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           rubik.variable
         )}
       >
+        <Tour />
         <div className="gradient-bg font-rubik w-full h-svh max-h-svh flex md:p-8">
           <div className="w-full mx-auto flex gap-8 items-center">
             <div className="hidden sm:flex h-full flex-shrink">

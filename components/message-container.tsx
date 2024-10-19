@@ -20,42 +20,48 @@ function MessageContainer({
   hasLogo?: boolean;
 }) {
   return (
-    <div className="mx-auto bg-white/30 text-neutral-500 w-[60vw] h-[90vh] backdrop-blur-lg rounded-3xl flex flex-col justify-center items-center pt-2 mt-4">
-      <div className="bg-white/80 h-[86vh] w-[56vw] my-2 rounded-3xl shadow-xl z-10 mb-2 relative">
-        <div className="flex flex-col items-center w-full h-full relative">
-          {/* main body */}
-          <div className="relative m-auto flex items-center justify-between flex-col sm:gap-y-28 max-w-full">
-            {hasLogo ? (
-              <div className="relative w-32 h-12 sm:w-60 sm:h-20">
-                <Image
-                  priority
-                  src={logo}
-                  alt=""
-                  className="object-cover object-center"
-                />
+    <div className="gradient-bg backdrop-blur-lg h-screen flex justify-center flex-shrink-0 items-center overflow-hidden">
+      <div className="mx-auto bg-white/30 text-neutral-500 w-[92vw] sm:w-[60vw] h-[90vh] backdrop-blur-lg rounded-3xl flex flex-col items-center p-4">
+        <div className="bg-white/70 h-[86vh] sm:w-[56vw] w-[88vw] my-2 rounded-3xl shadow-lg  mb-2">
+          <div className="flex flex-col items-center h-full w-full">
+            {/* main body */}
+            <div className="flex items-center flex-col sm:gap-y-0 relative h-full w-full">
+              {hasLogo ? (
+                <div className="w-32 h-12 sm:w-52 sm:h-12 pt-10 sm:pt-24">
+                  <Image
+                    priority
+                    src={logo}
+                    alt=""
+                    className="object-contain object-top"
+                  />
+                </div>
+              ) : null}
+              <div className="flex justify-center h-auto m-auto relative">
+                {children}
               </div>
-            ) : null}
-            <div className="relative w-full h-auto max-w-full flex flex-col items-center">
-              {children}
+
+              <div className="flex items-center justify-center absolute bottom-20 space-x-2 sm:space-x-6">
+                {!buttonLength ? null : buttonLength > 1 ? (
+                  <>
+                    <Link href="/registration">
+                      <SubmitButton className="bg-red-400 hover:bg-red-400/80">
+                        No, modify
+                      </SubmitButton>
+                    </Link>
+
+                    <Link href="/confirmation">
+                      <SubmitButton>Let's begin</SubmitButton>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/confirmation">
+                      <SubmitButton>Let's begin</SubmitButton>
+                    </Link>
+                  </>
+                )}
+              </div>
             </div>
-
-            {!buttonLength ? null : buttonLength > 1 ? (
-              <div className="fixed bottom-52 justify-center flex items-center gap-x-6  w-full">
-                <Link href="/registration">
-                  <SubmitButton className="bg-red-400">No, modify</SubmitButton>
-                </Link>
-
-                <Link href="/confirmation">
-                  <SubmitButton>Let's begin</SubmitButton>
-                </Link>
-              </div>
-            ) : (
-              <div className="fixed bottom-52 justify-center flex items-center gap-x-6  w-full">
-                <Link href="/confirmation">
-                  <SubmitButton>Let's begin</SubmitButton>
-                </Link>
-              </div>
-            )}
           </div>
         </div>
       </div>

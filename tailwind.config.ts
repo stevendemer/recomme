@@ -24,8 +24,6 @@ const config = {
     },
     extend: {
       backgroundImage: {
-        // "radial-gradient":
-        //   "radial-gradient(from-green-300, via-teal-100, to-blue-400)",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
       colors: {

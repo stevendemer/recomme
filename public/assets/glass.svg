@@ -1,27 +1,10 @@
-                <svg
-                  viewBox="0 0 516 145"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-full h-auto max-w-full"
-                >
-                  <rect
-                    width="516"
-                    height="145"
-                    rx="22"
-                    fill="url(#paint0_linear_330_3233)"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="paint0_linear_330_3233"
-                      x1="116.5"
-                      y1="46"
-                      x2="610"
-                      y2="164.5"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop stop-color="white" />
-                      <stop offset="1" stop-color="white" stop-opacity="0.09" />
-                    </linearGradient>
-                  </defs>
-                </svg>
 
+<svg width="516" height="145" viewBox="0 0 516 145" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="516" height="145" rx="22" fill="url(#paint0_linear_330_3233)"/>
+<defs>
+<linearGradient id="paint0_linear_330_3233" x1="116.5" y1="46" x2="610" y2="164.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0.09"/>
+</linearGradient>
+</defs>
+</svg>
