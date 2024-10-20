@@ -179,7 +179,7 @@ export default function RegistrationPage() {
                 if (place) {
                   // setPlace(place.formatted_address || "");
                   form.setValue("location", place.formatted_address || "");
-                  // form.trigger("location");
+                  form.trigger("location");
                 }
               });
             }}
@@ -188,7 +188,7 @@ export default function RegistrationPage() {
               placeholder="Enter a location"
               className="w-full rounded-full py-5 shadow-xl mt-2 pl-6"
               onKeyDown={(e) => handleKeyDown(e, nameRef)}
-              // {...form.register("location", { required: true })}
+              {...form.register("location", { required: true })}
             />
           </Autocomplete>
           <Input
@@ -201,8 +201,8 @@ export default function RegistrationPage() {
           <Select
             name="role"
             onValueChange={(value: any) => {
-              // form.trigger("role"); // trigger validation
               form.setValue("role", value);
+              form.trigger("role"); // trigger validation
             }}
             defaultValue={"EC Manager"}
           >

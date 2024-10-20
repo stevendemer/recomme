@@ -103,7 +103,7 @@ function MessageContainer({
               <div
                 className={cn(
                   hasLogo ? "h-auto justify-center" : "h-full",
-                  "flex flex-col items-center  m-auto"
+                  "flex flex-col items-center  m-auto w-full"
                 )}
               >
                 {children}
