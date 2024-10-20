@@ -154,7 +154,13 @@ export default function RegistrationPage() {
   const watchFields = form.watch(["location", "ecName", "role"]);
 
   return (
-    <MessageContainer>
+    <MessageContainer
+      isValid={form.formState.isValid}
+      onClick={() => console.log("Submit button was clicked")}
+      href="/thankyou"
+      buttonLabel="Confirm"
+      buttonLength={1}
+    >
       <div className="w-full h-auto space-y-4 grid place-items-center relative">
         <h1 className="text-3xl sm:text-5xl font-sans leading-tight text-black">
           Registration
@@ -182,7 +188,7 @@ export default function RegistrationPage() {
               placeholder="Enter a location"
               className="w-full rounded-full py-5 shadow-xl mt-2 pl-6"
               onKeyDown={(e) => handleKeyDown(e, nameRef)}
-              {...form.register("location", { required: true })}
+              // {...form.register("location", { required: true })}
             />
           </Autocomplete>
           <Input
@@ -194,7 +200,7 @@ export default function RegistrationPage() {
 
           <Select
             name="role"
-            onValueChange={(value) => {
+            onValueChange={(value: any) => {
               // form.trigger("role"); // trigger validation
               form.setValue("role", value);
             }}
@@ -210,7 +216,7 @@ export default function RegistrationPage() {
             </SelectContent>
           </Select>
 
-          <div className="fixed bottom-20 flex-shrink-0 max-w-lg">
+          {/* <div className="fixed bottom-20 flex-shrink-0 flex justify-center items-center">
             <SubmitButton
               type="submit"
               disabled={!form.formState.isValid}
@@ -223,7 +229,7 @@ export default function RegistrationPage() {
             >
               Confirm
             </SubmitButton>
-          </div>
+          </div> */}
         </form>
       </div>
     </MessageContainer>

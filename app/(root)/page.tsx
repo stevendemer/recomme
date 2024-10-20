@@ -13,8 +13,8 @@ import bg from "@/public/assets/bg.svg";
 export default function Home() {
   return (
     <MessageContainer buttonLength={1}>
-      <div className="relative flex items-center justify-center flex-col w-full h-full">
-        <div className="flex items-center justify-center relative m-auto">
+      <div className="relative flex items-center justify-center flex-col w-full h-auto">
+        <div className="flex items-center justify-center relative m-auto ">
           <Image
             src={cloud}
             alt="cloud background"

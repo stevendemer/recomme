@@ -1,13 +1,8 @@
-import SubmitButton from "@/components/submit-button";
-import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import cloud from "@/public/assets/cloud.svg";
 import MessageContainer from "@/components/message-container";
 import alec from "@/public/assets/alec.svg";
-import glass from "@/public/assets/glass.svg";
 import flower from "@/public/assets/flower.svg";
-import logo from "@/public/assets/logo.svg";
 import bigCloud from "@/public/assets/big-cloud.svg";
 
 export default function ConfirmationPage() {
@@ -32,8 +27,8 @@ export default function ConfirmationPage() {
                 className="px-2"
               />
               <p className="text-black text-lg sm:text-2xl font-normal font-rubik leading-tight text-center sm:text-left">
-                First, let's get introduced <br /> I have a feeling you might be
-                an
+                First, let&apos; get introduced <br /> I have a feeling you
+                might be an
                 <b> ALEC community manager</b> <br /> looking for some digital
                 magic. Am I on the right track?
               </p>

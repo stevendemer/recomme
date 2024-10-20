@@ -4,9 +4,9 @@ import Image from "next/image";
 import ChatBubble from "./chat-bubble";
 
 export default function ImageSlider({
-  onValueChange,
+  onChange,
 }: {
-  onValueChange: (v: number[]) => void;
+  onChange: (v: number[]) => void;
 }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-full">
@@ -40,7 +40,7 @@ export default function ImageSlider({
 
       <div className="w-full items-start h-full gap-4 md:gap-8 flex flex-col justify-between mb-10 sm:mb-0 bg-white rounded-3xl p-2 sm:p-8 col-span-1 sm:col-span-2">
         <Slider
-          onValueChange={onValueChange}
+          onValueChange={onChange}
           min={1}
           max={5}
           step={1}

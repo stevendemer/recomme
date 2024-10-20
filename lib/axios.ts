@@ -1,5 +1,4 @@
 import { ROUTES } from "@/constants/routes";
-import { getToken } from "@chakra-ui/react";
 import axios, {
   AxiosError,
   AxiosRequestConfig,

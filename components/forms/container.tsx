@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { PropsWithChildren, useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Steps from "../steps";
@@ -17,19 +17,16 @@ import { cn } from "@/lib/utils";
 import TinderCard from "../cards/tinder-card";
 
 type FormInputs = {
-  slideValue: number;
-  swipeDirection: number[] | null;
-  selectedCards: number[];
-};
-
-const initialMessage = {
-  message: "",
+  slider: number;
+  swipe: "right" | "left" | null;
+  multiple: number[];
 };
 
 export default function FormContainer() {
   const [step, setStep] = useState(1);
-  //   const [state, formAction] = useFormState(action, initialMessage);
   const { toast } = useToast();
+  const [index, setIndex] = useState(0);
+  // const [background, setBackground] = useState("#fff");
 
   const {
     control,
@@ -39,27 +36,22 @@ export default function FormContainer() {
     formState: { errors, isDirty, isLoading, isValid, dirtyFields },
   } = useForm<FormInputs>({
     defaultValues: {
-      slideValue: 0,
-      swipeDirection: null,
-      selectedCards: [],
+      slider: 0,
+      swipe: null,
+      multiple: [],
     },
     mode: "onChange",
   });
 
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    console.log(
-      "Data from form is ",
-      data.swipeDirection,
-      data.slideValue,
-      data.selectedCards
-    );
+    console.log("Data from form is ", data.swipe, data.slider, data.multiple);
 
     api
       .post(ROUTES.postInteraction, {
         webform_id: "mp_recomme_macrointeractions",
-        card_sorting_test: data.swipeDirection,
-        mp_slider_test: data.slideValue,
-        mp_multiple_answers_test: data.selectedCards,
+        card_sorting_test: data.slider,
+        mp_slider_test: data.slider,
+        mp_multiple_answers_test: data.multiple,
       })
       .then((resp) => {
         console.log(resp.data);
@@ -80,61 +72,21 @@ export default function FormContainer() {
   const isFormComplete = Object.keys(dirtyFields).length === 3;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={false}>
       <MessageContainer hasLogo={false}>
         <Steps setStep={setStep} currentStep={step} totalSteps={3} />
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex items-center justify-center flex-col h-full w-full relative mx-auto space-y-4"
         >
-          <h1 className="text-3xl font-bold text-slate-600 text-center max-w-2xl mt-4">
+          <h1 className="text-xl sm:text-3xl font-bold text-slate-600 text-center max-w-xl flex-wrap">
             Lorem ipsum dolor sit
           </h1>
           {/* <form onSubmit={onSubmit}> */}
           {step === 1 && (
             <Controller
-              name="slideValue"
               control={control}
-              rules={{ required: true, minLength: 1 }}
-              render={({ field }) => (
-                <div className=" w-full h-full flex items-center justify-center max-w-full flex-grow">
-                  <ImageSlider
-                    onValueChange={(value) => {
-                      console.log("slider value is ", value);
-                      field.onChange(value[0]);
-                    }}
-                  />
-                </div>
-              )}
-            ></Controller>
-          )}
-
-          {step === 2 && (
-            <Controller
-              name="swipeDirection"
-              control={control}
-              rules={{ required: true }}
-              render={({ field }) => (
-                <>
-                  {/* <SwipingCard
-                    onSwipe={(direction) => {
-                      if (direction === "right") {
-                        field.onChange([1, 2]);
-                      }
-                      handleNext();
-                      // field.onChange(direction);
-                    }}
-                  /> */}
-                  <TinderCard />
-                </>
-              )}
-            ></Controller>
-          )}
-
-          {step === 3 && (
-            <Controller
-              control={control}
-              name="selectedCards"
+              name="multiple"
               rules={{
                 required: true,
                 minLength: { value: 3, message: "Pick at least 3 options" },
@@ -146,8 +98,45 @@ export default function FormContainer() {
               )}
             ></Controller>
           )}
+
+          {step === 2 && (
+            <Controller
+              name="swipe"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <motion.div layout>
+                  <TinderCard
+                    frontCard={true}
+                    drag="x"
+                    setIndex={setIndex}
+                    onChange={field.onChange}
+                    value={field.value}
+                  />
+                </motion.div>
+              )}
+            ></Controller>
+          )}
+
+          {step === 3 && (
+            <Controller
+              name="slider"
+              control={control}
+              rules={{ required: true, minLength: 1 }}
+              render={({ field }) => (
+                <div className=" w-full h-full flex items-center justify-center max-w-full flex-grow">
+                  <ImageSlider
+                    onChange={(value) => {
+                      console.log("slider value is ", value);
+                      field.onChange(value[0]);
+                    }}
+                  />
+                </div>
+              )}
+            ></Controller>
+          )}
           <SubmitButton
-            className={cn("fixed bottom-20", step === 2 && "hidden")}
+            className={cn("fixed bottom-16", step === 2 && "hidden")}
             type={step < 3 ? "button" : "submit"}
             onClick={() => handleNext()}
             disabled={step === 3 && !isFormComplete}

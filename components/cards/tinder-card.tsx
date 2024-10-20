@@ -1,46 +1,108 @@
 import { useState } from "react";
-import { motion, useAnimation } from "framer-motion";
+import {
+  motion,
+  PanInfo,
+  useAnimation,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
 import { FaHeart, FaTimes } from "react-icons/fa";
 
-export default function TinderCard() {
+export default function TinderCard({
+  onChange,
+  value,
+  frontCard = false,
+  setBackground,
+  setIndex,
+  index,
+  drag,
+}: {
+  onChange: () => void;
+  value: "right" | "left" | null;
+  frontCard?: boolean;
+  index?: number;
+  setIndex?: (x: number) => void;
+  setBackground?: (x: string) => void;
+  drag?: any;
+}) {
+  const [exitX, setExitX] = useState(0);
   const [showCard, setShowCard] = useState(true);
   const controls = useAnimation();
+  const x = useMotionValue(0);
+  const scale = useTransform(x, [-150, 0, 150], [0.5, 1, 0.5]);
+  const rotate = useTransform(x, [-150, 0, 150], [-45, 0, 45], {
+    clamp: false,
+  });
+
+  const variantsFrontCard = {
+    animate: { scale: 1, y: 0, opacity: 1 },
+    exit: (custom: any) => ({
+      x: custom,
+      opacity: 0,
+      scale: 0.5,
+      transition: { duration: 0.3 },
+    }),
+  };
+
+  const variantsBackCard = {
+    initial: { scale: 0, y: 105, opacity: 0 },
+    animate: { scale: 0.75, y: 30, opacity: 0.5 },
+  };
+
+  function handleDragEnd(_: any, info: PanInfo) {
+    if (info.offset.x < -100) {
+      setExitX(-250);
+    }
+    if (info.offset.x > 100) {
+      setExitX(250);
+    }
+  }
 
   const swipe = async (direction: "left" | "right") => {
     const x = direction === "right" ? 300 : -300;
     await controls.start({ x, opacity: 0, transition: { duration: 0.5 } });
     setShowCard(false); // Hide card after swipe
+
+    if (setBackground) {
+      setBackground(direction === "right" ? "black" : "red");
+    }
   };
 
   return (
-    <div className="h-fit rounded-2xl overflow-hidden relative mt-4 p-4 flex justify-center items-center">
+    <motion.div className="relative rounded-2xl overflow-hidden mt-4 p-4 flex justify-center items-center">
       {showCard && (
         <motion.div
-          className="relative w-[40vw] sm:h-[50vh] sm:w-[15vw] h-96 bg-white rounded-xl flex flex-col items-center justify-center p-4 mx-20"
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          onDragEnd={(event, info) => {
-            if (info.offset.x > 100) swipe("right");
-            else if (info.offset.x < -100) swipe("left");
+          onDragEnd={handleDragEnd}
+          dragConstraints={{
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
           }}
-          initial={{ scale: 1 }}
-          animate={controls}
-          transition={{ duration: 1.2 }}
+          drag={drag}
+          animate="animate"
+          exit="exit"
+          custom={exitX}
+          transition={frontCard ? variantsFrontCard : variantsBackCard}
+          style={{
+            cursor: "grab",
+          }}
+          className="relative w-[42vw] sm:h-[50vh] sm:w-[20vw] h-96  rounded-3xl flex flex-col items-center justify-center p-4 mx-20 z-20"
         >
           <motion.img
-            src="https://placekitten.com/300/300"
-            alt="Random cat"
-            className="w-full h-64 object-cover rounded-t-xl"
-            transition={{
-              duration: 0.9,
-              type: "spring",
-              stiffness: 300,
-              ease: "easeIn",
-            }}
-            dragElastic={0.9}
             dragConstraints={{ left: 0, right: 0 }}
-            drag="x"
-            whileTap={{ scale: 0.9 }}
+            initial={{ scale: 1 }}
+            style={{
+              x,
+            }}
+            transition={{ duration: 1.2 }}
+            dragElastic={0.9}
+            dragDirectionLock
+            whileTap={{
+              cursor: "grabbing",
+            }}
+            src="/assets/hacker.png"
+            className="w-full h-full object-cover rounded-3xl"
           />
         </motion.div>
       )}
@@ -77,6 +139,6 @@ export default function TinderCard() {
           </button>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

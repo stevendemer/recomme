@@ -1,7 +1,7 @@
 "use client";
-import Joyride from "react-joyride";
+import Joyride, { BeaconRenderProps, Step } from "react-joyride";
 
-import React from "react";
+import React, { ElementType } from "react";
 import { Tooltip, TooltipProvider } from "./ui/tooltip";
 import CustomTooltip from "./tooltip";
 import Image from "next/image";
@@ -39,6 +39,7 @@ const TOUR_STEPS = [
     ),
 
     placement: "bottom",
+    disableBeacon: true,
   },
   {
     target: ".members",
@@ -55,6 +56,7 @@ const TOUR_STEPS = [
     ),
 
     placement: "bottom",
+    disableBeacon: true,
   },
   {
     target: ".graph",
@@ -71,6 +73,7 @@ const TOUR_STEPS = [
     ),
 
     placement: "top",
+    disableBeacon: true,
   },
   {
     target: ".recom",
@@ -87,8 +90,9 @@ const TOUR_STEPS = [
     ),
 
     placement: "left",
+    disableBeacon: true,
   },
-];
+] as Step[];
 
 export default function Tour() {
   return (
@@ -99,23 +103,6 @@ export default function Tour() {
         showSkipButton={false}
         showProgress={false}
         tooltipComponent={CustomTooltip}
-        // styles={{
-        //   tooltipContainer: {
-        //     textAlign: "left",
-        //     backgroundColor: "var(--primary)",
-        //     border: "1px solid var(--border-primary)",
-        //   },
-        //   buttonNext: {
-        //     backgroundColor: "black",
-        //     color: "white",
-        //     borderRadius: "99px",
-        //     width: "150px",
-        //     padding: "20px",
-        //   },
-        //   buttonBack: {
-        //     marginRight: 10,
-        //   },
-        // }}
       />
     </TooltipProvider>
   );

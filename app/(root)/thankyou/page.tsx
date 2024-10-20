@@ -12,7 +12,12 @@ import bigCloud from "@/public/assets/big-cloud.svg";
 
 export default function ThankYou() {
   return (
-    <MessageContainer buttonLabel="Continue" buttonLength={1} hasLogo={false}>
+    <MessageContainer
+      href="/profiling"
+      buttonLabel="Continue"
+      buttonLength={1}
+      hasLogo={false}
+    >
       <div className="relative flex items-start flex-col w-full h-full">
         <div className="flex items-center relative w-full">
           <Image
@@ -34,9 +39,10 @@ export default function ThankYou() {
                   className="px-2"
                 />
                 <p className="text-black text-2xl font-rubik leading-tight text-center sm:text-left">
-                  Great! <br /> Now, I'm all set to help you achieve your goals.
-                  Let’s start by <br /> evaluating ALEC. <br /> Answer every
-                  aspect to continue, we need to evaluate your EC maturity.
+                  Great! <br /> Now, I&apos; all set to help you achieve your
+                  goals. Let’s start by <br /> evaluating ALEC. <br /> Answer
+                  every aspect to continue, we need to evaluate your EC
+                  maturity.
                 </p>
               </div>
             </div>
