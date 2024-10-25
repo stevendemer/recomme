@@ -18,33 +18,29 @@ export default function ThankYou() {
       buttonLength={1}
       hasLogo={false}
     >
-      <div className="relative flex items-start flex-col w-full h-full">
-        <div className="flex items-center relative w-full">
+      <div className="relative flex items-center flex-col w-full h-auto">
+        <div className="flex items-center justify-center relative m-auto">
           <Image
             src={bigCloud}
             alt="cloud background"
-            className="object-cover object-top"
-            width={1200}
-            height={400}
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute z-50 bg-white/60 backdrop-blur-lg h-auto w-full p-0 sm:p-10 rounded-3xl flex flex-col items-center space-y-6 sm:space-y-0 sm:flex-row sm:space-x-4">
-            <div className="flex flex-col items-center gap-y-6 p-8">
-              <div className="flex gap-x-4 items-start">
-                <Image
-                  width={60}
-                  height={60}
-                  priority
-                  src={flower}
-                  alt="flower"
-                  className="px-2"
-                />
-                <p className="text-black text-2xl font-rubik leading-tight text-center sm:text-left">
-                  Great! <br /> Now, I&apos; all set to help you achieve your
-                  goals. Let’s start by <br /> evaluating ALEC. <br /> Answer
-                  every aspect to continue, we need to evaluate your EC
-                  maturity.
-                </p>
-              </div>
+          <div className="absolute z-50 bg-white/60 backdrop-blur-lg h-auto w-fit p-12 rounded-3xl flex flex-col items-center space-y-4 sm:space-y-0 sm:flex-row">
+            <div className="flex gap-x-4 items-start">
+              <Image
+                width={60}
+                height={60}
+                priority
+                src={flower}
+                alt="flower"
+                className="px-2"
+              />
+              <p className="text-black text-2xl font-rubik leading-tight text-center sm:text-left">
+                Great! <br /> Now, I&apos;m all set to help you achieve your
+                goals. Let&apos; start by <br /> evaluating ALEC. <br /> Answer
+                every aspect to continue, we need to evaluate your EC
+                <br /> maturity.
+              </p>
             </div>
           </div>
         </div>

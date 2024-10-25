@@ -69,7 +69,7 @@ export default function TinderCard({
   };
 
   return (
-    <motion.div className="relative rounded-2xl overflow-hidden mt-4 p-4 flex justify-center items-center">
+    <motion.div className="relative rounded-2xl overflow-hidden mt-4 p-4 flex justify-center items-center mx-auto container">
       {showCard && (
         <motion.div
           onDragEnd={handleDragEnd}

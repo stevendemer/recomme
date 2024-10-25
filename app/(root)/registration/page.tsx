@@ -1,41 +1,13 @@
 "use client";
-import BackgroundImage from "@/components/message-container";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import SubmitButton from "@/components/submit-button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { cn } from "@/lib/utils";
-import {
-  Autocomplete,
-  GoogleMap,
-  Marker,
-  useLoadScript,
-} from "@react-google-maps/api";
-import usePlacesAutoComplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
-import {
-  useMemo,
-  useState,
-  useEffect,
-  useRef,
-  RefObject,
-  LegacyRef,
-  MutableRefObject,
-} from "react";
+import { Autocomplete, useLoadScript } from "@react-google-maps/api";
+import usePlacesAutoComplete from "use-places-autocomplete";
+import { useMemo, useState, useEffect, useRef, RefObject } from "react";
 import { useOnClickOutside } from "usehooks-ts";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-
 import {
   Select,
   SelectContent,
@@ -168,7 +140,7 @@ export default function RegistrationPage() {
 
         <form
           // onSubmit={form.handleSubmit(onSubmit)}
-          className="grid place-items-center w-fit h-full gap-y-6 p-6"
+          className="grid place-items-center w-full max-w-md h-full gap-y-6 p-6"
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <Autocomplete
@@ -185,7 +157,7 @@ export default function RegistrationPage() {
             }}
           >
             <Input
-              placeholder="Enter a location"
+              placeholder="Location"
               className="w-full rounded-full py-5 shadow-xl mt-2 pl-6"
               onKeyDown={(e) => handleKeyDown(e, nameRef)}
               {...form.register("location", { required: true })}

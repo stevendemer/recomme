@@ -61,7 +61,6 @@ export default function FormContainer() {
       description: "Data submitted ! Thanks for your time",
     });
   };
-
   const handleNext = async () => {
     const isStepValid = await trigger();
     if (step < 3) {
@@ -73,39 +72,38 @@ export default function FormContainer() {
 
   return (
     <AnimatePresence initial={false}>
-      <MessageContainer hasLogo={false}>
+      <MessageContainer buttonLength={1} hasLogo={false}>
         <Steps setStep={setStep} currentStep={step} totalSteps={3} />
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex items-center justify-center flex-col h-full w-full relative mx-auto space-y-4"
+          className="flex flex-col justify-between items-center h-auto w-full mx-auto space-y-2"
         >
-          <h1 className="text-xl sm:text-3xl font-bold text-slate-600 text-center max-w-xl flex-wrap">
+          <h1 className="text-xl sm:text-3xl font-bold text-[#2A898F] text-center m-2">
             Lorem ipsum dolor sit
           </h1>
-          {/* <form onSubmit={onSubmit}> */}
-          {step === 1 && (
-            <Controller
-              control={control}
-              name="multiple"
-              rules={{
-                required: true,
-                minLength: { value: 3, message: "Pick at least 3 options" },
-              }}
-              render={({ field }) => (
-                <>
-                  <MultipleCard value={field.value} onChange={field.onChange} />
-                </>
-              )}
-            ></Controller>
-          )}
 
-          {step === 2 && (
-            <Controller
-              name="swipe"
-              control={control}
-              rules={{ required: true }}
-              render={({ field }) => (
-                <motion.div layout>
+          {/* Step content */}
+          <div className="flex-grow">
+            {step === 1 && (
+              <Controller
+                control={control}
+                name="multiple"
+                rules={{
+                  required: true,
+                  minLength: { value: 3, message: "Pick at least 3 options" },
+                }}
+                render={({ field }) => (
+                  <MultipleCard value={field.value} onChange={field.onChange} />
+                )}
+              ></Controller>
+            )}
+
+            {step === 2 && (
+              <Controller
+                name="swipe"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
                   <TinderCard
                     frontCard={true}
                     drag="x"
@@ -113,37 +111,40 @@ export default function FormContainer() {
                     onChange={field.onChange}
                     value={field.value}
                   />
-                </motion.div>
-              )}
-            ></Controller>
-          )}
+                )}
+              ></Controller>
+            )}
 
-          {step === 3 && (
-            <Controller
-              name="slider"
-              control={control}
-              rules={{ required: true, minLength: 1 }}
-              render={({ field }) => (
-                <div className=" w-full h-full flex items-center justify-center max-w-full flex-grow">
-                  <ImageSlider
-                    onChange={(value) => {
-                      console.log("slider value is ", value);
-                      field.onChange(value[0]);
-                    }}
-                  />
-                </div>
-              )}
-            ></Controller>
-          )}
+            {step === 3 && (
+              <Controller
+                name="slider"
+                control={control}
+                rules={{ required: true, minLength: 1 }}
+                render={({ field }) => (
+                  <div className="w-full flex items-center justify-center">
+                    <ImageSlider
+                      onChange={(value) => {
+                        field.onChange(value[0]);
+                      }}
+                    />
+                  </div>
+                )}
+              ></Controller>
+            )}
+          </div>
+
+          {/* Submit Button - Positioned at the bottom */}
+        </form>
+        {/* <div className="flex items-center justify-center space-x-2 sm:space-x-6 m-auto relative">
           <SubmitButton
-            className={cn("fixed bottom-16", step === 2 && "hidden")}
+            className={cn("pt-6", step === 2 && "hidden")}
             type={step < 3 ? "button" : "submit"}
             onClick={() => handleNext()}
             disabled={step === 3 && !isFormComplete}
           >
             {step < 3 ? "Continue" : "Submit"}
           </SubmitButton>
-        </form>
+        </div> */}
       </MessageContainer>
     </AnimatePresence>
   );
