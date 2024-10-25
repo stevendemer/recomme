@@ -72,13 +72,13 @@ export default function TinderCard({
   };
 
   return (
-    <div className="relative rounded-2xl overflow-hidden mt-4 p-4 flex flex-col justify-center items-center mx-auto container">
+    <div className="relative rounded-2xl h-full mt-4 flex flex-col justify-center items-center mx-auto container">
       <h1 className="text-2xl md:text-4xl font-bold text-center text-primary p-4">
         How relatable is this situation?
       </h1>
 
       {showCard && (
-        <div className="relative w-1/2 aspect-video">
+        <div className="relative w-1/2 aspect-square">
           <Image
             alt=""
             fill

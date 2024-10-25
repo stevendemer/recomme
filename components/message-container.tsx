@@ -81,35 +81,26 @@ function MessageContainer({
   return (
     <div
       className={cn(
-        "backdrop-blur-lg h-svh flex justify-center flex-grow items-center gradient-bg",
+        "backdrop-blur-lg min-h-screen h-full grid place-items-center gradient-bg",
         className
       )}
     >
-      <div className="mx-auto bg-white/30 text-neutral-500 w-[92vw] sm:w-[60vw] h-[90svh] backdrop-blur-lg rounded-3xl flex flex-col items-center p-4">
-        <div className="bg-white/70 sm:w-[56vw] w-[88vw] my-2 rounded-3xl shadow-lg  mb-2 h-full">
-          <div className="flex flex-col items-center h-full w-full">
-            {/* main body */}
-            <div className="flex items-center flex-col sm:gap-y-0 relative h-full m-auto w-full mb-6 lg:mb-20">
-              {hasLogo ? (
-                <div className="w-32 h-12 sm:w-52 sm:h-12 pt-10 sm:pt-24">
-                  <Image
-                    priority
-                    src={logo}
-                    alt=""
-                    className="object-contain object-top"
-                  />
+      <div className="w-full h-full flex items-center justify-center overflow-hidden">
+        <div className="w-full max-w-[60vw] max-h-[80vh] h-full bg-white/30 text-neutral-500 backdrop-blur-lg rounded-3xl flex flex-col items-center p-4 overflow-hidden">
+          <div className="bg-white/70 w-full flex flex-col p-4 my-2 rounded-3xl shadow-lg h-full overflow-hidden">
+            {/* Main Body */}
+            <div className="flex flex-col items-center h-full w-full overflow-auto">
+              {hasLogo && (
+                <div className="w-32 h-12 sm:w-52 sm:h-12">
+                  <Image priority src={logo} alt="" className="object-cover" />
                 </div>
-              ) : null}
-              <div
-                className={cn(
-                  hasLogo ? "h-auto justify-center" : "h-full",
-                  "flex flex-col items-center  m-auto w-full"
-                )}
-              >
+              )}
+              <div className="flex-grow flex items-center justify-center w-full h-full">
                 {children}
               </div>
 
-              <div className="flex items-center justify-center space-x-2 sm:space-x-6 py-12">
+              {/* Buttons aligned at the bottom */}
+              <div className="flex items-center justify-center mt-auto space-x-2 sm:space-x-6 py-6 flex-shrink-0">
                 {renderButtons()}
               </div>
             </div>

@@ -13,14 +13,10 @@ import bg from "@/public/assets/bg.svg";
 export default function Home() {
   return (
     <MessageContainer buttonLength={1}>
-      <div className="relative flex items-center justify-center flex-col w-full h-auto">
+      <div className="relative flex items-center justify-center flex-col w-full">
         <div className="flex items-center justify-center relative m-auto ">
-          <Image
-            src={cloud}
-            alt="cloud background"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute z-50 bg-white/60 backdrop-blur-lg h-auto w-fit p-6 rounded-3xl flex flex-col items-center space-y-4 sm:space-y-0 sm:flex-row">
+          <Image src={cloud} alt="cloud background" />
+          <div className="absolute z-50 bg-white/60 backdrop-blur-lg w-fit p-6 rounded-3xl flex flex-col items-center space-y-4 sm:space-y-0 sm:flex-row">
             <div className="flex gap-x-4 items-start">
               <Image
                 width={120}

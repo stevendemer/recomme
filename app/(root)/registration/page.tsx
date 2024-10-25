@@ -134,14 +134,14 @@ export default function RegistrationPage() {
       buttonLength={1}
       hasLogo={false}
     >
-      <div className="w-full h-full grid place-items-center relative">
+      <div className="w-full h-full flex flex-col items-center justify-center relative">
         <h1 className="text-3xl sm:text-5xl font-sans leading-tight text-black">
           Registration
         </h1>
 
         <form
           // onSubmit={form.handleSubmit(onSubmit)}
-          className="grid place-items-center  max-w-sm sm:w-full space-y-4"
+          className=" max-w-sm sm:w-full space-y-4"
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <Autocomplete
