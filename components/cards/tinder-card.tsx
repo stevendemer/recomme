@@ -7,6 +7,9 @@ import {
   useTransform,
 } from "framer-motion";
 import { FaHeart, FaTimes } from "react-icons/fa";
+import { Button } from "../ui/button";
+import Image from "next/image";
+import SubmitButton from "../submit-button";
 
 export default function TinderCard({
   onChange,
@@ -69,62 +72,45 @@ export default function TinderCard({
   };
 
   return (
-    <motion.div className="relative rounded-2xl overflow-hidden mt-4 p-4 flex justify-center items-center mx-auto container">
+    <div className="relative rounded-2xl overflow-hidden mt-4 p-4 flex flex-col justify-center items-center mx-auto container">
+      <h1 className="text-2xl md:text-4xl font-bold text-center text-primary p-4">
+        How relatable is this situation?
+      </h1>
+
       {showCard && (
-        <motion.div
-          onDragEnd={handleDragEnd}
-          dragConstraints={{
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
-          }}
-          drag={drag}
-          animate="animate"
-          exit="exit"
-          custom={exitX}
-          transition={frontCard ? variantsFrontCard : variantsBackCard}
-          style={{
-            cursor: "grab",
-          }}
-          className="relative w-[42vw] sm:h-[50vh] sm:w-[20vw] h-96  rounded-3xl flex flex-col items-center justify-center p-4 mx-20 z-20"
-        >
-          <motion.img
-            dragConstraints={{ left: 0, right: 0 }}
-            initial={{ scale: 1 }}
-            style={{
-              x,
-            }}
-            transition={{ duration: 1.2 }}
-            dragElastic={0.9}
-            dragDirectionLock
-            whileTap={{
-              cursor: "grabbing",
-            }}
+        <div className="relative w-1/2 aspect-video">
+          <Image
+            alt=""
+            fill
             src="/assets/hacker.png"
-            className="w-full h-full object-cover rounded-3xl"
+            className="object-cover object-center rounded-2xl"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
-        </motion.div>
+        </div>
       )}
 
       {/* Buttons for like and dislike */}
       {showCard && (
         <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-full flex justify-between items-center">
           {/* Dislike Button */}
-          <button
-            className="border-red-500 border p-4 rounded-full text-red-500"
+          <Button
+            className="border-red-500 border rounded-full text-red-500 w-20 h-20 hover:text-red-400"
             onClick={() => swipe("left")}
+            variant="ghost"
+            size="icon"
           >
             <FaTimes size={24} />
-          </button>
+          </Button>
 
           {/* Like Button */}
-          <button
-            className="border-green-500 border p-4 rounded-full text-green-500"
+          <Button
+            className="border-green-500 border rounded-full text-green-500 w-20 h-20 hover:text-green-400"
             onClick={() => swipe("right")}
+            variant="ghost"
+            size="icon"
           >
             <FaHeart size={24} />
-          </button>
+          </Button>
         </div>
       )}
 
@@ -139,6 +125,6 @@ export default function TinderCard({
           </button>
         </div>
       )}
-    </motion.div>
+    </div>
   );
 }

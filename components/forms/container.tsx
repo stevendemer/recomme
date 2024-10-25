@@ -15,6 +15,9 @@ import BackgroundImage from "../message-container";
 import MessageContainer from "../message-container";
 import { cn } from "@/lib/utils";
 import TinderCard from "../cards/tinder-card";
+import ProfilingLayout from "../layouts/profiling-layout";
+import { Autocomplete } from "@react-google-maps/api";
+import { Button } from "../ui/button";
 
 type FormInputs = {
   slider: number;
@@ -22,11 +25,10 @@ type FormInputs = {
   multiple: number[];
 };
 
-export default function FormContainer() {
+export default function ProfilingPage() {
   const [step, setStep] = useState(1);
   const { toast } = useToast();
   const [index, setIndex] = useState(0);
-  // const [background, setBackground] = useState("#fff");
 
   const {
     control,
@@ -72,18 +74,14 @@ export default function FormContainer() {
 
   return (
     <AnimatePresence initial={false}>
-      <MessageContainer buttonLength={1} hasLogo={false}>
-        <Steps setStep={setStep} currentStep={step} totalSteps={3} />
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col justify-between items-center h-auto w-full mx-auto space-y-2"
-        >
-          <h1 className="text-xl sm:text-3xl font-bold text-[#2A898F] text-center m-2">
-            Lorem ipsum dolor sit
-          </h1>
-
-          {/* Step content */}
-          <div className="flex-grow">
+      <ProfilingLayout>
+        <div className="w-full h-full flex flex-col justify-center">
+          <Steps setStep={setStep} currentStep={step} totalSteps={3} />
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col items-center space-y-2 w-full  h-[calc(100%-120px)] flex-grow"
+          >
+            {/* Step content */}
             {step === 1 && (
               <Controller
                 control={control}
@@ -121,31 +119,33 @@ export default function FormContainer() {
                 control={control}
                 rules={{ required: true, minLength: 1 }}
                 render={({ field }) => (
-                  <div className="w-full flex items-center justify-center">
-                    <ImageSlider
-                      onChange={(value) => {
-                        field.onChange(value[0]);
-                      }}
-                    />
-                  </div>
+                  <ImageSlider
+                    onChange={(value) => {
+                      field.onChange(value[0]);
+                    }}
+                  />
                 )}
               ></Controller>
             )}
-          </div>
-
-          {/* Submit Button - Positioned at the bottom */}
-        </form>
-        {/* <div className="flex items-center justify-center space-x-2 sm:space-x-6 m-auto relative">
-          <SubmitButton
-            className={cn("pt-6", step === 2 && "hidden")}
-            type={step < 3 ? "button" : "submit"}
-            onClick={() => handleNext()}
-            disabled={step === 3 && !isFormComplete}
-          >
-            {step < 3 ? "Continue" : "Submit"}
-          </SubmitButton>
-        </div> */}
-      </MessageContainer>
+            {/* <div
+              className={cn(
+                "w-full flex justify-center mt-4",
+                step === 2 ? "hidden" : ""
+              )}
+            >
+              <SubmitButton>Submit</SubmitButton>
+            </div> */}
+            <div
+              className={cn(
+                "py-4 lg:pb-10 justify-center mt-auto hidden",
+                step === 2 ? "hidden" : "sm:flex"
+              )}
+            >
+              <SubmitButton onClick={handleNext}>Continue</SubmitButton>
+            </div>
+          </form>
+        </div>
+      </ProfilingLayout>
     </AnimatePresence>
   );
 }

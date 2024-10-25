@@ -1,9 +1,5 @@
-import FormContainer from "@/components/forms/container";
-
-/**
- * Fetch from the API and map through the questions
- */
+import ProfilingPage from "@/components/forms/container";
 
 export default function FormPage() {
-  return <FormContainer />;
+  return <ProfilingPage />;
 }

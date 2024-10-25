@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Button } from "../ui/button";
 
 type Props = {
   value: number[];
@@ -10,45 +11,44 @@ type Props = {
 
 export default function MultipleCard({ value, onChange }: Props) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-4 gap-12 p-4 my-8 w-full h-full">
-      {Array.from({ length: 8 }).map((_, index) => (
-        <div key={index} className="w-full max-w-lg mx-2 h-full">
+    <div className="w-full h-full flex flex-col items-center justify-center">
+      <h1 className="text-2xl md:text-4xl font-bold text-center text-primary p-4">
+        How relatable is this situation?
+      </h1>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 sm:gap-6 place-items-center w-full max-h-full">
+        {Array.from({ length: 4 }).map((_, index) => (
           <div
+            key={index}
             onClick={() => {
               if (value.includes(index)) {
-                // remove the select if already selected
                 onChange(value.filter((v) => v !== index));
               } else {
                 onChange([...value, index]);
               }
-              console.log("total values are ", value);
             }}
-            key={index}
             className={cn(
-              "flex flex-col bg-background rounded-[40px]  shadow-xl p-4 cursor-pointer font-bold transition-colors duration-300 h-auto w-full max-h-[200px] lg:max-h-[200px]",
+              "gap-3 rounded-2xl shadow-lg p-1 cursor-pointer transition-colors duration-300  flex items-center justify-center border-border border",
               value.includes(index) && "bg-[#65d9bd] text-slate-100"
             )}
           >
-            {/* image div */}
-            <Image
-              className="object-contain object-center rounded-3xl"
-              width={250}
-              height={120}
-              alt=""
-              src={"/assets/hacker.png"}
-            />
-
-            <div className="p-4 flex-shrink hidden sm:block">
-              <span className="font-bold text-md sm:text-lg text-primary tracking-wider overflow-hidden text-ellipsis line-clamp-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-                repudiandae vel, a officia inventore optio pariatur deserunt
-                aliquam iure quaerat numquam maiores minima quos alias harum!
-                Corrupti ipsa amet tenetur?
-              </span>
+            <div className="relative w-full aspect-square">
+              <Image
+                className="object-cover rounded-2xl"
+                fill
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                alt=""
+                src="/assets/hacker.png"
+              />
+            </div>
+            <div className="w-full">
+              <p className="text-xs sm:text-lg text-primary line-clamp-3 text-center font-rubik">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
