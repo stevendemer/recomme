@@ -50,7 +50,7 @@ export default function Steps({
   ];
 
   return (
-    <div className="flex items-center justify-center p-4">
+    <div className="flex justify-center p-4 mb-3 fixed -top-2 left-0 right-0">
       <div className="flex items-center">
         {Array.from({ length: totalSteps }).map((_, index) => {
           const isActive = index + 1 === currentStep;

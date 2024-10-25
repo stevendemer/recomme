@@ -72,18 +72,18 @@ export default function TinderCard({
   };
 
   return (
-    <div className="relative rounded-2xl h-full mt-4 flex flex-col justify-center items-center mx-auto container">
+    <div className=" relative w-full rounded-2xl h-full mt-4 flex flex-col justify-center items-center ">
       <h1 className="text-2xl md:text-4xl font-bold text-center text-primary p-4">
         How relatable is this situation?
       </h1>
 
       {showCard && (
-        <div className="relative w-1/2 aspect-square">
+        <div className="relative w-1/2 h-full aspect-square">
           <Image
             alt=""
             fill
             src="/assets/hacker.png"
-            className="object-cover object-center rounded-2xl"
+            className="object-contain object-center rounded-2xl"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
         </div>
