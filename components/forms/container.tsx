@@ -73,11 +73,11 @@ export default function ProfilingPage() {
 
   return (
     <AnimatePresence initial={false}>
-      <div className="w-full flex flex-col">
+      <div className="w-full flex flex-col justify-between items-center h-full">
         <Steps setStep={setStep} currentStep={step} totalSteps={3} />
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col items-center space-y-2 w-full h-[calc(100%-60px)]"
+          className="flex flex-col justify-around items-center space-y-4 w-full h-[calc(100%-90px)]"
         >
           {/* Step content */}
           {step === 1 && (
@@ -125,14 +125,7 @@ export default function ProfilingPage() {
               )}
             ></Controller>
           )}
-          <div
-            className={cn(
-              "py-4 lg:pb-10 hidden",
-              step === 2 ? "hidden" : "sm:flex"
-            )}
-          >
-            <SubmitButton onClick={handleNext}>Continue</SubmitButton>
-          </div>
+          <SubmitButton onClick={handleNext}>Continue</SubmitButton>
         </form>
       </div>
     </AnimatePresence>
