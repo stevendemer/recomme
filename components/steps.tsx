@@ -16,7 +16,7 @@ export default function Steps({
   setStep,
 }: {
   currentStep: number;
-  totalSteps?: number;
+  totalSteps: number;
   setStep: (x: number) => void;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);

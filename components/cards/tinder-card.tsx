@@ -60,10 +60,6 @@ export default function Cards({
     const x = direction === "right" ? 300 : -300;
     await controls.start({ x, opacity: 0, transition: { duration: 0.5 } });
     setShowCard(false); // Hide card after swipe
-
-    if (setBackground) {
-      setBackground(direction === "right" ? "black" : "red");
-    }
   };
 
   return (

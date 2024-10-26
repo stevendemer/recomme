@@ -148,7 +148,7 @@ export default function ProfilingPage() {
         <Steps
           setStep={setCurrentStep}
           currentStep={currentStep}
-          totalSteps={totalSteps}
+          totalSteps={totalSteps!}
         />
         <form
           onSubmit={methods.handleSubmit(onSubmit)}
