@@ -63,7 +63,21 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider>
-          {children}
+          <div className="grid min-h-screen place-items-center gradient-bg h-full backdrop-blur-lg">
+            <div className="w-full h-full flex items-center justify-center overflow-hidden">
+              <div className="w-full max-w-[60vw] max-h-[90vh] h-full bg-white/30 text-neutral-600 flex flex-col items-center overflow-hidden rounded-3xl p-4 px-4">
+                <div className="bg-white/70 w-full flex flex-col p-4 my-2 rounded-3xl shadow-lg h-full overflow-hidden">
+                  {/* Main Body */}
+
+                  <div className="flex flex-col items-center h-full w-full overflow-hidden">
+                    <div className="flex-grow flex items-center justify-center w-full h-full">
+                      {children}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <Toaster />
         </ThemeProvider>
       </body>

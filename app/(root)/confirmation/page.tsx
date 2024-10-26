@@ -4,34 +4,26 @@ import MessageContainer from "@/components/message-container";
 import alec from "@/public/assets/alec.svg";
 import flower from "@/public/assets/flower.svg";
 import bigCloud from "@/public/assets/big-cloud.svg";
+import SubmitButton from "@/components/submit-button";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function ConfirmationPage() {
   return (
-    <MessageContainer href="/thankyou" hasLogo={false} buttonLength={2}>
-      <div className="relative w-full min-h-[500px] flex flex-col items-center">
-        {/* Background cloud - positioned absolutely */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={bigCloud}
-            alt="cloud background"
-            className="w-full h-full object-cover object-center"
-          />
-        </div>
-
-        {/* Content container - using relative positioning to stack on top */}
-        <div className="relative z-10 w-full flex flex-col items-center mt-8">
-          {/* White backdrop with blur */}
-          <div className="bg-white/60 backdrop-blur-lg mx-10 sm:mx-20 w-fit rounded-3xl p-4">
-            <div className="flex flex-col items-center">
-              {/* Top section with flower and text */}
-              <div className="flex gap-x-4 items-start">
-                <Image
-                  width={60}
-                  height={60}
-                  src={flower}
-                  alt="flower"
-                  className="px-2"
-                />
+    <div className="relative flex items-center justify-around flex-col w-full h-full">
+      <div className="flex flex-col items-center justify-center relative">
+        <div className="flex items-center justify-center relative flex-grow">
+          <div className="relative h-full w-full">
+            <Image
+              className="object-cover h-full"
+              src={bigCloud}
+              alt="cloud background"
+            />
+          </div>
+          <div className="absolute z-50 bg-white/60 backdrop-blur-lg w-fit h-full mb-8 p-6 rounded-3xl flex flex-col items-center space-y-4 sm:space-y-0 sm:flex-row overflow-hidden">
+            <div className="flex flex-col items-center space-y-6">
+              <div className="flex gap-x-4 items-start justify-center w-full">
+                <Image priority src={flower} alt="flower" className="px-2" />
                 <p className="text-black text-lg sm:text-2xl font-normal font-rubik leading-tight text-center sm:text-left">
                   First, let&apos;s get introduced <br /> I have a feeling you
                   might be an
@@ -39,21 +31,68 @@ export default function ConfirmationPage() {
                   magic. Am I on the right track?
                 </p>
               </div>
-
-              {/* Alec image container */}
-              <div className="w-full max-w-md aspect-video relative mt-4">
-                <Image
-                  src={alec}
-                  alt="Alec"
-                  className="w-full h-full object-contain"
-                />
-              </div>
+              <Image
+                className="object-contain max-w-full max-h-full"
+                src={alec}
+                alt=""
+              />
             </div>
           </div>
         </div>
-
-        {/* The submit button will automatically be positioned at the bottom by MessageContainer */}
+        <div className="flex items-center space-x-4 flex-shrink-0">
+          <Link href="/registration">
+            <SubmitButton className="bg-red-400 hover:bg-red-400 px-10 py-8 rounded-full font-rubik">
+              No, modify
+            </SubmitButton>
+          </Link>
+          <Link href="/thankyou">
+            <SubmitButton>Yep, it&apos;s me</SubmitButton>
+          </Link>
+        </div>
       </div>
-    </MessageContainer>
+    </div>
   );
+
+  // return (
+  //   <div className="relative flex items-center justify-around flex-col w-full h-full">
+  //     <div className="flex flex-col items-center justify-center">
+  //       <div className="flex items-center justify-center">
+  //         <Image src={bigCloud} alt="cloud background" />
+
+  //         {/* Content container - using relative positioning to stack on top */}
+  //         {/* White backdrop with blur */}
+  //         <div className="bg-white/60 backdrop-blur-lg mx-10 sm:mx-20 absolute z-50 rounded-3xl p-4 w-fit flex flex-col items-center sm:flex-row">
+  //           <div className="flex items-center flex-col gap-y-3">
+  //             <div className="flex gap-x-4">
+  //               <Image
+  //                 width={60}
+  //                 height={60}
+  //                 src={flower}
+  //                 alt="flower"
+  //                 className="px-2"
+  //               />
+  //             </div>
+
+  //             <Image
+  //               className="object-cover w-full h-full"
+  //               src={alec}
+  //               alt="Alec"
+  //             />
+  //             {/* Alec image container */}
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //     <div className="flex items-center space-x-4">
+  //       <Link href="/registration">
+  //         <SubmitButton className="bg-red-400 hover:bg-red-400">
+  //           No, modify
+  //         </SubmitButton>
+  //       </Link>
+  //       <Link href="/thankyou">
+  //         <SubmitButton>Yep, it&apos;s me</SubmitButton>
+  //       </Link>
+  //     </div>
+  //   </div>
+  // );
 }

@@ -72,13 +72,13 @@ export default function TinderCard({
   };
 
   return (
-    <div className=" relative w-full rounded-2xl h-full mt-4 flex flex-col justify-center items-center ">
+    <div className="flex flex-col items-center justify-between h-full">
       <h1 className="text-2xl md:text-4xl font-bold text-center text-primary p-4">
         How relatable is this situation?
       </h1>
 
       {showCard && (
-        <div className="relative w-1/2 h-full aspect-square">
+        <div className="relative w-1/2 h-full aspect-video rounded-xl">
           <Image
             alt=""
             fill
@@ -91,7 +91,7 @@ export default function TinderCard({
 
       {/* Buttons for like and dislike */}
       {showCard && (
-        <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-full flex justify-between items-center">
+        <div className="absolute top-1/2 transform -translate-y-1/2 flex justify-between items-center">
           {/* Dislike Button */}
           <Button
             className="border-red-500 border rounded-full text-red-500 w-20 h-20 hover:text-red-400"

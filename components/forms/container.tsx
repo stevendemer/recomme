@@ -15,7 +15,6 @@ import BackgroundImage from "../message-container";
 import MessageContainer from "../message-container";
 import { cn } from "@/lib/utils";
 import TinderCard from "../cards/tinder-card";
-import ProfilingLayout from "../layouts/profiling-layout";
 import { Autocomplete } from "@react-google-maps/api";
 import { Button } from "../ui/button";
 
@@ -74,78 +73,68 @@ export default function ProfilingPage() {
 
   return (
     <AnimatePresence initial={false}>
-      <ProfilingLayout>
-        <div className="w-full h-full flex flex-col justify-center">
-          <Steps setStep={setStep} currentStep={step} totalSteps={3} />
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col items-center space-y-2 w-full  h-[calc(100%-120px)] flex-grow"
+      <div className="w-full flex flex-col">
+        <Steps setStep={setStep} currentStep={step} totalSteps={3} />
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col items-center space-y-2 w-full h-[calc(100%-60px)]"
+        >
+          {/* Step content */}
+          {step === 1 && (
+            <Controller
+              control={control}
+              name="multiple"
+              rules={{
+                required: true,
+                minLength: { value: 3, message: "Pick at least 3 options" },
+              }}
+              render={({ field }) => (
+                <MultipleCard value={field.value} onChange={field.onChange} />
+              )}
+            ></Controller>
+          )}
+
+          {step === 2 && (
+            <Controller
+              name="swipe"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TinderCard
+                  frontCard={true}
+                  drag="x"
+                  setIndex={setIndex}
+                  onChange={field.onChange}
+                  value={field.value}
+                />
+              )}
+            ></Controller>
+          )}
+
+          {step === 3 && (
+            <Controller
+              name="slider"
+              control={control}
+              rules={{ required: true, minLength: 1 }}
+              render={({ field }) => (
+                <ImageSlider
+                  onChange={(value) => {
+                    field.onChange(value[0]);
+                  }}
+                />
+              )}
+            ></Controller>
+          )}
+          <div
+            className={cn(
+              "py-4 lg:pb-10 hidden",
+              step === 2 ? "hidden" : "sm:flex"
+            )}
           >
-            {/* Step content */}
-            {step === 1 && (
-              <Controller
-                control={control}
-                name="multiple"
-                rules={{
-                  required: true,
-                  minLength: { value: 3, message: "Pick at least 3 options" },
-                }}
-                render={({ field }) => (
-                  <MultipleCard value={field.value} onChange={field.onChange} />
-                )}
-              ></Controller>
-            )}
-
-            {step === 2 && (
-              <Controller
-                name="swipe"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <TinderCard
-                    frontCard={true}
-                    drag="x"
-                    setIndex={setIndex}
-                    onChange={field.onChange}
-                    value={field.value}
-                  />
-                )}
-              ></Controller>
-            )}
-
-            {step === 3 && (
-              <Controller
-                name="slider"
-                control={control}
-                rules={{ required: true, minLength: 1 }}
-                render={({ field }) => (
-                  <ImageSlider
-                    onChange={(value) => {
-                      field.onChange(value[0]);
-                    }}
-                  />
-                )}
-              ></Controller>
-            )}
-            {/* <div
-              className={cn(
-                "w-full flex justify-center mt-4",
-                step === 2 ? "hidden" : ""
-              )}
-            >
-              <SubmitButton>Submit</SubmitButton>
-            </div> */}
-            <div
-              className={cn(
-                "py-4 lg:pb-10 justify-center mt-auto hidden",
-                step === 2 ? "hidden" : "sm:flex"
-              )}
-            >
-              <SubmitButton onClick={handleNext}>Continue</SubmitButton>
-            </div>
-          </form>
-        </div>
-      </ProfilingLayout>
+            <SubmitButton onClick={handleNext}>Continue</SubmitButton>
+          </div>
+        </form>
+      </div>
     </AnimatePresence>
   );
 }

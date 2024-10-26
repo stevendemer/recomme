@@ -23,6 +23,7 @@ import ParentContainer from "@/components/parent-container";
 import Spinner from "@/components/spinner";
 import MessageContainer from "@/components/message-container";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type Inputs = {
   location: string;
@@ -78,8 +79,6 @@ export default function RegistrationPage() {
       toast({
         description: "Form submitted ! Thanks for your time ",
       });
-
-      router.push("/thankyou");
     }
   };
 
@@ -126,70 +125,62 @@ export default function RegistrationPage() {
   const watchFields = form.watch(["location", "ecName", "role"]);
 
   return (
-    <MessageContainer
-      isValid={form.formState.isValid}
-      onClick={() => console.log("Submit button was clicked")}
-      href="/thankyou"
-      buttonLabel="Confirm"
-      buttonLength={1}
-      hasLogo={false}
-    >
-      <div className="w-full h-full flex flex-col items-center justify-center relative">
+    <div className="w-full h-full flex flex-col items-center justify-around relative">
+      <form
+        // onSubmit={form.handleSubmit(onSubmit)}
+        className=" max-w-sm sm:w-full space-y-4 flex flex-col items-center justify-center"
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
         <h1 className="text-3xl sm:text-5xl font-sans leading-tight text-black">
           Registration
         </h1>
 
-        <form
-          // onSubmit={form.handleSubmit(onSubmit)}
-          className=" max-w-sm sm:w-full space-y-4"
-          onSubmit={form.handleSubmit(onSubmit)}
+        <Autocomplete
+          className="w-full"
+          onLoad={(auto) => {
+            auto.addListener("place_changed", () => {
+              const place = auto.getPlace();
+              if (place) {
+                // setPlace(place.formatted_address || "");
+                form.setValue("location", place.formatted_address || "");
+                form.trigger("location");
+              }
+            });
+          }}
         >
-          <Autocomplete
-            className="w-full"
-            onLoad={(auto) => {
-              auto.addListener("place_changed", () => {
-                const place = auto.getPlace();
-                if (place) {
-                  // setPlace(place.formatted_address || "");
-                  form.setValue("location", place.formatted_address || "");
-                  form.trigger("location");
-                }
-              });
-            }}
-          >
-            <Input
-              placeholder="Location"
-              className="w-full rounded-full py-5 shadow-xl mt-2 pl-6"
-              onKeyDown={(e) => handleKeyDown(e, nameRef)}
-              {...form.register("location", { required: true })}
-            />
-          </Autocomplete>
           <Input
-            className="rounded-full shadow-xl py-5 w-full pl-6"
-            placeholder="EC Name"
-            onKeyDown={(e) => handleKeyDown(e, roleRef)}
-            {...form.register("ecName", { required: true })}
+            placeholder="Location"
+            className="w-full rounded-full py-5 shadow-xl mt-2 pl-6"
+            onKeyDown={(e) => handleKeyDown(e, nameRef)}
+            {...form.register("location", { required: true })}
           />
+        </Autocomplete>
+        <Input
+          className="rounded-full shadow-xl py-5 w-full pl-6"
+          placeholder="EC Name"
+          onKeyDown={(e) => handleKeyDown(e, roleRef)}
+          {...form.register("ecName", { required: true })}
+        />
 
-          <Select
-            name="role"
-            onValueChange={(value: any) => {
-              form.setValue("role", value);
-              form.trigger("role"); // trigger validation
-            }}
-            defaultValue={"EC Manager"}
-          >
-            <SelectTrigger ref={roleRef}>
-              <SelectValue placeholder="Select a role" />
-            </SelectTrigger>
-            <SelectContent className="py-5 w-full">
-              <SelectItem value="EC Manager">EC Manager</SelectItem>
-              <SelectItem value="EC Member">EC Member</SelectItem>
-              <SelectItem value="Other">Other</SelectItem>
-            </SelectContent>
-          </Select>
+        <Select
+          name="role"
+          onValueChange={(value: any) => {
+            form.setValue("role", value);
+            form.trigger("role"); // trigger validation
+          }}
+          defaultValue={"EC Manager"}
+        >
+          <SelectTrigger ref={roleRef}>
+            <SelectValue placeholder="Select a role" />
+          </SelectTrigger>
+          <SelectContent className="py-5 w-full">
+            <SelectItem value="EC Manager">EC Manager</SelectItem>
+            <SelectItem value="EC Member">EC Member</SelectItem>
+            <SelectItem value="Other">Other</SelectItem>
+          </SelectContent>
+        </Select>
 
-          {/* <div className="fixed bottom-20 flex-shrink-0 flex justify-center items-center">
+        {/* <div className="fixed bottom-20 flex-shrink-0 flex justify-center items-center">
             <SubmitButton
               type="submit"
               disabled={!form.formState.isValid}
@@ -203,8 +194,12 @@ export default function RegistrationPage() {
               Confirm
             </SubmitButton>
           </div> */}
-        </form>
-      </div>
-    </MessageContainer>
+      </form>
+      <Link href="/thankyou">
+        <SubmitButton type="submit" disabled={!form.formState.isValid}>
+          Confirm
+        </SubmitButton>
+      </Link>
+    </div>
   );
 }

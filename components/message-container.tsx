@@ -1,11 +1,7 @@
 "use client";
 import { ReactNode, useRef } from "react";
 import Image from "next/image";
-import cloud from "@/public/assets/cloud.svg";
-import glass from "@/public/assets/glass.svg";
-import flower from "@/public/assets/flower.svg";
 import logo from "@/public/assets/logo.svg";
-import { Button } from "./ui/button";
 import Link from "next/link";
 import SubmitButton from "./submit-button";
 import { cn } from "@/lib/utils";
@@ -89,7 +85,7 @@ function MessageContainer({
         <div className="w-full max-w-[60vw] max-h-[80vh] h-full bg-white/30 text-neutral-500 backdrop-blur-lg rounded-3xl flex flex-col items-center p-4 overflow-hidden">
           <div className="bg-white/70 w-full flex flex-col p-4 my-2 rounded-3xl shadow-lg h-full overflow-hidden">
             {/* Main Body */}
-            <div className="flex flex-col items-center h-full w-full overflow-auto">
+            <div className="flex flex-col items-center h-full w-full overflow-hidden">
               {hasLogo && (
                 <div className="w-32 h-12 sm:w-52 sm:h-12">
                   <Image priority src={logo} alt="" className="object-cover" />
