@@ -11,14 +11,10 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import SubmitButton from "../submit-button";
 
-export default function TinderCard({
+export default function Cards({
   onChange,
   value,
   frontCard = false,
-  setBackground,
-  setIndex,
-  index,
-  drag,
 }: {
   onChange: () => void;
   value: "right" | "left" | null;
@@ -26,7 +22,6 @@ export default function TinderCard({
   index?: number;
   setIndex?: (x: number) => void;
   setBackground?: (x: string) => void;
-  drag?: any;
 }) {
   const [exitX, setExitX] = useState(0);
   const [showCard, setShowCard] = useState(true);

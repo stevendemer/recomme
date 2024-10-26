@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import ChatBubble from "./chat-bubble";
 import { useState } from "react";
-import { Label } from "./ui/label";
 import SubmitButton from "./submit-button";
 
 export default function ImageSlider({
@@ -13,36 +12,6 @@ export default function ImageSlider({
   onChange: (v: number[]) => void;
 }) {
   const [value, setValue] = useState([2]);
-
-  // return (
-  //   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full place-items-center">
-  //     <div className="rounded-lg relative h-auto aspect-square">
-  //       <Image
-  //         src="/assets/boat.png"
-  //         alt="Question image"
-  //         className="rounded-xl object-cover object-center"
-  //         fill
-  //         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-  //       />
-  //     </div>
-  //     <div className="w-full h-full flex flex-col items-center">
-  //       <div className="flex flex-col items-center gap-8">
-  //       </div>
-  //     </div>
-
-  //     <div className="w-full items-start gap-4 md:gap-6 flex flex-col justify-between mb-10 sm:mb-0 bg-white rounded-[40px] p-2 sm:p-8">
-  //       <Slider color="red" onValueChange={onChange} />
-  //       <div className="flex justify-between w-full h-full">
-  //         <div className="text-md font-rubik font-normal text-black">
-  //           Not really me
-  //         </div>
-  //         <div className="text-md font-rubik font-normal text-black">
-  //           Pretty much like me
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 
   return (
     <div className="flex justify-center items-center w-full h-full max-w-5xl">

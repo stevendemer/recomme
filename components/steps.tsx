@@ -1,31 +1,22 @@
 "use client";
 import { useSteps } from "@/app/store";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+
 import { Input } from "./ui/input";
-import { Label } from "./ui/label";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { act, useEffect, useState } from "react";
-import { Textarea } from "./ui/textarea";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Check } from "lucide-react";
 
+// Make this self contained (share state from URL)
 export default function Steps({
   currentStep,
   totalSteps,
   setStep,
 }: {
   currentStep: number;
-  totalSteps: number;
+  totalSteps?: number;
   setStep: (x: number) => void;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -52,7 +43,7 @@ export default function Steps({
   return (
     <div className="flex justify-center p-4 mb-3 fixed -top-2 left-0 right-0">
       <div className="flex items-center">
-        {Array.from({ length: totalSteps }).map((_, index) => {
+        {Array.from({ length: totalSteps ?? 3 }).map((_, index) => {
           const isActive = index + 1 === currentStep;
           const isNext = index + 1 === currentStep + 1;
           const isLast = index === totalSteps - 1;
