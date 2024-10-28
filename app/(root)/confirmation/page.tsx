@@ -24,7 +24,7 @@ export default function ConfirmationPage() {
             <div className="flex flex-col items-center space-y-6">
               <div className="flex gap-x-4 items-start justify-center w-full">
                 <Image priority src={flower} alt="flower" className="px-2" />
-                <p className="text-black text-lg sm:text-2xl font-normal font-rubik leading-tight text-center sm:text-left">
+                <p className="text-black text-lg sm:text-2xl font-normal font-body leading-tight text-center sm:text-left">
                   First, let&apos;s get introduced <br /> I have a feeling you
                   might be an
                   <b> ALEC community manager</b> <br /> looking for some digital
@@ -41,7 +41,7 @@ export default function ConfirmationPage() {
         </div>
         <div className="flex items-center space-x-4 flex-shrink-0">
           <Link href="/registration">
-            <SubmitButton className="bg-red-400 hover:bg-red-400 px-10 py-8 rounded-full font-rubik">
+            <SubmitButton className="bg-red-400 hover:bg-red-400 px-10 py-8 rounded-full">
               No, modify
             </SubmitButton>
           </Link>

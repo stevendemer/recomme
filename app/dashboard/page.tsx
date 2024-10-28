@@ -2,14 +2,15 @@ import RecommendationCard from "@/components/cards/recomme-card";
 import ActionCards from "@/components/dashboard/action-cards";
 import Graph from "@/components/dashboard/graph";
 import MemberCards from "@/components/dashboard/member-cards";
+import SubmitButton from "@/components/submit-button";
 import { Button } from "@/components/ui/button";
 
 export default function Dashboard() {
   return (
     <div className="flex flex-col h-full">
       {/* action cards */}
-      <div className="bg-white/20 backdrop-blur-lg text-black rounded-[32px] w-full items-center flex mb-4 actions">
-        <div className="flex flex-col sm:flex-row gap-x-6 rounded-[32px] items-center w-full flex-shrink">
+      <div className="bg-white/20 backdrop-blur-lg text-black rounded-sm w-full items-center flex mb-4 ">
+        <div className="flex flex-col sm:flex-row gap-x-6 rounded-sm items-center w-full flex-shrink">
           <ActionCards
             title="Convince someone to join"
             image={"/assets/user-arrow.svg"}
@@ -23,7 +24,7 @@ export default function Dashboard() {
       </div>
 
       {/* member cards */}
-      <div className="bg-white/30 rounded-[32px] w-full flex items-center flex-shrink mb-4 members">
+      <div className="bg-white/30 rounded-[32px] w-full flex items-center flex-shrink mb-4">
         <div className="flex flex-col items-center max-sm:space-y-4 sm:flex-row justify-evenly w-full p-2 flex-shrink gap-x-2">
           <MemberCards
             members={10}
@@ -65,31 +66,38 @@ export default function Dashboard() {
       </div>
 
       {/* graph and recommendation */}
-      <div className="flex flex-col md:flex-row gap-4 flex-grow overflow-hidden">
-        <div className="bg-white/30 p-4 rounded-[32px] flex-grow flex items-center justify-center graph">
+      <div className="grid grid-cols-3 gap-4 overflow-hidden ">
+        <div className="bg-white/30 rounded-sm flex items-center justify-center p-4 col-span-2">
           <Graph />
         </div>
-        <div className="bg-white/30 p-4 rounded-[32px] flex-grow flex items-center justify-center">
-          <div className="bg-white/80 rounded-[40px] h-full w-full flex flex-col recom">
-            <h1 className="text-slate-900 font-bold text-xl sm:text-2xl pt-8 mb-4 ml-8">
+        <div className="bg-white/30 p-4 rounded-sm  flex items-center justify-center font-inter overflow-hidden">
+          <div className="bg-white/80 rounded-sm flex flex-col overflow-hidden h-full  w-full">
+            <h1 className="text-slate-900 font-bold text-xl sm:text-2xl pt-8 mb-4 ml-8 text-start">
               Recommendation
             </h1>
-            <div className="flex flex-col space-y-4 p-4 flex-grow overflow-auto">
-              <RecommendationCard
-                label="Acknowledge his expertise"
-                text="Lorem ipsum dolor sit amet"
-              >
-                <Button className="w-full text-white font-bold rounded-[40px] py-2">
-                  Acknowledge
-                </Button>
+            <div className="flex flex-col space-y-4 h-full px-4 w-full">
+              <RecommendationCard>
+                <div className="flex flex-col gap-2">
+                  <h2 className="font-bold font-rubik">
+                    Acknowledge his expertise
+                  </h2>
+                  <p>
+                    Lorem ipsum dolor sit amet Lorem LoremLoremLoremLorem Lorem
+                  </p>
+                </div>
+                <Button className="py-6 px-4 w-44">Acknowledge</Button>
               </RecommendationCard>
-              <RecommendationCard
-                label="Appreciate contributions"
-                text="Lorem ipsum dolor sit amet"
-              >
-                <Button className="w-full text-white font-bold rounded-[40px] py-2">
-                  Appreciate
-                </Button>
+              <RecommendationCard>
+                <div className="flex flex-col gap-2">
+                  <h2 className="font-bold font-rubik">
+                    Appreciate contributions
+                  </h2>
+                  <p>
+                    Lorem ipsum dolor sit amet Lorem LoremLoremLoremLorem Lorem
+                  </p>
+                </div>
+
+                <Button className="py-6 px-4 w-44">Appreciate</Button>
               </RecommendationCard>
             </div>
           </div>

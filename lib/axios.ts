@@ -5,6 +5,10 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 
+/**
+ * API logic for token management
+ */
+
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
@@ -22,7 +26,7 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => console.error(error)
 );
 
 api.interceptors.response.use(
@@ -48,7 +52,7 @@ api.interceptors.response.use(
 
           return axios(originalReq);
         })
-        .catch((error) => Promise.reject(error));
+        .catch((error) => console.error(error));
     }
   }
 );

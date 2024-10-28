@@ -128,7 +128,7 @@ export default function RegistrationPage() {
     <div className="w-full h-full flex flex-col items-center justify-around relative">
       <form
         // onSubmit={form.handleSubmit(onSubmit)}
-        className=" max-w-sm sm:w-full space-y-4 flex flex-col items-center justify-center"
+        className=" max-w-sm sm:w-full space-y-4 flex flex-col items-center justify-center font-body"
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <h1 className="text-3xl sm:text-5xl font-sans leading-tight text-black">

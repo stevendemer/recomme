@@ -16,7 +16,7 @@ export default function CustomTooltip(props: TooltipRenderProps) {
 
   return (
     <div
-      className="p-4 bg-white text-black rounded-3xl max-w-lg"
+      className="p-4 bg-white text-black rounded-3xl max-w-lg font-body"
       {...tooltipProps}
     >
       {step.title && <h4>{step.title}</h4>}

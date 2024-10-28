@@ -2,16 +2,31 @@ import DashboardSidebar from "@/components/dashboard/sidebar";
 import { Metadata } from "next";
 import React, { PropsWithChildren } from "react";
 import "../globals.css";
-import { Rubik } from "next/font/google";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
+
+import { Inter, Ramaraja, Mulish, Rubik } from "next/font/google";
 
 const Tour = dynamic(() => import("../../components/tour"), { ssr: false });
 
 const rubik = Rubik({
   subsets: ["latin"],
   weight: ["400", "600"],
-  variable: "--font-rubik",
+  variable: "--font-body",
+});
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+
+const ram = Ramaraja({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-sans",
+});
+
+const mulish = Mulish({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-mulish",
 });
 
 export const metadata: Metadata = {
@@ -22,21 +37,24 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/assets/flower.svg" sizes="any" />
+        <link rel="icon" href="/assets/flower.svg" />
       </head>
       <body
         className={cn(
-          "antialiased bg-gray-200 overflow-hidden h-screen p-2",
-          rubik.variable
+          "antialiased bg-gray-200 overflow-hidden h-full w-full",
+          rubik.variable,
+          ram.variable,
+          inter.variable,
+          mulish.variable
         )}
       >
         <Tour />
-        <div className="gradient-bg font-rubik w-full h-svh max-h-svh flex md:p-8">
-          <div className="w-full mx-auto flex gap-8 items-center">
-            <div className="hidden sm:flex h-full flex-shrink">
+        <div className="gradient-bg font-rubik w-full justify-center h-svh min-h-svh flex-col items-center flex md:p-8">
+          <div className="flex gap-8 items-center w-full justify-center">
+            <div className="hidden sm:flex h-full">
               <DashboardSidebar />
             </div>
-            <div className="p-2 h-full flex-1 mr-4 mt-2">{children}</div>
+            <div className="h-full mr-4 font-body flex-grow">{children}</div>
           </div>
         </div>
       </body>

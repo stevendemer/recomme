@@ -60,12 +60,11 @@ const chartConfig = {
 
 export default function Graph({ className }: { className?: string }) {
   return (
-    <Card className="rounded-[32px] h-full w-full">
-      <CardContent>
+    <Card className="rounded-sm h-full w-full p-2">
+      <CardContent className="m-auto h-full">
         <ChartContainer
           config={chartConfig}
-          className="max-sm:min-h-[300px] max-md:min-h-[500px] w-full h-full text-center  mx-auto "
-          // className="text-center md:max-h-[320px] lg:max-h-[700px] w-full h-full"
+          className="max-sm:min-h-[300px] max-md:min-h-[500px] w-full h-full text-center  mx-auto font-inter"
         >
           <RadarChart
             margin={{
@@ -90,6 +89,7 @@ export default function Graph({ className }: { className?: string }) {
                     textAnchor={textAnchor}
                     fontSize={13}
                     fontWeight={700}
+                    className="font-inter"
                     {...props}
                   >
                     <tspan x={x} dy={"1rem"} fontSize={13}>

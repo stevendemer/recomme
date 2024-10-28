@@ -10,10 +10,19 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import ToolTipMessage from "../tooltip-message";
 
+/**
+ * The main sidebar component for the dashboard.
+ *
+ * This component contains the main menu items as well as the logo and some
+ * other visual elements.
+ *
+ * @returns The main sidebar component.
+ */
 export default function DashboardSidebar() {
   return (
     <TooltipProvider>
-      <aside className="transition-transform rounded-[40px] bg-white/30 p-4 sm:w-96 h-full flex flex-col sidebar">
+      {/* <aside className="transition-transform rounded-sm bg-white/30 p-6 sm:w-96 h-full flex flex-col flex-shrink-0 font-mulish"> */}
+      <aside className="transition-transform rounded-sm bg-white/30 p-6 sm:w-96 h-full flex flex-col font-mulish flex-shrink-0">
         <div className="bg-white shadow-xl text-black sm:w-80 rounded-[50px] mx-auto w-full flex flex-col h-full">
           <div className="flex flex-col h-full p-6">
             <div className="relative">

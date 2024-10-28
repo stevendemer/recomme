@@ -15,7 +15,7 @@ export default function ThankYou() {
             <div className="flex gap-x-4 items-start justify-center w-full">
               <Image priority src={flower} alt="flower" className="px-2" />
               {/* <p className="text-black text-lg sm:text-xl font-rubik leading-tight text-center sm:text-left"> */}
-              <p className="text-black text-lg sm:text-2xl font-normal font-rubik leading-tight text-center sm:text-left">
+              <p className="text-black text-lg sm:text-2xl font-normal font-body leading-tight text-center sm:text-left">
                 Great! <br /> Now, I&apos;m all set to help you achieve your
                 goals. Let&apos; start by <br /> evaluating ALEC. <br /> Answer
                 every aspect to continue, we need to evaluate your EC

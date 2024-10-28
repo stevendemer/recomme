@@ -26,7 +26,7 @@ export default function Home() {
             <div className="flex gap-x-4 items-start">
               <Image priority src={flower} alt="flower" className="px-2" />
               {/* <p className="text-black text-lg sm:text-xl font-rubik leading-tight text-center sm:text-left"> */}
-              <p className="text-black text-lg sm:text-2xl font-normal font-rubik leading-tight text-center sm:text-left">
+              <p className="text-black text-lg sm:text-2xl font-normal font-body leading-tight text-center sm:text-left">
                 Hello there! I&apos;m here to assist you. It looks like you were
                 about to say &apos;Recommend me&apos;
               </p>

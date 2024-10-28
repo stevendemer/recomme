@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 
 export default function ActionCards({
@@ -9,15 +8,11 @@ export default function ActionCards({
   image: any;
 }) {
   return (
-    <div className="flex p-4 m-4 w-full relative items-center bg-white rounded-[32px] cursor-pointer h-full">
-      <Image
-        alt=""
-        src={image}
-        className="object-contain object-center"
-        width={60}
-        height={50}
-      />
-      <h1 className="max-sm:text-sm  md:text-lg lg:text-xl font-rubik font-bold text-center w-full truncate">
+    <div className="flex p-6 m-4 h-full w-full relative items-center bg-white rounded-sm cursor-pointer font-inter justify-around">
+      <div>
+        <img alt="" src={image} />
+      </div>
+      <h1 className="max-sm:text-sm  md:text-lg lg:text-xl font-rubik font-bold truncate">
         {title}
       </h1>
     </div>

@@ -4,62 +4,121 @@ import { useSteps } from "@/app/store";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import { act, useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { act, Dispatch, useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Check } from "lucide-react";
+import { useGetElements } from "@/hooks/use-get-elemenets";
+import Spinner from "./spinner";
 
-// Make this self contained (share state from URL)
+interface IProps {
+  category: string;
+  questions: string[];
+  currentQuestion: number;
+}
+
+/**
+ * Renders a step navigation component.
+ *
+ * This component displays a series of steps for navigation, with the current
+ * step, next step, and completed steps visually distinguished. It utilizes
+ * the Link component for each step to allow users to navigate to a specific
+ * step.
+ *
+ * Props:
+ * - category: The category of the steps.
+ * - questions: An array of questions related to the steps.
+ * - currentQuestion: The currently active question.
+ */
 export default function Steps({
   currentStep,
-  totalSteps,
-  setStep,
+  setCurrentStep,
 }: {
   currentStep: number;
-  totalSteps: number;
-  setStep: (x: number) => void;
+  setCurrentStep: Dispatch<number>;
 }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const params = useSearchParams();
   const pathname = usePathname();
-  const [steps, setSteps] = useState([]);
+  const type = params.get("type");
+  const finished = params.get("finished");
+  const router = useRouter();
 
-  console.log("current step is ", currentStep);
+  const { data: steps, error, status } = useGetElements(type);
+  const [categories, setCategories] = useState([
+    "select",
+    "webform_image_select",
+    "range",
+  ]);
 
-  const navigationLinks = [
-    {
-      url: "/first",
-      name: 1,
-    },
-    {
-      url: "/second",
-      name: 2,
-    },
-    {
-      url: "/third",
-      name: 3,
-    },
-  ];
+  const currentCategoryIndex = categories.indexOf(type) || 0;
+
+  // const [currentStep, setCurrentStep] = useState(0);
+
+  useEffect(() => {
+    // push updated URL based on category type
+    router.push(pathname + `?type=${categories[currentCategoryIndex]}`);
+  }, [type]);
+
+  useEffect(() => {
+    if (steps) {
+      if (currentStep >= steps?.length) {
+        if (currentCategoryIndex < categories.length - 1) {
+          // move to next category and reset counter
+          setCurrentStep(0);
+          router.push(
+            `${pathname}?type=${categories[currentCategoryIndex + 1]}`
+          );
+        }
+      }
+    }
+  }, [currentStep, steps, currentCategoryIndex, pathname]);
+  if (status === "pending") {
+    return (
+      <div className="w-full flex justify-center">
+        <Spinner />
+      </div>
+    );
+  }
+
+  if (status === "error") {
+    console.error(error);
+    throw new Error("Error fetching the questions");
+  }
+
+  console.log("type from URL is ", type);
+
+  console.log("steps are ", steps);
+
+  // const steps = questions.map((question, index) => ({
+  //   label: `${index + 1}`,
+  //   active: index === currentQuestion,
+  // }));
+
+  // const totalSteps = steps.length;
 
   return (
     <div className="flex justify-center p-4 mb-3 fixed -top-2 left-0 right-0">
-      <div className="flex items-center">
-        {Array.from({ length: totalSteps ?? 3 }).map((_, index) => {
+      <div className="flex items-center mt-2">
+        {steps.map((step, index) => {
           const isActive = index + 1 === currentStep;
           const isNext = index + 1 === currentStep + 1;
-          const isLast = index === totalSteps - 1;
+          const isLast = index === steps.length - 1;
+
           return (
-            <div className="flex items-center justify-center" key={index}>
+            <div
+              className="flex items-center justify-center font-mulish"
+              key={index}
+            >
               <Link
                 href="#"
                 className={cn(
-                  "flex items-center justify-center w-8 h-8 rounded-xl bg-gray-300 text-gray-400/80 font-bold",
+                  "flex items-center justify-center sm:w-8 sm:h-8 w-6 h-6 rounded-xl bg-gray-300 text-gray-400/80 font-bold",
                   isActive && "bg-[#2A898F] text-slate-100",
-                  isNext && "bg-teal-200 text-slate-100",
+                  isNext && "bg-[#65D9BD] text-slate-100",
                   index + 1 < currentStep && "bg-[#2A898F] text-slate-100"
                 )}
-                onClick={() => setStep(index + 1)}
+                onClick={() => setCurrentStep(index + 1)}
               >
-                {/* {index < currentStep ? <Check size={20} /> : index + 1} */}
                 {index + 1}
               </Link>
               <div
@@ -71,7 +130,54 @@ export default function Steps({
             </div>
           );
         })}
+        {/* {Array.from({ length: totalSteps ?? 3 }).map((_, index) => {
+          const isActive = index + 1 === currentStep;
+          const isNext = index + 1 === currentStep + 1;
+          const isLast = index === totalSteps - 1;
+          return (
+            <div
+              className="flex items-center justify-center font-mulish"
+              key={index}
+            >
+              <Link
+                href="#"
+                className={cn(
+                  "flex items-center justify-center sm:w-8 sm:h-8 w-6 h-6 rounded-xl bg-gray-300 text-gray-400/80 font-bold",
+                  isActive && "bg-[#2A898F] text-slate-100",
+                  isNext && "bg-[#65D9BD] text-slate-100",
+                  index + 1 < currentStep && "bg-[#2A898F] text-slate-100"
+                )}
+                onClick={() => setStep(index + 1)}
+              >
+                {index + 1}
+              </Link>
+              <div
+                className={cn(
+                  "w-8 border-t-2 border-teal-400 mx-2 rounded-full",
+                  isLast && "hidden"
+                )}
+              ></div>
+            </div>
+          );
+        })} */}
+        {/* {steps.map((step, index) => (
+          <div
+            key={index}
+            className="flex items-center justify-center font-mulish"
+          >
+            <Link
+              href="#"
+              className={cn(
+                "flex items-center justify-center sm:w-8 sm:h-8 w-6 h-6 rounded-xl bg-gray-300 text-gray-400/80 font-bold",
+                step.active && "bg-[#2A898F] text-slate-100"
+              )}
+            >
+              {step.label}
+            </Link>
+          </div> */}
+        {/* ))} */}
       </div>
+      {/* <Button onClick={handleNextStep}>Next</Button> */}
     </div>
   );
 }

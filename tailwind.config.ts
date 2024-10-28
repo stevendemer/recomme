@@ -11,9 +11,11 @@ const config = {
   prefix: "",
   theme: {
     fontFamily: {
+      // body: "var(--font-body)",
+      sans: "var(--font-sans)",
       body: "var(--font-body)",
-      ram: "var(--font-ram)",
-      rubik: "var(--font-rubik)",
+      inter: "var(--font-inter)",
+      mulish: "var(--font-mulish)",
     },
     container: {
       center: true,

@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const ram = Ramaraja({
   subsets: ["latin"],
   weight: ["400"],
-  variable: "--font-ram",
+  variable: "--font-sans",
 });
 
 const mulish = Mulish({
@@ -23,7 +23,7 @@ const mulish = Mulish({
 const rubik = Rubik({
   subsets: ["latin"],
   weight: ["400", "600"],
-  variable: "--font-rubik",
+  variable: "--font-body",
 });
 
 export const metadata: Metadata = {
@@ -59,7 +59,8 @@ export default function RootLayout({
           mulish.variable,
           ram.variable,
           inter.variable,
-          rubik.variable
+          rubik.variable,
+          mulish.variable
         )}
       >
         <Providers>
