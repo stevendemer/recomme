@@ -231,7 +231,7 @@ export default function ProfilingPage() {
 
   useEffect(() => {
     if (steps) {
-      if (currentStep >= steps) {
+      if (currentStep >= steps.length) {
         if (currentCategoryIndex < categories.length - 1) {
           // move to next category and reset counter
           setCurrentStep(0);
@@ -323,15 +323,6 @@ export default function ProfilingPage() {
       ),
     });
   };
-  // const handleNextStep = () => {
-  //   if (currentStep < steps?.length - 1) {
-  //     // Move to the next question in the same category
-  //     setCurrentStep((prevStep) => prevStep + 1);
-  //   } else {
-  //     // All questions in this category are answered
-  //     setCurrentStep(steps?.length);
-  //   }
-  // };
 
   return (
     <FormProvider {...methods}>

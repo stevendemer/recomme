@@ -32,7 +32,8 @@ export const useGetElements = (type: string) => {
       return items;
     },
 
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+    refetchOnMount: true,
+    refetchOnWindowFocus: true,
+    staleTime: 60 * 1000, // 1 minute
   });
 };

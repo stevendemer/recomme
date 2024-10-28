@@ -40,7 +40,6 @@ export default function Steps({
   const params = useSearchParams();
   const pathname = usePathname();
   const type = params.get("type");
-  const finished = params.get("finished");
   const router = useRouter();
 
   const { data: steps, error, status } = useGetElements(type);
@@ -85,21 +84,10 @@ export default function Steps({
     throw new Error("Error fetching the questions");
   }
 
-  console.log("type from URL is ", type);
-
-  console.log("steps are ", steps);
-
-  // const steps = questions.map((question, index) => ({
-  //   label: `${index + 1}`,
-  //   active: index === currentQuestion,
-  // }));
-
-  // const totalSteps = steps.length;
-
   return (
     <div className="flex justify-center p-4 mb-3 fixed -top-2 left-0 right-0">
       <div className="flex items-center mt-2">
-        {steps.map((step, index) => {
+        {steps.map((_, index) => {
           const isActive = index + 1 === currentStep;
           const isNext = index + 1 === currentStep + 1;
           const isLast = index === steps.length - 1;
@@ -117,7 +105,7 @@ export default function Steps({
                   isNext && "bg-[#65D9BD] text-slate-100",
                   index + 1 < currentStep && "bg-[#2A898F] text-slate-100"
                 )}
-                onClick={() => setCurrentStep(index + 1)}
+                onClick={() => setCurrentStep(index)}
               >
                 {index + 1}
               </Link>
