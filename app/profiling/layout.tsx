@@ -27,10 +27,11 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: {
-    template: "Recomme | %s",
-    default: "Recomme",
+  title: "Recomme | Profiling",
+  icons: {
+    icon: "/assets/flower.svg",
   },
+
   openGraph: {
     images: [
       {
@@ -59,9 +60,6 @@ export const metadata: Metadata = {
 export default function ProfilingLayout({ children }: PropsWithChildren) {
   return (
     <html>
-      <head>
-        <link rel="icon" href="/assets/flower.svg" sizes="any" />
-      </head>
       <body
         className={cn(
           "bg-gray-200 antiliased",
@@ -74,7 +72,7 @@ export default function ProfilingLayout({ children }: PropsWithChildren) {
         <Providers>
           <div className="min-h-screen grid place-items-center gradient-bg backdrop-blur-lg overflow-hidden">
             <div className="w-full h-full flex items-center justify-center">
-              <div className="bg-white/30 h-full text-neutral-500 backdrop-blur-lg rounded-3xl w-full flex flex-col pt-16 pb-4 px-4 max-w-[90vw]  sm:max-w-[60vw] sm:max-h-[90vh]">
+              <div className="bg-white/30 h-full text-neutral-500 backdrop-blur-lg rounded-3xl w-full flex flex-col sm:pt-16 pt-12 pb-4 px-4 max-w-[90vw] sm:max-w-[60vw] max-h-[90vh]">
                 <div className="bg-white/70 w-full rounded-2xl shadow-lg flex flex-col p-2 h-full">
                   <div className="flex items-center h-full justify-between overflow-hidden">
                     {children}

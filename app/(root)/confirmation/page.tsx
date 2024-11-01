@@ -35,6 +35,7 @@ export default function ConfirmationPage() {
                 className="object-contain max-w-full max-h-full"
                 src={alec}
                 alt=""
+                priority
               />
             </div>
           </div>

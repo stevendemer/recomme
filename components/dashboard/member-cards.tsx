@@ -24,13 +24,13 @@ export default function MemberCards({
               className
             )}
           >
-            <div className="relative p-2">
-              <img
-                alt="avatar icon"
-                src={icon}
-                className="object-contain object-center"
-              />
-            </div>
+            <Image
+              width={48}
+              height={48}
+              className="object-cover object-center p-2"
+              alt="avatar icon"
+              src={icon}
+            />
           </div>
         </div>
 

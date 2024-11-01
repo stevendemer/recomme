@@ -6,7 +6,7 @@ import { Inter, Ramaraja, Mulish, Rubik } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { Providers } from "@/components/providers";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 const ram = Ramaraja({
   subsets: ["latin"],
@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     template: "Recomme | %s",
     default: "Recomme",
   },
+  icons: {
+    icon: "/assets/flower.svg",
+  },
   openGraph: {
     images: [
       {
@@ -50,9 +53,6 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head>
-        <link rel="icon" href="/assets/flower.svg" sizes="any" />
-      </head>
       <body
         className={cn(
           "bg-gray-200 antiliased",
@@ -66,10 +66,8 @@ export default function RootLayout({
         <Providers>
           <div className="grid min-h-screen place-items-center gradient-bg h-full backdrop-blur-lg">
             <div className="w-full h-full flex items-center justify-center overflow-hidden">
-              <div className="w-full max-w-[60vw] max-h-[90vh] h-full bg-white/30 text-neutral-600 flex flex-col items-center overflow-hidden rounded-3xl p-4 px-4">
-                <div className="bg-white/70 w-full flex flex-col p-4 my-2 rounded-3xl shadow-lg h-full overflow-hidden">
-                  {/* Main Body */}
-
+              <div className="w-full max-w-[90vw] sm:max-w-[60vw] max-h-[90vh] h-full bg-white/30 text-neutral-600 flex flex-col items-center overflow-hidden rounded-3xl p-4 px-4">
+                <div className="bg-white/70 w-full flex flex-col p-4 my-2 rounded-3xl shadow-lg h-full">
                   <div className="flex flex-col items-center h-full w-full overflow-hidden">
                     <div className="flex-grow flex items-center justify-center w-full h-full">
                       {children}

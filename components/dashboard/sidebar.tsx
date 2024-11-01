@@ -9,6 +9,12 @@ import SubmitButton from "../submit-button";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import ToolTipMessage from "../tooltip-message";
+import alec from "@/public/assets/alec.svg";
+import home from "@/public/assets/home.svg";
+import members from "@/public/assets/members.svg";
+import recommendation from "@/public/assets/recommendation.svg";
+import profile from "@/public/assets/profile.svg";
+import faq from "@/public/assets/faq.svg";
 
 /**
  * The main sidebar component for the dashboard.
@@ -28,10 +34,11 @@ export default function DashboardSidebar() {
             <div className="relative">
               <Image
                 alt="alec logo"
-                src={"/assets/alec.svg"}
+                src={alec}
                 className="object-cover object-center"
                 width={320}
                 height={200}
+                priority
               />
             </div>
             <div className="flex flex-col pt-16 p-4 space-y-4 flex-grow">
@@ -40,57 +47,42 @@ export default function DashboardSidebar() {
                   Menu
                 </div>
                 <TooltipTrigger asChild>
-                  <button className="flex items-center text-slate-400 home-btn">
-                    <Image
-                      alt=""
-                      src="/assets/home.svg"
-                      width={23}
-                      height={23}
-                    />
+                  <button className="flex items-center text-slate-400">
+                    <Image alt="" width={23} height={23} src={home} />
                     <span className="mx-2 font-light transition-all duration-200 hover:opacity-60">
                       Home
                     </span>
                   </button>
                 </TooltipTrigger>
                 <TooltipContent side="right">
-                  <ToolTipMessage
-                    text={
-                      "lorem ipsume lorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsume"
-                    }
-                  />
+                  <ToolTipMessage>
+                    Lorem ipsume lorem ipsumelorem ipsumelorem ipsumelorem
+                    ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem
+                    ipsumelorem ipsumelorem ipsume
+                  </ToolTipMessage>
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="flex items-center text-slate-400 members-btn">
-                    <Image
-                      width={23}
-                      height={23}
-                      src="/assets/members.svg"
-                      alt=""
-                    />
+                  <button className="flex items-center text-slate-400">
+                    <Image width={23} height={23} src={members} alt="" />
                     <span className="mx-2 font-light transition-all duration-200 hover:opacity-60">
                       Members
                     </span>
                   </button>
                 </TooltipTrigger>
                 <TooltipContent side="right">
-                  <ToolTipMessage
-                    text={
-                      "lorem ipsume lorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsume"
-                    }
-                  />
+                  <ToolTipMessage>
+                    Lorem ipsume lorem ipsumelorem ipsumelorem ipsumelorem
+                    ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem
+                    ipsumelorem ipsumelorem ipsume
+                  </ToolTipMessage>
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="flex items-center  text-slate-400 recom-btn">
-                    <Image
-                      alt=""
-                      width={23}
-                      height={23}
-                      src="/assets/recommendation.svg"
-                    />
+                  <button className="flex items-center  text-slate-400">
+                    <Image alt="" width={23} height={23} src={recommendation} />
 
                     <span className="mx-2 font-light hover:opacity-60 transition-all duration-200">
                       Recommendation
@@ -98,27 +90,22 @@ export default function DashboardSidebar() {
                   </button>
                 </TooltipTrigger>
                 <TooltipContent side="right">
-                  <ToolTipMessage
-                    text={
-                      "lorem ipsume lorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsume"
-                    }
-                  />
+                  <ToolTipMessage>
+                    Lorem ipsume lorem ipsumelorem ipsumelorem ipsumelorem
+                    ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem
+                    ipsumelorem ipsumelorem ipsume
+                  </ToolTipMessage>
                 </TooltipContent>
               </Tooltip>
               <span className="pt-8 font-light text-slate-500">Settings</span>
-              <button className="flex items-center  text-slate-400 profile-btn">
-                <Image
-                  alt=""
-                  src="/assets/profile.svg"
-                  width={20}
-                  height={20}
-                />
+              <button className="flex items-center  text-slate-400">
+                <Image alt="" width={20} height={20} src={profile} />
                 <span className="mx-2 font-light transition-all duration-200 hover:opacity-60">
                   Profile
                 </span>
               </button>
-              <button className="flex items-center  text-slate-400 faq-btn">
-                <Image alt="" src="/assets/faq.svg" width={23} height={23} />
+              <button className="flex items-center  text-slate-400">
+                <Image alt="" src={faq} width={23} height={23} />
                 <span className="mx-2 font-light transition-all duration-200 hover:opacity-60">
                   FAQ&apos;s
                 </span>

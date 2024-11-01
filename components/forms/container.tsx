@@ -1,6 +1,12 @@
 "use client";
 
-import React, { PropsWithChildren, useEffect, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  PropsWithChildren,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   Controller,
   FormProvider,
@@ -31,6 +37,8 @@ import {
 import { cn } from "@/lib/utils";
 import RadioSelect from "./radio-select";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import CardsStack from "../cards/stack-cards";
+import { CardsContainer } from "../cards/profiling-card";
 
 type FormInputs = {
   slider: number;
@@ -39,88 +47,7 @@ type FormInputs = {
   multiple_select: number[];
 };
 
-// function RadioSelect({ options, question }: any) {
-//   console.log("options are ", options);
-//   const [selectedValue, setSelectedValue] = useState<string>("");
-//   const [isActive, setIsActive] = useState(false);
-
-//   const {
-//     formState: { errors, isDirty },
-//     control,
-//   } = useFormContext<FormInputs>();
-
-//   const handleRadioChange = (value: string) => {
-//     console.log("value is ", value);
-//     setSelectedValue(value);
-//     setIsActive(!isActive);
-//   };
-
-//   const gridLayout =
-//     options.length === 5
-//       ? "grid-cols-3"
-//       : options.length === 4
-//       ? "grid-cols-2"
-//       : "grid-cols-1";
-
-//   return (
-//     <form className="flex flex-col items-center justify-evenly h-full w-full flex-grow mx-auto container transition-colors duration-200">
-//       <h2 className="sm:text-3xl text-xl text-center text-black font-sans">
-//         {question}
-//       </h2>
-//       <div
-//         className={cn(
-//           "grid gap-2 w-full max-w-3xl place-items-center grid-flow-row",
-//           gridLayout
-//         )}
-//       >
-//         <Controller
-//           name="radio_select" // Unique name for this field
-//           control={control}
-//           rules={{ required: "This f  ield is required" }}
-//           render={({ field }) => (
-//             <>
-//               {options?.map((e: any) => (
-//                 <RadioGroup
-//                   key={e}
-//                   value={field.value}
-//                   onValueChange={(value) => field.onChange(value)}
-//                   className={cn(
-//                     "bg-white p-8 rounded-sm shadow-lg border w-full h-full justify-center transition-colors duration-200 text-black",
-//                     field.value === e && "bg-[#65D8BC] text-white"
-//                   )}
-//                 >
-//                   <Label
-//                     className="flex flex-col items-center justify-center gap-6 w-full h-full cursor-pointer"
-//                     htmlFor={e}
-//                   >
-//                     <RadioGroupItem
-//                       id={e}
-//                       value={e}
-//                       className={cn(
-//                         "focus-visible:ring-offset-2 focus-visible:outline-none focus-visible:ring-2",
-//                         field.value === e ? "border-white" : ""
-//                       )}
-//                     />
-//                     <div className="font-bold text-sm sm:text-xl font-inter text-center">
-//                       {e}
-//                     </div>
-//                   </Label>
-//                 </RadioGroup>
-//               ))}
-//               {errors.radio_select && (
-//                 <p className="text-red-500 text-sm mt-2">
-//                   {errors.radio_select.message}
-//                 </p>
-//               )}
-//             </>
-//           )}
-//         />
-//       </div>
-//     </form>
-//   );
-// }
-
-function TinderCard({ src, id, title }: any) {
+function TinderCard({ src, id, title, onVote }: any) {
   const cardElem = useRef(null);
   const x = useMotionValue(0);
   const controls = useAnimation();
@@ -133,11 +60,9 @@ function TinderCard({ src, id, title }: any) {
 
   const getVote = () => {
     if (Math.abs(x.get()) > 100 && (velocity > 1 || velocity < -1)) {
-      // remove the card
-      // setCards((pv) => pv.filter((v) => v.id !== id));
-
       if (x.get() > 0) {
         console.log("swiped right");
+        onVote();
       } else {
         console.log("swiped left");
       }
@@ -156,100 +81,138 @@ function TinderCard({ src, id, title }: any) {
   return (
     <div className="flex flex-col items-center gap-4">
       <h2 className="text-xl text-center text-black">{title}</h2>
-      <motion.img
-        animate={controls}
-        dragConstraints={
-          constrained && { left: 0, right: 0, top: 0, bottom: 0 }
-        }
-        dragElastic={1}
-        style={{
-          x,
-          opacity,
-          rotate,
-          transition: "0.2s transform",
-        }}
-        ref={cardElem}
-        whileTap={{ scale: 1.1 }}
-        onDrag={getTrajectory}
-        onDragEnd={getVote}
-        src={process.env.NEXT_PUBLIC_API_URL + src}
-        alt=""
-      ></motion.img>
-    </div>
-  );
-}
-
-function TinderCards({ cards }: any) {
-  console.log("cards are ", cards);
-  return (
-    <div className="grid place-items-center">
-      {cards.map((card, index) => (
-        <motion.div
-          initial="initial"
-          exit="exit"
-          className="absolute"
+      <div className="relative h-full grid place-items-center">
+        <motion.img
+          src="https://52b0-2a02-85f-e4e7-463e-645-77b6-73b9-ed67.ngrok-free.app/sites/default/files/images/recomme_icons/Component%2016%20(1).png"
           style={{
-            zIndex: cards.length - index,
+            border: "1px solid black",
+            x,
+            rotate,
+            opacity,
+            cursor: "grab",
           }}
-        >
-          <TinderCard title={card.text} src={card.src} />
-        </motion.div>
-      ))}
+          className="w-[320px] h-[500px] rounded-sm object-center mx-6"
+          onDrag={getTrajectory}
+          drag="x"
+          dragElastic={0.6}
+          dragConstraints={{
+            right: 0,
+            left: 0,
+          }}
+          whileTap={{
+            cursor: "grabbing",
+          }}
+          onDragEnd={() => {
+            if (Math.abs(x.get()) > 100) {
+              if (x.get() > 0) {
+                getVote();
+              } else {
+                console.log("swiped left");
+              }
+            }
+          }}
+        />
+      </div>
     </div>
   );
 }
 
+// function CardStack({
+//   cards,
+//   setCards,
+// }: {
+//   cards: ICard[];
+//   setCards: Dispatch<ICard>;
+// }) {
+//   console.log("cards are ", cards);
+
+//   const x = useMotionValue(0);
+//   const rotate = useTransform(x, [-150, 150], [-18, 18]);
+//   const opacity = useTransform(x, [-150, 0, 150], [0, 1, 0]);
+
+//   return (
+//     <div className="grid h-full place-items-center">
+//       {cards.map((card) => (
+//         <motion.img
+//           src={process.env.NEXT_PUBLIC_API_URL + card.src}
+//           alt={card.text}
+//           className="h-96 w-72 origin-bottom rounded-lg bg-white object-cover hover:cursor-grab active:cursor-grabbing"
+//           drag="x"
+//           style={{
+//             gridRow: 1,
+//             gridColumn: 1,
+//             x,
+//             opacity,
+//             rotate,
+//             transition: "0.2s transform",
+//           }}
+//           whileTap={{
+//             scale: 1.1,
+//           }}
+//           dragConstraints={{
+//             left: 0,
+//             right: 0,
+//             top: 0,
+//             bottom: 0,
+//           }}
+//           onDragEnd={(_, info) => {
+//             if (Math.abs(x.get()) > 100) {
+//               setCards((cards) => cards.slice(1));
+//             }
+//           }}
+//         />
+//       ))}
+//     </div>
+//   );
+// }
+
+/**
+ * ProfilingPage is a React functional component that renders a series of steps
+ * for user profiling. The component displays a step navigation component at the
+ * top of the page and a main content area in the middle. The main content area
+ * renders a form with a different question type based on the current step.
+ * Questions are fetched from the API server and the component also handles
+ * form submission and displays a toast notification with the submitted values.
+ * @returns A JSX element representing the ProfilingPage component
+ */
 export default function ProfilingPage() {
   const [currentStep, setCurrentStep] = useState(0);
 
   const { toast } = useToast();
 
-  const params = useSearchParams();
   const pathname = usePathname();
-  const type = params.get("type");
-  const router = useRouter();
-  const [categories, setCategories] = useState([
-    "select",
-    "webform_image_select",
-    "range",
-  ]);
+  // const type = params.get("type");
+
+  const segments = pathname.split("/");
+  const type = segments[segments.length - 1];
 
   const { data: steps, error, status } = useGetElements(type);
 
   // useEffect(() => {
-  //   if (selects && cards && sliders) {
-  //     const sortedSteps = [...selects, ...cards, ...sliders];
-  //     setSteps(sortedSteps);
+  //   if (type === "webform_image_select") {
+  //     setHideButton(true);
+  //   } else {
+  //     setHideButton(false);
   //   }
-  // }, [selects, cards, sliders]);
-  const currentCategoryIndex = categories.indexOf(type) || 0;
+  // }, [type]);
 
-  useEffect(() => {
-    // push updated URL based on category type
-    router.push(pathname + `?type=${categories[currentCategoryIndex]}`);
-  }, [type]);
-
-  useEffect(() => {
-    if (steps) {
-      if (currentStep >= steps.length) {
-        if (currentCategoryIndex < categories.length - 1) {
-          // move to next category and reset counter
-          setCurrentStep(0);
-          router.push(
-            `${pathname}?type=${categories[currentCategoryIndex + 1]}`
-          );
-        }
-      }
-    }
-  }, [currentStep, steps, currentCategoryIndex, pathname]);
+  // useEffect(() => {
+  //   if (steps) {
+  //     if (currentStep >= steps.length) {
+  //       if (currentIndex < categories.length - 1) {
+  //         // move to next category and reset counter
+  //         setCurrentStep(0);
+  //         router.push(`${pathname}?type=${categories[currentIndex + 1]}`);
+  //       }
+  //     }
+  //   }
+  // }, [currentStep, steps, currentIndex, pathname]);
 
   const handleNextStep = () => {
-    if (currentStep < steps.length - 1) {
-      // Move to the next question in the same category
-      setCurrentStep((prevStep) => prevStep + 1);
-    } else {
-      // All questions in this category are answered
-      setCurrentStep(steps?.length);
+    if (steps) {
+      setCurrentStep((prevStep) =>
+        prevStep < steps.length ? prevStep + 1 : steps.length
+      );
     }
   };
 
@@ -271,13 +234,21 @@ export default function ProfilingPage() {
         // return <RadioSelect options={step.options} question={step.title} />;
         return (
           <RadioSelect
+            onVote={handleNextStep}
             name={step.name}
             options={step.options}
             title={step.title}
           />
         );
       case "webform_image_select":
-        return <TinderCards cards={step.images} />;
+        // return <CardsContainer onVote={handleNextStep} />;
+        return (
+          <TinderCard
+            src={step.src}
+            title={step.text}
+            onVote={handleNextStep}
+          />
+        );
       case "range":
         return <div>Image slider</div>;
       default:
@@ -327,24 +298,15 @@ export default function ProfilingPage() {
   return (
     <FormProvider {...methods}>
       <div className="w-full flex flex-col justify-between items-center h-full">
-        <Steps
-          // steps={steps?.length}
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
-        />
-        {/* <Steps
-          setStep={setCurrentStep}
-          currentStep={currentStep}
-          totalSteps={totalSteps!}
-        /> */}
+        <Steps currentStep={currentStep} setCurrentStep={setCurrentStep} />
         <div
           onSubmit={methods.handleSubmit(onSubmit)}
           className="flex flex-col justify-around items-center space-y-4 w-full h-[calc(100%-90px)] font-body"
         >
-          {renderStep(steps[currentStep])}
+          {steps && renderStep(steps[currentStep])}
+          <SubmitButton onClick={handleNextStep}>Continue</SubmitButton>
         </div>
       </div>
-      <Button onClick={handleNextStep}>Go next step</Button>
     </FormProvider>
   );
 }

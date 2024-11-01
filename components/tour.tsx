@@ -1,8 +1,8 @@
 "use client";
-import Joyride, { BeaconRenderProps, Step } from "react-joyride";
+import Joyride, { Step } from "react-joyride";
 
-import React, { ElementType } from "react";
-import { Tooltip, TooltipProvider } from "./ui/tooltip";
+import React from "react";
+import { TooltipProvider } from "./ui/tooltip";
 import CustomTooltip from "./tooltip";
 import Image from "next/image";
 import flower from "@/public/assets/flower.svg";
@@ -103,6 +103,7 @@ export default function Tour() {
         showSkipButton={false}
         showProgress={false}
         tooltipComponent={CustomTooltip}
+        run
       />
     </TooltipProvider>
   );

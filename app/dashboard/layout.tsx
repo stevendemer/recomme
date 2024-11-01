@@ -31,14 +31,14 @@ const mulish = Mulish({
 
 export const metadata: Metadata = {
   title: "Recomme | Dashboard",
+  icons: {
+    icon: "/assets/flower.svg",
+  },
 };
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/assets/flower.svg" />
-      </head>
       <body
         className={cn(
           "antialiased bg-gray-200 overflow-hidden h-full w-full",
@@ -48,9 +48,9 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           mulish.variable
         )}
       >
-        <Tour />
         <div className="gradient-bg font-rubik w-full justify-center h-svh min-h-svh flex-col items-center flex md:p-8">
-          <div className="flex gap-8 items-center w-full justify-center">
+          <div className="flex gap-8 items-center w-full justify-center p-2">
+            <Tour />
             <div className="hidden sm:flex h-full">
               <DashboardSidebar />
             </div>

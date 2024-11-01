@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/button";
 
 export default function Dashboard() {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full space-y-2">
       {/* action cards */}
-      <div className="bg-white/20 backdrop-blur-lg text-black rounded-sm w-full items-center flex mb-4 ">
+      <div className="bg-white/20 backdrop-blur-lg text-black rounded-sm w-full items-center flex  p-4">
         <div className="flex flex-col sm:flex-row gap-x-6 rounded-sm items-center w-full flex-shrink">
           <ActionCards
             title="Convince someone to join"
@@ -24,7 +24,7 @@ export default function Dashboard() {
       </div>
 
       {/* member cards */}
-      <div className="bg-white/30 rounded-[32px] w-full flex items-center flex-shrink mb-4">
+      <div className="bg-white/30 rounded-[32px] w-full flex items-center mb-4">
         <div className="flex flex-col items-center max-sm:space-y-4 sm:flex-row justify-evenly w-full p-2 flex-shrink gap-x-2">
           <MemberCards
             members={10}
@@ -70,8 +70,8 @@ export default function Dashboard() {
         <div className="bg-white/30 rounded-sm flex items-center justify-center p-4 col-span-2">
           <Graph />
         </div>
-        <div className="bg-white/30 p-4 rounded-sm  flex items-center justify-center font-inter overflow-hidden">
-          <div className="bg-white/80 rounded-sm flex flex-col overflow-hidden h-full  w-full">
+        <div className="bg-white/30 p-4 rounded-sm  flex items-center justify-center overflow-hidden">
+          <div className="bg-white/80 rounded-sm flex flex-col overflow-hidden h-full w-full">
             <h1 className="text-slate-900 font-bold text-xl sm:text-2xl pt-8 mb-4 ml-8 text-start">
               Recommendation
             </h1>
@@ -85,7 +85,9 @@ export default function Dashboard() {
                     Lorem ipsum dolor sit amet Lorem LoremLoremLoremLorem Lorem
                   </p>
                 </div>
-                <Button className="py-6 px-4 w-44">Acknowledge</Button>
+                <Button className="py-6 px-4 w-44  font-bold">
+                  Acknowledge
+                </Button>
               </RecommendationCard>
               <RecommendationCard>
                 <div className="flex flex-col gap-2">
@@ -97,7 +99,7 @@ export default function Dashboard() {
                   </p>
                 </div>
 
-                <Button className="py-6 px-4 w-44">Appreciate</Button>
+                <Button className="py-6 px-4 w-44 font-bold">Appreciate</Button>
               </RecommendationCard>
             </div>
           </div>

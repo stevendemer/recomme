@@ -1,25 +1,20 @@
-import { create } from "zustand";
+import { atom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 
-type Store = {
-  active: number;
-  increase: () => void;
-  setStep: (x: number) => void;
-  reset: () => void;
-};
-
-export const useSteps = create<Store>()((set) => ({
-  active: 1,
-  // set the stepper to the first step
-  reset: () => set({ active: 1 }),
-
-  // loops back if it exceeds 3
-  increase: () =>
-    set((state) => ({
-      active: state.active < 3 ? state.active + 1 : 1,
-    })),
-  setStep: (x: number) => {
-    set(() => ({
-      active: x >= 1 && x <= 3 ? x : 1, // handles edge cases
-    }));
+export const currentStepAtom = atom(0);
+export const hideButtonAtom = atom(false);
+export const hasFinishedProfilingAtom = atom(false);
+export const formAnswersAtom = atomWithStorage("formAnswers", {
+  cards: {
+    webform_id: "cards",
+    answers: [] as number[],
   },
-}));
+  selects: {
+    webform_id: "selects",
+    answers: [] as number[],
+  },
+  range: {
+    webform_id: "range",
+    answers: 0,
+  },
+});

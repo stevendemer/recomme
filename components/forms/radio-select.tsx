@@ -5,22 +5,27 @@ import { Controller, useForm } from "react-hook-form";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Label } from "../ui/label";
 import SubmitButton from "../submit-button";
-import { Form, FormField, FormItem } from "../ui/form";
+import { Form } from "../ui/form";
+import { useState } from "react";
+import Image from "next/image";
 
 interface IProp {
   options: string[];
   title: string;
   name: string;
+  onVote: () => void;
 }
 
 interface IFormInputs {
-  radio_select: string;
+  [key: string]: string; // input name is dynamic
 }
 
-export default function RadioSelect({ options, title, name }: IProp) {
+export default function RadioSelect({ options, title, name, ...props }: IProp) {
   console.log("name is ", name);
 
-  const form = useForm();
+  const form = useForm<IFormInputs>({
+    mode: "onChange",
+  });
 
   const gridLayout =
     options.length === 5
@@ -29,36 +34,41 @@ export default function RadioSelect({ options, title, name }: IProp) {
       ? "grid-cols-2"
       : "grid-cols-1";
 
-  function onSubmit(data) {
+  function onSubmit(data: any) {
     console.log(data);
+    props.onVote();
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col items-center justify-evenly h-full w-full flex-grow mx-auto container transition-colors duration-200"
+        className="flex flex-col items-center justify-evenly h-full w-full flex-grow mx-auto container transition-colors duration-200 max-w-xl sm:max-w-7xl"
       >
         <h2 className="sm:text-3xl text-xl text-center text-black font-sans">
           {title}
         </h2>
         <div
           className={cn(
-            "grid gap-2 w-full max-w-3xl place-items-center grid-flow-row",
+            "grid gap-2 w-full sm:max-w-7xl place-items-center grid-flow-row justify-self-center",
             gridLayout
           )}
         >
           <Controller
-            name="radio_select" // Unique name for this field
+            name={name}
             control={form.control}
             rules={{ required: "This field is required" }}
             render={({ field }) => (
               <>
                 {options?.map((e: any) => (
                   <RadioGroup
+                    {...form.register(name)}
                     key={e}
                     value={field.value}
-                    onValueChange={(value) => field.onChange(value)}
+                    onValueChange={(value) => {
+                      console.log("value from radio is ", value);
+                      field.onChange(value);
+                    }}
                     className={cn(
                       "bg-white p-8 rounded-sm shadow-lg border w-full h-full justify-center transition-colors duration-200 text-black",
                       field.value === e && "bg-[#65D8BC] text-white"
@@ -86,7 +96,7 @@ export default function RadioSelect({ options, title, name }: IProp) {
             )}
           />
         </div>
-        <SubmitButton type="submit" disabled={!form.formState.isValid}>
+        <SubmitButton disabled={!form.formState.isValid} type="submit">
           Continue
         </SubmitButton>
       </form>
