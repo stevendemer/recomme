@@ -4,6 +4,8 @@ import ApproachRow from "@/components/approach-row";
 import MessageContainer from "@/components/message-container";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import SubmitButton from "@/components/submit-button";
+import Link from "next/link";
 
 export default function ApproachPage() {
   const [isValid, setValid] = useState(false);
@@ -33,12 +35,12 @@ export default function ApproachPage() {
   };
 
   return (
-    <MessageContainer hasLogo={false}>
-      <h2 className="text-2xl sm:text-5xl p-6 font-bold font-sans text-black">
+    <div className="flex flex-col items-center justify-center relative flex-grow h-full space-y-8">
+      <h2 className="text-2xl sm:text-4xl font-sans text-black tracking-wide">
         Recommended Approach
       </h2>
 
-      <div className="flex flex-col items-center justify-center container mx-auto h-full m-4">
+      <div className="flex flex-col items-center justify-center container mx-auto space-y-4 h-auto">
         {[...Array(5)].map((_, index) => (
           <ApproachRow
             key={index}
@@ -49,15 +51,17 @@ export default function ApproachPage() {
           />
         ))}
       </div>
-      <Button
-        disabled={!isValid}
-        className="rounded-full sm:px-14 sm:py-8 px-6 py-4 max-w-lg text-sm sm:text-md font-bold font-rubik disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-200"
-        onClick={() => {
-          console.log("all answers are ", answers);
-        }}
-      >
-        Continue
-      </Button>
-    </MessageContainer>
+      <Link href="/dashboard" passHref>
+        <SubmitButton
+          disabled={!isValid}
+          className="rounded-full sm:px-14 sm:py-8 px-6 py-4 max-w-lg text-sm sm:text-md  disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-200"
+          onClick={() => {
+            console.log("all answers are ", answers);
+          }}
+        >
+          Continue
+        </SubmitButton>
+      </Link>
+    </div>
   );
 }
