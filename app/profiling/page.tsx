@@ -22,7 +22,7 @@ export default function Profiling() {
 
     const searchParams = useSearchParams();
     const pathname = usePathname();
-    const {replace} = useRouter();
+    const {replace, push} = useRouter();
 
     const [hideButton, setHideButton] = useState(false);
 
@@ -75,6 +75,14 @@ export default function Profiling() {
             });
         }
     }, [searchParams, data]);
+
+
+    useEffect(() => {
+        const page = searchParams.get('page');
+        if (page && parseInt(page) === 4) {
+            push('/csjt');
+        }
+    }, [pathname, searchParams]);
 
 
     if (status === "pending") {
@@ -146,10 +154,8 @@ export default function Profiling() {
                 totalQuestionsInGroup: nextGroupQuestions
             });
             setCurrentStep(0);
-        } else {
-            // Finished all groups
-            moveToNextType("finish");
         }
+        // Finished all groups
     };
 
 
@@ -196,9 +202,8 @@ export default function Profiling() {
     return (
         <div className="w-full flex flex-col justify-between items-center h-full">
             <Steps
-                totalGroups={searchParams.get("type") === "range" ? groupProgress.totalGroups : undefined}
-                currentGroup={searchParams.get("type") === "range" ? groupProgress.groupIndex : undefined}
-
+                totalGroups={searchParams.get("type") === "range" ? data.ranges.length : undefined}
+                currentGroup={data?.ranges[Number(searchParams.get('page'))]}
                 steps={data.steps} currentStep={currentStep}/>
             <div className="flex flex-col justify-around items-center space-y-4 w-full h-[calc(100%-60px)] font-body">
                 {renderStep(data)}

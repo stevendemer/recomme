@@ -7,7 +7,7 @@ interface StepsProps {
     steps: { category: string; count: number }[];
     currentStep: number;
     totalGroups?: number;
-    currentGroup?: number;
+    currentGroup?: any;
 }
 
 export default function Steps({
@@ -18,10 +18,19 @@ export default function Steps({
                               }: StepsProps) {
     const searchParams = useSearchParams();
     const type = searchParams.get("type") || steps[0]?.category;
+    const currentPage = Number(searchParams.get("page") || 0);
 
     const getRangeStepsCount = () => {
-        const currentGroupData = steps.find(step => step.category === "range");
-        return currentGroupData?.count || 0;
+        // const rangeStep = steps.find(s => s.category === 'range');
+        // if (rangeStep) {
+        //     const itemsPerGroup = rangeStep.count / (totalGroups || 1);
+        //     console.log('items per group are ', itemsPerGroup)
+        //     return Math.ceil(itemsPerGroup);
+        // }
+        console.log('current group', currentGroup)
+        if (currentGroup) {
+            return currentGroup.items.length;
+        }
     };
 
     const getStepsToShow = () => {
@@ -48,9 +57,9 @@ export default function Steps({
                                 key={`group-${index}`}
                                 className={cn(
                                     "h-2 w-8 rounded-full transition-colors duration-200",
-                                    index === currentGroup
+                                    index === currentPage
                                         ? "bg-[#2A898F]"
-                                        : index < currentGroup!
+                                        : index < currentPage
                                             ? "bg-[#65D9BD]"
                                             : "bg-gray-300"
                                 )}

@@ -26,7 +26,7 @@ export default function ImageSlider({
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const searchParams = useSearchParams();
     const pathname = usePathname();
-    const {replace} = useRouter();
+    const {replace, push} = useRouter();
 
     const form = useForm<Inputs>({
         mode: "onChange",
@@ -34,15 +34,32 @@ export default function ImageSlider({
 
 
     useEffect(() => {
-        const params = new URLSearchParams(searchParams);
-        params.set('page', '0');
-        replace(`${pathname}?${params.toString()}`);
+        if (!searchParams.get('page')) {
+            const params = new URLSearchParams(searchParams);
+            params.set('page', '0');
+            replace(`${pathname}?${params.toString()}`);
+        }
     }, []);
 
     const currentPage = Number(searchParams.get('page')) || 0 as number;
     const currentGroup = data[currentPage];
 
+    const isLastQuestion = () => {
+        return currentQuestionIndex === currentGroup?.items.length - 1;
+    }
+
+    const isLastGroup = () => {
+        return currentPage === data.length - 1;
+    }
+
+
+    const isFinalQuestion = () => {
+        return isLastGroup() && isLastQuestion();
+    }
+
+
     const onSubmit = (data: any) => {
+
         if (currentQuestionIndex < currentGroup?.items.length - 1) {
             setCurrentQuestionIndex(prev => prev + 1);
         } else {
@@ -147,9 +164,10 @@ export default function ImageSlider({
                     <div className="text-2xl text-center w-full">No ranges found.</div>
                 )}
                 <SubmitButton type="submit">
-                    {data.items && currentQuestionIndex === data?.items.length - 1
-                        ? "Finish"
-                        : "Continue"}
+                    {/*{data.items && currentQuestionIndex === data?.items.length - 1*/}
+                    {/*    ? "Finish"*/}
+                    {/*    : "Continue"}*/}
+                    {isLastQuestion() ? "Finish" : "Continue"}
                 </SubmitButton>
             </form>
         </div>
