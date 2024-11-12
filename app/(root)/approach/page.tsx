@@ -35,7 +35,7 @@ export default function ApproachPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center relative flex-grow h-full space-y-8">
+    <div className="flex flex-col items-center justify-around relative flex-grow h-full space-y-6 w-full p-2">
       <h2 className="text-2xl sm:text-4xl font-sans text-black tracking-wide">
         Recommended Approach
       </h2>

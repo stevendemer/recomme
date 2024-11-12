@@ -48,8 +48,8 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           mulish.variable
         )}
       >
-        <div className="gradient-bg font-rubik w-full justify-center h-svh min-h-svh flex-col items-center flex md:p-8">
-          <div className="flex gap-8 items-center w-full justify-center p-2">
+        <div className="gradient-bg font-rubik w-full justify-center  h-svh min-h-svh flex-col items-center flex sm:p-4 ">
+          <div className="flex gap-4 items-center w-full justify-center">
             <Tour />
             <div className="hidden sm:flex h-full">
               <DashboardSidebar />

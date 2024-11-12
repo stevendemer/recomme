@@ -4,10 +4,16 @@ import type { NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
 
+  const type = url.searchParams.get("type");
+
   // default url params
-  if (url.pathname === "/profiling") {
-    url.pathname = "/profiling/select";
+  if (!type) {
+    url.searchParams.set("type", "select");
     return NextResponse.redirect(url);
+  }
+
+  if (type === "finish") {
+    return NextResponse.redirect(new URL("/csjt", request.url));
   }
 }
 

@@ -1,0 +1,1170 @@
+[
+  {
+    "selects": [
+      {
+        "type": "select",
+        "title": "How many prosumers are in your EC?",
+        "multiple": true,
+        "options": [
+          "1-5",
+          "6-10",
+          "10-20",
+          "More than 20"
+        ],
+        "webform": "mp_recomme_macrointeractions",
+        "webform_id": "mp_recomme_macrointeractions--mp_select_num_prosumers",
+        "webform_key": "mp_select_num_prosumers",
+        "webform_parent_key": "",
+        "webform_parent_flexbox": false,
+        "webform_depth": 0,
+        "webform_children": [],
+        "webform_multiple": true,
+        "webform_composite": false,
+        "webform_parents": [
+          "mp_select_num_prosumers"
+        ],
+        "admin_title": "How many prosumers are in your EC?",
+        "webform_plugin_id": "select",
+        "attached": {
+          "library": [
+            "webform/webform.element.select"
+          ]
+        },
+        "webform_submission": null,
+        "access": true,
+        "webform_element": true,
+        "allowed_tags": [
+          "a",
+          "abbr",
+          "acronym",
+          "address",
+          "article",
+          "aside",
+          "b",
+          "bdi",
+          "bdo",
+          "big",
+          "blockquote",
+          "br",
+          "caption",
+          "cite",
+          "code",
+          "col",
+          "colgroup",
+          "command",
+          "dd",
+          "del",
+          "details",
+          "dfn",
+          "div",
+          "dl",
+          "dt",
+          "em",
+          "figcaption",
+          "figure",
+          "footer",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "header",
+          "hgroup",
+          "hr",
+          "i",
+          "img",
+          "ins",
+          "kbd",
+          "li",
+          "mark",
+          "menu",
+          "meter",
+          "nav",
+          "ol",
+          "output",
+          "p",
+          "pre",
+          "progress",
+          "q",
+          "rp",
+          "rt",
+          "ruby",
+          "s",
+          "samp",
+          "section",
+          "small",
+          "span",
+          "strong",
+          "sub",
+          "summary",
+          "sup",
+          "table",
+          "tbody",
+          "td",
+          "tfoot",
+          "th",
+          "thead",
+          "time",
+          "tr",
+          "tt",
+          "u",
+          "ul",
+          "var",
+          "wbr"
+        ],
+        "element_validate": [
+          [
+            "Drupal\\webform\\Plugin\\WebformElement\\Select",
+            "validateMultipleOptions"
+          ]
+        ],
+        "pre_render": [
+          [
+            "Drupal\\Core\\Render\\Element\\Select",
+            "preRenderSelect"
+          ]
+        ],
+        "after_build": [
+          [
+            "Drupal\\webform\\Plugin\\WebformElement\\Select",
+            "hiddenElementAfterBuild"
+          ]
+        ],
+        "_webform_access": true,
+        "_webform_states": [],
+        "input": true,
+        "sort_options": false,
+        "sort_start": 0,
+        "process": [
+          [
+            "Drupal\\Core\\Render\\Element\\Select",
+            "processSelect"
+          ],
+          [
+            "Drupal\\Core\\Render\\Element\\Select",
+            "processAjaxForm"
+          ]
+        ],
+        "theme": "select",
+        "theme_wrappers": [
+          "form_element"
+        ],
+        "value_callback": [
+          "Drupal\\Core\\Render\\Element\\Select",
+          "valueCallback"
+        ],
+        "defaults_loaded": true,
+        "tree": false,
+        "parents": [
+          "mp_select_num_prosumers"
+        ],
+        "array_parents": [
+          "elements",
+          "mp_select_num_prosumers"
+        ],
+        "weight": 0,
+        "processed": true,
+        "required": false,
+        "attributes": {
+          "data-drupal-selector": "edit-mp-select-num-prosumers",
+          "multiple": "multiple",
+          "name": "mp_select_num_prosumers[]"
+        },
+        "title_display": "before",
+        "description_display": "after",
+        "errors": null,
+        "id": "edit-mp-select-num-prosumers",
+        "name": "mp_select_num_prosumers",
+        "value": "",
+        "ajax_processed": false,
+        "sorted": true,
+        "after_build_done": true
+      },
+      {
+        "type": "select",
+        "title": "How many member are enrolled in your EC?",
+        "multiple": true,
+        "options": [
+          "1-10",
+          "11-30",
+          "31-100",
+          "More than 100"
+        ],
+        "webform": "mp_recomme_macrointeractions",
+        "webform_id": "mp_recomme_macrointeractions--mp_select_num_members_ec",
+        "webform_key": "mp_select_num_members_ec",
+        "webform_parent_key": "",
+        "webform_parent_flexbox": false,
+        "webform_depth": 0,
+        "webform_children": [],
+        "webform_multiple": true,
+        "webform_composite": false,
+        "webform_parents": [
+          "mp_select_num_members_ec"
+        ],
+        "admin_title": "How many member are enrolled in your EC?",
+        "webform_plugin_id": "select",
+        "attached": {
+          "library": [
+            "webform/webform.element.select"
+          ]
+        },
+        "webform_submission": null,
+        "access": true,
+        "webform_element": true,
+        "allowed_tags": [
+          "a",
+          "abbr",
+          "acronym",
+          "address",
+          "article",
+          "aside",
+          "b",
+          "bdi",
+          "bdo",
+          "big",
+          "blockquote",
+          "br",
+          "caption",
+          "cite",
+          "code",
+          "col",
+          "colgroup",
+          "command",
+          "dd",
+          "del",
+          "details",
+          "dfn",
+          "div",
+          "dl",
+          "dt",
+          "em",
+          "figcaption",
+          "figure",
+          "footer",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "header",
+          "hgroup",
+          "hr",
+          "i",
+          "img",
+          "ins",
+          "kbd",
+          "li",
+          "mark",
+          "menu",
+          "meter",
+          "nav",
+          "ol",
+          "output",
+          "p",
+          "pre",
+          "progress",
+          "q",
+          "rp",
+          "rt",
+          "ruby",
+          "s",
+          "samp",
+          "section",
+          "small",
+          "span",
+          "strong",
+          "sub",
+          "summary",
+          "sup",
+          "table",
+          "tbody",
+          "td",
+          "tfoot",
+          "th",
+          "thead",
+          "time",
+          "tr",
+          "tt",
+          "u",
+          "ul",
+          "var",
+          "wbr"
+        ],
+        "element_validate": [
+          [
+            "Drupal\\webform\\Plugin\\WebformElement\\Select",
+            "validateMultipleOptions"
+          ]
+        ],
+        "pre_render": [
+          [
+            "Drupal\\Core\\Render\\Element\\Select",
+            "preRenderSelect"
+          ]
+        ],
+        "after_build": [
+          [
+            "Drupal\\webform\\Plugin\\WebformElement\\Select",
+            "hiddenElementAfterBuild"
+          ]
+        ],
+        "_webform_access": true,
+        "_webform_states": [],
+        "input": true,
+        "sort_options": false,
+        "sort_start": 0,
+        "process": [
+          [
+            "Drupal\\Core\\Render\\Element\\Select",
+            "processSelect"
+          ],
+          [
+            "Drupal\\Core\\Render\\Element\\Select",
+            "processAjaxForm"
+          ]
+        ],
+        "theme": "select",
+        "theme_wrappers": [
+          "form_element"
+        ],
+        "value_callback": [
+          "Drupal\\Core\\Render\\Element\\Select",
+          "valueCallback"
+        ],
+        "defaults_loaded": true,
+        "tree": false,
+        "parents": [
+          "mp_select_num_members_ec"
+        ],
+        "array_parents": [
+          "elements",
+          "mp_select_num_members_ec"
+        ],
+        "weight": 0.001,
+        "processed": true,
+        "required": false,
+        "attributes": {
+          "data-drupal-selector": "edit-mp-select-num-members-ec",
+          "multiple": "multiple",
+          "name": "mp_select_num_members_ec[]"
+        },
+        "title_display": "before",
+        "description_display": "after",
+        "errors": null,
+        "id": "edit-mp-select-num-members-ec",
+        "name": "mp_select_num_members_ec",
+        "value": "",
+        "ajax_processed": false,
+        "sorted": true,
+        "after_build_done": true
+      },
+      {
+        "type": "webform_image_select",
+        "title": "Who is in your EC?",
+        "multiple": true,
+        "images": [
+          {
+            "text": "temp",
+            "src": "/sites/default/files/images/icons/icon11.svg"
+          },
+          {
+            "text": "temp",
+            "src": "/sites/default/files/images/icons/icon10.svg"
+          },
+          {
+            "text": "temp",
+            "src": "/sites/default/files/images/icons/icon9.svg"
+          },
+          {
+            "text": "temp",
+            "src": "/sites/default/files/images/icons/icon8.svg"
+          },
+          {
+            "text": "temp",
+            "src": "/sites/default/files/images/icons/icon7.svg"
+          }
+        ],
+        "webform": "mp_recomme_macrointeractions",
+        "webform_id": "mp_recomme_macrointeractions--mp_select_ec_member_roles",
+        "webform_key": "mp_select_ec_member_roles",
+        "webform_parent_key": "",
+        "webform_parent_flexbox": false,
+        "webform_depth": 0,
+        "webform_children": [],
+        "webform_multiple": true,
+        "webform_composite": false,
+        "webform_parents": [
+          "mp_select_ec_member_roles"
+        ],
+        "admin_title": "Who is in your EC?",
+        "webform_plugin_id": "webform_image_select",
+        "options": [
+          "temp",
+          "temp",
+          "temp",
+          "temp",
+          "temp"
+        ],
+        "attached": {
+          "library": [
+            "webform/webform.element.select",
+            "webform_image_select/webform_image_select.element"
+          ]
+        },
+        "webform_submission": null,
+        "access": true,
+        "webform_element": true,
+        "allowed_tags": [
+          "a",
+          "abbr",
+          "acronym",
+          "address",
+          "article",
+          "aside",
+          "b",
+          "bdi",
+          "bdo",
+          "big",
+          "blockquote",
+          "br",
+          "caption",
+          "cite",
+          "code",
+          "col",
+          "colgroup",
+          "command",
+          "dd",
+          "del",
+          "details",
+          "dfn",
+          "div",
+          "dl",
+          "dt",
+          "em",
+          "figcaption",
+          "figure",
+          "footer",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "header",
+          "hgroup",
+          "hr",
+          "i",
+          "img",
+          "ins",
+          "kbd",
+          "li",
+          "mark",
+          "menu",
+          "meter",
+          "nav",
+          "ol",
+          "output",
+          "p",
+          "pre",
+          "progress",
+          "q",
+          "rp",
+          "rt",
+          "ruby",
+          "s",
+          "samp",
+          "section",
+          "small",
+          "span",
+          "strong",
+          "sub",
+          "summary",
+          "sup",
+          "table",
+          "tbody",
+          "td",
+          "tfoot",
+          "th",
+          "thead",
+          "time",
+          "tr",
+          "tt",
+          "u",
+          "ul",
+          "var",
+          "wbr"
+        ],
+        "element_validate": [
+          [
+            "Drupal\\webform_image_select\\Plugin\\WebformElement\\WebformImageSelect",
+            "validateMultipleOptions"
+          ]
+        ],
+        "pre_render": [
+          [
+            "Drupal\\webform_image_select\\Element\\WebformImageSelect",
+            "preRenderSelect"
+          ]
+        ],
+        "after_build": [
+          [
+            "Drupal\\webform_image_select\\Plugin\\WebformElement\\WebformImageSelect",
+            "hiddenElementAfterBuild"
+          ]
+        ],
+        "_webform_access": true,
+        "_webform_states": [],
+        "input": true,
+        "sort_options": false,
+        "sort_start": 0,
+        "process": [
+          [
+            "Drupal\\webform_image_select\\Element\\WebformImageSelect",
+            "processSelect"
+          ],
+          [
+            "Drupal\\webform_image_select\\Element\\WebformImageSelect",
+            "processAjaxForm"
+          ]
+        ],
+        "theme": "select",
+        "theme_wrappers": [
+          "form_element"
+        ],
+        "images_randomize": false,
+        "show_label": false,
+        "filter": false,
+        "filter__placeholder": null,
+        "filter__singular": null,
+        "filter__plural": null,
+        "filter__no_result": null,
+        "value_callback": [
+          "Drupal\\webform_image_select\\Element\\WebformImageSelect",
+          "valueCallback"
+        ],
+        "defaults_loaded": true,
+        "tree": false,
+        "parents": [
+          "mp_select_ec_member_roles"
+        ],
+        "array_parents": [
+          "elements",
+          "mp_select_ec_member_roles"
+        ],
+        "weight": 0.002,
+        "processed": true,
+        "required": false,
+        "attributes": {
+          "data-drupal-selector": "edit-mp-select-ec-member-roles",
+          "data-images": "[{\"text\":\"temp\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon11.svg\"},{\"text\":\"temp\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon10.svg\"},{\"text\":\"temp\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon9.svg\"},{\"text\":\"temp\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon8.svg\"},{\"text\":\"temp\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon7.svg\"}]",
+          "class": [
+            "webform-image-select",
+            "js-webform-image-select"
+          ],
+          "multiple": "multiple",
+          "name": "mp_select_ec_member_roles[]"
+        },
+        "title_display": "before",
+        "description_display": "after",
+        "errors": null,
+        "id": "edit-mp-select-ec-member-roles",
+        "name": "mp_select_ec_member_roles",
+        "value": "",
+        "ajax_processed": false,
+        "sorted": true,
+        "after_build_done": true
+      },
+      {
+        "type": "webform_image_select",
+        "title": "What are the EC main objective? (top 2)",
+        "multiple": 2,
+        "multiple_error": "Pick 2 items from the list",
+        "images": [
+          {
+            "text": "Reduction",
+            "src": "/sites/default/files/images/icons/icon5.svg"
+          },
+          {
+            "text": "Sustainability",
+            "src": "/sites/default/files/images/icons/icon3.svg"
+          },
+          {
+            "text": "Energy Independence",
+            "src": "/sites/default/files/images/icons/icon4.svg"
+          },
+          {
+            "text": "Community Engagement",
+            "src": "/sites/default/files/images/icons/icon1.svg"
+          },
+          {
+            "text": "Innovation",
+            "src": "/sites/default/files/images/icons/icon2.svg"
+          }
+        ],
+        "required": true,
+        "webform": "mp_recomme_macrointeractions",
+        "webform_id": "mp_recomme_macrointeractions--mp_select_ec_main_objectives",
+        "webform_key": "mp_select_ec_main_objectives",
+        "webform_parent_key": "",
+        "webform_parent_flexbox": false,
+        "webform_depth": 0,
+        "webform_children": [],
+        "webform_multiple": 2,
+        "webform_composite": false,
+        "webform_parents": [
+          "mp_select_ec_main_objectives"
+        ],
+        "admin_title": "What are the EC main objective? (top 2)",
+        "webform_plugin_id": "webform_image_select",
+        "options": [
+          "Reduction",
+          "Sustainability",
+          "Energy Independence",
+          "Community Engagement",
+          "Innovation"
+        ],
+        "attributes": {
+          "data-limit": 2,
+          "data-drupal-selector": "edit-mp-select-ec-main-objectives",
+          "data-images": "[{\"text\":\"Reduction\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon5.svg\"},{\"text\":\"Sustainability\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon3.svg\"},{\"text\":\"Energy Independence\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon4.svg\"},{\"text\":\"Community Engagement\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon1.svg\"},{\"text\":\"Innovation\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon2.svg\"}]",
+          "class": [
+            "webform-image-select",
+            "js-webform-image-select"
+          ],
+          "multiple": "multiple",
+          "name": "mp_select_ec_main_objectives[]"
+        },
+        "attached": {
+          "library": [
+            "webform/webform.element.select",
+            "webform_image_select/webform_image_select.element"
+          ]
+        },
+        "webform_submission": null,
+        "access": true,
+        "webform_element": true,
+        "allowed_tags": [
+          "a",
+          "abbr",
+          "acronym",
+          "address",
+          "article",
+          "aside",
+          "b",
+          "bdi",
+          "bdo",
+          "big",
+          "blockquote",
+          "br",
+          "caption",
+          "cite",
+          "code",
+          "col",
+          "colgroup",
+          "command",
+          "dd",
+          "del",
+          "details",
+          "dfn",
+          "div",
+          "dl",
+          "dt",
+          "em",
+          "figcaption",
+          "figure",
+          "footer",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "header",
+          "hgroup",
+          "hr",
+          "i",
+          "img",
+          "ins",
+          "kbd",
+          "li",
+          "mark",
+          "menu",
+          "meter",
+          "nav",
+          "ol",
+          "output",
+          "p",
+          "pre",
+          "progress",
+          "q",
+          "rp",
+          "rt",
+          "ruby",
+          "s",
+          "samp",
+          "section",
+          "small",
+          "span",
+          "strong",
+          "sub",
+          "summary",
+          "sup",
+          "table",
+          "tbody",
+          "td",
+          "tfoot",
+          "th",
+          "thead",
+          "time",
+          "tr",
+          "tt",
+          "u",
+          "ul",
+          "var",
+          "wbr"
+        ],
+        "element_validate": [
+          [
+            "Drupal\\webform_image_select\\Plugin\\WebformElement\\WebformImageSelect",
+            "validateMultipleOptions"
+          ],
+          [
+            "Drupal\\webform_image_select\\Plugin\\WebformElement\\WebformImageSelect",
+            "validateMultiple"
+          ]
+        ],
+        "pre_render": [
+          [
+            "Drupal\\webform_image_select\\Element\\WebformImageSelect",
+            "preRenderSelect"
+          ]
+        ],
+        "after_build": [
+          [
+            "Drupal\\webform_image_select\\Plugin\\WebformElement\\WebformImageSelect",
+            "hiddenElementAfterBuild"
+          ]
+        ],
+        "_webform_access": true,
+        "_webform_states": [],
+        "input": true,
+        "sort_options": false,
+        "sort_start": 0,
+        "process": [
+          [
+            "Drupal\\webform_image_select\\Element\\WebformImageSelect",
+            "processSelect"
+          ],
+          [
+            "Drupal\\webform_image_select\\Element\\WebformImageSelect",
+            "processAjaxForm"
+          ]
+        ],
+        "theme": "select",
+        "theme_wrappers": [
+          "form_element"
+        ],
+        "images_randomize": false,
+        "show_label": false,
+        "filter": false,
+        "filter__placeholder": null,
+        "filter__singular": null,
+        "filter__plural": null,
+        "filter__no_result": null,
+        "value_callback": [
+          "Drupal\\webform_image_select\\Element\\WebformImageSelect",
+          "valueCallback"
+        ],
+        "defaults_loaded": true,
+        "tree": false,
+        "parents": [
+          "mp_select_ec_main_objectives"
+        ],
+        "array_parents": [
+          "elements",
+          "mp_select_ec_main_objectives"
+        ],
+        "weight": 0.003,
+        "processed": true,
+        "title_display": "before",
+        "description_display": "after",
+        "errors": null,
+        "id": "edit-mp-select-ec-main-objectives",
+        "name": "mp_select_ec_main_objectives",
+        "value": "",
+        "ajax_processed": false,
+        "sorted": true,
+        "after_build_done": true
+      },
+      {
+        "type": "webform_image_select",
+        "title": "What are the EC challenges faced?",
+        "multiple": true,
+        "images": [
+          {
+            "text": "Funding",
+            "src": "/sites/default/files/images/icons/icon16.svg"
+          },
+          {
+            "text": "Regulatory Barriers",
+            "src": "/sites/default/files/images/icons/icon15.svg"
+          },
+          {
+            "text": "Technical Expertise",
+            "src": "/sites/default/files/images/icons/icon14.svg"
+          },
+          {
+            "text": "Member Engagement",
+            "src": "/sites/default/files/images/icons/icon13.svg"
+          },
+          {
+            "text": "Infrastructure",
+            "src": "/sites/default/files/images/icons/icon12.svg"
+          }
+        ],
+        "webform": "mp_recomme_macrointeractions",
+        "webform_id": "mp_recomme_macrointeractions--mp_select_ec_challenges_faced",
+        "webform_key": "mp_select_ec_challenges_faced",
+        "webform_parent_key": "",
+        "webform_parent_flexbox": false,
+        "webform_depth": 0,
+        "webform_children": [],
+        "webform_multiple": true,
+        "webform_composite": false,
+        "webform_parents": [
+          "mp_select_ec_challenges_faced"
+        ],
+        "admin_title": "What are the EC challenges faced?",
+        "webform_plugin_id": "webform_image_select",
+        "options": [
+          "Funding",
+          "Regulatory Barriers",
+          "Technical Expertise",
+          "Member Engagement",
+          "Infrastructure"
+        ],
+        "attached": {
+          "library": [
+            "webform/webform.element.select",
+            "webform_image_select/webform_image_select.element"
+          ]
+        },
+        "webform_submission": null,
+        "access": true,
+        "webform_element": true,
+        "allowed_tags": [
+          "a",
+          "abbr",
+          "acronym",
+          "address",
+          "article",
+          "aside",
+          "b",
+          "bdi",
+          "bdo",
+          "big",
+          "blockquote",
+          "br",
+          "caption",
+          "cite",
+          "code",
+          "col",
+          "colgroup",
+          "command",
+          "dd",
+          "del",
+          "details",
+          "dfn",
+          "div",
+          "dl",
+          "dt",
+          "em",
+          "figcaption",
+          "figure",
+          "footer",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "header",
+          "hgroup",
+          "hr",
+          "i",
+          "img",
+          "ins",
+          "kbd",
+          "li",
+          "mark",
+          "menu",
+          "meter",
+          "nav",
+          "ol",
+          "output",
+          "p",
+          "pre",
+          "progress",
+          "q",
+          "rp",
+          "rt",
+          "ruby",
+          "s",
+          "samp",
+          "section",
+          "small",
+          "span",
+          "strong",
+          "sub",
+          "summary",
+          "sup",
+          "table",
+          "tbody",
+          "td",
+          "tfoot",
+          "th",
+          "thead",
+          "time",
+          "tr",
+          "tt",
+          "u",
+          "ul",
+          "var",
+          "wbr"
+        ],
+        "element_validate": [
+          [
+            "Drupal\\webform_image_select\\Plugin\\WebformElement\\WebformImageSelect",
+            "validateMultipleOptions"
+          ]
+        ],
+        "pre_render": [
+          [
+            "Drupal\\webform_image_select\\Element\\WebformImageSelect",
+            "preRenderSelect"
+          ]
+        ],
+        "after_build": [
+          [
+            "Drupal\\webform_image_select\\Plugin\\WebformElement\\WebformImageSelect",
+            "hiddenElementAfterBuild"
+          ]
+        ],
+        "_webform_access": true,
+        "_webform_states": [],
+        "input": true,
+        "sort_options": false,
+        "sort_start": 0,
+        "process": [
+          [
+            "Drupal\\webform_image_select\\Element\\WebformImageSelect",
+            "processSelect"
+          ],
+          [
+            "Drupal\\webform_image_select\\Element\\WebformImageSelect",
+            "processAjaxForm"
+          ]
+        ],
+        "theme": "select",
+        "theme_wrappers": [
+          "form_element"
+        ],
+        "images_randomize": false,
+        "show_label": false,
+        "filter": false,
+        "filter__placeholder": null,
+        "filter__singular": null,
+        "filter__plural": null,
+        "filter__no_result": null,
+        "value_callback": [
+          "Drupal\\webform_image_select\\Element\\WebformImageSelect",
+          "valueCallback"
+        ],
+        "defaults_loaded": true,
+        "tree": false,
+        "parents": [
+          "mp_select_ec_challenges_faced"
+        ],
+        "array_parents": [
+          "elements",
+          "mp_select_ec_challenges_faced"
+        ],
+        "weight": 0.004,
+        "processed": true,
+        "required": false,
+        "attributes": {
+          "data-drupal-selector": "edit-mp-select-ec-challenges-faced",
+          "data-images": "[{\"text\":\"Funding\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon16.svg\"},{\"text\":\"Regulatory Barriers\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon15.svg\"},{\"text\":\"Technical Expertise\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon14.svg\"},{\"text\":\"Member Engagement\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon13.svg\"},{\"text\":\"Infrastructure\",\"src\":\"\\/sites\\/default\\/files\\/images\\/icons\\/icon12.svg\"}]",
+          "class": [
+            "webform-image-select",
+            "js-webform-image-select"
+          ],
+          "multiple": "multiple",
+          "name": "mp_select_ec_challenges_faced[]"
+        },
+        "title_display": "before",
+        "description_display": "after",
+        "errors": null,
+        "id": "edit-mp-select-ec-challenges-faced",
+        "name": "mp_select_ec_challenges_faced",
+        "value": "",
+        "ajax_processed": false,
+        "sorted": true,
+        "after_build_done": true
+      }
+    ],
+    "cards": [
+      {
+        "images": [
+          {
+            "text": "Does your community have a few active members with no formal structure?",
+            "src": "/sites/default/files/images/recomme_icons/Component%2016%20(1).png"
+          },
+          {
+            "text": "Is your community reliant on personal contributions for financial resources?",
+            "src": "/sites/default/files/images/recomme_icons/Component%2015%20(1).png"
+          },
+          {
+            "text": "Is your EC focused on lowering energy costs?",
+            "src": "/sites/default/files/images/recomme_icons/Component%203%20(1).png"
+          },
+          {
+            "text": "Do you primarily communicate with your EC though in-person meetings?",
+            "src": "/sites/default/files/images/recomme_icons/image%20472.png"
+          },
+          {
+            "text": "Does your community have a strong organizational structure with specialized committees?",
+            "src": "/sites/default/files/images/recomme_icons/Component%2011%20(1).png"
+          },
+          {
+            "text": "Is your community considered a model for other due to high member engagement?",
+            "src": "/sites/default/files/images/recomme_icons/image%20333%20(1).png"
+          },
+          {
+            "text": "Do your members participate in monthly meetings?",
+            "src": "/sites/default/files/images/recomme_icons/Component%2013%20(1).png"
+          },
+          {
+            "text": "Does your EC produce more than 100 kW of energy?",
+            "src": "/sites/default/files/images/recomme_icons/image%20473.png"
+          }
+        ]
+      }
+    ],
+    "ranges": [
+      {
+        "title": "Can you see this person connecting with..?",
+        "ranges": [
+          {
+            "title": "An eco-consious architect designing net-zero energy buildings",
+            "min": 0,
+            "max": 5
+          },
+          {
+            "title": "A local official cautious about committing publics funds to new energy projects",
+            "min": 0,
+            "max": 5
+          },
+          {
+            "title": "An investment banker specializing in renewable energy projects",
+            "min": 0,
+            "max": 5
+          },
+          {
+            "title": "A community organizer mobilizing neighbours for a shared solar project",
+            "min": 0,
+            "max": 5
+          },
+          {
+            "title": "A tech-savvy homeowner experimenting with the latest smart energy management tools",
+            "min": 0,
+            "max": 5
+          }
+        ]
+      },
+      {
+        "title": "What matters more to this person?",
+        "ranges": [
+          {
+            "title": "Achieving energy idependence and self suffiency",
+            "min": 0,
+            "max": 5
+          },
+          {
+            "title": "Reducing operational costs through energy efficiency",
+            "min": 0,
+            "max": 5
+          },
+          {
+            "title": "Stengthening community bonds through collaborative energy projects",
+            "min": 0,
+            "max": 5
+          },
+          {
+            "title": "Reducing carbon emissions and combating climate change",
+            "min": 0,
+            "max": 100
+          }
+        ]
+      },
+      {
+        "title": "Does this person know how..?",
+        "ranges": [
+          {
+            "title": "How can they maximize the benefits from energy community initiatives?",
+            "min": 0,
+            "max": 5
+          },
+          {
+            "title": "Using energy communities as a platform for broader social and political change",
+            "min": 0,
+            "max": 5
+          },
+          {
+            "title": "Supporting the growth and scalability of innovative energy solutions?",
+            "min": 0,
+            "max": 5
+          }
+        ]
+      },
+      {
+        "title": "How much do you think this person would relate to?",
+        "ranges": [
+          {
+            "title": "A homeowner who's turned their house into a smart energy showcase",
+            "min": 0,
+            "max": 5
+          },
+          {
+            "title": "A home owner worried about the reliability of renewable energy sources",
+            "min": 0,
+            "max": 5
+          },
+          {
+            "title": "A factory owner implementing energy-saving measures to cut costs",
+            "min": 0,
+            "max": 5
+          }
+        ]
+      }
+    ],
+    "totalLength": 10,
+    "steps": [
+      {
+        "category": "select",
+        "count": 5
+      },
+      {
+        "category": "card",
+        "count": 8
+      },
+      {
+        "category": "range",
+        "count": 4
+      }
+    ]
+  }
+]

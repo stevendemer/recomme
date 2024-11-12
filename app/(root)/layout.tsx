@@ -66,12 +66,10 @@ export default function RootLayout({
         <Providers>
           <div className="grid min-h-screen place-items-center gradient-bg h-full backdrop-blur-lg">
             <div className="w-full h-full flex items-center justify-center overflow-hidden">
-              <div className="w-full max-w-[90vw] sm:max-w-[60vw] max-h-[90vh] h-full bg-white/30 text-neutral-600 flex flex-col items-center overflow-hidden rounded-3xl p-4 px-4 relative">
+              <div className="w-full max-w-[90vw] sm:max-w-[60vw] max-h-[90vh] h-full bg-white/30 text-neutral-600 flex flex-col items-center overflow-hidden rounded-3xl p-6 relative">
                 <div className="bg-white/70 w-full flex flex-col p-4 my-2 rounded-3xl shadow-lg h-full">
-                  <div className="flex flex-col items-center h-full w-full">
-                    <div className="flex-shrink-0 flex items-center justify-center w-full h-full relative">
-                      {children}
-                    </div>
+                  <div className="flex-grow flex items-center justify-center w-full h-full relative">
+                    {children}
                   </div>
                 </div>
               </div>

@@ -1,0 +1,208 @@
+"use client";
+import ProfilingCard from "@/components/cards/profiling-card";
+import RadioSelect from "@/components/forms/radio-select";
+import ImageSlider from "@/components/image-slider";
+import Spinner from "@/components/spinner";
+import Steps from "@/components/steps";
+import {useGetElements} from "@/hooks/use-get-elemenets";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import React, {useEffect, useMemo, useState} from "react";
+
+
+interface GroupProgress {
+    groupIndex: number;
+    questionIndex: number;
+    totalGroups: number;
+    totalQuestionsInGroup: number;
+}
+
+export default function Profiling() {
+    const [currentStep, setCurrentStep] = useState(0);
+    const [total, setTotal] = useState(0);
+
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const {replace} = useRouter();
+
+    const [hideButton, setHideButton] = useState(false);
+
+    // Track group progress for range type
+    const [groupProgress, setGroupProgress] = useState<GroupProgress>({
+        groupIndex: 0,
+        questionIndex: 0,
+        totalGroups: 0,
+        totalQuestionsInGroup: 0,
+    });
+
+    const {data, status, error} = useGetElements();
+
+    // Calculate steps based on current type
+    // const calculateSteps = useMemo(() => {
+    //     if (!data) return [];
+    //
+    //     const type = searchParams.get("type") ?? "select";
+    //
+    //     switch (type) {
+    //         case "select":
+    //             return data.selects.map((_, index) => ({
+    //                 category: "select",
+    //                 count: index + 1,
+    //             }));
+    //         case "card":
+    //             return data.cards[0].images.map((_: any, index: number) => ({
+    //                 category: "card",
+    //                 count: index + 1,
+    //             }));
+    //         case "range":
+    //             // Calculate total steps for the current group
+    //             const currentGroup = data.ranges[groupProgress.groupIndex];
+    //             return currentGroup?.items.map((_, index) => ({
+    //                 category: "range",
+    //                 count: index + 1,
+    //             })) || [];
+    //         default:
+    //             return [];
+    //     }
+    // }, [data, searchParams, groupProgress.groupIndex]);
+    //
+    useEffect(() => {
+        if (searchParams.get("type") === "range" && data?.ranges && searchParams.get('page')) {
+            setGroupProgress({
+                groupIndex: 0,
+                questionIndex: 0,
+                totalGroups: data.ranges.length,
+                totalQuestionsInGroup: data.ranges[Number(searchParams.get('page'))]?.items.length,
+            });
+        }
+    }, [searchParams, data]);
+
+
+    if (status === "pending") {
+        return (
+            <div className="h-screen w-full flex items-center justify-center relative z-30">
+                <Spinner size="xl"/>
+            </div>
+        );
+    }
+
+    if (status === "error") {
+        console.error(error);
+        return (
+            <div className="h-screen">
+                <div className="flex justify-center items-center">
+                    <p className="text-lg text-center font-body">
+                        Something went wrong ! Try again later
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
+
+    const handleNextStep = () => {
+        const type = searchParams.get("type") ?? "select";
+
+        switch (type) {
+            case "select":
+                if (currentStep + 1 < data.selects.length) {
+                    setCurrentStep(currentStep + 1);
+                } else {
+                    moveToNextType("card");
+                }
+                break;
+
+            case "card":
+                if (currentStep + 1 < data.cards[0].images.length) {
+                    setCurrentStep(currentStep + 1);
+                } else {
+                    moveToNextType("range");
+                }
+                break;
+
+            case "range":
+                handleRangeNavigation();
+                break;
+        }
+    };
+
+
+    const handleRangeNavigation = () => {
+        const {groupIndex, questionIndex, totalGroups, totalQuestionsInGroup} = groupProgress;
+
+        if (questionIndex + 1 < totalQuestionsInGroup) {
+            // Move to next question in current group
+            setGroupProgress(prev => ({
+                ...prev,
+                questionIndex: prev.questionIndex + 1
+            }));
+            setCurrentStep(questionIndex + 1);
+        } else if (groupIndex + 1 < totalGroups) {
+            // Move to next group
+            const nextGroupQuestions = data.ranges[groupIndex + 1]?.items.length || 0;
+            setGroupProgress({
+                groupIndex: groupIndex + 1,
+                questionIndex: 0,
+                totalGroups,
+                totalQuestionsInGroup: nextGroupQuestions
+            });
+            setCurrentStep(0);
+        } else {
+            // Finished all groups
+            moveToNextType("finish");
+        }
+    };
+
+
+    const moveToNextType = (nextType: string) => {
+        const params = new URLSearchParams(searchParams);
+        params.set("type", nextType);
+        replace(`${pathname}?${params.toString()}`);
+        setCurrentStep(0);
+    };
+
+    const renderStep = (data: any) => {
+        console.log(searchParams.get("type"));
+        switch (searchParams.get("type")) {
+            case "select":
+                return (
+                    <RadioSelect
+                        onVote={handleNextStep}
+                        data={data?.selects[currentStep]}
+                    />
+                );
+            case "card":
+                return (
+                    <ProfilingCard
+                        data={data?.cards[0].images[currentStep]}
+                        onVote={handleNextStep}
+                    />
+                );
+            case "range":
+                const currentGroup = data.ranges[currentStep];
+                console.log('All ranges are ', data.ranges);
+                return (
+                    <ImageSlider
+                        data={data.ranges}
+                        onVote={handleNextStep}
+                    />
+                );
+            default:
+                return (
+                    <div className="text-2xl text-center w-full">No type found !</div>
+                );
+        }
+    };
+
+    return (
+        <div className="w-full flex flex-col justify-between items-center h-full">
+            <Steps
+                totalGroups={searchParams.get("type") === "range" ? groupProgress.totalGroups : undefined}
+                currentGroup={searchParams.get("type") === "range" ? groupProgress.groupIndex : undefined}
+
+                steps={data.steps} currentStep={currentStep}/>
+            <div className="flex flex-col justify-around items-center space-y-4 w-full h-[calc(100%-60px)] font-body">
+                {renderStep(data)}
+            </div>
+        </div>
+    );
+}

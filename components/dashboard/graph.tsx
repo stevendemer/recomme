@@ -60,7 +60,7 @@ const chartConfig = {
 
 export default function Graph({ className }: { className?: string }) {
   return (
-    <Card className="rounded-sm h-full w-full p-2">
+    <Card className="rounded-sm h-full w-full p-2 bg-white/60">
       <CardContent className="m-auto h-full">
         <ChartContainer
           config={chartConfig}

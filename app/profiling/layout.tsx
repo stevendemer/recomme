@@ -72,8 +72,8 @@ export default function ProfilingLayout({ children }: PropsWithChildren) {
         <Providers>
           <div className="min-h-screen grid place-items-center gradient-bg backdrop-blur-lg overflow-hidden">
             <div className="w-full h-full flex items-center justify-center">
-              <div className="bg-white/30 h-full text-neutral-500 backdrop-blur-lg rounded-3xl w-full flex flex-col sm:pt-16 pt-12 pb-4 px-4 max-w-[90vw] sm:max-w-[60vw] max-h-[90vh]">
-                <div className="bg-white/70 w-full rounded-2xl shadow-lg flex flex-col p-2 h-full">
+              <div className="bg-white/30 h-full text-neutral-500 backdrop-blur-lg rounded-3xl w-full flex flex-col sm:pt-16 pt-12 sm:p-12 px-4 max-w-[90vw] sm:max-w-[60vw] max-h-[90vh]">
+                <div className="bg-white/70 w-full rounded-2xl shadow-lg flex flex-col  h-full">
                   <div className="flex items-center h-full justify-between overflow-hidden">
                     {children}
                   </div>

@@ -1,59 +1,157 @@
 "use client";
-import { Slider } from "@/components/ui/slider";
-import { cn } from "@/lib/utils";
+
+import React, {useState, useEffect} from "react";
+import {useSearchParams, usePathname, useRouter} from "next/navigation";
+import {useForm, Controller} from "react-hook-form";
+import {Slider} from "@/components/ui/slider";
 import Image from "next/image";
-import ChatBubble from "./chat-bubble";
-import { useState } from "react";
-import SubmitButton from "./submit-button";
+import SubmitButton from "@/components/submit-button";
+import blue from "@/public/assets/blue-globe.png";
+import lime from "@/public/assets/lime-globe.png";
+import cyan from "@/public/assets/cyan-globe.png";
+import orange from "@/public/assets/orange-globe.png";
+import {cn, paginate} from "@/lib/utils";
+
+type Inputs = {
+    value: number[];
+};
 
 export default function ImageSlider({
-  onChange,
-}: {
-  onChange: (v: number[]) => void;
+                                        onVote,
+                                        data,
+                                    }: {
+    onVote: () => void;
+    data: any;
 }) {
-  const [value, setValue] = useState([2]);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const {replace} = useRouter();
 
-  return (
-    <div className="flex justify-center items-center w-full h-full max-w-5xl">
-      <div className="w-full p-6 space-y-6 h-full">
-        <h1 className="text-2xl md:text-3xl font-bold text-center text-primary">
-          How relatable is this situation?
-        </h1>
+    const form = useForm<Inputs>({
+        mode: "onChange",
+    });
 
-        <div className="flex flex-col items-center gap-4 space-y-12 w-full h-full">
-          <div className="flex items-center gap-x-6">
-            <div className="w-full md:w-1/2 relative aspect-video">
-              <Image
-                src="/assets/hacker.png"
-                alt="A relatable situation"
+
+    useEffect(() => {
+        const params = new URLSearchParams(searchParams);
+        params.set('page', '0');
+        replace(`${pathname}?${params.toString()}`);
+    }, []);
+
+    const currentPage = Number(searchParams.get('page')) || 0 as number;
+    const currentGroup = data[currentPage];
+
+    const onSubmit = (data: any) => {
+        if (currentQuestionIndex < currentGroup?.items.length - 1) {
+            setCurrentQuestionIndex(prev => prev + 1);
+        } else {
+            const nextPage = currentPage + 1;
+            const params = new URLSearchParams(searchParams);
+            params.set('page', nextPage.toString());
+            replace(`${pathname}?${params.toString()}`);
+            setCurrentQuestionIndex(0);
+        }
+        onVote();
+    };
+
+    const getImage = () => {
+        // Create a mapping of images
+        const images = {
+            0: blue,
+            1: orange,
+            2: lime,
+            3: cyan
+        } as any;
+
+        const selectedImage = images[currentPage];
+
+        if (!selectedImage) {
+            return (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-2xl">
+                    <span className="text-lg font-bold text-gray-500">No image</span>
+                </div>
+            );
+        }
+
+        return (
+            <Image
+                src={selectedImage}
+                alt={`Question ${currentQuestionIndex} image`}
                 fill
-                className="object-cover rounded-2xl"
-              />
-            </div>
-            <div className="w-full md:w-1/2 text-foreground space-y-4">
-              <p className="md:text-xl text-lg font-normal font-rubik tracking-tight">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Suscipit, explicabo molestias ipsa magni
-              </p>
-            </div>
-          </div>
-          <div className="w-full bg-white rounded-full p-4">
-            <Slider
-              id="relatability-slider"
-              min={1}
-              max={5}
-              step={1}
-              value={value}
-              onValueChange={setValue}
-              className="w-full "
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-contain object-center rounded-2xl"
+                quality={75}
             />
-            <div className="flex justify-between text-sm text-muted-foreground p-2 font-rubik">
-              <span>Not relatable at all</span>
-              <span>Extremely relatable</span>
-            </div>
-          </div>
+        );
+    };
+
+
+    if (!currentGroup) return null;
+
+    return (
+        <div className="flex justify-center items-center w-full h-full max-w-5xl">
+            <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="grid place-items-center gap-8 w-full h-full p-12"
+            >
+                <h1 className="text-2xl md:text-3xl font-bold text-center text-[#2A898F] font-ram">
+                    {currentGroup.title}
+                </h1>
+
+                {currentGroup.items.length > 0 ? (
+                    <div className="flex flex-col items-stretch justify-evenly gap-4 space-y-12 w-full h-full">
+                        <div className="flex items-center gap-x-6 flex-col sm:flex-row gap-8">
+                            <div className="w-full md:w-1/2 h-auto relative aspect-video">
+                                {getImage()}
+                            </div>
+                            <div className="w-full md:w-1/2 text-foreground space-y-4">
+                                <p className="md:text-3xl text-xl font-light font-mulish">
+                                    {currentGroup.items[currentQuestionIndex]?.title}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="w-full bg-white rounded-[32rem] p-4 sm:p-6">
+                            <Controller
+                                name={"value"}
+                                control={form.control}
+                                rules={{required: true}}
+                                render={({field}) => {
+                                    return (
+                                        <>
+                                            <Slider
+                                                id="relatability-slider"
+                                                min={currentGroup.items[currentQuestionIndex]?.min || 0}
+                                                max={currentGroup.items[currentQuestionIndex]?.max || 5}
+                                                step={1}
+                                                value={field.value}
+                                                onValueChange={(value) => {
+                                                    console.log(value);
+                                                    field.onChange(value);
+                                                }}
+                                                className={cn("w-full transition-colors duration-200 rounded-xl bg-[#D4D9DF]")}
+                                            />
+                                        </>
+                                    );
+                                }}
+                            />
+                            <div
+                                className="flex justify-between text-sm  sm:text-lg text-muted-foreground p-2 font-rubik">
+                                <span>Very Unlikely</span>
+                                <span>Very Likely</span>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="text-2xl text-center w-full">No ranges found.</div>
+                )}
+                <SubmitButton type="submit">
+                    {data.items && currentQuestionIndex === data?.items.length - 1
+                        ? "Finish"
+                        : "Continue"}
+                </SubmitButton>
+            </form>
         </div>
-      </div>
-    </div>
-  );
+    );
 }

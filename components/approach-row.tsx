@@ -16,7 +16,7 @@ export default function ApproachRow({
   answer: boolean | null;
 }) {
   return (
-    <div className="flex items-center rounded-sm justify-between w-full bg-white font-inter p-2">
+    <div className="flex items-center rounded-sm justify-between w-full bg-white font-inter p-4 shadow-lg">
       <div className="flex flex-col items-center p-2 gap-y-2">
         <h2 className="font-semibold text-xl sm:text-2xl text-black tracking-wide">
           {label}
@@ -35,7 +35,7 @@ export default function ApproachRow({
             answer ? "bg-[#65D9BD] text-white" : ""
           )}
         >
-          {answer ? <IconHeart size={32} /> : <IconHeartFilled size={32} />}
+          {answer ? <IconHeart size={24} /> : <IconHeartFilled size={24} />}
         </Button>
         <Button
           className={cn(
@@ -46,7 +46,7 @@ export default function ApproachRow({
           size="icon"
           onClick={() => onAnswer(false)}
         >
-          <IconX size={32} />
+          <IconX size={24} />
         </Button>
       </div>
     </div>

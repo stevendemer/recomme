@@ -27,9 +27,8 @@ import faq from "@/public/assets/faq.svg";
 export default function DashboardSidebar() {
   return (
     <TooltipProvider>
-      {/* <aside className="transition-transform rounded-sm bg-white/30 p-6 sm:w-96 h-full flex flex-col flex-shrink-0 font-mulish"> */}
-      <aside className="transition-transform rounded-sm bg-white/30 p-6 sm:w-96 h-full flex flex-col font-mulish flex-shrink-0">
-        <div className="bg-white shadow-xl text-black sm:w-80 rounded-[50px] mx-auto w-full flex flex-col h-full">
+      <aside className="transition-transform rounded-sm bg-white/30 p-4 sm:w-96 flex flex-col font-mulish flex-grow">
+        <div className="bg-white/60 shadow-xl text-black sm:w-80 rounded-[50px] mx-auto w-full flex flex-col h-full">
           <div className="flex flex-col h-full p-6">
             <div className="relative">
               <Image

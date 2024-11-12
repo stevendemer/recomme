@@ -8,8 +8,8 @@ import Link from "next/link";
 
 export default function ConvinceJoinPage() {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full max-w-3xl gap-8 relative flex-grow">
-      <div className="flex flex-col items-center gap-4 max-h-[20rem] h-full w-full">
+    <div className="flex flex-col items-center justify-center w-full h-full max-w-3xl gap-4 relative flex-shrink overflow-hidden">
+      <div className="flex flex-col items-center gap-4 max-h-[17rem] h-full w-full">
         <div className="relative w-full lg:max-w-lg mx-auto h-full">
           <Image
             className="object-contain object-center"
@@ -29,7 +29,7 @@ export default function ConvinceJoinPage() {
         <Image
           className="object-contain object-center transform scale-x-[-1]"
           alt=""
-          width={30}
+          width={50}
           height={20}
           src={leaf}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Adjust image size for responsive
@@ -38,9 +38,9 @@ export default function ConvinceJoinPage() {
           Environmental Tech Enthusiast
         </h2>
         <Image
-          className="object-contain  object-center"
+          className="object-cover object-center"
           alt=""
-          width={30}
+          width={50}
           height={20}
           src={leaf}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Adjust image size for responsive

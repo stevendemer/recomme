@@ -9,8 +9,8 @@ export default function Dashboard() {
   return (
     <div className="flex flex-col h-full space-y-2">
       {/* action cards */}
-      <div className="bg-white/20 backdrop-blur-lg text-black rounded-sm w-full items-center flex  p-4">
-        <div className="flex flex-col sm:flex-row gap-x-6 rounded-sm items-center w-full flex-shrink">
+      <div className="bg-white/20 backdrop-blur-lg text-black rounded-sm w-full items-center flex p-4">
+        <div className="flex flex-col sm:flex-row gap-x-6 rounded-sm items-center w-full flex-shrink overflow-x-auto">
           <ActionCards
             title="Convince someone to join"
             image={"/assets/user-arrow.svg"}
@@ -71,7 +71,7 @@ export default function Dashboard() {
           <Graph />
         </div>
         <div className="bg-white/30 p-4 rounded-sm  flex items-center justify-center overflow-hidden">
-          <div className="bg-white/80 rounded-sm flex flex-col overflow-hidden h-full w-full">
+          <div className="bg-white/60 rounded-sm flex flex-col overflow-hidden h-full w-full">
             <h1 className="text-slate-900 font-bold text-xl sm:text-2xl pt-8 mb-4 ml-8 text-start">
               Recommendation
             </h1>
@@ -85,7 +85,7 @@ export default function Dashboard() {
                     Lorem ipsum dolor sit amet Lorem LoremLoremLoremLorem Lorem
                   </p>
                 </div>
-                <Button className="py-6 px-4 w-44  font-bold">
+                <Button className="py-6 px-4 w-36 font-bold">
                   Acknowledge
                 </Button>
               </RecommendationCard>
@@ -99,7 +99,7 @@ export default function Dashboard() {
                   </p>
                 </div>
 
-                <Button className="py-6 px-4 w-44 font-bold">Appreciate</Button>
+                <Button className="py-6 px-4 w-36 font-bold">Appreciate</Button>
               </RecommendationCard>
             </div>
           </div>

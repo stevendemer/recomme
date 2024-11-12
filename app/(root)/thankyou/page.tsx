@@ -11,7 +11,7 @@ export default function ThankYou() {
       <div className="flex flex-col items-center justify-around relative">
         <div className="flex items-center justify-center relative flex-grow w-full">
           <Image src={bigCloud} alt="cloud background" />
-          <div className="absolute z-50 bg-white/60 backdrop-blur-lg p-6 rounded-3xl flex flex-col items-center space-y-4 sm:space-y-0 sm:flex-row">
+          <div className="absolute z-50 bg-white/50 backdrop-blur-lg p-8 rounded-3xl flex flex-col items-center space-y-4 sm:space-y-0 sm:flex-row">
             <div className="flex gap-x-4 items-start justify-center w-full">
               <Image priority src={flower} alt="flower" className="px-2" />
               {/* <p className="text-black text-lg sm:text-xl font-rubik leading-tight text-center sm:text-left"> */}
