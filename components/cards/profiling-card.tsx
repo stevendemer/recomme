@@ -180,10 +180,7 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
                     >
                         <div className="pointer-events-none aspect-square">
                             <Image
-                                loading="eager"
-                                quality={75}
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                priority
                                 fill
                                 alt={data.text ?? "alt"}
                                 style={{
@@ -191,7 +188,7 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
                                     gridColumn: 1,
                                 }}
                                 className="object-cover object-center rounded-sm"
-                                src={process.env.NEXT_PUBLIC_API_URL + data.src}
+                                src={`${process.env.NEXT_PUBLIC_API_URL}${data.src}`}
                             />
                         </div>
                     </motion.div>
