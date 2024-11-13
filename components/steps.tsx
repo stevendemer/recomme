@@ -21,12 +21,6 @@ export default function Steps({
     const currentPage = Number(searchParams.get("page") || 0);
 
     const getRangeStepsCount = () => {
-        // const rangeStep = steps.find(s => s.category === 'range');
-        // if (rangeStep) {
-        //     const itemsPerGroup = rangeStep.count / (totalGroups || 1);
-        //     console.log('items per group are ', itemsPerGroup)
-        //     return Math.ceil(itemsPerGroup);
-        // }
         console.log('current group', currentGroup)
         if (currentGroup) {
             return currentGroup.items.length;
@@ -35,7 +29,6 @@ export default function Steps({
 
     const getStepsToShow = () => {
         if (type === "range") {
-            // For range type, show progress within current group
             return getRangeStepsCount();
         } else {
             // For other types, use the category count
@@ -48,28 +41,6 @@ export default function Steps({
 
     return (
         <div className="flex flex-col gap-4 justify-center p-4 mb-3 fixed -top-2 left-0 right-0">
-            {/* Show group progress if in range mode */}
-            {type === "range" && totalGroups && totalGroups > 1 && (
-                <div className="flex justify-center">
-                    <div className="flex items-center gap-2">
-                        {Array.from({length: totalGroups}).map((_, index) => (
-                            <div
-                                key={`group-${index}`}
-                                className={cn(
-                                    "h-2 w-8 rounded-full transition-colors duration-200",
-                                    index === currentPage
-                                        ? "bg-[#2A898F]"
-                                        : index < currentPage
-                                            ? "bg-[#65D9BD]"
-                                            : "bg-gray-300"
-                                )}
-                            />
-                        ))}
-                    </div>
-                </div>
-            )}
-
-            {/* Question progress */}
             <div className="flex justify-center">
                 <div className="flex items-center mt-2">
                     {Array.from({length: stepsCount}).map((_, index) => {

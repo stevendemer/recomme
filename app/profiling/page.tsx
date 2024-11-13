@@ -6,7 +6,7 @@ import Spinner from "@/components/spinner";
 import Steps from "@/components/steps";
 import {useGetElements} from "@/hooks/use-get-elemenets";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useCallback, useEffect, useMemo, useState} from "react";
 
 
 interface GroupProgress {
@@ -18,13 +18,13 @@ interface GroupProgress {
 
 export default function Profiling() {
     const [currentStep, setCurrentStep] = useState(0);
-    const [total, setTotal] = useState(0);
 
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const {replace, push} = useRouter();
 
-    const [hideButton, setHideButton] = useState(false);
+    const currentType = useMemo(() => searchParams.get("type") ?? "select", [searchParams]);
+
 
     // Track group progress for range type
     const [groupProgress, setGroupProgress] = useState<GroupProgress>({
@@ -36,37 +36,8 @@ export default function Profiling() {
 
     const {data, status, error} = useGetElements();
 
-    // Calculate steps based on current type
-    // const calculateSteps = useMemo(() => {
-    //     if (!data) return [];
-    //
-    //     const type = searchParams.get("type") ?? "select";
-    //
-    //     switch (type) {
-    //         case "select":
-    //             return data.selects.map((_, index) => ({
-    //                 category: "select",
-    //                 count: index + 1,
-    //             }));
-    //         case "card":
-    //             return data.cards[0].images.map((_: any, index: number) => ({
-    //                 category: "card",
-    //                 count: index + 1,
-    //             }));
-    //         case "range":
-    //             // Calculate total steps for the current group
-    //             const currentGroup = data.ranges[groupProgress.groupIndex];
-    //             return currentGroup?.items.map((_, index) => ({
-    //                 category: "range",
-    //                 count: index + 1,
-    //             })) || [];
-    //         default:
-    //             return [];
-    //     }
-    // }, [data, searchParams, groupProgress.groupIndex]);
-    //
     useEffect(() => {
-        if (searchParams.get("type") === "range" && data?.ranges && searchParams.get('page')) {
+        if (currentType === "range" && data?.ranges) {
             setGroupProgress({
                 groupIndex: 0,
                 questionIndex: 0,
@@ -74,7 +45,7 @@ export default function Profiling() {
                 totalQuestionsInGroup: data.ranges[Number(searchParams.get('page'))]?.items.length,
             });
         }
-    }, [searchParams, data]);
+    }, [searchParams, data, currentType]);
 
 
     useEffect(() => {
@@ -108,9 +79,7 @@ export default function Profiling() {
 
 
     const handleNextStep = () => {
-        const type = searchParams.get("type") ?? "select";
-
-        switch (type) {
+        switch (currentType) {
             case "select":
                 if (currentStep + 1 < data.selects.length) {
                     setCurrentStep(currentStep + 1);
@@ -155,20 +124,19 @@ export default function Profiling() {
             });
             setCurrentStep(0);
         }
-        // Finished all groups
     };
 
 
     const moveToNextType = (nextType: string) => {
         const params = new URLSearchParams(searchParams);
         params.set("type", nextType);
-        replace(`${pathname}?${params.toString()}`);
+        replace(`${pathname}?${params.toString()}`, {scroll: false});
+
         setCurrentStep(0);
     };
 
     const renderStep = (data: any) => {
-        console.log(searchParams.get("type"));
-        switch (searchParams.get("type")) {
+        switch (currentType) {
             case "select":
                 return (
                     <RadioSelect
@@ -184,8 +152,6 @@ export default function Profiling() {
                     />
                 );
             case "range":
-                const currentGroup = data.ranges[currentStep];
-                console.log('All ranges are ', data.ranges);
                 return (
                     <ImageSlider
                         data={data.ranges}

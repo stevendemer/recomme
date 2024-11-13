@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useMemo} from "react";
 import {useSearchParams, usePathname, useRouter} from "next/navigation";
 import {useForm, Controller} from "react-hook-form";
 import {Slider} from "@/components/ui/slider";
@@ -24,14 +24,16 @@ export default function ImageSlider({
     data: any;
 }) {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [defaultValue, setDefaultValue] = useState(1);
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const {replace, push} = useRouter();
 
+    const page = useMemo(() => searchParams.get('page'), [searchParams])
+
     const form = useForm<Inputs>({
         mode: "onChange",
     });
-
 
     useEffect(() => {
         if (!searchParams.get('page')) {
@@ -40,6 +42,15 @@ export default function ImageSlider({
             replace(`${pathname}?${params.toString()}`);
         }
     }, []);
+
+    useEffect(() => {
+        const currentQuestion = currentGroup?.items[currentQuestionIndex];
+        if (currentQuestion) {
+            // const defaultValue = Math.floor((currentQuestion.min + currentQuestion.max));
+            form.reset({value: [1]})
+        }
+    }, [currentQuestionIndex, page]);
+
 
     const currentPage = Number(searchParams.get('page')) || 0 as number;
     const currentGroup = data[currentPage];
@@ -142,6 +153,7 @@ export default function ImageSlider({
                                                 min={currentGroup.items[currentQuestionIndex]?.min || 0}
                                                 max={currentGroup.items[currentQuestionIndex]?.max || 5}
                                                 step={1}
+                                                defaultValue={[defaultValue]}
                                                 value={field.value}
                                                 onValueChange={(value) => {
                                                     console.log(value);
@@ -164,9 +176,6 @@ export default function ImageSlider({
                     <div className="text-2xl text-center w-full">No ranges found.</div>
                 )}
                 <SubmitButton type="submit">
-                    {/*{data.items && currentQuestionIndex === data?.items.length - 1*/}
-                    {/*    ? "Finish"*/}
-                    {/*    : "Continue"}*/}
                     {isLastQuestion() ? "Finish" : "Continue"}
                 </SubmitButton>
             </form>
