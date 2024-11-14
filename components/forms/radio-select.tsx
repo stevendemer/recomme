@@ -10,6 +10,7 @@ import {useEffect, useState} from "react";
 import Image from "next/image";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import house from '@/public/assets/house.svg'
+import {Card, CardContent, CardFooter} from "@/components/ui/card";
 
 interface IProp {
     step: {
@@ -87,9 +88,9 @@ export default function RadioSelect({data, onVote, ...props}: any) {
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="flex flex-col items-center justify-evenly h-full w-full flex-grow mx-auto container transition-colors duration-200 max-w-xl sm:max-w-7xl"
+                className="flex flex-col items-center justify-around h-full w-full flex-grow mx-auto container transition-colors duration-200 max-w-xl sm:max-w-7xl gap-8"
             >
-                <h2 className="sm:text-3xl text-xl text-center text-black font-sans">
+                <h2 className="sm:text-2xl text-xl text-center text-black font-sans">
                     {data?.title}
                 </h2>
                 <Controller
@@ -103,7 +104,7 @@ export default function RadioSelect({data, onVote, ...props}: any) {
                                 console.log(value);
                             }}
                             className={cn(
-                                "gap-4 transition-colors duration-200 text-black grid w-full h-auto lg:max-w-5xl grid-cols-2 ", data?.options.length > 4 ? "sm:grid-cols-3" : "sm:grid-cols-2",
+                                "gap-4 transition-colors duration-200 text-black grid w-full h-full lg:max-w-5xl grid-cols-2 ", data?.options.length > 4 ? "sm:grid-cols-3" : "sm:grid-cols-2",
                             )}
                         >
                             {data?.images?.length > 0 ? (
@@ -112,28 +113,30 @@ export default function RadioSelect({data, onVote, ...props}: any) {
                                     const baseUrl = process.env.NEXT_PUBLIC_API_URL + value.src;
                                     const isSelected = selectedItems.includes(value.text);
 
-                                    console.log(baseUrl);
+                                    console.log('image url is ', baseUrl);
 
                                     return (
-                                        <div
+                                        <Card
                                             onClick={() => handleSelection(value.text, field.onChange)}
                                             key={index}
                                             className={cn(
-                                                'flex flex-col items-center justify-center h-full  rounded-sm transition-colors duration-200 shadow-lg',
+                                                'flex flex-col items-center justify-center h-full w-full rounded-sm transition-colors duration-200 shadow-lg',
                                                 isSelected ? 'bg-[#65D9BD] text-white' : 'bg-white text-black'
                                             )}
                                         >
-                                            <div
-                                                className="aspect-video rounded-sm h-full w-full mx-auto pointer-events-none relative">
+                                            <CardContent
+                                                className="rounded-sm pointer-events-none relative h-full">
                                                 <Image
-                                                    src={house}
+                                                    src={baseUrl}
                                                     alt={value.text ?? 'alt'}
                                                     fill
-                                                    className='object-contain object-center'
+                                                    className='object-contain object-center w-full h-full'
                                                 />
-                                            </div>
-                                            <p className='text-center whitespace-normal font-bold font-rubik sm:text-2xl text-lg p-2'>{value.text}</p>
-                                        </div>
+                                            </CardContent>
+                                            <CardFooter>
+                                                <p className='text-center whitespace-normal font-bold font-rubik sm:text-xl text-lg p-2'>{value.text}</p>
+                                            </CardFooter>
+                                        </Card>
                                     );
                                 })
                             ) : (

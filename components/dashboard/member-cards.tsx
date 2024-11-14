@@ -1,51 +1,51 @@
-import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
-import { Button } from "../ui/button";
+import {cn} from "@/lib/utils";
+import {ReactNode} from "react";
+import {Button} from "../ui/button";
 import Image from "next/image";
 
 export default function MemberCards({
-  text,
-  icon,
-  className,
-  members,
-}: {
-  text: string;
-  icon: any;
-  className: string;
-  members: number;
+                                        text,
+                                        icon,
+                                        className,
+                                        members,
+                                    }: {
+    text: string;
+    icon: any;
+    className: string;
+    members: number;
 }) {
-  return (
-    <div className="flex items-center justify-center sm:w-52 p-4 m-2 max-w-60 h-auto text-slate-600 bg-white rounded-lg font-bold font-inter">
-      <div className="flex flex-col items-center rounded-sm gap-2">
-        <div className={cn("bg-white")}>
-          <div
-            className={cn(
-              "max-w-full flex justify-center mt-2 rounded-sm",
-              className
-            )}
-          >
-            <Image
-              width={48}
-              height={48}
-              className="object-cover object-center p-2"
-              alt="avatar icon"
-              src={icon}
-            />
-          </div>
-        </div>
+    return (
+        <div className="bg-white rounded-sm p-4 w-full">
+            <div className="flex flex-col items-center gap-3">
+                {/* Icon Container */}
+                <div className={cn(
+                    "w-12 h-12 rounded-lg flex items-center justify-center",
+                    className
+                )}>
+                    <Image
+                        width={32}
+                        height={32}
+                        className="object-contain"
+                        alt="avatar icon"
+                        src={icon}
+                    />
+                </div>
 
-        <h1 className="sm:text-xl text-md font-bold font-rubik truncate">
-          {text}
-        </h1>
-        <Button
-          className={cn(
-            "rounded-sm text-white font-rubik font-bold w-20 sm:w-28 py-1 hover:opacity-80",
-            className
-          )}
-        >
-          {members}
-        </Button>
-      </div>
-    </div>
-  );
+                {/* Text */}
+                <h1 className="text-sm sm:text-base font-bold font-rubik text-slate-600 text-center">
+                    {text}
+                </h1>
+
+                {/* Members Button */}
+                <Button
+                    className={cn(
+                        "w-full min-w-[80px] max-w-[120px] py-1.5 text-white font-rubik font-bold hover:opacity-90 transition-opacity",
+                        className
+                    )}
+                >
+                    {members}
+                </Button>
+            </div>
+        </div>
+    );
 }

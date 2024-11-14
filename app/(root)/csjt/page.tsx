@@ -11,8 +11,8 @@ import Link from "next/link";
 export default function ConvinceJoinPage() {
     return (
         <div
-            className="flex flex-col items-center justify-center w-full h-full max-w-3xl gap-4 relative flex-shrink overflow-hidden p-4">
-            <div className="flex flex-col items-center gap-4 max-h-[17rem] h-full w-full">
+            className="flex flex-col items-center justify-around w-full h-full max-w-5xl relative flex-1">
+            <div className="flex flex-col items-center gap-4 h-full w-full">
                 <div className="relative w-full lg:max-w-lg mx-auto h-full">
                     <Image
                         className="object-contain object-center"
@@ -37,7 +37,7 @@ export default function ConvinceJoinPage() {
                     src={leaf}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Adjust image size for responsive
                 />
-                <h2 className="font-semibold font-sans text-3xl text-black tracking-wide">
+                <h2 className="font-semibold font-sans text-xl text-black tracking-wide">
                     Environmental Tech Enthusiast
                 </h2>
                 <Image
@@ -49,7 +49,7 @@ export default function ConvinceJoinPage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Adjust image size for responsive
                 />
             </div>
-            <div className="flex items-center w-full p-6 flex-shrink-0">
+            <div className="flex items-center w-full p-6 flex-grow">
                 <div className="grid gap-4 md:grid-cols-3 w-full">
                     {/* 3 cards go here */}
                     <CSJTCard src={lamp}>

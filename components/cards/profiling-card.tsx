@@ -111,89 +111,77 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
         }
     };
 
-    return (
-        <div
-            className={cn(
-                "flex flex-col items-center justify-center h-full w-full gap-y-6 select-none"
-            )}
-        >
-            <div
-                className={cn(
-                    "flex-col justify-center items-center w-full h-full gap-6 flex"
-                )}
-                key={data.text}
-            >
-                <h2 className="sm:text-3xl text-xl text-center whitespace-normal p-6 font-sans text-black">
-                    {data.text}
-                </h2>
-                <div className="relative max-w-[20rem] sm:max-w-[24rem] h-[32rem] aspect-[3/4] w-full grid">
-                    {/* Action buttons container */}
-                    <div className="absolute inset-y-0 -left-16 sm:-left-24 right-auto flex items-center z-10">
-                        <button
-                            onClick={() => handleSwipe("left")}
-                            className="p-3 sm:p-4 rounded-full bg-white shadow-lg hover:bg-red-50 transition-colors duration-200 group"
-                        >
-                            <X className="w-6 h-6 sm:w-8 sm:h-8 text-red-500 group-hover:scale-110 transition-transform duration-200"/>
-                        </button>
-                    </div>
 
-                    <div className="absolute inset-y-0 -right-16 sm:-right-24 left-auto flex items-center z-10">
-                        <button
-                            onClick={() => handleSwipe("right")}
-                            className="p-3 sm:p-4 rounded-full bg-white shadow-lg hover:bg-green-50 transition-colors duration-200 group"
-                        >
-                            <Heart
-                                className="w-6 h-6 sm:w-8 sm:h-8 text-green-500 group-hover:scale-110 transition-transform duration-200"/>
-                        </button>
-                    </div>
-                    <motion.div
-                        className="absolute inset-0 touch-none"
-                        dragElastic={0.9}
-                        ref={cardElem}
-                        drag="x"
-                        dragSnapToOrigin
-                        dragMomentum={false}
-                        animate={controls}
-                        dragConstraints={{
-                            left: 0,
-                            right: 0,
-                        }}
-                        whileTap={{
-                            scale: 0.8,
-                            cursor: "grabbing",
-                        }}
-                        transition={{
-                            duration: 0.2,
-                            stiffness: 300,
-                            damping: 20,
-                            type: "spring",
-                        }}
-                        style={{
-                            x,
-                            opacity,
-                            rotate,
-                        }}
-                        whileDrag={{
-                            cursor: "drag",
-                        }}
-                        onDragEnd={handleDragEnd}
+    return (
+        <div className="flex flex-col items-center justify-around w-full h-full">
+            {/* Text Section */}
+            <h2 className="text-lg sm:text-xl text-center font-sans text-black px-6 mb-6">
+                {data.text}
+            </h2>
+
+            {/* Main Card Container */}
+            <div className="relative w-full max-w-3xl px-16 sm:px-20">
+                {/* Action Buttons */}
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 z-20">
+                    <button
+                        onClick={() => handleSwipe("left")}
+                        className="p-2 sm:p-3 rounded-full bg-white shadow-lg hover:bg-red-50 transition-colors duration-200 group"
                     >
-                        <div className="pointer-events-none aspect-square">
-                            <Image
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                fill
-                                alt={data.text ?? "alt"}
-                                style={{
-                                    gridRow: 1,
-                                    gridColumn: 1,
-                                }}
-                                className="object-cover object-center rounded-sm"
-                                src={`${process.env.NEXT_PUBLIC_API_URL}${data.src}`}
-                            />
-                        </div>
-                    </motion.div>
+                        <X className="w-5 h-5 sm:w-6 sm:h-6 text-red-500 group-hover:scale-110 transition-transform duration-200"/>
+                    </button>
                 </div>
+
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 z-20">
+                    <button
+                        onClick={() => handleSwipe("right")}
+                        className="p-2 sm:p-3 rounded-full bg-white shadow-lg hover:bg-green-50 transition-colors duration-200 group"
+                    >
+                        <Heart
+                            className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 group-hover:scale-110 transition-transform duration-200"/>
+                    </button>
+                </div>
+
+                {/* Card Content */}
+                <motion.div
+                    className="w-full touch-none grid place-items-center"
+                    dragElastic={0.9}
+                    ref={cardElem}
+                    drag="x"
+                    dragSnapToOrigin
+                    dragMomentum={false}
+                    animate={controls}
+                    dragConstraints={{
+                        left: 0,
+                        right: 0,
+                    }}
+                    whileTap={{
+                        scale: 0.95,
+                        cursor: "grabbing",
+                    }}
+                    style={{
+                        x,
+                        opacity,
+                        rotate,
+                    }}
+                    onDragEnd={handleDragEnd}
+                >
+                    <div className="w-full aspect-video relative rounded-sm overflow-hidden border-2 border-gray-200">
+                        <Image
+                            fill
+                            alt={data.text ?? "alt"}
+                            className="object-contain"
+                            src={`${process.env.NEXT_PUBLIC_API_URL}${data.src}`}
+                            priority
+                            sizes="(max-width: 768px) 100vw, 600px"
+                            style={{
+                                gridColumn: 1,
+                                gridRow: 1
+                            }}
+                        />
+                    </div>
+                </motion.div>
             </div>
         </div>
     );
+
 }

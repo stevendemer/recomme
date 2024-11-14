@@ -10,8 +10,8 @@ export default function CSJTCard({
     src: StaticImageData;
 }) {
     return (
-        <Card className="max-w-3xl w-full h-full shadow-lg">
-            <CardContent className="flex flex-col items-center gap-8 p-6">
+        <Card className="max-w-4xl w-full h-full rounded-sm shadow-lg">
+            <CardContent className="flex flex-col items-center gap-6 p-6">
                 <div className="relative rounded w-full h-full aspect-video">
                     <Image
                         className="rounded object-cover w-full h-full object-center"
@@ -19,8 +19,7 @@ export default function CSJTCard({
                         alt=""
                     />
                 </div>
-
-                <p className="font-mulish text-black whitespace-normal max-w-lg truncate w-full overflow-hidden tracking-wide">
+                <p className="font-mulish text-black whitespace-normal max-w-lg truncate w-full  text-ellipsis">
                     {children}
                 </p>
             </CardContent>

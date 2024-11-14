@@ -58,28 +58,30 @@ export default function ApproachPage() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-around relative flex-grow h-full space-y-4 w-full p-2">
-            <h2 className="text-2xl sm:text-4xl font-sans text-black tracking-wide">
+        <div className="flex flex-col items-center justify-around relative flex-grow h-full w-full gap-y-4">
+            <h2 className="text-2xl font-sans text-black tracking-wide">
                 Recommended Approach
             </h2>
 
-            <div className="flex flex-col items-center justify-center container mx-auto space-y-2">
+            <div className="flex flex-col items-center justify-center space-y-3">
                 {options.map((value, index) => (
                     <ApproachRow key={value.title} label={value.title} sub={value.body}
                                  onAnswer={(answer) => handleAnswer(index, answer)} answer={answers[index]}/>
                 ))}
             </div>
-            <Link href="/dashboard" passHref>
-                <SubmitButton
-                    disabled={!isValid}
-                    className="rounded-full sm:px-12 sm:py-8 px-6 py-4 max-w-lg text-sm sm:text-md  disabled:bg-gray-600 disabled:text-gray-200"
-                    onClick={() => {
-                        console.log("all answers are ", answers);
-                    }}
-                >
-                    Continue
-                </SubmitButton>
-            </Link>
+            <div>
+                <Link href="/dashboard" passHref>
+                    <SubmitButton
+                        disabled={!isValid}
+                        // className="rounded-full sm:px-12 sm:py-8 px-6 py-4 max-w-lg text-sm sm:text-md  disabled:bg-gray-600 disabled:text-gray-200"
+                        onClick={() => {
+                            console.log("all answers are ", answers);
+                        }}
+                    >
+                        Continue
+                    </SubmitButton>
+                </Link>
+            </div>
         </div>
     );
 }

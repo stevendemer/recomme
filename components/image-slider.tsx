@@ -122,20 +122,20 @@ export default function ImageSlider({
         <div className="flex justify-center items-center w-full h-full max-w-5xl">
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="grid place-items-center gap-8 w-full h-full p-12"
+                className="grid place-items-center w-full h-full gap-y-2"
             >
-                <h1 className="text-2xl md:text-3xl font-bold text-center text-[#2A898F] font-ram">
+                <h1 className="text-xl font-bold text-center text-[#2A898F] font-ram">
                     {currentGroup.title}
                 </h1>
 
                 {currentGroup.items.length > 0 ? (
                     <div className="flex flex-col items-stretch justify-evenly gap-4 space-y-12 w-full h-full">
                         <div className="flex items-center gap-x-6 flex-col sm:flex-row gap-8">
-                            <div className="w-full md:w-1/2 h-auto relative aspect-video">
+                            <div className="w-full md:w-1/3 h-auto relative aspect-video">
                                 {getImage()}
                             </div>
                             <div className="w-full md:w-1/2 text-foreground space-y-4">
-                                <p className="md:text-3xl text-xl font-light font-mulish">
+                                <p className="sm:text-xl text-md font-light font-mulish line-clamp-3 text-ellipsis overflow-hidden">
                                     {currentGroup.items[currentQuestionIndex]?.title}
                                 </p>
                             </div>
