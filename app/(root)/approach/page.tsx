@@ -10,6 +10,7 @@ import Link from "next/link";
 
 export default function ApproachPage() {
     const [isValid, setValid] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const options = [{
         title: "Acknowledge His Expertise",
@@ -50,6 +51,26 @@ export default function ApproachPage() {
         setValid(allAnswered);
     }, [answers]);
 
+
+    const handleSubmit = async () => {
+        if (!isValid) return;
+
+        try {
+            setIsSubmitting(true);
+
+            // Here you can add your API call to save the answers
+            console.log("all answers are ", answers);
+
+            // Navigate only after successful submission
+            router.push('/dashboard');
+        } catch (error) {
+            console.error('Error submitting answers:', error);
+            // Handle error (maybe show a toast notification)
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     const handleAnswer = (index: number, answer: boolean) => {
         setAnswers((prevAnswers) => ({
             ...prevAnswers,
@@ -71,17 +92,24 @@ export default function ApproachPage() {
             </div>
             <div>
 
-                <Link href="/dashboard" passHref>
-                    <SubmitButton
-                        disabled={!isValid}
-                        // className="rounded-full sm:px-12 sm:py-8 px-6 py-4 max-w-lg text-sm sm:text-md  disabled:bg-gray-600 disabled:text-gray-200"
-                        onClick={() => {
-                            console.log("all answers are ", answers);
-                        }}
-                    >
+                {isValid && !isSubmitting ? (
+                    <Link href="/dashboard" passHref>
+                        <SubmitButton
+                            className="rounded-full sm:px-12 sm:py-8 px-6 py-4 max-w-lg text-sm sm:text-md  disabled:bg-gray-600 disabled:text-gray-200"
+                            onClick={() => {
+                                console.log("all answers are ", answers);
+                            }}
+                        >
+                            Continue
+                        </SubmitButton>
+                    </Link>
+
+
+                ) : (
+                    <SubmitButton className='cursor-not-allowed bg-gray-400 text-gray-200 '>
                         Continue
                     </SubmitButton>
-                </Link>
+                )}
             </div>
         </div>
     );
