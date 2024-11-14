@@ -70,6 +70,7 @@ export default function ApproachPage() {
                 ))}
             </div>
             <div>
+
                 <Link href="/dashboard" passHref>
                     <SubmitButton
                         disabled={!isValid}

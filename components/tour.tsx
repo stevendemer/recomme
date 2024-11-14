@@ -11,13 +11,10 @@ const TOUR_STEPS = [
     {
         target: ".sidebar",
         content: (
-            <div className="flex items-center gap-x-2">
-                <Image className="relative bottom-5 mr-2" src={flower} alt=""/>
+            <div className="flex items-center gap-x-3">
+                <Image className="relative" src={flower} alt=""/>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium a
-                    commodi mollitia rerum doloribus, expedita autem vero incidunt fugiat
-                    iste nostrum. Illum voluptatem exercitationem ipsum animi expedita
-                    quas enim facere.
+                    Sidebar Navigation
                 </p>
             </div>
         ),
@@ -27,13 +24,10 @@ const TOUR_STEPS = [
     {
         target: ".actions",
         content: (
-            <div className="flex items-center gap-x-2">
-                <Image className="relative bottom-5 mr-2" src={flower} alt=""/>
+            <div className="flex items-center gap-x-3">
+                <Image className="relative mr-2" src={flower} alt=""/>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium a
-                    commodi mollitia rerum doloribus, expedita autem vero incidunt fugiat
-                    iste nostrum. Illum voluptatem exercitationem ipsum animi expedita
-                    quas enim facere.
+                    Actions section
                 </p>
             </div>
         ),
@@ -44,13 +38,10 @@ const TOUR_STEPS = [
     {
         target: ".members",
         content: (
-            <div className="flex items-center gap-x-2">
-                <Image className="relative bottom-5 mr-2" src={flower} alt=""/>
+            <div className="flex items-center gap-x-3">
+                <Image className="relative mr-2" src={flower} alt=""/>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium a
-                    commodi mollitia rerum doloribus, expedita autem vero incidunt fugiat
-                    iste nostrum. Illum voluptatem exercitationem ipsum animi expedita
-                    quas enim facere.
+                    Members section
                 </p>
             </div>
         ),
@@ -61,13 +52,10 @@ const TOUR_STEPS = [
     {
         target: ".graph",
         content: (
-            <div className="flex items-center gap-x-2">
-                <Image className="relative bottom-5 mr-2" src={flower} alt=""/>
+            <div className="flex items-center gap-x-3">
+                <Image className="relative  mr-2" src={flower} alt=""/>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium a
-                    commodi mollitia rerum doloribus, expedita autem vero incidunt fugiat
-                    iste nostrum. Illum voluptatem exercitationem ipsum animi expedita
-                    quas enim facere.
+                    Graph summary
                 </p>
             </div>
         ),
@@ -78,13 +66,10 @@ const TOUR_STEPS = [
     {
         target: ".recom",
         content: (
-            <div className="flex items-center gap-x-2">
-                <Image className="relative bottom-5 mr-2" src={flower} alt=""/>
+            <div className="flex items-center gap-x-3">
+                <Image className="relative mr-2" src={flower} alt=""/>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium a
-                    commodi mollitia rerum doloribus, expedita autem vero incidunt fugiat
-                    iste nostrum. Illum voluptatem exercitationem ipsum animi expedita
-                    quas enim facere.
+                    Recommendations section
                 </p>
             </div>
         ),
