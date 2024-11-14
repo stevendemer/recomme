@@ -6,11 +6,13 @@ import {Button} from "@/components/ui/button";
 import {useState} from "react";
 import SubmitButton from "@/components/submit-button";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
 
 
 export default function ApproachPage() {
     const [isValid, setValid] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const router = useRouter()
 
     const options = [{
         title: "Acknowledge His Expertise",
