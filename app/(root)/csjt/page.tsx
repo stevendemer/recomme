@@ -23,7 +23,7 @@ export default function ConvinceJoinPage() {
                     />
                 </div>
 
-                <p className="font-mulish whitespace-normal text-sm italic font-bold p-4 text-black">
+                <p className="font-mulish whitespace-normal text-md italic font-bold p-4 text-black">
                     {" "}
                     Your user looks like an{" "}
                 </p>

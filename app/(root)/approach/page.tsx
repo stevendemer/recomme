@@ -58,8 +58,8 @@ export default function ApproachPage() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-around relative flex-grow h-full w-full gap-y-4">
-            <h2 className="text-2xl font-sans text-black tracking-wide">
+        <div className="flex flex-col items-center justify-around relative flex-shrink h-full w-full gap-y-4">
+            <h2 className="sm:text-xl text-md font-sans text-black tracking-wide">
                 Recommended Approach
             </h2>
 

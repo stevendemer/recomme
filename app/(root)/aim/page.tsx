@@ -37,7 +37,7 @@ export default function AimPage() {
                 <div className="flex items-center w-full justify-between">
                     <button
                         onClick={() => router.back()}
-                        className="bg-white shadow-lg text-[#65D9BD] p-1 sm:p-3  rounded-sm text-center "
+                        className="bg-white shadow-lg text-[#65D9BD] p-1 sm:p-3  rounded-sm text-center hover:shadow-xl transition-shadow duration-200 "
                     >
                         <IconArrowLeft size={37}/>
                     </button>
@@ -51,7 +51,7 @@ export default function AimPage() {
                         />
                     </div>
                 </div>
-                <h2 className="font-sans whitespace-normal p-4 text-black text-2xl">
+                <h2 className="font-sans whitespace-break-spaces p-4 text-black text-2xl">
                     What He&apos;s really aiming for:
                 </h2>
             </div>

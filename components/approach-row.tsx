@@ -18,7 +18,7 @@ export default function ApproachRow({
     return (
         <div className="flex items-center rounded-sm justify-between w-full bg-white font-inter shadow-lg">
             <div className="flex flex-col w-full max-w-xl p-1 sm:p-3">
-                <h2 className="font-bold text-xl  text-black tracking-wide text-start">
+                <h2 className="font-bold text-xl  text-black text-start">
                     {label}
                 </h2>
                 <p className="font-normal text-black text-sm sm:text-md tracking-wide truncate w-full line-clamp-3 whitespace-break-spaces">

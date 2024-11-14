@@ -62,7 +62,7 @@ export default function ProfilingLayout({children}: PropsWithChildren) {
         <html>
         <body
             className={cn(
-                "bg-gray-200 antialiased min-h-screen h-full",
+                "bg-gray-200 antialiased",
                 rubik.variable,
                 ram.variable,
                 inter.variable,
@@ -70,13 +70,13 @@ export default function ProfilingLayout({children}: PropsWithChildren) {
             )}
         >
         <Providers>
-            <main className="min-h-screen gradient-bg backdrop-blur-lg grid place-items-center">
+            <main className="min-h-screen gradient-bg backdrop-blur-lg grid place-items-center w-full">
                 <div className="w-full h-full flex items-center justify-center sm:max-w-screen-xl container mx-auto">
                     <div
-                        className="bg-white/30 h-full sm:max-h-[40rem] text-neutral-500 backdrop-blur-lg rounded-3xl w-full flex flex-col sm:pt-16 pt-12 sm:p-6 sm:m-4 px-4 max-w-[90vw] sm:max-w-[60vw]">
+                        className="bg-white/30 h-full sm:max-h-[90svh] text-neutral-500 backdrop-blur-lg rounded-3xl w-full flex flex-col sm:pt-16 pt-12 sm:p-6 sm:m-4 px-4 max-w-[90vw] sm:max-w-[60vw]">
                         <div
-                            className="bg-white/70 w-full rounded-2xl shadow-lg flex flex-col h-full justify-center p-4">
-                            <div className="flex items-center h-full justify-between">
+                            className="bg-white/70 w-full h-[calc(100vh-8rem)] sm:h-[calc(100vh-10rem)] rounded-sm  shadow-lg overflow-hidden">
+                            <div className="flex flex-col items-center h-full">
                                 {children}
                             </div>
                         </div>

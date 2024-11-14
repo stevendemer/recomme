@@ -168,10 +168,11 @@ export default function Profiling() {
     return (
         <div className="w-full flex flex-col justify-between items-center h-full">
             <Steps
-                totalGroups={searchParams.get("type") === "range" ? data.ranges.length : undefined}
+                totalGroups={currentType === "range" ? data.ranges.length : undefined}
                 currentGroup={data?.ranges[Number(searchParams.get('page'))]}
                 steps={data.steps} currentStep={currentStep}/>
-            <div className="flex flex-col justify-around items-center space-y-4 w-full h-[calc(100%-60px)] font-body">
+            <div
+                className="flex flex-col justify-around items-center space-y-4 w-full h-[calc(100vh-120px)] p-6 font-body">
                 {renderStep(data)}
             </div>
         </div>

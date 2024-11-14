@@ -51,7 +51,7 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
     const rotate = useTransform(x, [-150, 150], [-18, 18]);
     const opacity = useTransform(x, [-150, 0, 150], [0, 1, 0]);
 
-    const offsetBoundary = 200;
+    const offsetBoundary = 300;
 
     useEffect(() => {
         if (params.get("type") === "range") {
@@ -115,14 +115,14 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
     return (
         <div className="flex flex-col items-center justify-around w-full h-full">
             {/* Text Section */}
-            <h2 className="text-lg sm:text-xl text-center font-sans text-black px-6 mb-6">
+            <h2 className="text-lg sm:text-xl text-center font-sans text-black px-6">
                 {data.text}
             </h2>
 
             {/* Main Card Container */}
-            <div className="relative w-full max-w-3xl px-16 sm:px-20">
+            <div className="w-full max-w-lg px-4 sm:px-12 relative h-full border-5">
                 {/* Action Buttons */}
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 z-20">
+                <div className="absolute sm:block hidden left-0 top-1/2 -translate-y-1/2 z-20">
                     <button
                         onClick={() => handleSwipe("left")}
                         className="p-2 sm:p-3 rounded-full bg-white shadow-lg hover:bg-red-50 transition-colors duration-200 group"
@@ -131,7 +131,7 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
                     </button>
                 </div>
 
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 z-20">
+                <div className="absolute sm:block hidden right-0 top-1/2 -translate-y-1/2 z-20">
                     <button
                         onClick={() => handleSwipe("right")}
                         className="p-2 sm:p-3 rounded-full bg-white shadow-lg hover:bg-green-50 transition-colors duration-200 group"
@@ -143,12 +143,11 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
 
                 {/* Card Content */}
                 <motion.div
-                    className="w-full touch-none grid place-items-center"
-                    dragElastic={0.9}
+                    className="inset-0 touch-none absolute rounded-md"
+                    dragElastic={0.8}
                     ref={cardElem}
                     drag="x"
                     dragSnapToOrigin
-                    dragMomentum={false}
                     animate={controls}
                     dragConstraints={{
                         left: 0,
@@ -165,21 +164,37 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
                     }}
                     onDragEnd={handleDragEnd}
                 >
-                    <div className="w-full aspect-video relative rounded-sm overflow-hidden border-2 border-gray-200">
+                    <div
+                        className="w-full pointer-events-none aspect-video">
                         <Image
                             fill
                             alt={data.text ?? "alt"}
-                            className="object-contain"
+                            className="object-contain object-center w-full h-full "
                             src={`${process.env.NEXT_PUBLIC_API_URL}${data.src}`}
                             priority
                             sizes="(max-width: 768px) 100vw, 600px"
                             style={{
                                 gridColumn: 1,
-                                gridRow: 1
+                                gridRow: 1,
                             }}
                         />
                     </div>
                 </motion.div>
+                <div className="w-full sm:hidden flex justify-center gap-6 mt-6">
+                    <button
+                        onClick={() => handleSwipe("left")}
+                        className="p-3 rounded-full bg-white shadow-lg hover:bg-red-50 transition-colors duration-200 group"
+                    >
+                        <X className="w-6 h-6 text-red-500 group-hover:scale-110 transition-transform duration-200"/>
+                    </button>
+                    <button
+                        onClick={() => handleSwipe("right")}
+                        className="p-3 rounded-full bg-white shadow-lg hover:bg-green-50 transition-colors duration-200 group"
+                    >
+                        <Heart
+                            className="w-6 h-6 text-green-500 group-hover:scale-110 transition-transform duration-200"/>
+                    </button>
+                </div>
             </div>
         </div>
     );

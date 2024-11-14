@@ -66,7 +66,7 @@ export default function RootLayout({
         <Providers>
             <main className="h-screen w-full gradient-bg backdrop-blur-lg">
                 <div className="h-screen w-full flex items-center justify-center p-8">
-                    <div className="w-full h-full max-w-4xl bg-white/30 rounded-3xl p-3 sm:p-6">
+                    <div className="w-full h-full sm:max-h-[90svh] max-w-4xl bg-white/30 rounded-3xl p-3 sm:p-6">
                         <div
                             className="bg-white/70 w-full h-full rounded-3xl shadow-lg flex items-center justify-center">
                             <div className="w-full flex flex-col items-center justify-center p-6">
