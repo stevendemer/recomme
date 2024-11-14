@@ -40,9 +40,9 @@ export default function ConfirmationPage() {
                                     />
                                 </div>
                                 <p className="text-black text-lg  md:text-xl font-normal font-body leading-tight text-center sm:text-left line-clamp-5 text-ellipsis overflow-hidden">
-                                    First, let&apos;s get introduced <br className="hidden sm:block"/>
+                                    First, let&apos;s get introduced
                                     I have a feeling you might be an
-                                    <b> ALEC community manager</b> <br className="hidden sm:block"/>
+                                    <b> ALEC community manager </b>
                                     looking for some digital magic. Am I on the right track?
                                 </p>
                             </div>
