@@ -108,6 +108,7 @@ export default function RadioSelect({data, onVote, ...props}: any) {
                             onValueChange={(value) => {
                                 field.onChange(value);
                                 console.log(value);
+
                             }}
                             className={cn(
                                 "gap-4 transition-colors duration-200 text-black grid w-full h-full lg:max-w-5xl grid-cols-2 ", data?.options.length > 4 ? "sm:grid-cols-3" : "sm:grid-cols-2",
@@ -153,6 +154,7 @@ export default function RadioSelect({data, onVote, ...props}: any) {
                                             "p-8 rounded-sm border shadow-lg w-full h-full transition-colors duration-200 text-black flex justify-center",
                                             field.value === value && "bg-[#65D9BD] text-white"
                                         )}
+                                        onClick={() => handleSelection(value, field.onChange)}
                                     >
                                         <Label
                                             className="flex flex-col items-center justify-center gap-6 w-full h-full cursor-pointer"
@@ -177,7 +179,7 @@ export default function RadioSelect({data, onVote, ...props}: any) {
                     )}
                 />
 
-                <SubmitButton disabled={!(selectedItems.length > 0)} type="submit">
+                <SubmitButton disabled={selectedItems.length === 0} type="submit">
                     Continue
                 </SubmitButton>
             </form>
