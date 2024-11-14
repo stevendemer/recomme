@@ -10,7 +10,7 @@ export default function Dashboard() {
         <div className="flex flex-col h-full gap-3 p-2">
             {/* Action Cards */}
             <div className="bg-white/20 backdrop-blur-lg rounded-sm p-3">
-                <div className="flex gap-4 overflow-x-auto pb-2">
+                <div className="flex gap-4 overflow-x-auto pb-2 actions">
                     <ActionCards
                         title="Convince someone to join"
                         image={"/assets/user-arrow.svg"}
@@ -28,7 +28,7 @@ export default function Dashboard() {
 
             {/* Member Cards */}
             <div className="bg-white/30 rounded-sm p-3">
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 members">
                     <MemberCards
                         members={10}
                         text="Enrolment"
@@ -71,18 +71,18 @@ export default function Dashboard() {
             {/* Graph and Recommendations */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 flex-1 min-h-0">
                 {/* Graph */}
-                <div className="bg-white/30 rounded-lg p-4 lg:col-span-2 h-full">
+                <div className="bg-white/30 rounded-lg p-4 lg:col-span-2 h-full graph">
                     <Graph/>
                 </div>
 
                 {/* Recommendations */}
-                <div className="bg-white/30 rounded-lg p-3 h-full">
+                <div className="bg-white/30 rounded-lg p-3 h-full recom">
                     <div className="bg-white/60 rounded-lg h-full flex flex-col">
                         <h1 className="text-slate-900 font-bold text-xl p-4">
                             Recommendation
                         </h1>
 
-                        <div className="flex-1 flex flex-col gap-3 p-3 overflow-y-auto">
+                        <div className="flex-1 flex flex-col gap-3 p-3">
                             <RecommendationCard>
                                 <div className="flex flex-col gap-2">
                                     <h2 className="font-bold font-rubik">

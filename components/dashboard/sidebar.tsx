@@ -28,7 +28,7 @@ import faq from "@/public/assets/faq.svg";
 export default function DashboardSidebar() {
     return (
         <TooltipProvider>
-            <aside className="h-full">
+            <aside className="h-full sidebar">
                 <div className="bg-white/30 rounded-xl p-3 h-full">
                     <div className="bg-white/60 shadow-xl rounded-[40px] h-full w-[280px] flex flex-col">
                         <div className="flex flex-col h-full p-4">

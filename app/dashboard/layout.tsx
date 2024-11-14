@@ -50,12 +50,10 @@ export default function DashboardLayout({children}: PropsWithChildren) {
             )}
         >
         <div className="gradient-bg font-rubik h-screen w-full overflow-hidden">
-            <div className="h-full w-full max-w-[1920px] mx-auto p-2 sm:p-3 md:p-4">
+            <div className="h-full w-full mx-auto p-2 sm:p-3 md:p-4">
                 <div className="flex h-full gap-2 sm:gap-3 md:gap-4">
                     {/* Tour Component */}
-                    <div className="flex-shrink-0">
-                        <Tour/>
-                    </div>
+                    <Tour/>
 
                     {/* Sidebar - Hidden on mobile */}
                     <div className="hidden sm:block flex-shrink rounded-sm">
