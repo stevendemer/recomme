@@ -54,6 +54,12 @@ export default function RadioSelect({data, onVote, ...props}: any) {
     }, [params, pathname]);
 
 
+    useEffect(() => {
+
+        form.reset()
+        setSelectedItems([]);
+    }, [data, form]);
+
     const handleSelection = (value: string, onChange: (value: string[]) => void) => {
         let newSelected: string[];
 
@@ -171,7 +177,7 @@ export default function RadioSelect({data, onVote, ...props}: any) {
                     )}
                 />
 
-                <SubmitButton disabled={!form.formState.isValid} type="submit">
+                <SubmitButton disabled={!(selectedItems.length > 0)} type="submit">
                     Continue
                 </SubmitButton>
             </form>

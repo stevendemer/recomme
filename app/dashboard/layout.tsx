@@ -42,33 +42,32 @@ export default function DashboardLayout({children}: PropsWithChildren) {
         <html lang="en" suppressHydrationWarning>
         <body
             className={cn(
-                "antialiased bg-gray-200",
+                "antialiased min-h-screen bg-gray-200",
                 rubik.variable,
                 ram.variable,
                 inter.variable,
                 mulish.variable
             )}
         >
-        <div className="gradient-bg font-rubik h-screen w-full overflow-hidden">
-            <div className="h-full w-full mx-auto p-2 sm:p-3 md:p-4">
+        <main className="gradient-bg font-rubik min-h-screen w-full h-full">
+            <div className="mx-auto h-screen p-2  md:p-4">
                 <div className="flex h-full gap-2 sm:gap-3 md:gap-4">
-                    {/* Tour Component */}
                     <Tour/>
 
-                    {/* Sidebar - Hidden on mobile */}
-                    <div className="hidden sm:block flex-shrink rounded-sm">
+                    <div className="hidden sm:block flex-shrink-0 h-full">
                         <DashboardSidebar/>
                     </div>
-
                     {/* Main Content */}
-                    <div className="flex-1 min-w-0 font-body relative">
-                        <div className="absolute inset-0 bg-white/10 rounded-lg p-2 sm:p-3 md:p-4">
-                            {children}
+                    <div className="flex-1 min-w-0 font-body relative overflow-y-auto">
+                        <div className="absolute inset-0 bg-white/10 rounded-lg">
+                            <div className="h-full p-2 sm:p-3 md:p-4">
+                                {children}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
         </body>
         </html>
     );

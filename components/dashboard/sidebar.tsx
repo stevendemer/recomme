@@ -24,16 +24,16 @@ import faq from "@/public/assets/faq.svg";
  *
  * @returns The main sidebar component.
  */
-
 export default function DashboardSidebar() {
     return (
         <TooltipProvider>
-            <aside className="h-full sidebar">
-                <div className="bg-white/30 rounded-xl p-3 h-full">
-                    <div className="bg-white/60 shadow-xl rounded-[40px] h-full w-[280px] flex flex-col">
+            <aside className="h-full">
+                <div className="bg-white/30 rounded-lg p-3 h-full">
+                    <div className="bg-white/60 shadow-xl rounded-lg h-full w-[280px] flex flex-col">
+                        {/* Content Container */}
                         <div className="flex flex-col h-full p-4">
-                            {/* Logo Section */}
-                            <div className="relative w-full h-32">
+                            {/* Logo Section - Fixed Height */}
+                            <div className="relative w-full h-32 flex-shrink-0">
                                 <Image
                                     alt="alec logo"
                                     src={alec}
@@ -43,92 +43,95 @@ export default function DashboardSidebar() {
                                 />
                             </div>
 
-                            {/* Menu Section */}
-                            <div className="flex flex-col mt-8 space-y-4 font-mulish items-start pl-2">
-                                <div className="text-lg font-light text-slate-500">
-                                    Menu
-                                </div>
-
-                                <div className="space-y-4">
-                                    <Tooltip>
-                                        <TooltipTrigger asChild>
-                                            <button
-                                                className="flex items-center text-slate-400 w-full hover:bg-white/50 p-2 rounded-lg transition-colors">
-                                                <Image alt="" width={20} height={20} src={home}/>
-                                                <span className="ml-3 font-light">
-                          Home
-                        </span>
-                                            </button>
-                                        </TooltipTrigger>
-                                        <TooltipContent side="right">
-                                            <ToolTipMessage>
-                                                Lorem ipsume lorem ipsumelorem ipsumelorem ipsumelorem
-                                                ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem
-                                                ipsumelorem ipsumelorem ipsume
-                                            </ToolTipMessage>
-                                        </TooltipContent>
-                                    </Tooltip>
-
-                                    <Tooltip>
-                                        <TooltipTrigger asChild>
-                                            <button
-                                                className="flex items-center text-slate-400 w-full hover:bg-white/50 p-2 rounded-lg transition-colors">
-                                                <Image width={20} height={20} src={members} alt=""/>
-                                                <span className="ml-3 font-light">
-                          Members
-                        </span>
-                                            </button>
-                                        </TooltipTrigger>
-                                        <TooltipContent side="right">
-                                            <ToolTipMessage>
-                                                Lorem ipsume lorem ipsumelorem ipsumelorem ipsumelorem
-                                                ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem
-                                                ipsumelorem ipsumelorem ipsume
-                                            </ToolTipMessage>
-                                        </TooltipContent>
-                                    </Tooltip>
-
-                                    <Tooltip>
-                                        <TooltipTrigger asChild>
-                                            <button
-                                                className="flex items-center text-slate-400 w-full hover:bg-white/50 p-2 rounded-lg transition-colors">
-                                                <Image alt="" width={20} height={20} src={recommendation}/>
-                                                <span className="ml-3 font-light">
-                          Recommendation
-                        </span>
-                                            </button>
-                                        </TooltipTrigger>
-                                        <TooltipContent side="right">
-                                            <ToolTipMessage>
-                                                Lorem ipsume lorem ipsumelorem ipsumelorem ipsumelorem
-                                                ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem
-                                                ipsumelorem ipsumelorem ipsume
-                                            </ToolTipMessage>
-                                        </TooltipContent>
-                                    </Tooltip>
-                                </div>
-
-                                {/* Settings Section */}
-                                <div className="space-y-4">
+                            {/* Menu Section - Scrollable */}
+                            <div className="flex flex-col flex-1 mt-8 space-y-4 font-mulish overflow-y-auto">
+                                {/* Menu Items */}
+                                <div className="space-y-4 px-2">
                                     <div className="text-lg font-light text-slate-500">
-                                        Settings
+                                        Menu
                                     </div>
 
-                                    <button
-                                        className="flex items-center text-slate-400 w-full hover:bg-white/50 p-2 rounded-lg transition-colors">
-                                        <Image alt="" width={20} height={20} src={profile}/>
-                                        <span className="ml-3 font-light">
-                      Profile
-                    </span>
-                                    </button>
+                                    <div className="space-y-2">
+                                        <Tooltip>
+                                            <TooltipTrigger asChild>
+                                                <button
+                                                    className="flex items-center text-slate-400 w-full hover:bg-white/50 p-2 rounded-lg transition-colors">
+                                                    <Image alt="" width={20} height={20} src={home}/>
+                                                    <span className="ml-3 font-light">
+                                                        Home
+                                                    </span>
+                                                </button>
+                                            </TooltipTrigger>
+                                            <TooltipContent side="right">
+                                                <ToolTipMessage>
+                                                    Lorem ipsume lorem ipsumelorem ipsumelorem ipsumelorem
+                                                    ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem
+                                                    ipsumelorem ipsumelorem ipsume
+                                                </ToolTipMessage>
+                                            </TooltipContent>
+                                        </Tooltip>
 
-                                    <button
-                                        className="flex items-center text-slate-400 w-full hover:bg-white/50 p-2 rounded-lg transition-colors">
-                                        <Image alt="" src={faq} width={20} height={20}/>
-                                        <span className="ml-3 font-light">
-                      FAQ&apos;s
-                    </span>
-                                    </button>
+                                        <Tooltip>
+                                            <TooltipTrigger asChild>
+                                                <button
+                                                    className="flex items-center text-slate-400 w-full hover:bg-white/50 p-2 rounded-lg transition-colors">
+                                                    <Image width={20} height={20} src={members} alt=""/>
+                                                    <span className="ml-3 font-light">
+                                                        Members
+                                                    </span>
+                                                </button>
+                                            </TooltipTrigger>
+                                            <TooltipContent side="right">
+                                                <ToolTipMessage>
+                                                    Lorem ipsume lorem ipsumelorem ipsumelorem ipsumelorem
+                                                    ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem
+                                                    ipsumelorem ipsumelorem ipsume
+                                                </ToolTipMessage>
+                                            </TooltipContent>
+                                        </Tooltip>
+
+                                        <Tooltip>
+                                            <TooltipTrigger asChild>
+                                                <button
+                                                    className="flex items-center text-slate-400 w-full hover:bg-white/50 p-2 rounded-lg transition-colors">
+                                                    <Image alt="" width={20} height={20} src={recommendation}/>
+                                                    <span className="ml-3 font-light">
+                                                        Recommendation
+                                                    </span>
+                                                </button>
+                                            </TooltipTrigger>
+                                            <TooltipContent side="right">
+                                                <ToolTipMessage>
+                                                    Lorem ipsume lorem ipsumelorem ipsumelorem ipsumelorem
+                                                    ipsumelorem ipsumelorem ipsumelorem ipsumelorem ipsumelorem
+                                                    ipsumelorem ipsumelorem ipsume
+                                                </ToolTipMessage>
+                                            </TooltipContent>
+                                        </Tooltip>
+                                    </div>
+
+                                    {/* Settings Section */}
+                                    <div className="space-y-2 pt-4">
+                                        <div className="text-lg font-light text-slate-500">
+                                            Settings
+                                        </div>
+
+                                        <button
+                                            className="flex items-center text-slate-400 w-full hover:bg-white/50 p-2 rounded-lg transition-colors">
+                                            <Image alt="" width={20} height={20} src={profile}/>
+                                            <span className="ml-3 font-light">
+                                                Profile
+                                            </span>
+                                        </button>
+
+                                        <button
+                                            className="flex items-center text-slate-400 w-full hover:bg-white/50 p-2 rounded-lg transition-colors">
+                                            <Image alt="" src={faq} width={20} height={20}/>
+                                            <span className="ml-3 font-light">
+                                                FAQ&apos;s
+                                            </span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

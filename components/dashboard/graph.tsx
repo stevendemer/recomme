@@ -60,11 +60,11 @@ const chartConfig = {
 
 export default function Graph({className}: { className?: string }) {
     return (
-        <Card className="rounded-sm h-full w-full p-2 bg-white/60">
-            <CardContent className="h-full">
+        <Card className="rounded-sm w-full h-full p-2 bg-white/60">
+            <CardContent>
                 <ChartContainer
                     config={chartConfig}
-                    className="max-sm:min-h-[300px] max-md:min-h-[500px] w-full h-full text-center mx-auto font-inter"
+                    className="max-sm:min-h-[220px] max-md:min-h-[320px] w-full h-full text-center mx-auto font-inter"
                 >
                     <RadarChart
                         margin={{

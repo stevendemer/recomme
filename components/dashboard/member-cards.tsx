@@ -15,7 +15,7 @@ export default function MemberCards({
     members: number;
 }) {
     return (
-        <div className="bg-white rounded-sm p-4 w-full">
+        <div className="bg-white rounded-sm p-4 w-full flex-shrink">
             <div className="flex flex-col items-center gap-3">
                 {/* Icon Container */}
                 <div className={cn(
