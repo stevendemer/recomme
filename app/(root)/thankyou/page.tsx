@@ -17,7 +17,13 @@ export default function ThankYou() {
                     <div
                         className="absolute z-50 bg-white/30 backdrop-blur-sm p-8 rounded-3xl flex flex-col items-center space-y-4 sm:space-y-0 sm:flex-row">
                         <div className="flex gap-x-4 items-start justify-center w-full">
-                            <Image priority src={flower} alt="flower" className="px-2"/>
+
+                            <div className="relative aspect-square flex-shrink-0">
+                                <Image
+                                    className="object-cover object-center w-full h-full"
+                                    priority src={flower} alt="flower"
+                                />
+                            </div>
                             {/* <p className="text-black text-lg sm:text-xl font-rubik leading-tight text-center sm:text-left"> */}
                             <p className="text-black text-md sm:text-xl font-body leading-tight text-center sm:text-left">
                                 Great! Now, I&apos;m all set to help you achieve your

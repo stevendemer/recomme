@@ -28,15 +28,15 @@ export default function ConfirmationPage() {
                         <div className=" absolute inset-0 w-full h-full flex items-center justify-center -z-10">
                             <Image className='object-center object-cover w-full h-full' src={rect} alt={'rect'}/>
                         </div>
-                        <div className="flex flex-col items-center justify-center w-full h-full space-y-6 sm:space-y-8">
+                        <div className="flex flex-col items-start justify-center w-full h-full space-y-6 sm:space-y-8">
                             {/* Text and Flower Section */}
-                            <div className="flex flex-col sm:flex-row items-center  gap-4 sm:gap-6">
+                            <div className="flex flex-col sm:flex-row items-start  gap-4 sm:gap-6">
                                 <div className="relative aspect-square flex-shrink-0">
                                     <Image
                                         priority
                                         src={flower}
                                         alt="flower"
-                                        className="object-cover object-center w-full h-full "
+                                        className="object-cover object-center w-full h-full"
                                     />
                                 </div>
                                 <p className="text-black text-lg  md:text-xl font-normal font-body leading-tight text-center sm:text-left line-clamp-5 text-ellipsis overflow-hidden">
