@@ -7,9 +7,9 @@ import {Button} from "@/components/ui/button";
 
 export default function Dashboard() {
     return (
-        <div className="flex flex-col h-full gap-3">
+        <div className="flex flex-col h-full gap-3 scrollbar-hide ">
             <div className="bg-white/20 backdrop-blur-lg rounded-sm flex-shrink">
-                <div className="flex gap-4 flex-col sm:flex-row pb-2 actions scrollbar-hide">
+                <div className="flex gap-4 flex-col sm:flex-row pb-2 actions">
                     <ActionCards
                         title="Convince someone to join"
                         image={"/assets/user-arrow.svg"}

@@ -58,9 +58,9 @@ export default function DashboardLayout({children}: PropsWithChildren) {
                         <DashboardSidebar/>
                     </div>
                     {/* Main Content */}
-                    <div className="flex-1 min-w-0 font-body relative overflow-y-auto">
+                    <div className="flex-1 min-w-0 font-body relative overflow-y-auto scrollbar-hide">
                         <div className="absolute inset-0 bg-white/10 rounded-lg">
-                            <div className="h-full p-2 sm:p-3 md:p-4">
+                            <div className="h-full scrollbar-hide p-2 sm:p-3 md:p-4">
                                 {children}
                             </div>
                         </div>
