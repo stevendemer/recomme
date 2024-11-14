@@ -83,6 +83,9 @@ export default function RadioSelect({data, onVote, ...props}: any) {
         );
     }
 
+    const isFormValid = data?.images?.length > 0
+        ? selectedItems.length > 0
+        : !!form.watch(data?.title);
 
     function onSubmit(data: any) {
         console.log(data);
@@ -179,7 +182,7 @@ export default function RadioSelect({data, onVote, ...props}: any) {
                     )}
                 />
 
-                <SubmitButton disabled={selectedItems.length === 0} type="submit">
+                <SubmitButton disabled={!isFormValid} type="submit">
                     Continue
                 </SubmitButton>
             </form>
