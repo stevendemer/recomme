@@ -43,9 +43,7 @@ const schema = z.object({
             required_error: "Please enter your EC name",
         })
         .trim(),
-    role: z.enum(["EC Manager", "EC Member", "Other"], {
-        required_error: "Please select a role",
-    }),
+    role: z.enum(["EC Manager", "EC Member", "Other"]),
 });
 
 export default function RegistrationPage() {
@@ -55,7 +53,6 @@ export default function RegistrationPage() {
         defaultValues: {
             location: '',
             ecName: '',
-            role: undefined
         }
     });
 
@@ -71,11 +68,10 @@ export default function RegistrationPage() {
 
     const location = form.watch('location');
     const ecName = form.watch('ecName');
-    const role = form.watch('role');
 
     const isFormValid = () => {
         return Boolean(
-            location?.trim() && ecName?.trim() && role?.trim()
+            location?.trim() && ecName?.trim()
         )
     }
 
@@ -88,18 +84,17 @@ export default function RegistrationPage() {
     const onSubmit: SubmitHandler<z.infer<typeof schema>> = (data) => {
         console.log("Form submitted ", data);
 
-        if (!form.formState.isValid) {
+        if (!isFormValid()) {
             return;
         }
 
-        if (form.formState.submitCount > 4) {
+        if (form.formState.submitCount > 8) {
             toast({
                 description: "You have reached the maximum number of submissions",
             });
-        } else {
-
-            router.push('/thankyou')
+            return;
         }
+        router.push('/thankyou')
     };
 
     const {isLoaded} = useLoadScript({
@@ -200,7 +195,7 @@ export default function RegistrationPage() {
                     }}
                     defaultValue={"EC Manager"}
                 >
-                    <SelectTrigger className={cn(form.formState.errors.role && 'border-red-500')} ref={roleRef}>
+                    <SelectTrigger ref={roleRef}>
                         <SelectValue placeholder="Select a role"/>
                     </SelectTrigger>
                     <SelectContent className="py-5 w-full">
@@ -209,11 +204,6 @@ export default function RegistrationPage() {
                         <SelectItem value="Other">Other</SelectItem>
                     </SelectContent>
                 </Select>
-                {form.formState.errors.role && (
-                    <p className="text-red-500 text-sm ml-4">
-                        {form.formState.errors.role.message}
-                    </p>
-                )}
                 {isFormValid() ? (
                     <SubmitButton
                         className={cn("bg-black text-white hover:bg-black/80 relative")}
