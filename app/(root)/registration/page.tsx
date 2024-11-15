@@ -1,205 +1,240 @@
 "use client";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import {Input} from "@/components/ui/input";
+import {Label} from "@/components/ui/label";
 import SubmitButton from "@/components/submit-button";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { cn } from "@/lib/utils";
-import { Autocomplete, useLoadScript } from "@react-google-maps/api";
+import {SubmitHandler, useForm} from "react-hook-form";
+import {cn} from "@/lib/utils";
+import {Autocomplete, useLoadScript} from "@react-google-maps/api";
 import usePlacesAutoComplete from "use-places-autocomplete";
-import { useMemo, useState, useEffect, useRef, RefObject } from "react";
-import { useOnClickOutside } from "usehooks-ts";
+import {useMemo, useState, useEffect, useRef, RefObject} from "react";
+import {useOnClickOutside} from "usehooks-ts";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
 } from "@/components/ui/select";
 
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useToast } from "@/components/ui/use-toast";
+import {z} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {useToast} from "@/components/ui/use-toast";
 import ParentContainer from "@/components/parent-container";
 import Spinner from "@/components/spinner";
 import MessageContainer from "@/components/message-container";
-import { useRouter } from "next/navigation";
+import {useRouter} from "next/navigation";
 import Link from "next/link";
+import {Separator} from "@radix-ui/react-select";
 
 type Inputs = {
-  location: string;
-  ecName: string;
-  role: ["EC Manager", "EC Member", "Other"];
+    location: string;
+    ecName: string;
+    role: ["EC Manager", "EC Member", "Other"];
 };
 
 const schema = z.object({
-  location: z
-    .string({
-      required_error: "Location is required",
-    })
-    .trim(),
-  ecName: z
-    .string({
-      required_error: "Please enter your EC name",
-    })
-    .trim(),
-  role: z.enum(["EC Manager", "EC Member", "Other"], {
-    required_error: "Please select a role",
-  }),
+    location: z
+        .string({
+            required_error: "Location is required",
+        })
+        .trim(),
+    ecName: z
+        .string({
+            required_error: "Please enter your EC name",
+        })
+        .trim(),
+    role: z.enum(["EC Manager", "EC Member", "Other"], {
+        required_error: "Please select a role",
+    }),
 });
 
 export default function RegistrationPage() {
-  const form = useForm<z.infer<typeof schema>>({
-    resolver: zodResolver(schema),
-    mode: "onChange",
-  });
-  const router = useRouter();
-
-  const { toast } = useToast();
-
-  const ref = useRef(null);
-
-  const locationRef = useRef<any>(null);
-  const nameRef = useRef<HTMLInputElement>(null);
-  const roleRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    if (locationRef.current) {
-      locationRef?.current.focus();
-    }
-  }, []);
-
-  const onSubmit: SubmitHandler<z.infer<typeof schema>> = (data) => {
-    console.log("Form submitted ", data);
-
-    if (form.formState.submitCount > 4) {
-      toast({
-        description: "You have reached the maximum number of submissions",
-      });
-    } else {
-      toast({
-        description: "Form submitted ! Thanks for your time ",
-      });
-    }
-  };
-
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyA1TOwkhouIi0rVLuXqNHUcgz0hgZFWM1M",
-    libraries: ["places"],
-  });
-
-  const {
-    ready,
-    value,
-    setValue,
-    suggestions: { status, data },
-    clearSuggestions,
-  } = usePlacesAutoComplete({
-    debounce: 300,
-  });
-
-  const handleKeyDown = (
-    e: React.KeyboardEvent<HTMLInputElement>,
-    nextRef: RefObject<HTMLInputElement | HTMLButtonElement> | null
-  ) => {
-    // prevent the form from submitting when pressing enter
-    if (e.key === "Enter") {
-      e.preventDefault();
-      if (nextRef?.current) {
-        nextRef.current.focus();
-        if (nextRef.current.tagName === "BUTTON") {
-          nextRef.current.click();
+    const form = useForm<z.infer<typeof schema>>({
+        resolver: zodResolver(schema),
+        mode: "onChange",
+        defaultValues: {
+            location: '',
+            ecName: '',
+            role: undefined
         }
-      }
+    });
+
+    const router = useRouter();
+
+    const {toast} = useToast();
+
+    const ref = useRef(null);
+
+    const locationRef = useRef<any>(null);
+    const nameRef = useRef<HTMLInputElement>(null);
+    const roleRef = useRef<HTMLButtonElement>(null);
+
+    const location = form.watch('location');
+    const ecName = form.watch('ecName');
+    const role = form.watch('role');
+
+    const isFormValid = () => {
+        return !!(
+            location.trim() && ecName.trim() && role.trim()
+        )
     }
-  };
 
-  useOnClickOutside(ref, () => clearSuggestions());
+    useEffect(() => {
+        if (locationRef.current) {
+            locationRef?.current.focus();
+        }
+    }, []);
 
-  if (!isLoaded)
-    return (
-      <div className="flex justify-center h-screen items-center">
-        <Spinner size="xl" />
-      </div>
-    );
+    const onSubmit: SubmitHandler<z.infer<typeof schema>> = (data) => {
+        console.log("Form submitted ", data);
 
-  const watchFields = form.watch(["location", "ecName", "role"]);
+        if (!form.formState.isValid) {
+            return;
+        }
 
-  return (
-    <div className="w-full h-full flex flex-col items-center justify-around relative">
-      <form
-        // onSubmit={form.handleSubmit(onSubmit)}
-        className=" max-w-sm sm:w-full space-y-4 flex flex-col items-center justify-center font-body"
-        onSubmit={form.handleSubmit(onSubmit)}
-      >
-        <h1 className="text-3xl sm:text-5xl font-sans leading-tight text-black">
-          Registration
-        </h1>
-
-        <Autocomplete
-          className="w-full"
-          onLoad={(auto) => {
-            auto.addListener("place_changed", () => {
-              const place = auto.getPlace();
-              if (place) {
-                // setPlace(place.formatted_address || "");
-                form.setValue("location", place.formatted_address || "");
-                form.trigger("location");
-              }
+        if (form.formState.submitCount > 4) {
+            toast({
+                description: "You have reached the maximum number of submissions",
             });
-          }}
-        >
-          <Input
-            placeholder="Location"
-            className="w-full rounded-full py-5 shadow-xl mt-2 pl-6"
-            onKeyDown={(e) => handleKeyDown(e, nameRef)}
-            {...form.register("location", { required: true })}
-          />
-        </Autocomplete>
-        <Input
-          className="rounded-full shadow-xl py-5 w-full pl-6"
-          placeholder="EC Name"
-          onKeyDown={(e) => handleKeyDown(e, roleRef)}
-          {...form.register("ecName", { required: true })}
-        />
+        } else {
+            toast({
+                description: "Thank you for your time !"
+            });
 
-        <Select
-          name="role"
-          onValueChange={(value: any) => {
-            form.setValue("role", value);
-            form.trigger("role"); // trigger validation
-          }}
-          defaultValue={"EC Manager"}
-        >
-          <SelectTrigger ref={roleRef}>
-            <SelectValue placeholder="Select a role" />
-          </SelectTrigger>
-          <SelectContent className="py-5 w-full">
-            <SelectItem value="EC Manager">EC Manager</SelectItem>
-            <SelectItem value="EC Member">EC Member</SelectItem>
-            <SelectItem value="Other">Other</SelectItem>
-          </SelectContent>
-        </Select>
+            router.push('/thankyou')
+        }
+    };
 
-        {/* <div className="fixed bottom-20 flex-shrink-0 flex justify-center items-center">
-            <SubmitButton
-              type="submit"
-              disabled={!form.formState.isValid}
-              className={cn(
-                "flex justify-center items-center",
-                form.formState.isValid
-                  ? "bg-black text-white hover:bg-black/80"
-                  : "bg-gray-300 text-gray-500 cursor-not-allowed hover:bg-gray-200"
-              )}
+    const {isLoaded} = useLoadScript({
+        googleMapsApiKey: "AIzaSyA1TOwkhouIi0rVLuXqNHUcgz0hgZFWM1M",
+        libraries: ["places"],
+    });
+
+    const {
+        ready,
+        value,
+        setValue,
+        suggestions: {status, data},
+        clearSuggestions,
+    } = usePlacesAutoComplete({
+        debounce: 300,
+    });
+
+    const handleKeyDown = (
+        e: React.KeyboardEvent<HTMLInputElement>,
+        nextRef: RefObject<HTMLInputElement | HTMLButtonElement> | null
+    ) => {
+        // prevent the form from submitting when pressing enter
+        if (e.key === "Enter") {
+            e.preventDefault();
+            if (nextRef?.current) {
+                nextRef.current.focus();
+                if (nextRef.current.tagName === "BUTTON") {
+                    nextRef.current.click();
+                }
+            }
+        }
+    };
+
+    useOnClickOutside(ref, () => clearSuggestions());
+
+    if (!isLoaded)
+        return (
+            <div className="flex w-full justify-center h-screen items-center">
+                <Spinner size="xl"/>
+            </div>
+        );
+
+
+    return (
+        <div className="w-full h-full flex flex-col items-center justify-around relative">
+            <form
+                // onSubmit={form.handleSubmit(onSubmit)}
+                className=" max-w-sm h-full relative sm:w-full space-y-6 flex flex-col items-center justify-around font-body text-foreground"
+                onSubmit={form.handleSubmit(onSubmit)}
             >
-              Confirm
-            </SubmitButton>
-          </div> */}
-      </form>
-      <Link href="/thankyou">
-        <SubmitButton type="submit" disabled={!form.formState.isValid}>
-          Confirm
-        </SubmitButton>
-      </Link>
-    </div>
-  );
+                <h1 className="text-xl sm:text-3xl font-sans leading-tight text-black">
+                    Registration
+                </h1>
+
+                <Autocomplete
+                    className="w-full"
+                    onLoad={(auto) => {
+                        auto.addListener("place_changed", () => {
+                            const place = auto.getPlace();
+                            if (place) {
+                                // setPlace(place.formatted_address || "");
+                                form.setValue("location", place.formatted_address || "", {
+                                    shouldValidate: true,
+                                });
+                            }
+                        });
+                    }}
+                >
+                    <Input
+                        placeholder="Location"
+                        className={cn("w-full rounded-full py-5 shadow-xl mt-2 pl-6", form.formState.errors.location && "border-red-500")}
+                        onKeyDown={(e) => handleKeyDown(e, nameRef)}
+                    />
+                </Autocomplete>
+                {form.formState.errors.location && (
+                    <p className="text-red-500 text-sm ml-4">
+                        {form.formState.errors.location.message}
+                    </p>
+                )}
+                <Input
+                    className={cn("rounded-full shadow-xl py-5 w-full pl-6", form.formState.errors.ecName && "border-red-500")}
+                    placeholder="EC Name"
+                    onKeyDown={(e) => handleKeyDown(e, roleRef)}
+                    {...form.register("ecName", {required: true, onChange: () => form.trigger('ecName')})}
+                />
+                {form.formState.errors.ecName && (
+                    <p className="text-red-500 text-sm ml-4">
+                        {form.formState.errors.ecName.message}
+                    </p>
+                )}
+
+                <Select
+                    name="role"
+                    onValueChange={(value: any) => {
+                        form.setValue("role", value, {
+                            shouldValidate: true,
+                        });
+                    }}
+                    defaultValue={"EC Manager"}
+                >
+                    <SelectTrigger className={cn(form.formState.errors.role && 'border-red-500')} ref={roleRef}>
+                        <SelectValue placeholder="Select a role"/>
+                    </SelectTrigger>
+                    <SelectContent className="py-5 w-full">
+                        <SelectItem value="EC Manager">EC Manager</SelectItem>
+                        <SelectItem value="EC Member">EC Member</SelectItem>
+                        <SelectItem value="Other">Other</SelectItem>
+                    </SelectContent>
+                </Select>
+                {form.formState.errors.role && (
+                    <p className="text-red-500 text-sm ml-4">
+                        {form.formState.errors.role.message}
+                    </p>
+                )}
+                {isFormValid() ? (
+                    <SubmitButton
+                        className={cn("bg-black text-white hover:bg-black/80 relative")}
+                        type="submit"
+                        disabled={!isFormValid()}
+
+                    >
+                        Confirm
+                    </SubmitButton>
+                ) : (
+                    <SubmitButton
+                        className={cn("bg-gray-400 text-gray-500 cursor-not-allowed relative")}
+                        disabled={true}
+                    >
+                        Confirm
+                    </SubmitButton>
+                )}
+            </form>
+        </div>
+    );
 }
