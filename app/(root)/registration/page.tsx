@@ -53,6 +53,7 @@ export default function RegistrationPage() {
         defaultValues: {
             location: '',
             ecName: '',
+            role: 'EC Manager'
         }
     });
 
