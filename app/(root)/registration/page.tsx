@@ -43,7 +43,7 @@ const schema = z.object({
             required_error: "Please enter your EC name",
         })
         .trim(),
-    role: z.enum(["EC Manager", "EC Member", "Other"]),
+    role: z.enum(["EC Manager", "EC Member", "Other"]).optional()
 });
 
 export default function RegistrationPage() {
@@ -70,9 +70,7 @@ export default function RegistrationPage() {
     const ecName = form.watch('ecName');
 
     const isFormValid = () => {
-        return Boolean(
-            location?.trim() && ecName?.trim()
-        )
+        return Boolean(location?.trim() && ecName?.trim())
     }
 
     useEffect(() => {
@@ -155,8 +153,9 @@ export default function RegistrationPage() {
                         auto.addListener("place_changed", () => {
                             const place = auto.getPlace();
                             if (place) {
-                                form.setValue("location", place.formatted_address || ""
-                                );
+                                form.setValue("location", place.formatted_address || "", {
+                                    shouldValidate: true
+                                });
                             }
                         });
                     }}
@@ -208,8 +207,6 @@ export default function RegistrationPage() {
                     <SubmitButton
                         className={cn("bg-black text-white hover:bg-black/80 relative")}
                         type="submit"
-                        disabled={!isFormValid()}
-
                     >
                         Confirm
                     </SubmitButton>
