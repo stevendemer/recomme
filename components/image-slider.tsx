@@ -24,7 +24,7 @@ export default function ImageSlider({
     data: any;
 }) {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [defaultValue, setDefaultValue] = useState(1);
+    const [defaultValue, setDefaultValue] = useState(0);
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const {replace, push} = useRouter();
@@ -47,7 +47,7 @@ export default function ImageSlider({
         const currentQuestion = currentGroup?.items[currentQuestionIndex];
         if (currentQuestion) {
             // const defaultValue = Math.floor((currentQuestion.min + currentQuestion.max));
-            form.reset({value: [1]})
+            form.reset({value: [0]})
         }
     }, [currentQuestionIndex, page]);
 

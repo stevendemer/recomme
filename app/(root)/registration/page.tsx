@@ -74,8 +74,8 @@ export default function RegistrationPage() {
     const role = form.watch('role');
 
     const isFormValid = () => {
-        return !!(
-            location.trim() && ecName.trim() && role.trim()
+        return Boolean(
+            location?.trim() && ecName?.trim() && role?.trim()
         )
     }
 
@@ -97,9 +97,6 @@ export default function RegistrationPage() {
                 description: "You have reached the maximum number of submissions",
             });
         } else {
-            toast({
-                description: "Thank you for your time !"
-            });
 
             router.push('/thankyou')
         }
@@ -163,10 +160,8 @@ export default function RegistrationPage() {
                         auto.addListener("place_changed", () => {
                             const place = auto.getPlace();
                             if (place) {
-                                // setPlace(place.formatted_address || "");
-                                form.setValue("location", place.formatted_address || "", {
-                                    shouldValidate: true,
-                                });
+                                form.setValue("location", place.formatted_address || ""
+                                );
                             }
                         });
                     }}
@@ -174,6 +169,8 @@ export default function RegistrationPage() {
                     <Input
                         placeholder="Location"
                         className={cn("w-full rounded-full py-5 shadow-xl mt-2 pl-6", form.formState.errors.location && "border-red-500")}
+                        {...form.register('location', {required: true})}
+
                         onKeyDown={(e) => handleKeyDown(e, nameRef)}
                     />
                 </Autocomplete>
