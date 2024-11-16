@@ -75,7 +75,7 @@ export default function ProfilingLayout({children}: PropsWithChildren) {
                     <div
                         className="bg-white/30 h-full sm:max-h-[90svh] text-neutral-500 backdrop-blur-lg rounded-3xl w-full flex flex-col sm:pt-16 pt-12 sm:p-6 sm:m-4 px-4 max-w-[90vw] sm:max-w-[60vw]">
                         <div
-                            className="bg-white/70 w-full h-[calc(100vh-8rem)] sm:h-[calc(100vh-10rem)] rounded-sm  shadow-lg overflow-hidden">
+                            className="bg-white/70 w-full h-[calc(100vh-8rem)] sm:h-[calc(100vh-10rem)] rounded-sm  shadow-lg overflow-y-auto">
                             <div className="flex flex-col items-center h-full">
                                 {children}
                             </div>

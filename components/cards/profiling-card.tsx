@@ -37,7 +37,6 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
     const x = useMotionValue(0);
     const controls = useAnimation();
     const cardElem = useRef(null);
-    // const [currentIndex, setCurrentIndex] = useState(0);
     const [exitPosition, setExitPosition] = useState<"left" | "right" | "">("");
     const [isLast, setIsLast] = useState(false);
     const {replace} = useRouter();
@@ -94,14 +93,14 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
         const velocity = info.velocity.x;
         const offset = info.offset.x;
 
-        // Check if the swipe was strong enough
-        if (Math.abs(velocity) >= 300 || Math.abs(offset) > offsetBoundary) {
-            if (offset < 0) {
-                handleSwipe("left");
-            } else {
-                handleSwipe("right");
-            }
+
+        if (velocity < -1 && offset <= (offsetBoundary * -1)) {
+            handleSwipe('left')
+        } else if (velocity > 1 && offset >= offsetBoundary) {
+            handleSwipe('right')
+            console.log('swiped right')
         } else {
+
             // If not strong enough, animate back to center
             animate(x, 0, {
                 type: "spring",
@@ -120,7 +119,7 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
             </h2>
 
             {/* Main Card Container */}
-            <div className="w-full max-w-lg px-4 sm:px-12 relative h-full border-5">
+            <div className="w-full max-w-lg px-4 sm:px-12 relative h-full">
                 {/* Action Buttons */}
                 <div className="absolute sm:block hidden left-0 top-1/2 -translate-y-1/2 z-20">
                     <button
@@ -143,7 +142,7 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
 
                 {/* Card Content */}
                 <motion.div
-                    className="inset-0 touch-none absolute rounded-md"
+                    className="inset-0 touch-none absolute grid place-items-center w-full max-w-sm mx-auto h-full max-h-[80%]"
                     dragElastic={0.8}
                     ref={cardElem}
                     drag="x"
@@ -165,11 +164,11 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
                     onDragEnd={handleDragEnd}
                 >
                     <div
-                        className="w-full pointer-events-none aspect-video">
+                        className="pointer-events-none aspect-video rounded-sm overflow-hidden">
                         <Image
                             fill
                             alt={data.text ?? "alt"}
-                            className="object-contain object-center w-full h-full "
+                            className="object-cover object-center w-full h-full rounded-sm"
                             src={`${process.env.NEXT_PUBLIC_API_URL}${data.src}`}
                             priority
                             sizes="(max-width: 768px) 100vw, 600px"

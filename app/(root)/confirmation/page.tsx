@@ -9,13 +9,14 @@ import rect from '@/public/assets/rect.png'
 
 export default function ConfirmationPage() {
     return (
-        <div className="flex flex-col items-center justify-around w-full h-full min-h-[80vh] p-4">
-            <div className="flex-1 w-full flex flex-col items-center justify-center">
-                <div className="relative w-full h-full flex items-center justify-center">
+        <div className="flex flex-col items-center justify-around h-full w-full scrollbar-hide p-2">
+            {/*parent container*/}
+            <div className="w-full flex flex-col items-center justify-center flex-1">
+                <div className="w-full flex items-center justify-around relative">
                     {/* Background Image */}
-                    <div className="absolute inset-0 w-full h-full">
+                    <div className="absolute inset-0 w-full h-full ">
                         <Image
-                            className="object-contain object-center w-full h-full"
+                            className="object-contain object-center w-full h-full rounded-sm"
                             src={bigCloud}
                             alt="cloud background"
                             priority
@@ -24,22 +25,25 @@ export default function ConfirmationPage() {
                     </div>
 
                     {/* Content Container */}
-                    <div className="w-full h-full flex items-center p-4 md:p-8">
-                        <div className=" absolute inset-0 w-full h-full flex items-center justify-center -z-10">
-                            <Image className='object-center object-cover w-full h-full' src={rect} alt={'rect'}/>
+                    <div className="w-full flex justify-around relative items-center p-4 md:p-8">
+                        <div
+                            className="absolute inset-0 w-full h-full flex items-center justify-center -z-10 flex-grow">
+                            <Image
+                                fill
+                                className='object-center object-cover w-full h-full rounded-sm' src={rect}
+                                alt={'rect'}/>
                         </div>
-                        <div className="flex flex-col items-start justify-center w-full h-full space-y-6 sm:space-y-8">
+                        <div className="flex flex-col items-start justify-around w-full h-full space-y-6 sm:space-y-8">
                             {/* Text and Flower Section */}
-                            <div className="flex flex-col sm:flex-row items-start  gap-4 sm:gap-6">
-                                <div className="relative aspect-square flex-shrink-0">
+                            <div className="flex flex-col sm:flex-row items-start justify-center gap-4 sm:gap-6">
+                                <div className="relative aspect-video h-full">
                                     <Image
-                                        priority
                                         src={flower}
                                         alt="flower"
-                                        className="object-cover object-center w-full h-full"
+                                        className='object-contain object-center'
                                     />
                                 </div>
-                                <p className="text-black text-lg  md:text-xl font-normal font-body leading-tight text-center sm:text-left line-clamp-5 text-ellipsis overflow-hidden">
+                                <p className="text-black text-lg  sm:text-xl font-normal font-body leading-tight text-center sm:text-left line-clamp-5 text-ellipsis overflow-hidden">
                                     First, let&apos;s get introduced
                                     I have a feeling you might be an
                                     <b> ALEC community manager </b>
@@ -62,14 +66,14 @@ export default function ConfirmationPage() {
             </div>
 
             {/* Buttons */}
-            <div className="w-full max-w-md mx-auto mt-6 flex items-center justify-center gap-4">
+            <div className="w-full max-w-md pb-8 mx-auto justify-center flex items-center gap-4">
                 <Link href="/registration">
-                    <SubmitButton className="w-full bg-red-400 hover:bg-red-400">
+                    <SubmitButton className=" bg-red-400 hover:bg-red-400">
                         No, modify
                     </SubmitButton>
                 </Link>
                 <Link href="/thankyou">
-                    <SubmitButton className="w-full">
+                    <SubmitButton>
                         Yep, it&apos;s me
                     </SubmitButton>
                 </Link>

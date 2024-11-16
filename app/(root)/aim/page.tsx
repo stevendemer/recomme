@@ -57,9 +57,9 @@ export default function AimPage() {
             </div>
             <div className="flex flex-col items-center justify-center h-full gap-4">
                 <div className="flex flex-col sm:flex-row justify-center items-center w-full h-full">
-                    <div className="grid sm:grid-cols-3 grid-cols-1 w-full auto-rows-fr gap-x-2">
+                    <div className="grid sm:grid-cols-3 grid-cols-1 w-full gap-x-2">
                         {text.map((value, index) => (
-                            <Card className='pointer-events-none flex flex-col h-full'
+                            <Card className='pointer-events-none flex flex-col h-full shadow-md'
                                   key={value.title}>
                                 <CardHeader className='flex-shrink-0'>
                                     <div className="relative aspect-video">
@@ -75,8 +75,8 @@ export default function AimPage() {
                                         {value.title}
                                     </h2>
                                 </CardHeader>
-                                <CardContent className=' flex items-start font-inter flex-1'>
-                                    <p className="text-muted-foreground text-center text-ellipsis text-md line-clamp-3 whitespace-break-spaces ">
+                                <CardContent className='flex items-start font-inter flex-1'>
+                                    <p className="text-muted-foreground text-center text-ellipsis text-md whitespace-break-spaces">
                                         {value.body}
                                     </p>
                                 </CardContent>

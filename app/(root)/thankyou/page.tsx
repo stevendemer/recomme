@@ -15,12 +15,12 @@ export default function ThankYou() {
                                alt="cloud background"/>
                     </div>
                     <div
-                        className="absolute z-50 bg-white/30 backdrop-blur-sm p-8 rounded-3xl flex flex-col items-center space-y-4 sm:space-y-0 sm:flex-row">
+                        className="absolute z-50 bg-white/50 backdrop-blur-sm p-8 rounded-3xl flex flex-col items-center space-y-4 sm:space-y-0 sm:flex-row max-w-screen-sm">
                         <div className="flex gap-x-4 items-start justify-center w-full">
 
-                            <div className="relative aspect-square flex-shrink-0">
+                            <div className="relative aspect-video flex-shrink-0">
                                 <Image
-                                    className="object-cover object-center w-full h-full"
+                                    className="object-contain object-center w-full h-full"
                                     priority src={flower} alt="flower"
                                 />
                             </div>

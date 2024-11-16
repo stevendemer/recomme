@@ -12,7 +12,7 @@ export default function SubmitButton({
         <Button
             onClick={props.onClick}
             className={cn(
-                "rounded-full sm:px-10 sm:py-7 px-8 py-6 max-w-lg text-sm sm:text-md font-bold font-mulish disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-200 hover:opacity-75",
+                "rounded-full sm:px-10 sm:py-7 px-4 py-5 max-w-lg text-xs sm:text-md font-bold font-mulish disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-200 hover:opacity-75",
                 className
             )}
             type="submit"

@@ -54,7 +54,7 @@ export default function RegistrationPage() {
             location: '',
             ecName: '',
             role: 'EC Manager'
-            
+
         }
     });
 
@@ -94,7 +94,12 @@ export default function RegistrationPage() {
             });
             return;
         }
-        router.push('/thankyou')
+
+        if (data.role === 'EC Member') {
+            router.push('/members')
+        } else {
+            router.push('/thankyou')
+        }
     };
 
     const {isLoaded} = useLoadScript({
@@ -139,10 +144,10 @@ export default function RegistrationPage() {
 
 
     return (
-        <div className="w-full h-full flex flex-col items-center justify-around relative">
+        <section className="w-full flex-shrink-0  flex flex-col items-center justify-around relative space-y-4">
             <form
                 // onSubmit={form.handleSubmit(onSubmit)}
-                className=" max-w-sm h-full relative sm:w-full space-y-6 flex flex-col items-center justify-around font-body text-foreground"
+                className="max-w-sm relative sm:w-full space-y-6 justify-around flex flex-col items-center font-body text-foreground"
                 onSubmit={form.handleSubmit(onSubmit)}
             >
                 <h1 className="text-xl sm:text-3xl font-sans leading-tight text-black">
@@ -205,22 +210,11 @@ export default function RegistrationPage() {
                         <SelectItem value="Other">Other</SelectItem>
                     </SelectContent>
                 </Select>
-                {isFormValid() ? (
-                    <SubmitButton
-                        className={cn("bg-black text-white hover:bg-black/80 relative")}
-                        type="submit"
-                    >
-                        Confirm
-                    </SubmitButton>
-                ) : (
-                    <SubmitButton
-                        className={cn("bg-gray-400 text-gray-500 cursor-not-allowed relative")}
-                        disabled={true}
-                    >
-                        Confirm
-                    </SubmitButton>
-                )}
+                <SubmitButton
+                    className={cn(isFormValid() ? "bg-black text-white hover:bg-black/80" : "bg-gray-300 text-muted-foreground cursor-not-allowed")}>
+                    Continue
+                </SubmitButton>
             </form>
-        </div>
+        </section>
     );
 }
