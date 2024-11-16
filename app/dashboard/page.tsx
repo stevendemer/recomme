@@ -1,8 +1,8 @@
+'use client'
 import RecommendationCard from "@/components/cards/recomme-card";
 import ActionCards from "@/components/dashboard/action-cards";
 import Graph from "@/components/dashboard/graph";
 import MemberCards from "@/components/dashboard/member-cards";
-import SubmitButton from "@/components/submit-button";
 import {Button} from "@/components/ui/button";
 
 export default function Dashboard() {

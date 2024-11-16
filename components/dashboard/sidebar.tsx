@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import {
     Tooltip,
@@ -15,6 +16,7 @@ import members from "@/public/assets/members.svg";
 import recommendation from "@/public/assets/recommendation.svg";
 import profile from "@/public/assets/profile.svg";
 import faq from "@/public/assets/faq.svg";
+import {useSessionStorage} from "usehooks-ts";
 
 /**
  * The main sidebar component for the dashboard.
@@ -25,6 +27,9 @@ import faq from "@/public/assets/faq.svg";
  * @returns The main sidebar component.
  */
 export default function DashboardSidebar() {
+
+    const [name] = useSessionStorage('ec-name', '');
+
     return (
         <TooltipProvider>
             <aside className="h-full sidebar">
@@ -33,15 +38,20 @@ export default function DashboardSidebar() {
                         {/* Content Container */}
                         <div className="flex flex-col h-full p-4">
                             {/* Logo Section - Fixed Height */}
-                            <div className="relative w-full h-32 flex-shrink-0">
-                                <Image
-                                    alt="alec logo"
-                                    src={alec}
-                                    className="object-contain"
-                                    fill
-                                    priority
-                                />
-                            </div>
+                            {name ? (
+                                <span className="text-center text-md sm:text-xl  font-inter">{name}</span>
+                            ) : (
+
+                                <div className="relative w-full h-32 flex-shrink-0">
+                                    <Image
+                                        alt="alec logo"
+                                        src={alec}
+                                        className="object-contain"
+                                        fill
+                                        priority
+                                    />
+                                </div>
+                            )}
 
                             {/* Menu Section - Scrollable */}
                             <div className="flex flex-col flex-1 mt-8 space-y-4 font-mulish overflow-y-auto">

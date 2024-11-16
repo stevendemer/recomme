@@ -7,7 +7,7 @@ import {cn} from "@/lib/utils";
 import {Autocomplete, useLoadScript} from "@react-google-maps/api";
 import usePlacesAutoComplete from "use-places-autocomplete";
 import {useMemo, useState, useEffect, useRef, RefObject} from "react";
-import {useOnClickOutside} from "usehooks-ts";
+import {useOnClickOutside, useSessionStorage} from "usehooks-ts";
 import {
     Select,
     SelectContent,
@@ -47,6 +47,9 @@ const schema = z.object({
 });
 
 export default function RegistrationPage() {
+
+    const [name, setName, removeName] = useSessionStorage('ec-name', '');
+
     const form = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
         mode: "onChange",
@@ -93,6 +96,10 @@ export default function RegistrationPage() {
                 description: "You have reached the maximum number of submissions",
             });
             return;
+        }
+
+        if (data.role === 'EC Manager') {
+            setName(data.ecName)
         }
 
         if (data.role === 'EC Member') {
