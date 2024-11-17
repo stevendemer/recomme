@@ -4,6 +4,9 @@ import {useGetProfiling} from "@/hooks/use-get-profiling";
 import Spinner from "@/components/spinner";
 import Image from "next/image";
 import {useState} from "react";
+import {bisectCenter} from "d3-array";
+import {IconArrowLeft} from "@tabler/icons-react";
+import {useRouter} from "next/navigation";
 
 
 const data = {
@@ -14,15 +17,31 @@ const data = {
 const ECProfiling = () => {
 
     const {data: profiling, status} = useGetProfiling()
+    const router = useRouter()
+
+    if (status === 'pending') {
+        return (
+            <div className={'w-full flex justify-center items-center h-full'}>
+                <Spinner size={'xl'}/>
+            </div>
+        )
+    }
 
 
-    const displayData = !profiling || profiling?.status === 500 ? data : profiling?.data;
+    const displayData = status === 'error' || profiling?.status === 500 ? data : profiling?.data;
 
     return (
         <div className={'container mx-auto h-full relative'}>
+            <button
+                onClick={() => router.back()}
+                className="bg-white shadow-lg text-[#65D9BD] p-1 sm:p-3  rounded-sm text-center hover:shadow-xl transition-shadow duration-200 "
+            >
+                <IconArrowLeft size={37}/>
+            </button>
             <div
                 className={'flex flex-col items-center w-full h-full max-w-5xl scrollbar-hide overflow-y-auto relative'}>
-                <h2 className="text-center font-semibold font-inter text-lg sm:text-xl">Energy Profiling for EC
+                <h2 className="text-center font-semibold font-body text-lg sm:text-xl text-black">Energy Profiling for
+                    EC
                     Members</h2>
                 <article className={'scrollbar-hide p-1'}>
                     <p className="font-body w-full whitespace-pre-line max-w-2xl text-base leading-relaxed tracking-wide">
