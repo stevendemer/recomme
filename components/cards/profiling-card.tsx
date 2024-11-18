@@ -42,6 +42,7 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
     const {replace} = useRouter();
     const params = useSearchParams();
     const pathname = usePathname();
+    const [needsReset, setNeedsReset] = useState(false);
 
     console.log("data is ", data);
 
@@ -53,10 +54,27 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
     const offsetBoundary = 300;
 
     useEffect(() => {
+        if (needsReset) {
+            const resetTimer = setTimeout(() => {
+                x.set(0);
+                setExitPosition('');
+                controls.set({
+                    x: 0,
+                    rotate: 0,
+                    opacity: 1,
+                })
+                setNeedsReset(false)
+            }, 200)
+
+            return () => clearTimeout(resetTimer);
+        }
+        }, [needsReset, controls, x]);
+
+    useEffect(() => {
         if (params.get("type") === "range") {
             replace(`${pathname}?${params.toString()}`);
         }
-    }, [params, pathname]);
+    }, [params, pathname, replace]);
 
     const handleSwipe = async (direction: "left" | "right") => {
         setExitPosition(direction);
@@ -69,24 +87,15 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
                 duration: 0.2,
                 type: "spring",
                 stiffness: 300,
-                damping: 20,
+                damping: 30,
             },
         });
 
-        // Reset card position
-        x.set(0);
-        setExitPosition("");
         onVote();
 
-        // Reset controls
-        await controls.start({
-            x: 0,
-            rotate: 0,
-            opacity: 1,
-            transition: {
-                duration: 0,
-            },
-        });
+
+        // reset after the card is no longer available
+        setNeedsReset(true)
     };
 
     const handleDragEnd = (event: any, info: PanInfo) => {
@@ -112,14 +121,14 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
 
 
     return (
-        <div className="flex flex-col items-center justify-around w-full h-full">
+        <div className="flex flex-col items-center flex-1 w-full h-full">
             {/* Text Section */}
-            <h2 className="text-lg sm:text-xl text-center font-sans text-black px-6">
+            <h2 className="text-lg sm:text-2xl  text-center font-mulish text-black px-2 whitespace-pre-line">
                 {data.text}
             </h2>
 
             {/* Main Card Container */}
-            <div className="w-full max-w-lg px-4 sm:px-12 relative h-full">
+            <div className="w-full max-w-xl px-4 sm:px-12 relative h-full flex justify-center items-center flex-1">
                 {/* Action Buttons */}
                 <div className="absolute sm:block hidden left-0 top-1/2 -translate-y-1/2 z-20">
                     <button
@@ -140,9 +149,12 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
                     </button>
                 </div>
 
+                <AnimatePresence mode={'wait'}>
+
                 {/* Card Content */}
                 <motion.div
-                    className="inset-0 touch-none absolute grid place-items-center w-full max-w-sm mx-auto h-full max-h-[80%]"
+                    key={currentIndex}
+                    className="inset-0 touch-none absolute w-full max-w-md m-auto h-full max-h-[80%]"
                     dragElastic={0.8}
                     ref={cardElem}
                     drag="x"
@@ -179,6 +191,7 @@ export default function ProfilingCard({onVote, data, currentIndex}: any) {
                         />
                     </div>
                 </motion.div>
+                </AnimatePresence>
                 <div className="w-full sm:hidden flex justify-center gap-6 mt-6">
                     <button
                         onClick={() => handleSwipe("left")}

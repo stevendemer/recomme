@@ -10,8 +10,8 @@ import logo from "@/public/assets/logo.svg";
 
 export default function Home() {
     return (
-        <div className="relative flex items-center justify-around flex-col w-full h-full">
-            <div className="flex flex-col items-center justify-center relative">
+        <div className="relative flex items-center justify-around flex-col w-full h-full scrollbar-hide">
+            <div className="flex flex-col items-center justify-center relative scrollbar-hide">
                 <div className="w-32 h-32 sm:w-52 sm:h-12">
                     <Image
                         src={logo}

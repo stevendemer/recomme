@@ -1,12 +1,18 @@
 "use client";
-import ProfilingCard from "@/components/cards/profiling-card";
-import RadioSelect from "@/components/forms/radio-select";
-import ImageSlider from "@/components/image-slider";
+// import ProfilingCard from "@/components/cards/profiling-card";
+// import RadioSelect from "@/components/forms/radio-select";
+// import ImageSlider from "@/components/image-slider";
 import Spinner from "@/components/spinner";
 import Steps from "@/components/steps";
 import {useGetElements} from "@/hooks/use-get-elemenets";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
-import React, {useCallback, useEffect, useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
+import {AnimatePresence, motion} from "framer-motion";
+import dynamic from "next/dynamic";
+
+const ProfilingCard = dynamic(() => import("@/components/cards/profiling-card"));
+const RadioSelect = dynamic(() => import("@/components/forms/radio-select"));
+const ImageSlider = dynamic(() => import("@/components/image-slider"))
 
 
 interface GroupProgress {
@@ -22,6 +28,8 @@ export default function Profiling() {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const {replace, push} = useRouter();
+    const [isTransitioning, setIsTransitioning] = useState(false)
+    const [currentComponent, setCurrentComponent] = useState<string>('');
 
     const currentType = useMemo(() => searchParams.get("type") ?? "select", [searchParams]);
 
@@ -35,6 +43,10 @@ export default function Profiling() {
     });
 
     const {data, status, error} = useGetElements();
+
+    useEffect(() => {
+        setCurrentComponent(currentType)
+    }, []);
 
     useEffect(() => {
         if (currentType === "range" && data?.ranges) {
@@ -51,12 +63,15 @@ export default function Profiling() {
     useEffect(() => {
         const page = searchParams.get('page');
         if (page && parseInt(page) === 4) {
-            push('/csjt');
+            setIsTransitioning(true);
+            setTimeout(() => {
+                push('/csjt');
+            })
         }
     }, [pathname, searchParams]);
 
 
-    if (status === "pending") {
+    if (status === "pending" || isTransitioning) {
         return (
             <div className="h-screen w-full flex items-center justify-center relative z-30">
                 <Spinner size="xl"/>
@@ -128,41 +143,39 @@ export default function Profiling() {
 
 
     const moveToNextType = (nextType: string) => {
-        const params = new URLSearchParams(searchParams);
-        params.set("type", nextType);
-        replace(`${pathname}?${params.toString()}`, {scroll: false});
+        setIsTransitioning(true);
+        setCurrentComponent(nextType);
 
-        setCurrentStep(0);
+        setTimeout(() => {
+            const params = new URLSearchParams(searchParams);
+            params.set("type", nextType);
+            push(`${pathname}?${params.toString()}`, {scroll: false});
+            setCurrentStep(0);
+            setIsTransitioning(false)
+        })
     };
 
     const renderStep = (data: any) => {
-        switch (currentType) {
-            case "select":
-                return (
-                    <RadioSelect
-                        onVote={handleNextStep}
-                        data={data?.selects[currentStep]}
-                    />
-                );
-            case "card":
-                return (
-                    <ProfilingCard
-                        data={data?.cards[0].images[currentStep]}
-                        onVote={handleNextStep}
-                    />
-                );
-            case "range":
-                return (
-                    <ImageSlider
-                        data={data.ranges}
-                        onVote={handleNextStep}
-                    />
-                );
-            default:
-                return (
-                    <div className="text-2xl text-center w-full">No type found !</div>
-                );
+
+        const componentProps = {
+            onVote: handleNextStep,
+            currentIndex: currentStep
         }
+
+        const components = {
+            select: <RadioSelect {...componentProps} data={data?.selects[currentStep]} />,
+            card: <ProfilingCard {...componentProps} data={data?.cards[0].images[currentStep]} />,
+            range: <ImageSlider {...componentProps} data={data?.ranges} />
+        }
+
+
+        return (
+            <AnimatePresence mode={'wait'}>
+                <motion.div key={currentComponent} initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} transition={{duration: 0.1}} className={"w-full h-full"}>
+                    {components[currentType as keyof typeof components] || <div className={'text-2xl text-center w-full'}>Component type not found !</div>}
+                </motion.div>
+            </AnimatePresence>
+        )
     };
 
     return (
@@ -173,7 +186,7 @@ export default function Profiling() {
                 steps={data.steps} currentStep={currentStep}/>
             <div
                 className="flex flex-col justify-around items-center space-y-4 w-full h-[calc(100vh-2rem)] p-6 font-body">
-                {renderStep(data)}
+                {!isTransitioning && renderStep(data)}
             </div>
         </div>
     );

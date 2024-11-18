@@ -37,7 +37,7 @@ export default function ConvinceJoinPage() {
                     src={leaf}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Adjust image size for responsive
                 />
-                <h2 className="font-semibold font-sans text-lg text-black tracking-wide">
+                <h2 className="font-semibold font-mulish text-lg text-black tracking-wide">
                     Environmental Tech Enthusiast
                 </h2>
                 <Image

@@ -9,7 +9,7 @@ import {useSessionStorage} from "usehooks-ts";
 
 export default function ThankYou() {
 
-    const [name] = useSessionStorage('ec-name', '');
+    const [name] = useSessionStorage('ec-name', 'Alec');
 
     return (
         <div className="relative flex items-center justify-around flex-col w-full h-full flex-1">

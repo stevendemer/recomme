@@ -48,7 +48,7 @@ const schema = z.object({
 
 export default function RegistrationPage() {
 
-    const [name, setName, removeName] = useSessionStorage('ec-name', '');
+    const [name, setName] = useSessionStorage('ec-name', 'Alec');
 
     const form = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),

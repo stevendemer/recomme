@@ -39,7 +39,7 @@ export default function DashboardSidebar() {
                         <div className="flex flex-col h-full p-4">
                             {/* Logo Section - Fixed Height */}
                             {name ? (
-                                <span className="text-center text-md sm:text-xl  font-inter">{name}</span>
+                                <div className="text-center text-md sm:text-xl font-inter">{name}</div>
                             ) : (
 
                                 <div className="relative w-full h-32 flex-shrink-0">
