@@ -81,8 +81,8 @@ export default function ApproachPage() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-around relative flex-shrink h-full w-full gap-y-4">
-            <h2 className="sm:text-xl text-md font-sans text-black tracking-wide">
+        <div className="flex flex-col items-center justify-around relative  h-full w-full space-y-2">
+            <h2 className="sm:text-3xl text-lg font-sans text-black tracking-wide">
                 Recommended Approach
             </h2>
 
@@ -97,7 +97,6 @@ export default function ApproachPage() {
                 {isValid && !isSubmitting ? (
                     <Link href="/dashboard" passHref>
                         <SubmitButton
-                            className="rounded-full sm:px-12 sm:py-8 px-6 py-4 max-w-lg text-sm sm:text-md  disabled:bg-gray-600 disabled:text-gray-200"
                             onClick={() => {
                                 console.log("all answers are ", answers);
                             }}

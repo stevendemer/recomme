@@ -151,7 +151,7 @@ export default function RegistrationPage() {
 
 
     return (
-        <section className="w-full flex-shrink-0  flex flex-col items-center justify-around relative space-y-4">
+        <section className="w-full h-full flex-shrink-0  flex flex-col items-center justify-center relative space-y-4">
             <form
                 // onSubmit={form.handleSubmit(onSubmit)}
                 className="max-w-sm relative sm:w-full space-y-6 justify-around flex flex-col items-center font-body text-foreground"

@@ -16,12 +16,13 @@ export default function ApproachRow({
     answer: boolean | null;
 }) {
     return (
-        <div className="flex items-center rounded-sm justify-between w-full bg-white font-inter shadow-lg">
-            <div className="flex flex-col w-full max-w-xl p-1 sm:p-3">
-                <h2 className="font-bold text-xl  text-black text-start">
+        <div
+            className="flex items-center rounded-sm justify-between w-full bg-white font-inter shadow-xl">
+            <div className="flex flex-col w-full max-w-screen-sm max-sm:p-2 p-4">
+                <h2 className="font-bold text-lg sm:text-xl  text-black text-start">
                     {label}
                 </h2>
-                <p className="font-normal text-black text-sm sm:text-md tracking-wide truncate w-full line-clamp-3 whitespace-break-spaces">
+                <p className="font-normal text-black text-xs sm:text-md tracking-wide truncate w-full line-clamp-3 whitespace-break-spaces">
                     {sub}
                 </p>
             </div>

@@ -31,7 +31,7 @@ export default function AimPage() {
     const [selected, setSelected] = useState(0);
 
     return (
-        <div className="grid place-items-center h-full w-full max-w-5xl p-2">
+        <div className="flex flex-col items-center h-full w-full p-2">
             <div
                 className="flex flex-col items-center justify-center w-full h-full max-w-5xl">
                 <div className="flex items-center w-full justify-between">
@@ -57,7 +57,7 @@ export default function AimPage() {
             </div>
             <div className="flex flex-col items-center justify-center h-full gap-4">
                 <div className="flex flex-col sm:flex-row justify-center items-center w-full h-full">
-                    <div className="grid sm:grid-cols-3 grid-cols-1 w-full gap-x-2">
+                    <div className="grid sm:grid-cols-3 grid-cols-1 w-full max-w-screen-md gap-x-2">
                         {text.map((value, index) => (
                             <Card className='pointer-events-none flex flex-col h-full shadow-md'
                                   key={value.title}>

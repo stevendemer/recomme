@@ -11,11 +11,11 @@ import Link from "next/link";
 export default function ConvinceJoinPage() {
     return (
         <div
-            className="flex flex-col items-center justify-around w-full h-full max-w-5xl flex-1 relative">
-            <div className="flex flex-col justify-around items-center gap-4 h-full w-full">
+            className="flex flex-col items-center justify-center w-full h-full m-auto relative">
+            <div className="flex flex-col justify-around items-center w-full">
                 <div className="relative w-16 h-16">
                     <Image
-                        className="object-contain w-full h-full object-center"
+                        className="object-contain object-center"
                         src={user}
                         alt=""
                         fill
@@ -49,8 +49,8 @@ export default function ConvinceJoinPage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Adjust image size for responsive
                 />
             </div>
-            <div className="flex items-center w-full p-6 flex-shrink">
-                <div className="grid gap-4 md:grid-cols-3 w-full h-auto">
+            <div className="flex items-center w-full p-4 max-w-screen-md">
+                <div className="grid gap-4 md:grid-cols-3 w-full flex-shrink-0">
                     {/* 3 cards go here */}
                     <CSJTCard src={lamp}>
                         He&apos;s focused on minimising the impact of energy production and

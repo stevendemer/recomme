@@ -15,12 +15,12 @@ export default function ThankYou() {
         <div className="relative flex items-center justify-around flex-col w-full h-full flex-1">
             <div className="flex flex-col items-center justify-around h-full w-full gap-4">
                 <div className="flex items-center justify-center relative flex-grow w-full">
-                    <div className="relative aspect-video w-full h-full">
-                        <Image className={'w-full h-full object-contain object-center'} src={bigCloud}
+                    <div className="relative ">
+                        <Image className={'w-full h-full object-cover object-center'} src={bigCloud}
                                alt="cloud background"/>
                     </div>
                     <div
-                        className="absolute z-50 bg-white/50 backdrop-blur-sm p-8 rounded-3xl flex flex-col items-center space-y-4 sm:space-y-0 sm:flex-row max-w-screen-sm">
+                        className="absolute z-30 bg-white/50 backdrop-blur-sm p-8 rounded-3xl flex flex-col items-center space-y-4 sm:space-y-0 sm:flex-row max-w-screen-sm">
                         <div className="flex gap-x-4 items-start justify-center w-full">
 
                             <div className="relative aspect-video flex-shrink-0">

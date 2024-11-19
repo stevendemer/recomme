@@ -114,7 +114,7 @@ export default function RadioSelect({data, onVote, ...props}: any) {
 
                             }}
                             className={cn(
-                                "gap-4 transition-colors duration-200 text-black grid w-full h-full lg:max-w-5xl grid-cols-2 ", data?.options.length > 4 ? "sm:grid-cols-3" : "sm:grid-cols-2",
+                                "gap-4 transition-colors duration-200 text-black grid w-full h-full lg:max-w-5xl", data?.options.length > 4 ? "sm:grid-cols-3" : "sm:grid-cols-2",
                             )}
                         >
                             {data?.images?.length > 0 ? (

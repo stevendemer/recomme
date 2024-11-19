@@ -53,31 +53,26 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html suppressHydrationWarning lang="en">
-        <body
-            className={cn(
-                "bg-gray-200 antiliased scrollbar-hide",
-                mulish.variable,
-                ram.variable,
-                inter.variable,
-                rubik.variable,
-            )}
-        >
+        <html suppressHydrationWarning lang="en" className="h-full">
+        <body className={cn(
+            "h-full bg-gray-200 antialiased",
+            mulish.variable,
+            ram.variable,
+            inter.variable,
+            rubik.variable,
+        )}>
         <Providers>
-            <main className="min-h-screen grid place-items-center h-full w-full gradient-bg backdrop-blur-lg  scrollbar-hide">
-                <div
-                    className="h-screen w-full flex items-center justify-center p-8 sm:max-w-screen-xl container mx-auto scrollbar-hide">
-                    <div
-                        className="bg-white/30 h-full sm:max-h-[90svh] text-neutral-500 backdrop-blur-lg rounded-3xl w-full flex flex-col  pt-12 sm:p-6 sm:m-4 px-4 max-w-[90vw] sm:max-w-[60vw] scrollbar-hide">
-                        <div
-                            className="bg-white/70 w-full h-[calc(100vh-5rem)] overflow-y-auto scrollbar-hide rounded-3xl shadow-lg flex items-center justify-center">
-                            <div className="w-[85%] sm:w-[80%] h-[70%] flex items-center scrollbar-hide">
+            <div className="h-full min-h-screen w-full gradient-bg backdrop-blur-lg p-4 md:p-8">
+                <div className="h-[calc(100vh-4rem)] md:h-[calc(100vh-6rem)] mx-auto max-w-screen-xl">
+                    <div className="h-full bg-white/30 backdrop-blur-lg rounded-sm p-4 md:p-6">
+                        <div className="h-full bg-white/70 w-full rounded-sm shadow-lg">
+                            <div className="h-full w-full p-4 md:p-6 overflow-auto">
                                 {children}
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
+            </div>
             <Toaster/>
         </Providers>
         </body>
