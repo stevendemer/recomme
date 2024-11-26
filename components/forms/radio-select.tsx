@@ -97,15 +97,13 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
 
   return (
     <Form {...form}>
-      <h2 className="sm:text-2xl text-xl text-center text-black font-sans">
-        {data?.title}
-      </h2>
+      <div className="h-full flex flex-col items-center">
+        <h2 className="text-md lg:text-2xl text-center text-black font-sans">
+          {data?.title}
+        </h2>
 
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="transition-colors duration-200 max-w-xl sm:max-w-7xl gap-4 flex flex-col items-center justify-center h-full"
-      >
-        <div className="flex flex-col items-center justify-center w-full">
+        <div className="transition-colors duration-200 sm:max-w-screen-md flex flex-col justify-center items-center w-full h-full">
+          {/* main container */}
           <Controller
             name={data?.title}
             control={form.control}
@@ -117,8 +115,10 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                   console.log(value);
                 }}
                 className={cn(
-                  "transition-colors duration-200 text-black flex flex-wrap justify-center items-center lg:max-w-5xl w-full",
-                  !hasImages && "sm:grid-cols-2 grid"
+                  "lg:max-w-5xl w-full h-full",
+                  hasImages
+                    ? "transition-colors duration-200 text-black flex flex-wrap lg:h-[80%] justify-center "
+                    : "sm:grid-cols-2 grid place-items-center gap-4 lg:max-h-[80%]"
                   // data?.options.length > 4 ? "sm:grid-cols-3" : "sm:grid-cols-2"
                   // data?.options.length > 4 ? "sm:grid-cols-3" : "sm:grid-cols-2"
                 )}
@@ -132,48 +132,46 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                       console.log("image url is ", baseUrl);
 
                       return (
-                        <div
+                        <Card
+                          onClick={() =>
+                            handleSelection(value.text, field.onChange)
+                          }
+                          key={index}
                           className={cn(
-                            "flex justify-center items-center flex-[0_0_calc(30%-20px)] w-full h-auto cursor-pointer"
+                            "flex flex-col justify-center duration-200 transition-all items-center flex-[0_0_calc(30%-15px)] cursor-pointer",
+                            isSelected
+                              ? "bg-[#65D9BD] text-white"
+                              : "bg-white text-black"
                           )}
                         >
-                          <Card
-                            onClick={() =>
-                              handleSelection(value.text, field.onChange)
-                            }
-                            key={index}
-                            className={cn(
-                              "flex flex-col items-center justify-center w-full rounded-sm transition-colors duration-200 shadow-lg",
-                              isSelected
-                                ? "bg-[#65D9BD] text-white"
-                                : "bg-white text-black"
-                            )}
-                          >
-                            <CardContent className="rounded-sm pointer-events-none relative aspect-video w-full h-full">
-                              <Image
-                                src={baseUrl}
-                                alt={value.text ?? "alt"}
-                                fill
-                                className="object-scale-down"
-                              />
-                            </CardContent>
-                            <CardFooter>
-                              <p className="text-center whitespace-normal font-bold font-rubik sm:text-xl text-lg p-2">
-                                {value.text}
-                              </p>
-                            </CardFooter>
-                          </Card>
-                        </div>
+                          <CardContent className="pointer-events-none hidden md:flex relative">
+                            <Image
+                              src={baseUrl}
+                              alt={value.text ?? "alt"}
+                              fill
+                              className="object-scale-down object-center w-full h-full"
+                            />
+                          </CardContent>
+                          <CardFooter>
+                            <p className="text-center whitespace-normal font-bold font-rubik md:text-xs text-sm">
+                              {value.text}
+                            </p>
+                          </CardFooter>
+                        </Card>
+                        // </div>
                       );
                     })
                   : data.options.map((value: any, index: number) => (
                       <div
                         key={index}
                         className={cn(
-                          "p-6 rounded-sm border shadow-lg flex min-h-[200px] h-full w-full flex-col items-center justify-center transition-colors duration-200 text-black",
-                          field.value === value && "bg-[#65D9BD] text-white"
+                          "p-6 rounded-sm border shadow-lg flex flex-grow w-full h-full flex-col items-center justify-center transition-colors duration-200 text-black",
+                          field.value === value
+                            ? "bg-[#65D9BD] text-white"
+                            : "bg-white text-black"
                         )}
-                        onClick={() => handleSelection(value, field.onChange)}
+                        // onClick={() => handleSelection(value, field.onChange)}
+                        onClick={() => field.onChange(value)} // click updates the radio button
                       >
                         <Label
                           className="flex flex-col items-center justify-center w-full cursor-pointer"
@@ -187,7 +185,7 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                               field.value === value ? "border-white" : ""
                             )}
                           />
-                          <div className="font-bold text-sm sm:text-xl font-inter text-center">
+                          <div className="font-bold text-sm sm:text-xl font-inter text-center p-1">
                             {value}
                           </div>
                         </Label>
@@ -197,11 +195,15 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
             )}
           />
         </div>
-
-        <SubmitButton disabled={!isFormValid} type="submit">
+        <SubmitButton
+          // onClick={() => form.handleSubmit(onSubmit)}
+          onClick={form.handleSubmit(onSubmit)}
+          disabled={!isFormValid}
+          // type="submit"
+        >
           Continue
         </SubmitButton>
-      </form>
+      </div>
     </Form>
   );
 }
