@@ -153,7 +153,7 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                             />
                           </CardContent>
                           <CardFooter>
-                            <p className="text-center whitespace-normal font-bold font-rubik md:text-xs text-sm">
+                            <p className="text-center whitespace-normal font-bold font-rubik md:text-lg text-md">
                               {value.text}
                             </p>
                           </CardFooter>
