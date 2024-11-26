@@ -144,12 +144,12 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                               : "bg-white text-black"
                           )}
                         >
-                          <CardContent className="pointer-events-none hidden md:flex relative">
+                          <CardContent className="pointer-events-none hidden md:flex relative aspect-square">
                             <Image
                               src={baseUrl}
                               alt={value.text ?? "alt"}
                               fill
-                              className="object-scale-down object-center w-full h-full"
+                              className="object-contain object-center"
                             />
                           </CardContent>
                           <CardFooter>
