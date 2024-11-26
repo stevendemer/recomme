@@ -33,7 +33,7 @@ const PrePage = () => {
             Convince someone to join
           </h1>
           <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
-            Perfect! You've come to the right place. I have some great
+            Perfect! You&apos;ve come to the right place. I have some great
             strategies and tips to help you boost your community engagement and
             attract new members. Shall we explore some effective methods to make
             your community irresistible to potential members?
@@ -44,11 +44,11 @@ const PrePage = () => {
       {/* Tabs Section */}
       <div className="mt-6 flex gap-2 items-center relative">
         <div className="relative flex items-center w-full">
-          <Button className="bg-white hover:bg-slate-100 text-black rounded-full shadow-sm gap-3 ">
+          <Button className="bg-white hover:bg-slate-100 text-black rounded-full shadow-sm gap-x-2 ">
             <div className="bg-amber-200 rounded-full p-1">
               <Image
-                width={40}
-                height={40}
+                width={32}
+                height={32}
                 className="object-contain object-center"
                 alt=""
                 src={userCircle}
@@ -59,11 +59,11 @@ const PrePage = () => {
         </div>
 
         <div className="flex items-center w-full relative">
-          <Button className="bg-white hover:bg-slate-100 text-black rounded-full shadow-sm gap-3">
+          <Button className="bg-white hover:bg-slate-100 text-black rounded-full shadow-sm gap-x-2">
             <div className="bg-amber-200 rounded-full p-1">
               <Image
-                width={40}
-                height={40}
+                width={32}
+                height={32}
                 className="object-contain object-center"
                 alt=""
                 src={userCircle}
@@ -77,7 +77,7 @@ const PrePage = () => {
       {/* Cards Section */}
       <div className="grid grid-cols-1 relative lg:grid-cols-3 gap-6 px-4 max-w-screen-lg mt-2 xl:mt-10">
         {/* Card 1 */}
-        <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center ">
+        <div className="bg-white shadow-lg rounded-lg p-2 lg:p-6 flex flex-col items-center text-center ">
           <Image src={user} alt="User Check" width={50} height={50} />
           <h3 className="mt-4 text-sm lg:text-lg font-bold text-gray-700">
             This person showed high interest but still not convinced
@@ -88,7 +88,7 @@ const PrePage = () => {
         </div>
 
         {/* Card 2 */}
-        <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center">
+        <div className="bg-white shadow-lg rounded-lg p-2 lg:p-6 flex flex-col items-center text-center">
           <Image src={user} alt="User Question" width={50} height={50} />
           <h3 className="mt-4 lg:text-lg text-sm font-bold text-gray-700">
             This person showed hesitancy and a bit of interest
@@ -100,7 +100,7 @@ const PrePage = () => {
         </div>
 
         {/* Card 3 */}
-        <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center">
+        <div className="bg-white shadow-lg rounded-lg p-2 lg:p-6 flex flex-col items-center text-center">
           <Image src={user} alt="User Cross" width={50} height={50} />
           <h3 className="mt-4 lg:text-lg text-sm font-bold text-gray-700">
             This person showed resistance
