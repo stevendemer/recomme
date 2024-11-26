@@ -38,7 +38,7 @@ interface IFormInputs {
 export default function RadioSelect({ data, onVote, ...props }: any) {
   const params = useSearchParams();
   const pathname = usePathname();
-  const { replace } = useRouter();
+  const { push } = useRouter();
 
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
@@ -48,9 +48,9 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
 
   useEffect(() => {
     if (params.get("type") === "card") {
-      replace(`${pathname}?${params.toString()}`);
+      push(`${pathname}?${params.toString()}`, { scroll: false });
     }
-  }, [params, pathname]);
+  }, [pathname]);
 
   useEffect(() => {
     form.reset();

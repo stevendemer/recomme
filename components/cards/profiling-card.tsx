@@ -39,7 +39,7 @@ export default function ProfilingCard({ onVote, data, currentIndex }: any) {
   const cardElem = useRef(null);
   const [exitPosition, setExitPosition] = useState<"left" | "right" | "">("");
   const [isLast, setIsLast] = useState(false);
-  const { replace } = useRouter();
+  const { push } = useRouter();
   const params = useSearchParams();
   const pathname = usePathname();
   const [needsReset, setNeedsReset] = useState(false);
@@ -72,9 +72,9 @@ export default function ProfilingCard({ onVote, data, currentIndex }: any) {
 
   useEffect(() => {
     if (params.get("type") === "range") {
-      replace(`${pathname}?${params.toString()}`);
+      push(`${pathname}?${params.toString()}`, { scroll: false });
     }
-  }, [params, pathname, replace]);
+  }, [pathname]);
 
   const handleSwipe = async (direction: "left" | "right") => {
     setExitPosition(direction);
