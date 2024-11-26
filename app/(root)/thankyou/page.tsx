@@ -14,7 +14,7 @@ export default function ThankYou() {
     <div className="flex items-center justify-evenly flex-col w-full h-full">
       <div className="relative">
         <Image
-          className={"object-contain object-center"}
+          className={"object-contain object-center w-full h-full"}
           src={bigCloud}
           alt="cloud background"
         />
