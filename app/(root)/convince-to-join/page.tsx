@@ -9,88 +9,97 @@ import userCircle from "@/public/assets/user-circle.svg";
 import third from "@/public/assets/third.svg";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import userWhite from "@/public/assets/user-white.svg";
+import arrowWhite from "@/public/assets/arrow-white.svg";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+
+const cards = [
+  {
+    id: 1,
+    title: "Convince someone to join",
+    icon: userArrow,
+    selectedIcon: userWhite,
+    href: "/pre",
+  },
+  {
+    id: 2,
+    title: "Improve participation",
+    icon: user,
+    selectedIcon: userCircle,
+    href: "#",
+  },
+  {
+    id: 3,
+    title: "Organise a meeting",
+    icon: third,
+    selectedIcon: arrowWhite,
+    href: "#",
+  },
+];
 
 export default function ConvinceToJoinPage() {
-  const [index, setIndex] = useState(-1);
-  const { push } = useRouter();
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center gap-8 max-w-screen-lg">
-      <Image src={bigCloud} alt="" fill className="object-contain object-top" />
-      <div className="bg-white/40 z-10  backdrop-blur-lg shadow-lg font-body text-center p-4 lg:p-8 rounded-sm  flex  items-start justify-center gap-4">
-        <div className="flex justify-center mb-4">
+    <div className="w-full h-full grid place-items-center gap-8 max-w-screen-lg relative">
+      <Image
+        src={bigCloud}
+        alt=""
+        fill
+        className="object-contain inset-0 absolute w-full object-top"
+      />
+      <div className="bg-white/40 z-20 relative inset-0 backdrop-blur-lg shadow-lg font-body text-center p-4 lg:p-8 rounded-sm  flex  items-center justify-center gap-4 w-full h-full max-h-[60%]">
+        <div className="flex justify-start items-start mb-4">
           <Image
             alt=""
             src={flowerIcon}
             className="object-contain object-top"
-            width={32}
-            height={32}
+            width={40}
+            height={40}
           />
         </div>
 
-        <div className="flex flex-col items-center">
-          <p className="lg:text-lg text-sm text-gray-800 whitespace-normal text-start ">
+        <div className="flex flex-col items-start space-y-2">
+          <div className="lg:text-lg text-sm text-gray-800 whitespace-normal text-start">
             Thanks! Now, I&apos;m all set to help you achieve your goals.
-            <p className="text-sm lg:text-lg text-gray-800 whitespace-normal ">
-              So, let me see, you are mainly here because you&apos;d like to:
-            </p>
-          </p>
+          </div>
+          <div className="text-sm lg:text-lg text-gray-800 whitespace-normal">
+            So, let me see, you are mainly here because you&apos;d like to:
+          </div>
         </div>
       </div>
 
       {/* Cards Section */}
-      <div className="w-full  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-body relative ">
-        {/* Card 1 */}
-        <div
-          //   onClick={() => setIndex(1)}
-          className="bg-white/40 shadow-md rounded-sm p-8 lg:p-32 flex flex-col items-center cursor-pointer"
-          onClick={() => push("/pre")}
-        >
-          <Image
-            className="object-contain object-center"
-            src={userArrow}
-            width={60}
-            height={60}
-            alt=""
-          />
-          <h3 className="mt-4 font-bold text-gray-700 text-lg text-center">
-            Convince someone to join
-          </h3>
-        </div>
-
-        {/* Card 2 */}
-        <div
-          onClick={() => setIndex(2)}
-          className="bg-white/40 shadow-md rounded-sm p-8 lg:p-32 flex flex-col items-center font-body cursor-pointer"
-        >
-          <Image
-            className="object-contain object-center"
-            src={user}
-            alt=""
-            width={60}
-            height={60}
-          />
-          <h3 className="mt-4 font-bold text-gray-700 text-lg text-center">
-            Improve participation
-          </h3>
-        </div>
-
-        {/* Card 3 */}
-        <div
-          onClick={() => setIndex(3)}
-          className="bg-white/40 shadow-md rounded-sm p-8 lg:p-32 flex flex-col items-center cursor-pointer"
-        >
-          <Image
-            className="object-contain object-center"
-            src={third}
-            alt=""
-            width={60}
-            height={60}
-          />
-          <h3 className="mt-4 font-bold text-gray-700 text-lg text-center">
-            Organise a meeting
-          </h3>
-        </div>
+      <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-6 font-body relative">
+        {cards.map((card, index) => (
+          <Link
+            key={card.id}
+            href={card.href}
+            passHref
+            onClick={() => setSelectedIndex(index)}
+            className={cn(
+              "bg-white/80 shadow-md rounded-sm  p-8 lg:p-28 flex flex-col items-center cursor-pointer transition-colors duration-300",
+              selectedIndex === index ? "bg-[#65D9BD] text-white" : ""
+            )}
+          >
+            <Image
+              src={selectedIndex === index ? card.selectedIcon : card.icon}
+              width={60}
+              height={60}
+              alt=""
+              className="object-contain object-center"
+            />
+            <h3
+              className={cn(
+                "mt-4 font-bold text-gray-700 text-lg text-center",
+                selectedIndex === index ? "text-white" : ""
+              )}
+            >
+              {card.title}
+            </h3>
+          </Link>
+        ))}
       </div>
     </div>
   );

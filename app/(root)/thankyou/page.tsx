@@ -11,7 +11,7 @@ export default function ThankYou() {
   const [name] = useSessionStorage("ec-name", "Alec");
 
   return (
-    <div className="flex items-center justify-evenly flex-col w-full h-full">
+    <div className="flex items-center justify-center flex-col w-full h-full">
       <div className="relative">
         <Image
           className={"object-contain object-center w-full h-full"}
@@ -19,7 +19,7 @@ export default function ThankYou() {
           alt="cloud background"
         />
       </div>
-      <div className="absolute z-30 bg-white/40 backdrop-blur-sm lg:p-8 p-2 rounded-sm flex flex-col items-center sm:flex-row max-w-screen-md">
+      <div className="absolute z-30 bg-white/40 backdrop-blur-sm lg:p-12 p-2 rounded-sm flex flex-col items-center sm:flex-row max-w-screen-md">
         {/* container */}
         <div className="flex gap-x-4 items-start justify-center w-full">
           <div className="relative aspect-video flex-shrink-0">
@@ -28,6 +28,8 @@ export default function ThankYou() {
               priority
               src={flower}
               alt="flower"
+              width={40}
+              height={40}
             />
           </div>
           {/* <p className="text-black text-lg sm:text-xl font-rubik leading-tight text-center sm:text-left"> */}

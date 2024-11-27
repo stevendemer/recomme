@@ -28,7 +28,13 @@ export default function Home() {
         />
         <div className="absolute z-50 bg-white/40 backdrop-blur-sm w-fit p-6 rounded-3xl flex flex-col items-center sm:space-y-0 sm:flex-row">
           <div className="flex gap-x-4 items-start">
-            <Image src={flower} alt="flower" className="px-2 object-contain" />
+            <Image
+              width={40}
+              height={40}
+              src={flower}
+              alt="flower"
+              className="px-2 object-contain"
+            />
             {/* <p className="text-black text-lg sm:text-xl font-rubik leading-tight text-center sm:text-left"> */}
             <p className="text-black text-md lg:text-xl font-normal font-body leading-tight text-center sm:text-left">
               Hello there! I&apos;m here to assist you. It looks like you were

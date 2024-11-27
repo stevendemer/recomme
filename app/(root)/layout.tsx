@@ -63,10 +63,10 @@ export default function RootLayout({
         )}
       >
         <Providers>
-          <main className="w-full h-full gradient-bg backdrop-blur-lg flex justify-center p-2">
+          <main className="w-full h-full gradient-bg backdrop-blur-lg flex justify-center p-2 scrollbar-hide">
             <div className="bg-white/30 backdrop-blur-lg rounded-sm p-4 lg:p-6 h-full w-full max-w-screen-xl">
               <div className=" bg-white/70 w-full rounded-sm shadow-lg p-1 h-full flex flex-col justify-center">
-                <div className="w-full mx-auto flex flex-col items-center scrollbar-hide">
+                <div className="w-full h-screen mx-auto flex flex-col items-center scrollbar-hide">
                   {children}
                 </div>
               </div>

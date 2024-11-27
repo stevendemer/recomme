@@ -33,7 +33,12 @@ export interface ICard {
   src: string;
 }
 
-export default function ProfilingCard({ onVote, data, currentIndex }: any) {
+export default function ProfilingCard({
+  onVote,
+  data,
+  currentIndex,
+  totalCards,
+}: any) {
   const x = useMotionValue(0);
   const controls = useAnimation();
   const cardElem = useRef(null);
@@ -44,7 +49,7 @@ export default function ProfilingCard({ onVote, data, currentIndex }: any) {
   const pathname = usePathname();
   const [needsReset, setNeedsReset] = useState(false);
 
-  console.log("data is ", data);
+  console.log("total cards are ", totalCards);
 
   const [answers, setAnswers] = useAtom(formAnswersAtom);
 
@@ -72,7 +77,8 @@ export default function ProfilingCard({ onVote, data, currentIndex }: any) {
 
   useEffect(() => {
     if (params.get("type") === "range") {
-      push(`${pathname}?${params.toString()}`, { scroll: false });
+      // push(`${pathname}?${params.toString()}`, { scroll: false });
+      // push(`/convince-to-join`, { scroll: false });
     }
   }, [pathname]);
 
