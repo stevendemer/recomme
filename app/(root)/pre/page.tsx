@@ -15,13 +15,16 @@ import userHomex from "@/public/assets/user-home-x.svg";
 import userHome from "@/public/assets/user-home.svg";
 import userHomeQuestion from "@/public/assets/user-home-question.svg";
 import Link from "next/link";
+import userHouseToggle from "@/public/assets/user-house-toggle.svg";
+import userQuestionToggle from "@/public/assets/user-question-toggle.svg";
+import userTogglex from "@/public/assets/user-toggle-x.svg";
 
 const cards = [
   {
     id: 1,
     title: "This person showed high interest but still not convinced",
     icon: userHome,
-    selectedIcon: userWhite,
+    selectedIcon: userHouseToggle,
     p: "They need more information and reassurance to make a final decision.",
     href: "/profiling",
   },
@@ -29,7 +32,7 @@ const cards = [
     id: 2,
     title: "This person showed hesitancy and a bit of interest",
     icon: userHomeQuestion,
-    selectedIcon: userCircle,
+    selectedIcon: userQuestionToggle,
     p: "While they are intrigued by the concept, they have expressed reservations and may have concerns that need addressing.",
     href: "#",
   },
@@ -37,7 +40,7 @@ const cards = [
     id: 3,
     title: "This person showed resistance",
     icon: userHomex,
-    selectedIcon: arrowWhite,
+    selectedIcon: userTogglex,
     p: "They have significant concerns or doubts about the benefits and feasibility of participating.",
     href: "#",
   },
@@ -45,11 +48,12 @@ const cards = [
 
 const PrePage = () => {
   const router = useRouter();
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   return (
     <div className="w-full h-full flex flex-col justify-center items-center font-body relative">
       {/* Back Button */}
-      <div className="flex items-center w-full h-full justify-center flex-col ">
+      <div className="flex items-center w-full h-full justify-center flex-col">
         <button
           onClick={() => router.back()}
           className="bg-white shadow-lg text-[#65D9BD] p-1 sm:p-3 rounded-sm text-center hover:shadow-xl transition-shadow duration-200 absolute top-10 left-4"
@@ -58,12 +62,12 @@ const PrePage = () => {
         </button>
 
         {/* Header Section */}
-        <div className="flex items-center flex-col justify-center text-center">
+        <div className="flex items-center flex-col justify-center text-center relative">
           <Image
-            src={user}
+            src={userArrow}
             alt="User Icon"
-            width={40}
-            height={40}
+            width={60}
+            height={60}
             className="mx-auto mb-4"
           />
           <h1 className="lg:text-2xl text-lg font-bold text-gray-800">
@@ -111,26 +115,43 @@ const PrePage = () => {
         </div>
 
         {/* Cards Section */}
-        <div className="grid grid-cols-1 relative lg:grid-cols-3 gap-6 px-4 max-w-screen-lg md:mt-2 lg:mt-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-4 max-w-screen-lg md:mt-2 lg:mt-10">
           {cards.map((card, index) => (
             <Link
+              onClick={() => setSelectedIndex(index)}
               href={card.href}
               key={card.id}
               passHref
-              className="bg-white shadow-lg rounded-lg p-2 lg:p-6 grid items-center justify-center text-center"
+              className={cn(
+                "bg-white shadow-lg rounded-lg p-2 lg:p-6 grid items-center justify-center text-center transition-colors duration-200",
+                selectedIndex === index && "bg-[#65D9BD] text-white"
+              )}
             >
               <div className="relative aspect-video">
                 <Image
-                  src={card.icon}
+                  src={selectedIndex === index ? card.selectedIcon : card.icon}
                   alt=""
-                  fill
-                  className="object-scale-down h-auto w-full object-center"
+                  className="object-scale-down object-center w-full h-auto"
+                  width={60}
+                  height={60}
                 />
               </div>
-              <h3 className="mt-4 text-sm lg:text-lg font-bold text-gray-700">
+              <h3
+                className={cn(
+                  "mt-4 text-sm lg:text-lg font-bold text-gray-700",
+                  selectedIndex === index && "text-white"
+                )}
+              >
                 {card.title}
               </h3>
-              <p className="mt-2 text-gray-500 text-sm">{card.p}</p>
+              <p
+                className={cn(
+                  "mt-2 text-gray-500 text-sm",
+                  selectedIndex === index && "text-white"
+                )}
+              >
+                {card.p}
+              </p>
             </Link>
           ))}
         </div>
