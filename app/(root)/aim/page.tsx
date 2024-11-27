@@ -45,9 +45,9 @@ export default function AimPage() {
   const [selected, setSelected] = useState(0);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full max-w-5xl h-full">
-      <div className="flex flex-col justify-center items-center w-full h-full">
-        <div className="flex items-center w-full">
+    <div className="flex flex-col items-center justify-around w-full max-w-5xl h-full">
+      <div className="flex flex-col justify-center items-center w-full">
+        <div className="flex justify-around items-center w-full">
           <button
             onClick={() => router.back()}
             className="bg-white shadow-lg text-[#65D9BD] p-1 sm:p-3  rounded-sm text-center hover:shadow-xl transition-shadow duration-200 "
@@ -68,7 +68,7 @@ export default function AimPage() {
           What He&apos;s really aiming for:
         </h2>
       </div>
-      <div className="flex flex-col items-center justify-center h-full gap-4">
+      <div className="flex flex-col items-center justify-center  gap-4">
         <div className="flex flex-col sm:flex-row justify-center items-center h-full">
           <div className="grid sm:grid-cols-3 grid-cols-1 w-full gap-x-2 flex-shrink-0">
             {cards.map((card, index) => (
