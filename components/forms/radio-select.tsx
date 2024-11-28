@@ -118,7 +118,7 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                   "lg:max-w-5xl w-full h-full",
                   hasImages
                     ? "transition-colors duration-200 text-black flex flex-wrap lg:h-[80%] justify-center "
-                    : "sm:grid-cols-2 grid place-items-center gap-4 lg:max-h-[80%]"
+                    : "sm:grid-cols-2 grid  gap-4 lg:max-h-[50%]"
                   // data?.options.length > 4 ? "sm:grid-cols-3" : "sm:grid-cols-2"
                   // data?.options.length > 4 ? "sm:grid-cols-3" : "sm:grid-cols-2"
                 )}
@@ -165,7 +165,7 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                       <div
                         key={index}
                         className={cn(
-                          "p-6 rounded-sm border shadow-lg flex flex-grow w-full h-full flex-col items-center justify-center transition-colors duration-200 text-black",
+                          "p-2 rounded-sm border shadow-lg flex  w-full h-full flex-col items-center justify-center transition-colors duration-200 text-black",
                           field.value === value
                             ? "bg-[#65D9BD] text-white"
                             : "bg-white text-black"
@@ -182,7 +182,9 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                             value={value}
                             className={cn(
                               "focus-visible:ring-offset-2 focus-visible:outline-none focus-visible:ring-2",
-                              field.value === value ? "border-white" : ""
+                              field.value === value
+                                ? "border-white"
+                                : "border-black"
                             )}
                           />
                           <div className="font-bold text-sm sm:text-xl font-inter text-center p-1">
