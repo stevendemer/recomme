@@ -13,9 +13,16 @@ import userHomeQuestion from "@/public/assets/user-home-question.svg";
 import userHomeX from "@/public/assets/user-home-x.svg";
 import userWhite from "@/public/assets/user-white.svg";
 import arrowWhite from "@/public/assets/arrow-white.svg";
+import { cn } from "@/lib/utils";
+import userHomex from "@/public/assets/user-home-x.svg";
+
+import userHouseToggle from "@/public/assets/user-house-toggle.svg";
+import userQuestionToggle from "@/public/assets/user-question-toggle.svg";
+import userTogglex from "@/public/assets/user-toggle-x.svg";
 
 export default function AimPage() {
   const router = useRouter();
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   const cards = [
     {
@@ -24,7 +31,7 @@ export default function AimPage() {
       body: "While staying eco-friendly. Who doesn’t love saving money and the planet at the same time?",
       href: "#",
       icon: userHome,
-      iconSelected: userWhite,
+      iconSelected: userHouseToggle,
     },
     {
       id: 2,
@@ -32,6 +39,7 @@ export default function AimPage() {
       body: `Inspiring others to join you on this journey toward sustainability.`,
       href: "#",
       icon: userHomeQuestion,
+      iconSelected: userQuestionToggle,
     },
     {
       id: 3,
@@ -39,10 +47,9 @@ export default function AimPage() {
       body: `And of course, he's always ready to lend a hand when someone needs help understanding the tech side of things.`,
       href: "#",
       icon: userHomeX,
+      iconSelected: userTogglex,
     },
   ];
-
-  const [selected, setSelected] = useState(0);
 
   return (
     <div className="flex flex-col items-center justify-around w-full max-w-5xl h-full">
@@ -74,23 +81,41 @@ export default function AimPage() {
             {cards.map((card, index) => (
               <Link
                 href={card.href}
-                className="bg-white shadow-lg rounded-lg p-3 grid text-center font-body"
+                className={cn(
+                  " shadow-lg rounded-lg p-3 grid text-center font-body transition-colors duration-200",
+                  selectedIndex === index
+                    ? "bg-[#65D9BD] text-white"
+                    : "bg-white text-gray-700"
+                )}
                 key={card.id}
+                onClick={() => setSelectedIndex(index)}
               >
                 <div className="relative aspect-video">
                   <Image
                     className="object-scale-down object-center w-full h-full"
                     alt=""
-                    src={card.icon}
+                    src={
+                      selectedIndex === index ? card.iconSelected : card.icon
+                    }
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h2 className="text-md lg:text-xl text-ellipsis text-center font-inter text-black font-bold">
+                <h2
+                  className={cn(
+                    "text-md lg:text-xl text-ellipsis text-center font-bold",
+                    selectedIndex === index ? "text-white" : "text-gray-700"
+                  )}
+                >
                   {card.title}
                 </h2>
 
-                <p className="mt-2 text-gray-700 font-body text-md tracking-wide p-1">
+                <p
+                  className={cn(
+                    "mt-2 font-body text-md tracking-wide p-1",
+                    selectedIndex === index ? "text-white" : "text-gray-700"
+                  )}
+                >
                   {card.body}
                 </p>
               </Link>
