@@ -57,27 +57,27 @@ export default function ConvinceJoinPage() {
           {" "}
           Your user looks like an{" "}
         </p>
-      </div>
-      <div className="flex justify-center items-center w-full flex-shrink space-x-4 relative">
-        <Image
-          className="object-contain object-center transform scale-x-[-1]"
-          alt=""
-          width={30}
-          height={20}
-          src={leaf}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Adjust image size for responsive
-        />
-        <h2 className="font-semibold font-mulish lg:text-xl text-lg text-black tracking-wide">
-          Environmental Tech Enthusiast
-        </h2>
-        <Image
-          className="object-contain object-center"
-          alt=""
-          width={30}
-          height={20}
-          src={leaf}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Adjust image size for responsive
-        />
+        <div className="flex justify-center items-center w-full flex-shrink space-x-4 relative">
+          <Image
+            className="object-contain object-center transform scale-x-[-1]"
+            alt=""
+            width={30}
+            height={20}
+            src={leaf}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Adjust image size for responsive
+          />
+          <h2 className="font-semibold font-mulish lg:text-xl text-lg text-black tracking-wide">
+            Environmental Tech Enthusiast
+          </h2>
+          <Image
+            className="object-contain object-center"
+            alt=""
+            width={30}
+            height={20}
+            src={leaf}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Adjust image size for responsive
+          />
+        </div>
       </div>
       <div className="flex items-center w-full p-4 max-w-screen-md">
         <div className="grid gap-4 md:grid-cols-3 w-full flex-shrink-0">
