@@ -9,7 +9,7 @@ export default function ActionCards({
   image: any;
 }) {
   return (
-    <div className="flex p-6 h-full w-full relative items-center bg-white rounded-sm cursor-pointer font-inter justify-center space-x-8">
+    <div className="flex p-12 lg:p-8 h-full w-full relative items-center bg-white rounded-sm cursor-pointer font-inter justify-center space-x-8">
       <Image
         width={52}
         height={52}
