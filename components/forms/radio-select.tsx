@@ -117,8 +117,8 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                 className={cn(
                   "lg:max-w-5xl w-full h-full",
                   hasImages
-                    ? "transition-colors duration-200 text-black flex flex-wrap lg:h-[80%] justify-center "
-                    : "sm:grid-cols-2 grid  gap-4 lg:max-h-[50%]"
+                    ? "transition-colors duration-200 text-black flex flex-wrap lg:h-[60%] justify-center"
+                    : "sm:grid-cols-2 grid gap-4 lg:max-h-[50%]"
                   // data?.options.length > 4 ? "sm:grid-cols-3" : "sm:grid-cols-2"
                   // data?.options.length > 4 ? "sm:grid-cols-3" : "sm:grid-cols-2"
                 )}
@@ -144,12 +144,12 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                               : "bg-white text-black"
                           )}
                         >
-                          <CardContent className="pointer-events-none hidden md:flex relative aspect-square">
+                          <CardContent className="pointer-events-none hidden md:flex relative flex-grow">
                             <Image
                               src={baseUrl}
                               alt={value.text ?? "alt"}
                               fill
-                              className="object-contain object-center"
+                              className="object-scale-down object-center"
                             />
                           </CardContent>
                           <CardFooter>
