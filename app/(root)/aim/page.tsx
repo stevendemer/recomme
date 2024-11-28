@@ -68,7 +68,7 @@ export default function AimPage() {
           What He&apos;s really aiming for:
         </h2>
       </div>
-      <div className="flex flex-col items-center justify-center  gap-4">
+      <div className="flex flex-col items-center justify-center gap-6">
         <div className="flex flex-col sm:flex-row justify-center items-center h-full">
           <div className="grid sm:grid-cols-3 grid-cols-1 w-full gap-x-2 flex-shrink-0">
             {cards.map((card, index) => (
@@ -97,12 +97,10 @@ export default function AimPage() {
             ))}
           </div>
         </div>
-        <div>
-          <Link passHref href="/approach">
-            <SubmitButton>Continue</SubmitButton>
-          </Link>
-        </div>
       </div>
+      <Link passHref href="/approach">
+        <SubmitButton>Continue</SubmitButton>
+      </Link>
     </div>
   );
 }

@@ -125,7 +125,7 @@ export default function ProfilingCard({
   return (
     <div className="flex flex-col items-center flex-1 w-full h-full">
       {/* Text Section */}
-      <h2 className="text-lg sm:text-xl text-center font-mulish text-black px-2 whitespace-normal">
+      <h2 className="text-lg sm:text-2xl text-center font-mulish text-black px-2 whitespace-normal">
         {data.text}
       </h2>
 

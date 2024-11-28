@@ -50,14 +50,14 @@ export default function ConvinceToJoinPage() {
         className="object-contain inset-0 absolute w-full object-top"
         priority
       />
-      <div className="bg-white/40 z-20 relative inset-0 backdrop-blur-lg shadow-lg font-body text-center p-4 lg:p-6 rounded-sm  flex  items-center justify-center gap-4 w-full h-full max-h-[60%]">
+      <div className="bg-white/40 z-20 relative inset-0 backdrop-blur-lg shadow-lg font-body text-center p-4 lg:p-6 rounded-sm  flex  items-center justify-center gap-4 w-full h-full max-h-[50%]">
         <div className="flex justify-start items-start mb-4">
           <Image
             alt=""
             src={flowerIcon}
             className="object-contain object-top"
-            width={40}
-            height={40}
+            width={32}
+            height={32}
           />
         </div>
 
