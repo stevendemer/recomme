@@ -48,7 +48,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           mulish.variable
         )}
       >
-        <main className="gradient-bg font-body">
+        <main className="gradient-bg font-body h-screen overflow-y-auto scrollbar-hide">
           {/* <div className="mx-auto h-screen p-2  md:p-4"> */}
           {/* <div className="flex h-full gap-2 sm:gap-3 md:gap-4"> */}
           <Tour />
