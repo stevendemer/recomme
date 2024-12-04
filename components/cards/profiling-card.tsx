@@ -56,7 +56,7 @@ export default function ProfilingCard({
   const rotate = useTransform(x, [-150, 150], [-18, 18]);
   const opacity = useTransform(x, [-150, 0, 150], [0, 1, 0]);
 
-  const offsetBoundary = 300;
+  const offsetBoundary = 200;
 
   useEffect(() => {
     if (needsReset) {
@@ -86,7 +86,7 @@ export default function ProfilingCard({
     setExitPosition(direction);
 
     await controls.start({
-      x: direction === "left" ? -offsetBoundary * 2 : offsetBoundary * 2,
+      x: direction === "left" ? -offsetBoundary : offsetBoundary,
       rotate: direction === "left" ? -18 : 18,
       opacity: 0,
       transition: {
@@ -107,9 +107,9 @@ export default function ProfilingCard({
     const velocity = info.velocity.x;
     const offset = info.offset.x;
 
-    if (velocity < -1 && offset <= offsetBoundary * -1) {
+    if (velocity <= -1 && offset <= offsetBoundary * -1) {
       handleSwipe("left");
-    } else if (velocity > 1 && offset >= offsetBoundary) {
+    } else if (velocity >= 1 && offset >= offsetBoundary) {
       handleSwipe("right");
       console.log("swiped right");
     } else {
@@ -125,7 +125,7 @@ export default function ProfilingCard({
   return (
     <div className="flex flex-col items-center flex-1 w-full h-full">
       {/* Text Section */}
-      <h2 className="text-lg sm:text-2xl text-center font-mulish text-black px-2 whitespace-normal">
+      <h2 className="text-lg sm:text-4xl text-center font-sans text-black px-2 whitespace-normal">
         {data.text}
       </h2>
 
@@ -191,19 +191,21 @@ export default function ProfilingCard({
             </div>
           </motion.div>
         </AnimatePresence>
-        <div className="w-full sm:hidden flex justify-center gap-6 mt-6">
-          <button
-            onClick={() => handleSwipe("left")}
-            className="p-3 rounded-full bg-white shadow-lg hover:bg-red-50 transition-colors duration-200 group"
-          >
-            <X className="w-6 h-6 text-red-500 group-hover:scale-110 transition-transform duration-200" />
-          </button>
-          <button
-            onClick={() => handleSwipe("right")}
-            className="p-3 rounded-full bg-white shadow-lg hover:bg-green-50 transition-colors duration-200 group"
-          >
-            <Heart className="w-6 h-6 text-green-500 group-hover:scale-110 transition-transform duration-200" />
-          </button>
+        <div className="absolute bottom-0 group">
+          <div className="w-full sm:hidden flex justify-center gap-6 mt-6">
+            <button
+              onClick={() => handleSwipe("left")}
+              className="p-3 rounded-full bg-white shadow-lg hover:bg-red-50 transition-colors duration-200 group"
+            >
+              <X className="w-6 h-6 text-red-500 group-hover:scale-110 transition-transform duration-200" />
+            </button>
+            <button
+              onClick={() => handleSwipe("right")}
+              className="p-3 rounded-full bg-white shadow-lg hover:bg-green-50 transition-colors duration-200 group"
+            >
+              <Heart className="w-6 h-6 text-green-500 group-hover:scale-110 transition-transform duration-200" />
+            </button>
+          </div>
         </div>
       </div>
     </div>

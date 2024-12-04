@@ -72,9 +72,9 @@ export function Page() {
     >
       <AppSidebar />
       <SidebarInset>
-        <section className="flex grow flex-col gap-4 p-4 bg-white/30 backdrop-blur-lg rounded-sm">
-          <div className="grid gap-4 md:grid-cols-3 p-4 auto-rows-min shrink-0 bg-white/30 rounded-sm font-body actions">
-            <div className="flex justify-center items-center space-x-4 p-4 rounded-sm relative bg-white/80">
+        <section className="flex w-full grow flex-col gap-4 p-4 bg-white/30 backdrop-blur-lg rounded-sm">
+          <div className="grid gap-4 md:grid-cols-3 p-4 auto-rows-min shrink-0 bg-white/30 rounded-sm font-inter actions">
+            <div className="flex justify-center items-center space-x-4 p-4 rounded-sm relative shrink bg-white/80">
               <Image
                 className="object-scale-down"
                 src={userArrow}
@@ -82,9 +82,11 @@ export function Page() {
                 width={50}
                 height={50}
               />
-              <h2 className="text-md font-bold ">Convince someone to join</h2>
+              <h2 className="sm:text-lg text-sm font-bold">
+                Convince someone to join
+              </h2>
             </div>
-            <div className="flex justify-center items-center space-x-4 p-4 rounded-sm relative  bg-white/80">
+            <div className="flex justify-center items-center space-x-4 p-4 rounded-sm relative shrink  bg-white/80">
               <Image
                 className="object-scale-down"
                 src={group}
@@ -92,9 +94,11 @@ export function Page() {
                 width={50}
                 height={50}
               />
-              <h2 className="text-md font-bold ">Improve participation</h2>
+              <h2 className="text-sm sm:text-lg font-bold ">
+                Improve participation
+              </h2>
             </div>
-            <div className="flex justify-center items-center space-x-4 black p-4 rounded-sm relative grow bg-white/80">
+            <div className="flex justify-center items-center space-x-4 black p-4 rounded-sm relative shrink bg-white/80">
               <div>
                 <Image
                   className="object-scale-down"
@@ -104,15 +108,17 @@ export function Page() {
                   height={50}
                 />
               </div>
-              <h2 className="text-md font-bold ">Organise a meeting</h2>
+              <h2 className="text-sm sm:text-lg font-bold ">
+                Organise a meeting
+              </h2>
             </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-6 items-center justify-center shrink-0 members bg-white/30 p-4 rounded-sm">
+          <div className="grid max-w-full w-full gap-4 sm:grid-cols-2 grid-cols-1 md:grid-cols-6 items-center justify-center shrink members bg-white/30 p-4 rounded-sm">
             {cards.map((card, index) => (
               <div
                 className={cn(
-                  "flex flex-col justify-center items-center  rounded-lg relative bg-white/80 aspect-video space-y-1"
+                  "flex flex-col justify-center items-center  rounded-lg relative bg-white/80  sm:aspect-video max-w-full w-full p-2"
                 )}
                 key={card.id}
               >

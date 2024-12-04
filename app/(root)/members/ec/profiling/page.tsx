@@ -38,9 +38,7 @@ const ECProfiling = () => {
         <IconArrowLeft size={37} />
       </button>
       <div
-        className={
-          "flex flex-col items-center w-full  max-w-5xl scrollbar-hide"
-        }
+        className={"flex flex-col items-center w-full max-w-5xl scrollbar-hide"}
       >
         <h2 className="text-center font-semibold font-body text-lg sm:text-xl text-black">
           Energy Profiling for EC Members

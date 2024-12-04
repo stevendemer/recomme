@@ -40,7 +40,7 @@ export default function Steps({
   const stepsCount = getStepsToShow();
 
   return (
-    <div className="flex flex-col gap-4 justify-center p-4 mb-3 fixed -top-2 left-0 right-0">
+    <div className="flex shrink max-w-full flex-col gap-4 justify-center p-4 mb-3 absolute -top-2 left-0 right-0">
       <div className="flex justify-center">
         <div className="flex items-center mt-2">
           {Array.from({ length: stepsCount }).map((_, index) => {

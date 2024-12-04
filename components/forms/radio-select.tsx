@@ -97,12 +97,12 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
 
   return (
     <Form {...form}>
-      <div className="h-full flex flex-col items-center">
-        <h2 className="text-md lg:text-2xl text-center text-black font-sans">
+      <div className="h-full flex flex-col items-center justify-between">
+        <h2 className="text-lg lg:text-4xl text-center text-black font-sans">
           {data?.title}
         </h2>
 
-        <div className="transition-colors duration-200 sm:max-w-screen-md flex flex-col justify-center items-center w-full h-full">
+        <div className="transition-colors duration-200 sm:max-w-screen-md flex flex-col justify-evenly items-center w-full h-full">
           {/* main container */}
           <Controller
             name={data?.title}
@@ -138,13 +138,13 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                           }
                           key={index}
                           className={cn(
-                            "flex flex-col justify-center duration-200 transition-all items-center flex-[0_0_calc(30%-15px)] cursor-pointer",
+                            "flex flex-col justify-center duration-200 transition-all w-full items-center sm:flex-[0_0_calc(30%-15px)] cursor-pointer",
                             isSelected
                               ? "bg-[#65D9BD] text-white"
                               : "bg-white text-black"
                           )}
                         >
-                          <CardContent className="pointer-events-none hidden md:flex relative flex-grow">
+                          <CardContent className="pointer-events-none hidden md:flex flex-wrap relative aspect-square">
                             <Image
                               src={baseUrl}
                               alt={value.text ?? "alt"}
@@ -153,7 +153,7 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                             />
                           </CardContent>
                           <CardFooter>
-                            <p className="text-center whitespace-normal font-bold font-rubik md:text-lg text-md">
+                            <p className="text-center flex-wrap  whitespace-normal font-bold font-rubik md:text-lg text-sm">
                               {value.text}
                             </p>
                           </CardFooter>
