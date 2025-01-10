@@ -10,42 +10,51 @@ import logo from "@/public/assets/logo.svg";
 
 export default function Home() {
   return (
-    <div className="flex flex-col justify-center items-center h-full w-full">
-      <div className="relative">
+    <div className="grid w-full h-full grid-rows-[1fr,auto] gap-4 place-items-center relative z-10">
+      {/* Logo */}
+      <div className="w-full flex justify-center">
         <Image
           src={logo}
           priority
-          alt=""
-          className="object-contain object-center"
+          alt="logo"
+          className="object-cover object-center"
         />
       </div>
-      <div className="flex items-center justify-center relative">
-        <Image
-          className={"object-cover"}
-          priority
-          src={cloud}
-          alt="cloud background"
-        />
-        <div className="absolute z-50 bg-white/40 backdrop-blur-sm w-fit p-6 rounded-3xl flex flex-col items-center sm:space-y-0 sm:flex-row">
-          <div className="flex gap-x-4 items-start">
-            <Image
-              width={40}
-              height={40}
-              src={flower}
-              alt="flower"
-              className="px-2 object-contain"
-            />
-            {/* <p className="text-black text-lg sm:text-xl font-rubik leading-tight text-center sm:text-left"> */}
-            <p className="text-black text-md lg:text-xl font-normal font-body leading-tight text-center sm:text-left">
-              Hello there! I&apos;m here to assist you. It looks like you were
-              about to say &apos;Recommend me&apos;
-            </p>
+
+      {/* Main Content */}
+      <div className="w-full grid grid-areas-[stack] place-items-center rounded-lg">
+        {/* Cloud Background */}
+        <div className="[grid-area:stack] place-items-center grid w-full">
+          <Image
+            className="object-fill object-center"
+            priority
+            src={cloud}
+            alt="cloud background"
+          />
+        </div>
+
+        {/* Message Box */}
+        <div className="[grid-area:stack] w-full max-w-screen-md px-4">
+          <div className="bg-white/40 backdrop-blur-sm p-12 rounded-3xl w-full max-w-screen-sm">
+            <div className="flex gap-x-4 items-start">
+              <Image
+                src={flower}
+                alt="flower"
+                className="px-2 object-contain object-center flex-shrink-0"
+              />
+              <p className="text-black text-md lg:text-xl font-normal font-body leading-tight sm:text-left whitespace-normal">
+                Hello there! I&apos;m here to assist you. It looks like you were
+                about to say &apos;Recommend me&apos;
+              </p>
+            </div>
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center w-full max-w-md">
+
+      {/* Button */}
+      <div className=" max-w-md px-4">
         <Link href="/confirmation">
-          <SubmitButton>Continue</SubmitButton>
+          <SubmitButton className="w-full">Continue</SubmitButton>
         </Link>
       </div>
     </div>

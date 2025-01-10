@@ -51,40 +51,44 @@ const PrePage = () => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center font-body relative">
-      {/* Back Button */}
-      <div className="flex items-center w-full h-full justify-center flex-col">
-        <button
-          onClick={() => router.back()}
-          className="bg-white shadow-lg text-[#65D9BD] p-1 sm:p-3 rounded-sm text-center hover:shadow-xl transition-shadow duration-200 absolute top-10 left-4"
-        >
-          <IconArrowLeft size={37} />
-        </button>
-
-        {/* Header Section */}
-        <div className="flex items-center flex-col justify-center text-center relative">
-          <Image
-            src={userArrow}
-            alt="User Icon"
-            width={60}
-            height={60}
-            className="mx-auto mb-4"
-          />
-          <h1 className="lg:text-2xl text-lg font-bold text-gray-800">
-            Convince someone to join
-          </h1>
-          <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
-            Perfect! You&apos;ve come to the right place. I have some great
-            strategies and tips to help you boost your community engagement and
-            attract new members. Shall we explore some effective methods to make
-            your community irresistible to potential members?
-          </p>
+    <div className="w-full h-full grid grid-rows-[auto,1fr,auto] gap-4">
+      {/* Main Content */}
+      <div className="w-full grid grid-areas-[stack] place-items-center">
+        {/* Back Button - Always on top */}
+        <div className="[grid-area:stack] w-full h-full relative m-auto ">
+          <button
+            onClick={() => router.back()}
+            className="bg-white shadow-lg text-[#65D9BD]  hover:shadow-xl transition-shadow duration-200  rounded-md p-3"
+          >
+            <IconArrowLeft size={37} />
+          </button>
         </div>
 
-        {/* Tabs Section */}
-        <div className="mt-3 gap-2 flex items-center">
-          <div className="relative flex items-center w-full">
-            <Button className="bg-white hover:bg-slate-100 text-black rounded-full shadow-sm gap-x-2 ">
+        {/* Content Layer */}
+        <div className="[grid-area:stack] z-10 w-full max-w-screen-lg px-6 grid gap-8">
+          {/* Header Section */}
+          <div className="flex items-center flex-col justify-center text-center font-body">
+            <Image
+              src={userArrow}
+              alt="User Icon"
+              width={60}
+              height={60}
+              className="mx-auto mb-4"
+            />
+            <h1 className="lg:text-2xl text-lg font-bold text-gray-800">
+              Convince someone to join
+            </h1>
+            <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
+              Perfect! You&apos;ve come to the right place. I have some great
+              strategies and tips to help you boost your community engagement
+              and attract new members. Shall we explore some effective methods
+              to make your community irresistible to potential members?
+            </p>
+          </div>
+
+          {/* Tabs Section */}
+          <div className="grid grid-cols-2 gap-2 font-body">
+            <div className="bg-white text-black rounded-full shadow-sm gap-x-2 flex items-center justify-center p-2">
               <div className="bg-amber-200 rounded-full flex items-center justify-center w-8 h-8">
                 <Image
                   width={20}
@@ -95,11 +99,9 @@ const PrePage = () => {
                 />
               </div>
               <p className="font-bold">Enrolment</p>
-            </Button>
-          </div>
+            </div>
 
-          <div className="flex items-center w-full relative">
-            <Button className="bg-white hover:bg-slate-100 text-black rounded-full shadow-sm gap-x-2">
+            <div className="bg-white flex items-center justify-center text-black rounded-full shadow-sm gap-x-2 p-2">
               <div className="bg-amber-200 rounded-full flex items-center justify-center w-8 h-8">
                 <Image
                   width={20}
@@ -110,50 +112,52 @@ const PrePage = () => {
                 />
               </div>
               <p className="font-bold">Onboarding</p>
-            </Button>
+            </div>
           </div>
-        </div>
 
-        {/* Cards Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-4 max-w-screen-lg md:mt-2 lg:mt-10">
-          {cards.map((card, index) => (
-            <Link
-              onClick={() => setSelectedIndex(index)}
-              href={card.href}
-              key={card.id}
-              passHref
-              className={cn(
-                "bg-white shadow-lg rounded-lg p-2 lg:p-6 grid items-center justify-center text-center transition-colors duration-200",
-                selectedIndex === index && "bg-[#65D9BD] text-white"
-              )}
-            >
-              <div className="relative aspect-video">
-                <Image
-                  src={selectedIndex === index ? card.selectedIcon : card.icon}
-                  alt=""
-                  className="object-scale-down object-center w-full h-auto"
-                  width={60}
-                  height={60}
-                />
-              </div>
-              <h3
+          {/* Cards Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {cards.map((card, index) => (
+              <Link
+                onClick={() => setSelectedIndex(index)}
+                href={card.href}
+                key={card.id}
+                passHref
                 className={cn(
-                  "mt-4 text-sm lg:text-lg font-bold text-gray-700",
-                  selectedIndex === index && "text-white"
+                  "bg-white shadow-lg rounded-lg p-2 lg:p-6 grid items-center justify-center text-center transition-colors duration-200 font-body",
+                  selectedIndex === index && "bg-[#65D9BD] text-white"
                 )}
               >
-                {card.title}
-              </h3>
-              <p
-                className={cn(
-                  "mt-2 text-gray-500 text-sm",
-                  selectedIndex === index && "text-white"
-                )}
-              >
-                {card.p}
-              </p>
-            </Link>
-          ))}
+                <div className="relative aspect-video">
+                  <Image
+                    src={
+                      selectedIndex === index ? card.selectedIcon : card.icon
+                    }
+                    alt=""
+                    className="object-scale-down object-center w-full h-auto"
+                    width={60}
+                    height={60}
+                  />
+                </div>
+                <h3
+                  className={cn(
+                    "mt-4 text-sm lg:text-lg font-bold text-gray-700",
+                    selectedIndex === index && "text-white"
+                  )}
+                >
+                  {card.title}
+                </h3>
+                <p
+                  className={cn(
+                    "mt-2 text-gray-500 text-sm",
+                    selectedIndex === index && "text-white"
+                  )}
+                >
+                  {card.p}
+                </p>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </div>

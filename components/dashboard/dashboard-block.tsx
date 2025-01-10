@@ -66,13 +66,13 @@ export function Page() {
     <SidebarProvider
       style={
         {
-          "--sidebar-width": "19rem",
+          "--sidebar-width": "20rem",
         } as React.CSSProperties
       }
     >
       <AppSidebar />
       <SidebarInset>
-        <section className="flex w-full grow flex-col gap-4 p-4 bg-white/30 backdrop-blur-lg rounded-sm">
+        <section className="flex w-full max-w-full grow flex-col gap-4 p-4 bg-white/30 backdrop-blur-lg rounded-sm">
           <div className="grid gap-4 md:grid-cols-3 p-4 auto-rows-min shrink-0 bg-white/30 rounded-sm font-inter actions">
             <div className="flex justify-center items-center space-x-4 p-4 rounded-sm relative shrink bg-white/80">
               <Image

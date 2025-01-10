@@ -6,6 +6,9 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { MoveLeftIcon } from "lucide-react";
 
 const ProfilingCard = dynamic(
   () => import("@/components/cards/profiling-card")
@@ -25,7 +28,7 @@ export default function Profiling() {
 
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  const { push } = useRouter();
+  const { push, back } = useRouter();
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [currentComponent, setCurrentComponent] = useState<string>("");
 
@@ -81,12 +84,18 @@ export default function Profiling() {
   if (status === "error") {
     console.error(error);
     return (
-      <div className="h-screen">
-        <div className="flex justify-center items-center">
-          <p className="text-lg text-center font-body">
-            Something went wrong ! Try again later
-          </p>
-        </div>
+      <div className="flex flex-col justify-center items-center h-full">
+        <p className="text-lg text-center font-body font-bold">
+          Something went wrong ! Try again later
+        </p>
+        <Button
+          variant="link"
+          className="relative space-x-2 rounded-lg"
+          onClick={() => back()}
+        >
+          <MoveLeftIcon size={20} />
+          <span>Go back</span>
+        </Button>
       </div>
     );
   }
