@@ -80,35 +80,44 @@ export default function ApproachPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-around relative  h-full w-full space-y-2">
-      <h2 className="sm:text-3xl text-lg font-sans text-black tracking-wide">
-        Recommended Approach
-      </h2>
-
-      <div className="flex flex-col items-center justify-center space-y-3 font-body">
-        {options.map((value, index) => (
-          <ApproachRow
-            key={value.title}
-            label={value.title}
-            sub={value.body}
-            onAnswer={(answer) => handleAnswer(index, answer)}
-            answer={answers[index]}
-          />
-        ))}
+    <div className="w-full h-full grid grid-rows-[auto,1fr,auto] gap-2">
+      {/* Header */}
+      <div className="w-full px-4 py-2">
+        <h2 className="sm:text-3xl text-lg font-sans text-black tracking-wide text-center">
+          Recommended Approach
+        </h2>
       </div>
-      <div>
+
+      {/* Scrollable Content */}
+      <div className="w-full">
+        <div className="max-w-screen-lg mx-auto grid gap-2">
+          {options.map((value, index) => (
+            <ApproachRow
+              key={value.title}
+              label={value.title}
+              sub={value.body}
+              onAnswer={(answer) => handleAnswer(index, answer)}
+              answer={answers[index]}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Footer Button */}
+      <div className="max-w-screen-lg mx-auto px-4 py-2">
         {isValid && !isSubmitting ? (
           <Link href="/dashboard" passHref>
             <SubmitButton
               onClick={() => {
                 console.log("all answers are ", answers);
               }}
+              className="w-full"
             >
               Continue
             </SubmitButton>
           </Link>
         ) : (
-          <SubmitButton className="cursor-not-allowed bg-gray-400 text-gray-200 ">
+          <SubmitButton className="cursor-not-allowed bg-gray-400 text-gray-200">
             Continue
           </SubmitButton>
         )}

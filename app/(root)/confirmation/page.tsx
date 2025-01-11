@@ -26,7 +26,7 @@ export default function ConfirmationPage() {
           <div className="sm:flex-row flex-col flex items-center justify-center bg-white/40 rounded-sm lg:p-10 p-2 backdrop-blur-sm [grid-area:stack] z-30 max-w-screen-md w-full mx-auto">
             <div className="flex flex-col items-start justify-center w-full">
               {/* Text and Flower Section */}
-              <div className="flex flex-col sm:flex-row items-start space-x-2">
+              <div className="flex flex-row items-start space-x-2">
                 <div className="relative aspect-video flex-shrink-0">
                   <Image
                     src={flower}

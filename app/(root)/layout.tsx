@@ -63,11 +63,11 @@ export default function RootLayout({
         )}
       >
         <Providers>
-          <main className="gradient-bg backdrop-blur-lg  p-2 flex justify-center items-center h-full relative">
-            <div className="bg-white/30 backdrop-blur-lg rounded-sm p-4 lg:p-6 h-full w-full max-w-screen-xl max-h-[80%]">
-              <div className=" bg-white/70 w-full rounded-sm shadow-lg p-1 h-full flex flex-col items-center">
-                <div className="m-auto flex flex-col items-center justify-center w-full">
-                  {children}
+          <main className="gradient-bg backdrop-blur-lg  p-2 grid place-items-center h-full relative min-h-screen">
+            <div className="bg-white/30 backdrop-blur-lg rounded-sm p-4 lg:p-6 w-full max-w-screen-xl h-[80vh]">
+              <div className=" bg-white/70 w-full rounded-sm shadow-lg p-1 h-full grid place-items-center">
+                <div className="w-full h-full overflow-y-auto grid place-items-center">
+                  <div className="w-full">{children}</div>
                 </div>
               </div>
             </div>

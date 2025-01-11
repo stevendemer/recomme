@@ -24,7 +24,7 @@ export default function Home() {
       {/* Main Content */}
       <div className="w-full grid grid-areas-[stack] place-items-center rounded-lg">
         {/* Cloud Background */}
-        <div className="[grid-area:stack] place-items-center grid w-full">
+        <div className="[grid-area:stack] w-full">
           <Image
             className="object-fill object-center"
             priority
@@ -34,8 +34,8 @@ export default function Home() {
         </div>
 
         {/* Message Box */}
-        <div className="[grid-area:stack] w-full max-w-screen-md px-4">
-          <div className="bg-white/40 backdrop-blur-sm p-12 rounded-3xl w-full max-w-screen-sm">
+        <div className="[grid-area:stack] w-full px-4">
+          <div className="bg-white/40 backdrop-blur-sm p-10 rounded-2xl w-full max-w-screen-sm">
             <div className="flex gap-x-4 items-start">
               <Image
                 src={flower}

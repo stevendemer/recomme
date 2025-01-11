@@ -16,8 +16,8 @@ export default function ApproachRow({
   answer: boolean | null;
 }) {
   return (
-    <div className="flex items-center rounded-sm justify-between w-full bg-white font-inter shadow-xl ">
-      <div className="flex flex-col w-full max-w-screen-sm max-sm:p-6 p-4">
+    <div className="flex items-center rounded-sm justify-between w-full bg-white font-inter shadow-xl p-4">
+      <div className="flex flex-col w-full max-w-screen-lg">
         <h2 className="font-bold text-lg sm:text-xl text-black text-start">
           {label}
         </h2>

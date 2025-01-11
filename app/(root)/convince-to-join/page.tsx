@@ -56,10 +56,10 @@ export default function ConvinceToJoinPage() {
         </div>
 
         {/* Content Layer */}
-        <div className="[grid-area:stack] z-10 w-full max-w-screen-lg px-4 grid gap-20">
+        <div className="[grid-area:stack] z-10 w-full max-w-screen-lg px-4 grid gap-20 place-items-center">
           {/* Message Box */}
           <div className="bg-white/40 backdrop-blur-lg shadow-lg rounded-sm p-6 lg:p-12 w-full gap-8">
-            <div className="flex gap-4 items-start">
+            <div className="flex gap-4  items-start">
               <Image
                 alt=""
                 src={flowerIcon}

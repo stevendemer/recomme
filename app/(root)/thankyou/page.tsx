@@ -37,7 +37,7 @@ export default function ThankYou() {
                   height={40}
                 />
               </div>
-              <p className="text-black text-md sm:text-xl font-body leading-tight text-center sm:text-left">
+              <p className="text-black text-md sm:text-xl font-body leading-tight whitespace-normal">
                 Great! Now, I&apos;m all set to help you achieve your goals.
                 Let&apos;s start by evaluating {name ?? "Alec"}. Answer every
                 aspect to continue, we need to evaluate your EC maturity.

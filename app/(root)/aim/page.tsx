@@ -52,37 +52,41 @@ export default function AimPage() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-around w-full max-w-5xl h-full">
-      <div className="flex flex-col justify-center items-center w-full">
-        <div className="flex justify-around items-center w-full">
-          <button
-            onClick={() => router.back()}
-            className="bg-white shadow-lg text-[#65D9BD] p-1 sm:p-3 rounded-sm text-center hover:shadow-xl transition-shadow duration-200 "
-          >
-            <IconArrowLeft size={37} />
-          </button>
-
-          <div className="flex justify-center items-center relative w-full h-full">
-            <Image
-              className="object-contain object-center"
-              alt=""
-              src={user}
-              fill
-            />
+    <div className="w-full h-full grid grid-rows-[1fr,auto] gap-3 justify-around">
+      {/* Main Content */}
+      <div className="w-full grid grid-areas-[stack] place-items-center">
+        {/* Content Layer */}
+        <div className="[grid-area:stack] z-10 w-full max-w-screen-lg px-4 grid gap-8">
+          {/* Header Section with Back Button and Image */}
+          <div className="grid grid-cols-[auto,1fr] items-center gap-4">
+            <button
+              onClick={() => router.back()}
+              className="bg-white shadow-lg text-[#65D9BD] p-1 sm:p-3 rounded-sm text-center hover:shadow-xl transition-shadow duration-200"
+            >
+              <IconArrowLeft size={37} />
+            </button>
+            <div className="relative h-full m-auto">
+              <Image
+                className="object-contain object-center"
+                alt=""
+                src={user}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            </div>
           </div>
-        </div>
-        <h2 className="font-sans whitespace-break-spaces p-4 text-black text-md lg:text-3xl">
-          What He&apos;s really aiming for:
-        </h2>
-      </div>
-      <div className="flex flex-col items-center justify-center gap-6">
-        <div className="flex flex-col sm:flex-row justify-center items-center">
-          <div className="grid sm:grid-cols-3 grid-cols-1 w-full h-full gap-x-2 shrink-0">
+
+          {/* Title */}
+          <h2 className="font-sans whitespace-break-spaces text-black text-md lg:text-3xl text-center">
+            What He&apos;s really aiming for:
+          </h2>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 auto-rows-fr">
             {cards.map((card, index) => (
               <Link
                 href={card.href}
                 className={cn(
-                  " shadow-lg rounded-lg p-3 grid text-center font-body transition-colors duration-200",
+                  "shadow-lg rounded-lg p-4 grid content-center text-center font-body transition-colors duration-200",
                   selectedIndex === index
                     ? "bg-[#65D9BD] text-white"
                     : "bg-white text-gray-700"
@@ -92,7 +96,7 @@ export default function AimPage() {
               >
                 <div className="relative aspect-video">
                   <Image
-                    className="object-scale-down object-center w-full h-full"
+                    className="object-scale-down object-center w-auto h-full max-h-[300px]"
                     alt=""
                     src={
                       selectedIndex === index ? card.iconSelected : card.icon
@@ -101,31 +105,36 @@ export default function AimPage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h2
-                  className={cn(
-                    "text-md lg:text-xl text-ellipsis text-center font-bold",
-                    selectedIndex === index ? "text-white" : "text-gray-700"
-                  )}
-                >
-                  {card.title}
-                </h2>
-
-                <p
-                  className={cn(
-                    "mt-2 font-body text-md tracking-wide p-1",
-                    selectedIndex === index ? "text-white" : "text-gray-700"
-                  )}
-                >
-                  {card.body}
-                </p>
+                <div className="gap-2 grid">
+                  <h2
+                    className={cn(
+                      "text-md lg:text-xl font-bold",
+                      selectedIndex === index ? "text-white" : "text-gray-700"
+                    )}
+                  >
+                    {card.title}
+                  </h2>
+                  <p
+                    className={cn(
+                      "font-body text-md tracking-wide",
+                      selectedIndex === index ? "text-white" : "text-gray-700"
+                    )}
+                  >
+                    {card.body}
+                  </p>
+                </div>
               </Link>
             ))}
           </div>
         </div>
       </div>
-      <Link passHref href="/approach">
-        <SubmitButton>Continue</SubmitButton>
-      </Link>
+
+      {/* Submit Button */}
+      <div className="max-w-screen-lg mx-auto px-4">
+        <Link passHref href="/approach">
+          <SubmitButton>Continue</SubmitButton>
+        </Link>
+      </div>
     </div>
   );
 }

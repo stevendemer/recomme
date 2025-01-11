@@ -55,7 +55,7 @@ const PrePage = () => {
       {/* Main Content */}
       <div className="w-full grid grid-areas-[stack] place-items-center">
         {/* Back Button - Always on top */}
-        <div className="[grid-area:stack] w-full h-full relative m-auto ">
+        <div className="[grid-area:stack] w-full h-full relative m-auto">
           <button
             onClick={() => router.back()}
             className="bg-white shadow-lg text-[#65D9BD]  hover:shadow-xl transition-shadow duration-200  rounded-md p-3"
@@ -65,9 +65,9 @@ const PrePage = () => {
         </div>
 
         {/* Content Layer */}
-        <div className="[grid-area:stack] z-10 w-full max-w-screen-lg px-6 grid gap-8">
+        <div className="[grid-area:stack] z-10 w-full max-w-screen-lg xl:p-6 grid xl:gap-3">
           {/* Header Section */}
-          <div className="flex items-center flex-col justify-center text-center font-body">
+          <div className="flex items-center flex-col justify-center font-body">
             <Image
               src={userArrow}
               alt="User Icon"
@@ -87,7 +87,7 @@ const PrePage = () => {
           </div>
 
           {/* Tabs Section */}
-          <div className="grid grid-cols-2 gap-2 font-body">
+          <div className="grid grid-cols-2 gap-6 font-body">
             <div className="bg-white text-black rounded-full shadow-sm gap-x-2 flex items-center justify-center p-2">
               <div className="bg-amber-200 rounded-full flex items-center justify-center w-8 h-8">
                 <Image
@@ -116,7 +116,7 @@ const PrePage = () => {
           </div>
 
           {/* Cards Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 auto-rows-fr h-full">
             {cards.map((card, index) => (
               <Link
                 onClick={() => setSelectedIndex(index)}
@@ -128,15 +128,13 @@ const PrePage = () => {
                   selectedIndex === index && "bg-[#65D9BD] text-white"
                 )}
               >
-                <div className="relative aspect-video">
+                <div className="relative m-auto">
                   <Image
                     src={
                       selectedIndex === index ? card.selectedIcon : card.icon
                     }
                     alt=""
-                    className="object-scale-down object-center w-full h-auto"
-                    width={60}
-                    height={60}
+                    className="object-scale-down object-center w-auto h-full max-h-[300px]"
                   />
                 </div>
                 <h3
