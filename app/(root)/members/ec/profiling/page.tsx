@@ -3,8 +3,6 @@
 import { useGetProfiling } from "@/hooks/use-get-profiling";
 import Spinner from "@/components/spinner";
 import Image from "next/image";
-import { useState } from "react";
-import { bisectCenter } from "d3-array";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 
