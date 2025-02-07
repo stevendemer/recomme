@@ -6,10 +6,11 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import { FaHeart, FaTimes } from "react-icons/fa";
+// import { FaHeart, FaTimes } from "react-icons/fa";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import SubmitButton from "../submit-button";
+import { Heart, X } from "lucide-react";
 
 export default function Cards({
   onChange,
@@ -90,7 +91,7 @@ export default function Cards({
             variant="ghost"
             size="icon"
           >
-            <FaTimes size={24} />
+            <X size={24} />
           </Button>
 
           {/* Like Button */}
@@ -100,7 +101,7 @@ export default function Cards({
             variant="ghost"
             size="icon"
           >
-            <FaHeart size={24} />
+            <Heart size={24} />
           </Button>
         </div>
       )}

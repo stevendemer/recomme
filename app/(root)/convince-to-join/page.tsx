@@ -69,10 +69,11 @@ export default function ConvinceToJoinPage() {
               />
               <div className="flex flex-col items-start space-y-2">
                 <div className="lg:text-lg text-sm text-gray-800 whitespace-normal">
-                  Thanks! Now, I'm all set to help you achieve your goals.
+                  Thanks! Now, I&apos;m all set to help you achieve your goals.
                 </div>
                 <div className="text-sm lg:text-lg text-gray-800 whitespace-normal">
-                  So, let me see, you are mainly here because you'd like to:
+                  So, let me see, you are mainly here because you&apos;d like
+                  to:
                 </div>
               </div>
             </div>

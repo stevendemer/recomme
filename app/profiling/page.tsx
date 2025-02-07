@@ -49,7 +49,7 @@ export default function Profiling() {
 
   useEffect(() => {
     setCurrentComponent(currentType);
-  }, []);
+  });
 
   useEffect(() => {
     if (currentType === "range" && data?.ranges) {

@@ -2,8 +2,9 @@
 import { cn } from "@/lib/utils";
 import { motion, useMotionValue, useTransform, PanInfo } from "framer-motion";
 import { use, useEffect, useState } from "react";
-import { IoMdClose } from "react-icons/io";
-import { FaHeart } from "react-icons/fa";
+// import { IoMdClose } from "react-icons/io";
+// import { FaHeart } from "react-icons/fa";
+import { X, HeartIcon } from "lucide-react";
 
 export default function SwipingCard({
   value,
@@ -26,38 +27,6 @@ export default function SwipingCard({
     ["#dc2626", "rgba(0,0,0,0)", "#4ade80"]
   );
 
-  // const handleSwipe = async (direction: "left" | "right") => {
-  //   if (hasBeenSwiped) return;
-
-  //   setHasBeenSwiped(true);
-  //   setDirection(direction);
-  //   setShowButton(false);
-
-  //   const xDirection = direction === "left" ? -1500 : 1500;
-
-  //   toast({
-  //     description: `Swiped ${direction}`,
-  //   });
-
-  //   onSwipe(direction);
-
-  //   // Start both animations simultaneously
-  //   await Promise.all([
-  //     animControls.start({
-  //       x: xDirection,
-  //       opacity: 0,
-  //       transition: { duration: 0.7, bounceStiffness: 300, ease: "easeIn" },
-  //     }),
-  //     bgAnimControls.start({
-  //       background: direction === "left" ? "#dc2626" : "#4ade80",
-  //       transition: { duration: 0.7, ease: "easeIn", bounceDamping: 300 },
-  //     }),
-  //   ]);
-  // };
-
-  // const handleSwipeLeft = () => handleSwipe("left");
-  // const handleSwipeRight = () => handleSwipe("right");
-
   const handleDragEnd = (
     event: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo
@@ -70,20 +39,6 @@ export default function SwipingCard({
       }
     }
   };
-
-  // useEffect(() => {
-  //   if (hasBeenSwiped && isMounted) {
-  //     bgAnimControls.start({
-  //       background: "#ffff",
-  //     });
-
-  //     // delete here to manage multiple cards
-  //     setHasBeenSwiped(false);
-  //     setDirection(null);
-  //     animControls.set({ x: 0, opacity: 1 });
-  //     setShowButton(true);
-  //   }
-  // }, [hasBeenSwiped, animControls, bgAnimControls, isMounted]);
 
   return (
     <motion.div
@@ -112,7 +67,7 @@ export default function SwipingCard({
               hasBeenSwiped && "sm:hidden"
             )}
           >
-            <IoMdClose className="sm:w-8 sm:h-8 " fill="red" />
+            <X className="sm:w-8 sm:h-8 " fill="red" />
           </button>
         </motion.div>
         {/* main card image */}
@@ -162,7 +117,7 @@ export default function SwipingCard({
                     hasBeenSwiped && "sm:hidden"
                   )}
                 >
-                  <IoMdClose className="sm:w-8 sm:h-8 " fill="red" />
+                  <X className="size-6" fill="red" />
                 </button>
 
                 <button
@@ -171,7 +126,7 @@ export default function SwipingCard({
                     hasBeenSwiped && "sm:hidden"
                   )}
                 >
-                  <FaHeart className="text-teal-300 sm:w-8 sm:h-8" />
+                  <HeartIcon className="text-teal-300 size-6" />
                 </button>
               </motion.div>
             )}
@@ -190,7 +145,7 @@ export default function SwipingCard({
                 hasBeenSwiped && "sm:hidden"
               )}
             >
-              <FaHeart className="text-teal-300 sm:w-8 sm:h-8" />
+              <HeartIcon className="text-teal-300 size-6" />
             </button>
           </motion.div>
         )}

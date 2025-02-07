@@ -16,16 +16,11 @@ import {
   PanInfo,
   AnimatePresence,
 } from "framer-motion";
-import { FaHeart, FaTimes } from "react-icons/fa";
-import { Button } from "../ui/button";
 import Image from "next/image";
-import { useGetElements } from "@/hooks/use-get-elemenets";
-import Spinner from "../spinner";
 import { Heart, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAtom } from "jotai";
 import { cardAtoms, formAnswersAtom } from "@/app/store";
-import { parseVersionInfo } from "next/dist/server/dev/parse-version-info";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export interface ICard {

@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { Inter, Ramaraja, Mulish, Rubik } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { Providers } from "@/components/providers";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -46,7 +48,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
