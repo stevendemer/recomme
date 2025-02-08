@@ -52,7 +52,7 @@ export default function AimPage() {
   ];
 
   return (
-    <div className="w-full h-full grid grid-rows-[1fr,auto] gap-3 justify-around">
+    <div className="w-full h-full grid grid-rows-[1fr,auto] gap-4 place-content-center">
       {/* Main Content */}
       <div className="w-full grid grid-areas-[stack] place-items-center">
         {/* Content Layer */}
@@ -61,9 +61,9 @@ export default function AimPage() {
           <div className="grid grid-cols-[auto,1fr] items-center gap-4">
             <button
               onClick={() => router.back()}
-              className="bg-white shadow-lg text-[#65D9BD] p-1 sm:p-3 rounded-sm text-center hover:shadow-xl transition-shadow duration-200"
+              className="bg-white shadow-lg text-[#65D9BD] hover:shadow-xl transition-shadow duration-200 rounded-full p-2"
             >
-              <IconArrowLeft size={37} />
+              <IconArrowLeft className="sm:size-8 size-4" />
             </button>
             <div className="relative h-full m-auto">
               <Image
@@ -76,17 +76,19 @@ export default function AimPage() {
           </div>
 
           {/* Title */}
-          <h2 className="font-sans whitespace-break-spaces text-black text-md lg:text-3xl text-center">
+          <h2 className="font-sans whitespace-break-spaces text-black text-xl lg:text-3xl text-center">
             What He&apos;s really aiming for:
           </h2>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 auto-rows-fr">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 auto-rows-fr"> */}
+
+          <div className="w-full h-full grid grid-cols-1 lg:grid-cols-3 gap-6 font-body place-items-center auto-rows-fr">
             {cards.map((card, index) => (
               <Link
                 href={card.href}
                 className={cn(
-                  "shadow-lg rounded-lg p-4 grid content-center text-center font-body transition-colors duration-200",
+                  "shadow-lg rounded-lg p-4 grid place-content-center cursor-pointer text-center font-body transition-colors duration-200 h-full w-full",
                   selectedIndex === index
                     ? "bg-[#65D9BD] text-white"
                     : "bg-white text-gray-700"
@@ -96,13 +98,13 @@ export default function AimPage() {
               >
                 <div className="relative aspect-video">
                   <Image
-                    className="object-scale-down object-center w-auto h-full max-h-[300px]"
+                    className="object-contain max-h-[300px]"
                     alt=""
                     src={
                       selectedIndex === index ? card.iconSelected : card.icon
                     }
-                    fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    fill
                   />
                 </div>
                 <div className="gap-2 grid">

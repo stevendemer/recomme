@@ -69,7 +69,7 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar
-      className="sidebar p-4 bg-white/30 rounded-sm"
+      className="sidebar p-3 bg-white/30 rounded-sm"
       variant="floating"
       {...props}
     >

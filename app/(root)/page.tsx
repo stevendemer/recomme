@@ -7,8 +7,13 @@ import Image from "next/image";
 import cloud from "@/public/assets/cloud.svg";
 import flower from "@/public/assets/flower.svg";
 import logo from "@/public/assets/logo.svg";
+import { auth } from "@/lib/auth";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+
+  // console.log("session is ", session);
+
   return (
     <div className="grid w-full h-full grid-rows-[1fr,auto] gap-4 place-items-center relative z-10">
       {/* Logo */}
@@ -43,8 +48,8 @@ export default function Home() {
                 className="px-2 object-contain object-center flex-shrink-0"
               />
               <p className="text-black text-md lg:text-xl font-normal font-body leading-tight sm:text-left whitespace-normal">
-                Hello there! I&apos;m here to assist you. It looks like you were
-                about to say &apos;Recommend me&apos;
+                Hello there {session?.user.name} ! I&apos;m here to assist you.
+                It looks like you were about to say &apos;Recommend me&apos;
               </p>
             </div>
           </div>

@@ -20,10 +20,10 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Page } from "@/components/dashboard/dashboard-block";
+import { DashboardPage } from "@/components/dashboard/dashboard-block";
 
 export default function Dashboard() {
-  return <Page />;
+  return <DashboardPage />;
 
   // return (
   //   <div className="flex flex-col h-full gap-3 scrollbar-hide ">

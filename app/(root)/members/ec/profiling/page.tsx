@@ -31,10 +31,11 @@ const ECProfiling = () => {
     <div className={"container mx-auto relative h-full overflow-y-auto"}>
       <button
         onClick={() => router.back()}
-        className="bg-white shadow-lg text-[#65D9BD] p-1 sm:p-3  rounded-sm text-center hover:shadow-xl transition-shadow duration-200 "
+        className="bg-white shadow-lg text-[#65D9BD] hover:shadow-xl transition-shadow duration-200 rounded-full p-2"
       >
-        <IconArrowLeft size={37} />
+        <IconArrowLeft className="sm:size-8 size-4" />
       </button>
+
       <div
         className={"flex flex-col items-center w-full max-w-5xl scrollbar-hide"}
       >

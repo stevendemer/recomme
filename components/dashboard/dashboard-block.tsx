@@ -61,7 +61,25 @@ const cards = [
   },
 ];
 
-export function Page() {
+const banners = [
+  {
+    id: 1,
+    title: "Convince someone to join",
+    image: userArrow,
+  },
+  {
+    id: 2,
+    title: "Improve participation",
+    image: group,
+  },
+  {
+    id: 3,
+    title: "Organise a meeting",
+    image: third,
+  },
+];
+
+export function DashboardPage() {
   return (
     <SidebarProvider
       style={
@@ -72,53 +90,30 @@ export function Page() {
     >
       <AppSidebar />
       <SidebarInset>
-        <section className="flex w-full max-w-full grow flex-col gap-4 p-4 bg-white/30 backdrop-blur-lg rounded-sm">
+        <section className="flex w-full max-w-full grow flex-col gap-8 p-4 rounded-sm h-full">
           <div className="grid gap-4 md:grid-cols-3 p-4 auto-rows-min shrink-0 bg-white/30 rounded-sm font-inter actions">
-            <div className="flex justify-center items-center space-x-4 p-4 rounded-sm relative shrink bg-white/80">
-              <Image
-                className="object-scale-down"
-                src={userArrow}
-                alt=""
-                width={50}
-                height={50}
-              />
-              <h2 className="sm:text-lg text-sm font-bold">
-                Convince someone to join
-              </h2>
-            </div>
-            <div className="flex justify-center items-center space-x-4 p-4 rounded-sm relative shrink  bg-white/80">
-              <Image
-                className="object-scale-down"
-                src={group}
-                alt=""
-                width={50}
-                height={50}
-              />
-              <h2 className="text-sm sm:text-lg font-bold ">
-                Improve participation
-              </h2>
-            </div>
-            <div className="flex justify-center items-center space-x-4 black p-4 rounded-sm relative shrink bg-white/80">
-              <div>
+            {banners.map((banner) => (
+              <div
+                key={banner.id}
+                className="flex justify-center items-center space-x-4 p-8 rounded-sm shrink bg-white/80"
+              >
                 <Image
                   className="object-scale-down"
-                  src={third}
+                  src={banner.image}
                   alt=""
-                  width={50}
                   height={50}
+                  width={50}
                 />
+                <h2 className="text-sm font-bold sm:text-lg">{banner.title}</h2>
               </div>
-              <h2 className="text-sm sm:text-lg font-bold ">
-                Organise a meeting
-              </h2>
-            </div>
+            ))}
           </div>
 
           <div className="grid max-w-full w-full gap-4 sm:grid-cols-2 grid-cols-1 md:grid-cols-6 items-center justify-center shrink members bg-white/30 p-4 rounded-sm">
-            {cards.map((card, index) => (
+            {cards.map((card) => (
               <div
                 className={cn(
-                  "flex flex-col justify-center items-center  rounded-lg relative bg-white/80  sm:aspect-video max-w-full w-full p-2"
+                  "flex flex-col justify-center items-center  rounded-lg relative bg-white/80 sm:aspect-video max-w-full w-full p-2 sm:h-[12vh]"
                 )}
                 key={card.id}
               >
@@ -155,32 +150,32 @@ export function Page() {
               <Graph />
             </div>
             <div className="bg-white/30 backdrop-blur-lg flex justify-center items-center relative rounded-sm shrink p-4">
-              <div className="flex flex-col gap-3 p-3 font-body recom h-full w-full bg-white/60 rounded-sm space-y-4">
+              <div className="flex flex-col items-baseline gap-3 p-3 font-body recom h-full w-full bg-white/60 rounded-sm space-y-4">
                 <h2 className="text-2xl text-gray-700 p-6 font-bold">
                   Recommendation
                 </h2>
-                <div className="flex items-center bg-white/80 p-6 rounded-sm w-full">
-                  <div className="flex flex-col gap-8">
+                <div className="flex flex-col sm:flex-row items-baseline bg-white/80 p-6 rounded-sm w-full sm:max-w-xl">
+                  <div className="flex flex-col gap-6">
                     <h2 className="font-bold">Acknowledge his expertise</h2>
-                    <div className="text-sm font-inter whitespace-normal">
+                    <div className="text-sm font-inter whitespace-normal text-pretty overflow-hidden max-w-sm">
                       Compliment his knowledge and ask for his opinion on green
                       tech
                     </div>
                   </div>
-                  <button className="px-6 py-3 font-medium transform group rounded-full bg-black text-white font-inter text-sm">
+                  <button className="px-4 py-2 font-medium transform group rounded-full bg-black text-white font-inter text-sm">
                     Acknowledge
                   </button>
                 </div>
 
-                <div className="flex items-center bg-white/80 p-6 rounded-sm w-full">
-                  <div className="flex flex-col gap-8 whitespace-normal">
+                <div className="flex items-baseline bg-white/80 p-6 rounded-sm w-full sm:max-w-xl">
+                  <div className="flex flex-col gap-6">
                     <h2 className="font-bold">Appreciate contributions</h2>
-                    <div className="text-sm font-inter whitespace-normal">
+                    <div className="text-sm font-inter whitespace-normal text-pretty overflow-hidden max-w-sm">
                       Offer opportunities for him to share insights or get
                       involved in eco-projects
                     </div>
                   </div>
-                  <button className="px-6 py-3 font-medium transform group rounded-full bg-black text-white font-inter text-sm">
+                  <button className="px-4 py-2 font-medium transform group rounded-full bg-black text-white font-inter text-sm">
                     Appreciate
                   </button>
                 </div>
@@ -188,7 +183,6 @@ export function Page() {
             </div>
           </div>
         </section>
-        {/* <div className="min-h-[100vh] grow p-4 rounded-sm bg-blue-500 md:min-h-min" /> */}
       </SidebarInset>
     </SidebarProvider>
   );

@@ -80,7 +80,7 @@ export default function ConvinceToJoinPage() {
           </div>
 
           {/* Cards Section */}
-          <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 font-body place-content-center">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 font-body justify-center  mx-auto">
             {cards.map((card, index) => (
               <Link
                 key={card.id}

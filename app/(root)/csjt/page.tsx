@@ -57,7 +57,7 @@ export default function ConvinceJoinPage() {
           {" "}
           Your user looks like an{" "}
         </p>
-        <div className="flex justify-center items-center w-full flex-shrink space-x-4 relative">
+        <div className="flex justify-center items-center w-full shrink-0 space-x-4 relative">
           <Image
             className="object-contain object-center transform scale-x-[-1]"
             alt=""
@@ -66,7 +66,7 @@ export default function ConvinceJoinPage() {
             src={leaf}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Adjust image size for responsive
           />
-          <h2 className="font-semibold font-mulish lg:text-xl text-lg text-black tracking-wide">
+          <h2 className="font-semibold font-mulish lg:text-xl text-lg text-black tracking-wide text-center">
             Environmental Tech Enthusiast
           </h2>
           <Image
@@ -83,18 +83,12 @@ export default function ConvinceJoinPage() {
         <div className="grid gap-4 md:grid-cols-3 w-full flex-shrink-0">
           {cards.map((card, index) => (
             <Link
-              className="bg-white shadow-lg rounded-lg p-2 lg:p-6 grid items-center justify-center text-center"
-              passHref
+              className="shadow-sm rounded-lg border-border border p-4 grid place-content-center cursor-pointer text-center font-body transition-colors duration-200 h-full w-full relative hover:bg-primary/10"
               key={card.id}
               href={card.href}
             >
               <div className="relative aspect-video">
-                <Image
-                  src={card.icon}
-                  alt=""
-                  fill
-                  className="object-scale-down h-auto w-full object-center"
-                />
+                <Image src={card.icon} alt="" fill className="object-contain" />
               </div>
               <p className="mt-2 text-gray-700 font-body text-sm">{card.p}</p>
             </Link>

@@ -55,12 +55,12 @@ const PrePage = () => {
       {/* Main Content */}
       <div className="w-full grid grid-areas-[stack] place-items-center">
         {/* Back Button - Always on top */}
-        <div className="[grid-area:stack] w-full h-full relative m-auto">
+        <div className="[grid-area:stack] w-full h-full relative m-3">
           <button
             onClick={() => router.back()}
-            className="bg-white shadow-lg text-[#65D9BD]  hover:shadow-xl transition-shadow duration-200  rounded-md p-3"
+            className="bg-white shadow-lg text-[#65D9BD] hover:shadow-xl transition-shadow duration-200 rounded-full p-2"
           >
-            <IconArrowLeft size={37} />
+            <IconArrowLeft className="sm:size-8 size-4" />
           </button>
         </div>
 
@@ -75,10 +75,10 @@ const PrePage = () => {
               height={60}
               className="mx-auto mb-4"
             />
-            <h1 className="lg:text-2xl text-lg font-bold text-gray-800">
+            <h1 className="lg:text-xl text-lg font-bold text-gray-800">
               Convince someone to join
             </h1>
-            <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
+            <p className="text-gray-600 mt-2 text-ellipsis mx-auto text-pretty">
               Perfect! You&apos;ve come to the right place. I have some great
               strategies and tips to help you boost your community engagement
               and attract new members. Shall we explore some effective methods
@@ -87,8 +87,8 @@ const PrePage = () => {
           </div>
 
           {/* Tabs Section */}
-          <div className="grid grid-cols-2 gap-6 font-body">
-            <div className="bg-white text-black rounded-full shadow-sm gap-x-2 flex items-center justify-center p-2">
+          <div className="grid grid-cols-2 gap-5 font-body m-2">
+            <div className="bg-white text-black rounded-full shadow-md gap-x-2 flex items-center justify-center p-2 border-border border">
               <div className="bg-amber-200 rounded-full flex items-center justify-center w-8 h-8">
                 <Image
                   width={20}
@@ -101,7 +101,7 @@ const PrePage = () => {
               <p className="font-bold">Enrolment</p>
             </div>
 
-            <div className="bg-white flex items-center justify-center text-black rounded-full shadow-sm gap-x-2 p-2">
+            <div className="bg-white flex items-center justify-center text-black rounded-full shadow-md gap-x-2 p-2 border-border border">
               <div className="bg-amber-200 rounded-full flex items-center justify-center w-8 h-8">
                 <Image
                   width={20}
@@ -116,7 +116,7 @@ const PrePage = () => {
           </div>
 
           {/* Cards Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 auto-rows-fr h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 auto-rows-fr h-full place-items-center">
             {cards.map((card, index) => (
               <Link
                 onClick={() => setSelectedIndex(index)}
@@ -124,7 +124,7 @@ const PrePage = () => {
                 key={card.id}
                 passHref
                 className={cn(
-                  "bg-white shadow-lg rounded-lg p-2 lg:p-6 grid items-center justify-center text-center transition-colors duration-200 font-body",
+                  "bg-white shadow-lg rounded-lg p-2 lg:p-6 grid place-content-center text-center transition-colors duration-200 font-body sm:max-w-md w-full h-full",
                   selectedIndex === index && "bg-[#65D9BD] text-white"
                 )}
               >

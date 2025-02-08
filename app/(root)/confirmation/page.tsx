@@ -35,8 +35,8 @@ export default function ConfirmationPage() {
                   />
                 </div>
                 <p className="text-black text-lg sm:text-xl font-normal font-body leading-tight text-center sm:text-left line-clamp-5 text-ellipsis overflow-hidden whitespace-normal">
-                  First, let&apos;s get introduced I have a feeling you might be
-                  an
+                  First, let&apos;s get introduced ! I have a feeling you might
+                  be an
                   <b> ALEC community manager </b>
                   looking for some digital magic. Am I on the right track?
                 </p>
