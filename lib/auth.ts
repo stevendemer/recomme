@@ -64,7 +64,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
 
     async jwt({ token, account, profile }) {
-      console.log("inside jwt is ", token);
+      // console.log("inside jwt is ", token);
       console.log("profile is ", profile);
 
       if (account && profile) {
@@ -98,7 +98,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         };
       }
 
-      console.log("session is ", session);
+      // console.log("session is ", session);
 
       return session;
     },

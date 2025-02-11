@@ -5,6 +5,9 @@ import Spinner from "@/components/spinner";
 import Image from "next/image";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 const data = {
   LLM_profiling:
@@ -27,37 +30,57 @@ const ECProfiling = () => {
   const displayData =
     status === "error" || profiling?.status === 500 ? data : profiling?.data;
 
-  return (
-    <div className={"container mx-auto relative h-full overflow-y-auto"}>
-      <button
-        onClick={() => router.back()}
-        className="bg-white shadow-lg text-[#65D9BD] hover:shadow-xl transition-shadow duration-200 rounded-full p-2"
-      >
-        <IconArrowLeft className="sm:size-8 size-4" />
-      </button>
+  // return (
+  //   <div className={"container mx-auto relative h-full overflow-y-auto"}>
+  //     <button
+  //       onClick={() => router.back()}
+  //       className="bg-white shadow-lg text-[#65D9BD] hover:shadow-xl transition-shadow duration-200 rounded-full p-2"
+  //     >
+  //       <IconArrowLeft className="sm:size-8 size-4" />
+  //     </button>
 
-      <div
-        className={"flex flex-col items-center w-full max-w-5xl scrollbar-hide"}
-      >
-        <h2 className="text-center font-semibold font-body text-lg sm:text-xl text-black">
-          Energy Profiling for EC Members
-        </h2>
-        <article className={"scrollbar-hide p-1"}>
-          <p className="font-body w-full whitespace-pre-line max-w-2xl text-base leading-relaxed tracking-wide">
-            {displayData?.LLM_profiling}
-          </p>
-        </article>
-        <div className="w-full mt-8">
-          <div className="aspect-video relative max-w-4xl w-full mx-auto">
-            <Image
-              fill
-              src={process.env.NEXT_PUBLIC_API_URL + displayData?.image_path}
-              alt={"profiling graph"}
-              className={"object-contain object-center"}
-            />
-          </div>
-        </div>
+  //     <div
+  //       className={"flex flex-col items-center w-full max-w-5xl scrollbar-hide"}
+  //     >
+  //       <h2 className="text-center font-semibold font-body text-lg sm:text-xl text-black">
+  //         Energy Profiling for EC Members
+  //       </h2>
+  //       <article className={"scrollbar-hide p-1"}>
+  //         <p className="font-body w-full whitespace-pre-line max-w-2xl text-base leading-relaxed tracking-wide">
+  //           {displayData?.LLM_profiling}
+  //         </p>
+  //       </article>
+  //       <div className="w-full mt-8">
+  //         <div className="aspect-video relative max-w-4xl w-full mx-auto">
+  //           <Image
+  //             fill
+  //             src={process.env.NEXT_PUBLIC_API_URL + displayData?.image_path}
+  //             alt={"profiling graph"}
+  //             className={"object-contain object-center"}
+  //           />
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
+  return (
+    <div className="flex flex-col items-center justify-center w-full">
+      <div className="flex justify-center h-full w-full">
+        <p className="text-center text-black font-body text-md sm:text-2xl">
+          Page under construction 🛠️.
+          <br />
+          Will be back soon.
+        </p>
       </div>
+      <Button
+        variant={"link"}
+        className={"px-8 py-3 flex items-center flex-shrink-0 gap-2"}
+      >
+        <ArrowLeft />
+        <Link prefetch href={"/members"}>
+          Go back
+        </Link>
+      </Button>
     </div>
   );
 };

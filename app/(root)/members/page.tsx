@@ -43,7 +43,7 @@ function MembersPage() {
           <Button
             variant={"outline"}
             className={
-              "px-8 py-6 flex items-center font-inter flex-shrink-0 bg-slate-100 hover:bg-slate-200 sm:text-md text-sm"
+              "px-8 py-6 flex items-center font-inter flex-shrink-0 bg-slate-100 hover:bg-slate-200 sm:text-md text-sm font-semibold"
             }
           >
             Energy Profiling
