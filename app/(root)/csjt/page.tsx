@@ -83,7 +83,7 @@ export default function ConvinceJoinPage() {
         <div className="grid gap-4 md:grid-cols-3 w-full flex-shrink-0">
           {cards.map((card, index) => (
             <Link
-              className="shadow-sm rounded-lg border-border border p-4 grid place-content-center cursor-pointer text-center font-body transition-colors duration-200 h-full w-full relative hover:bg-primary/10"
+              className="shadow-sm rounded-lg border-border border p-4 grid place-content-center text-center font-body h-full w-full relative"
               key={card.id}
               href={card.href}
             >
