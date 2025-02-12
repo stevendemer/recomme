@@ -34,10 +34,10 @@ export default function PrepPage() {
                 Great! It seems like your community is on the right track to
                 shaping a more sustainable energy future.
                 <div className="mb-6"></div>
-                In the next step, we'll dive a bit deeper to refine the profile
-                of your energy community. This will help us better understand
-                your needs and create tailored solutions to maximize efficiency,
-                independence, and environmental benefits.
+                In the next step, we&apos;ll dive a bit deeper to refine the
+                profile of your energy community. This will help us better
+                understand your needs and create tailored solutions to maximize
+                efficiency, independence, and environmental benefits.
               </div>
             </div>
           </div>
