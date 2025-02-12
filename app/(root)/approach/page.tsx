@@ -60,7 +60,7 @@ export default function ApproachPage() {
       setIsSubmitting(true);
 
       // Here you can add your API call to save the answers
-      console.log("all answers are ", answers);
+      // console.log("all answers are ", answers);
 
       // Navigate only after successful submission
       router.push("/dashboard");

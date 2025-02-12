@@ -19,6 +19,7 @@ import userHomex from "@/public/assets/user-home-x.svg";
 import userHouseToggle from "@/public/assets/user-house-toggle.svg";
 import userQuestionToggle from "@/public/assets/user-question-toggle.svg";
 import userTogglex from "@/public/assets/user-toggle-x.svg";
+import BackButton from "@/components/back-button";
 
 export default function AimPage() {
   const router = useRouter();
@@ -59,12 +60,7 @@ export default function AimPage() {
         <div className="[grid-area:stack] z-10 w-full max-w-screen-lg px-4 grid gap-8">
           {/* Header Section with Back Button and Image */}
           <div className="grid grid-cols-[auto,1fr] items-center gap-4">
-            <button
-              onClick={() => router.back()}
-              className="bg-white shadow-lg text-[#65D9BD] hover:shadow-xl transition-shadow duration-200 rounded-full p-2"
-            >
-              <IconArrowLeft className="sm:size-8 size-4" />
-            </button>
+            <BackButton />
             <div className="relative h-full m-auto">
               <Image
                 className="object-contain object-center"
@@ -96,15 +92,16 @@ export default function AimPage() {
                 key={card.id}
                 onClick={() => setSelectedIndex(index)}
               >
-                <div className="relative aspect-video">
+                <div className="relative aspect-auto">
                   <Image
-                    className="object-contain max-h-[300px]"
+                    className="object-scale-down max-h-[200px]"
                     alt=""
                     src={
                       selectedIndex === index ? card.iconSelected : card.icon
                     }
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    fill
+                    width={300}
+                    height={300}
                   />
                 </div>
                 <div className="gap-2 grid">

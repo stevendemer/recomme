@@ -5,6 +5,7 @@ import "../globals.css";
 import { Inter, Ramaraja, Mulish, Rubik } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { Metadata } from "next";
+import BackButton from "@/components/back-button";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 

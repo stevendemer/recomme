@@ -89,7 +89,7 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
       : !!form.watch(data?.title);
 
   function onSubmit(data: any) {
-    console.log(data);
+    // console.log(data);
     onVote();
   }
 
@@ -97,7 +97,7 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
 
   return (
     <Form {...form}>
-      <div className="h-full flex flex-col items-center justify-between">
+      <div className="h-full flex flex-col items-center justify-between gap-4">
         <h2 className="text-lg lg:text-4xl text-center text-black font-sans">
           {data?.title}
         </h2>
@@ -129,7 +129,7 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                         process.env.NEXT_PUBLIC_API_URL + value.src;
                       const isSelected = selectedItems.includes(value.text);
 
-                      console.log("image url is ", baseUrl);
+                      // console.log("image url is ", baseUrl);
 
                       return (
                         <Card
@@ -171,20 +171,22 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                             : "bg-white text-black"
                         )}
                         // onClick={() => handleSelection(value, field.onChange)}
-                        onClick={() => field.onChange(value)} // click updates the radio button
+                        // onClick={() => field.onChange(value)} // click updates the radio button
                       >
                         <Label
                           className="flex flex-col items-center justify-center w-full cursor-pointer"
                           htmlFor={value}
                         >
                           <RadioGroupItem
+                            checked={field.value === value}
+                            onClick={() => field.onChange(value)}
                             id={value}
                             value={value}
                             className={cn(
                               "focus-visible:ring-offset-2 focus-visible:outline-none focus-visible:ring-2",
                               field.value === value
-                                ? "border-white"
-                                : "border-black"
+                                ? "border-[#65D9BD] data-[state=checked]:border-white data-[state=checked]:bg-[#65D9BD]"
+                                : "border-black data-[state=checked]:bg-black"
                             )}
                           />
                           <div className="font-bold text-sm sm:text-xl font-inter text-center p-1">
