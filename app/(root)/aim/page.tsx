@@ -59,7 +59,7 @@ export default function AimPage() {
         {/* Content Layer */}
         <div className="[grid-area:stack] z-10 w-full max-w-screen-lg px-4 grid gap-8">
           {/* Header Section with Back Button and Image */}
-          <div className="grid grid-cols-[auto,1fr] items-center gap-4">
+          <div className="grid grid-cols-[auto,1fr] items-center p-4">
             <BackButton />
             <div className="relative h-full m-auto">
               <Image
@@ -95,7 +95,7 @@ export default function AimPage() {
                 {/* image container */}
                 <div className="flex items-center justify-center h-40">
                   <Image
-                    className="object-contain w-auto h-full"
+                    className="object-contain w-auto"
                     alt=""
                     src={
                       selectedIndex === index ? card.iconSelected : card.icon

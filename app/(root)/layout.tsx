@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Providers } from "@/components/providers";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import BackButton from "@/components/back-button";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -66,6 +67,9 @@ export default async function RootLayout({
       >
         <Providers>
           <main className="gradient-bg backdrop-blur-lg  p-2 grid place-items-center h-full relative min-h-screen">
+            {/* <div className="absolute top-4 left-4 z-20">
+              <BackButton />
+            </div> */}
             <div className="bg-white/30 backdrop-blur-lg rounded-sm p-4 lg:p-6 w-full max-w-screen-xl h-[80vh]">
               <div className=" bg-white/70 w-full rounded-sm shadow-lg p-1 h-full grid place-items-center">
                 <div className="w-full h-full overflow-y-auto grid place-items-center">

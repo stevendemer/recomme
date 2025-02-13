@@ -56,7 +56,7 @@ const PrePage = () => {
       {/* Main Content */}
       <div className="w-full grid grid-areas-[stack] place-items-center">
         {/* Back Button - Always on top */}
-        <div className="[grid-area:stack] w-full h-full relative m-3">
+        <div className="[grid-area:stack] w-full h-full relative p-4">
           <BackButton />
         </div>
 
@@ -132,7 +132,7 @@ const PrePage = () => {
                     }
                     alt=""
                     // className="object-scale-down object-center w-auto h-full max-h-[300px]"
-                    className="object-contain w-auto h-full"
+                    className="object-contain w-auto"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>

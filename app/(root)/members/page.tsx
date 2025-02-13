@@ -5,10 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import logo from "@/public/assets/logo.svg";
+import BackButton from "@/components/back-button";
 
 function MembersPage() {
   return (
-    <section className="w-full h-full  flex-shrink-0 flex flex-col items-center justify-around">
+    <section className="w-full h-full shrink-0 flex flex-col items-center justify-around relative">
       <div className="flex flex-col items-center">
         <div className="relative sm:w-80 sm:h-40 w-60 h-60">
           <Image

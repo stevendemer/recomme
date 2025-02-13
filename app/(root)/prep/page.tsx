@@ -7,23 +7,23 @@ import SubmitButton from "@/components/submit-button";
 
 export default function PrepPage() {
   return (
-    <div className="grid w-full grid-rows-[1fr,auto] gap-4 place-items-center relative">
-      {/* Main Content */}
+    <div className="flex flex-col w-full items-center gap-4 ">
       <div className="w-full grid grid-areas-[stack] place-items-center rounded-lg">
         {/* Cloud Background */}
-        <div className="[grid-area:stack] max-w-full">
+        <div className="[grid-area:stack] w-full h-full absolute inset-0 z-0">
           <Image
             priority
             src={cloud}
             alt="cloud background"
-            className="object-cover object-center min-w-0 w-full"
+            className="object-contain object-top"
             quality={100}
+            fill
           />
         </div>
 
-        {/* Message Box */}
-        <div className="[grid-area:stack] w-full px-4 relative">
-          <div className="bg-white/40 backdrop-blur-sm p-16 rounded-2xl w-full max-w-screen-lg relative">
+        {/*  Main content */}
+        <div className="[grid-area:stack] w-full px-4 relative z-10">
+          <div className="bg-white/40 backdrop-blur-sm p-16 rounded-xl w-full max-w-screen-lg">
             <div className="flex gap-x-4 items-start">
               <Image
                 src={flower}
@@ -45,7 +45,7 @@ export default function PrepPage() {
       </div>
 
       {/* Button */}
-      <div className=" max-w-md px-4">
+      <div className="relative z-10 max-w-md px-4">
         <Link prefetch href="/confirmation">
           <SubmitButton className="w-full">Continue</SubmitButton>
         </Link>
