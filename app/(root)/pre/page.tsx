@@ -18,6 +18,7 @@ import Link from "next/link";
 import userHouseToggle from "@/public/assets/user-house-toggle.svg";
 import userQuestionToggle from "@/public/assets/user-question-toggle.svg";
 import userTogglex from "@/public/assets/user-toggle-x.svg";
+import BackButton from "@/components/back-button";
 
 const cards = [
   {
@@ -56,12 +57,7 @@ const PrePage = () => {
       <div className="w-full grid grid-areas-[stack] place-items-center">
         {/* Back Button - Always on top */}
         <div className="[grid-area:stack] w-full h-full relative m-3">
-          <button
-            onClick={() => router.back()}
-            className="bg-white shadow-lg text-[#65D9BD] hover:shadow-xl transition-shadow duration-200 rounded-full p-2"
-          >
-            <IconArrowLeft className="sm:size-8 size-4" />
-          </button>
+          <BackButton />
         </div>
 
         {/* Content Layer */}
@@ -124,35 +120,40 @@ const PrePage = () => {
                 key={card.id}
                 passHref
                 className={cn(
-                  "bg-white shadow-lg rounded-lg p-2 lg:p-6 grid place-content-center text-center transition-colors duration-200 font-body sm:max-w-md w-full h-full",
+                  "bg-white shadow-lg rounded-lg p-2 lg:p-6 flex flex-col text-center transition-colors duration-200 font-body sm:max-w-md w-full h-full",
                   selectedIndex === index && "bg-[#65D9BD] text-white"
                 )}
               >
-                <div className="relative m-auto">
+                {/* image container */}
+                <div className="flex items-center justify-center h-40">
                   <Image
                     src={
                       selectedIndex === index ? card.selectedIcon : card.icon
                     }
                     alt=""
-                    className="object-scale-down object-center w-auto h-full max-h-[300px]"
+                    // className="object-scale-down object-center w-auto h-full max-h-[300px]"
+                    className="object-contain w-auto h-full"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
-                <h3
-                  className={cn(
-                    "mt-4 text-sm lg:text-lg font-bold text-gray-700",
-                    selectedIndex === index && "text-white"
-                  )}
-                >
-                  {card.title}
-                </h3>
-                <p
-                  className={cn(
-                    "mt-2 text-gray-500 text-sm",
-                    selectedIndex === index && "text-white"
-                  )}
-                >
-                  {card.p}
-                </p>
+                <div className="gap-2 flex flex-col justify-center h-auto">
+                  <h2
+                    className={cn(
+                      "mt-4 text-sm lg:text-lg font-bold text-gray-700",
+                      selectedIndex === index && "text-white"
+                    )}
+                  >
+                    {card.title}
+                  </h2>
+                  <p
+                    className={cn(
+                      "mt-2 text-gray-500 text-sm tracking-wide",
+                      selectedIndex === index && "text-white"
+                    )}
+                  >
+                    {card.p}
+                  </p>
+                </div>
               </Link>
             ))}
           </div>

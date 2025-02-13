@@ -84,7 +84,7 @@ export default function AimPage() {
               <Link
                 href={card.href}
                 className={cn(
-                  "shadow-lg rounded-lg p-4 grid place-content-center cursor-pointer text-center font-body transition-colors duration-200 h-full w-full",
+                  "shadow-lg rounded-lg p-4 flex flex-col  cursor-pointer text-center font-body transition-colors duration-200 h-full w-full",
                   selectedIndex === index
                     ? "bg-[#65D9BD] text-white"
                     : "bg-white text-gray-700"
@@ -92,9 +92,10 @@ export default function AimPage() {
                 key={card.id}
                 onClick={() => setSelectedIndex(index)}
               >
-                <div className="relative aspect-auto">
+                {/* image container */}
+                <div className="flex items-center justify-center h-40">
                   <Image
-                    className="object-scale-down max-h-[200px]"
+                    className="object-contain w-auto h-full"
                     alt=""
                     src={
                       selectedIndex === index ? card.iconSelected : card.icon
@@ -102,12 +103,13 @@ export default function AimPage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     width={300}
                     height={300}
+                    priority
                   />
                 </div>
-                <div className="gap-2 grid">
+                <div className="gap-2 flex flex-col  justify-center h-auto">
                   <h2
                     className={cn(
-                      "text-md lg:text-xl font-bold",
+                      "text-md lg:text-xl font-bold text-pretty",
                       selectedIndex === index ? "text-white" : "text-gray-700"
                     )}
                   >
@@ -115,7 +117,7 @@ export default function AimPage() {
                   </h2>
                   <p
                     className={cn(
-                      "font-body text-md tracking-wide",
+                      "text-md tracking-wide",
                       selectedIndex === index ? "text-white" : "text-gray-700"
                     )}
                   >
