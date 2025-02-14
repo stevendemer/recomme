@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { SearchForm } from "./search-form";
-import { VersionSwitcher } from "./version-switcher";
+import { LogoButton } from "./version-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -69,12 +69,12 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar
-      className="sidebar p-3 bg-white/30 rounded-sm"
+      className="sidebar p-3 bg-white/30 rounded-sm h-full"
       variant="floating"
       {...props}
     >
       <SidebarHeader>
-        <VersionSwitcher />
+        <LogoButton />
       </SidebarHeader>
       <SidebarContent className="font-mulish text-gray-600 p-2 rounded-sm">
         {/* We create a SidebarGroup for each parent. */}

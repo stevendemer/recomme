@@ -1,4 +1,3 @@
-import DashboardSidebar from "@/components/dashboard/sidebar";
 import { Metadata } from "next";
 import React, { PropsWithChildren } from "react";
 import "../globals.css";
@@ -6,6 +5,8 @@ import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 
 import { Inter, Ramaraja, Mulish, Rubik } from "next/font/google";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/dashboard/app-sidebar";
 
 const Tour = dynamic(() => import("../../components/tour"), { ssr: false });
 
@@ -41,30 +42,19 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "antialiased bg-gray-200",
+          "antialiased bg-gray-200 min-h-screen",
           rubik.variable,
           ram.variable,
           inter.variable,
           mulish.variable
         )}
       >
-        <main className="gradient-bg font-body h-full overflow-y-auto scrollbar-hide max-w-full w-full">
-          {/* <div className="mx-auto h-screen p-2  md:p-4"> */}
-          {/* <div className="flex h-full gap-2 sm:gap-3 md:gap-4"> */}
-          <Tour />
-
-          {/* <div className="hidden sm:block flex-shrink-0 h-full">
-                        <DashboardSidebar/>
-                    </div> */}
-          {/* Main Content */}
-          {/* <div className="absolute inset-0 bg-white/10 rounded-lg"> */}
-          {/* <div className="h-full scrollbar-hide p-2 sm:p-3 md:p-4"> */}
-          {children}
-          {/* </div> */}
-          {/* </div> */}
-          {/* </div> */}
-          {/* </div> */}
-        </main>
+        <div className="flex h-screen md:overflow-hidden overflow-y-auto gradient-bg font-body justify-center">
+          <main className="flex-1 p-4">
+            <Tour />
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );

@@ -90,7 +90,7 @@ export function DashboardPage() {
     >
       <AppSidebar />
       <SidebarInset>
-        <section className="flex w-full max-w-full grow flex-col gap-8 p-4 rounded-sm h-full">
+        <section className="flex w-full max-w-full grow flex-col gap-8 p-4 rounded-sm min-h-screen items-stretch">
           <div className="grid gap-4 md:grid-cols-3 p-4 auto-rows-min shrink-0 bg-white/30 rounded-sm font-inter actions">
             {banners.map((banner) => (
               <div
@@ -146,10 +146,10 @@ export function DashboardPage() {
             ))}
           </div>
           <div className="grid md:grid-cols-3 auto-rows-min gap-4 backdrop-blur-lg rounded-sm">
-            <div className="bg-white/30 p-4 flex grow justify-center relative items-center rounded-sm flex-col graph col-span-2">
+            <div className="bg-white/30 p-4 flex grow justify-center relative items-center rounded-sm flex-col graph col-span-full md:col-span-2">
               <Graph />
             </div>
-            <div className="bg-white/30 backdrop-blur-lg flex justify-center items-center relative rounded-sm shrink p-4">
+            <div className="bg-white/30 backdrop-blur-lg flex justify-center items-stretch relative rounded-sm sm:shrink-0 p-4">
               <div className="flex flex-col items-baseline gap-3 p-3 font-body recom h-full w-full bg-white/60 rounded-sm space-y-4">
                 <h2 className="text-2xl text-gray-700 p-6 font-bold">
                   Recommendation

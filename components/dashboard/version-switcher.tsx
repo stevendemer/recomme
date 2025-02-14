@@ -16,20 +16,21 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Image from "next/image";
+import { Button } from "../ui/button";
 
-export function VersionSwitcher() {
+export function LogoButton() {
   return (
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SidebarMenuButton
+            <Button
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-              variant={"outline"}
+              variant="ghost"
             >
               <Image alt="" src={alec} fill />
-            </SidebarMenuButton>
+            </Button>
           </DropdownMenuTrigger>
         </DropdownMenu>
       </SidebarMenuItem>
