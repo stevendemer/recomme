@@ -12,8 +12,6 @@ import { auth } from "@/lib/auth";
 export default async function Home() {
   const session = await auth();
 
-  // console.log("session is ", session);
-
   return (
     <div className="grid w-full h-full grid-rows-[1fr,auto] gap-4 place-items-center relative z-10">
       {/* Logo */}

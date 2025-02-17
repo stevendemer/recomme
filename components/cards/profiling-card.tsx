@@ -44,8 +44,6 @@ export default function ProfilingCard({
   const pathname = usePathname();
   const [needsReset, setNeedsReset] = useState(false);
 
-  console.log("total cards are ", totalCards);
-
   const [answers, setAnswers] = useAtom(formAnswersAtom);
 
   const rotate = useTransform(x, [-150, 150], [-18, 18]);
@@ -106,7 +104,7 @@ export default function ProfilingCard({
       handleSwipe("left");
     } else if (velocity >= 1 && offset >= offsetBoundary) {
       handleSwipe("right");
-      console.log("swiped right");
+      // console.log("swiped right");
     } else {
       // If not strong enough, animate back to center
       animate(x, 0, {

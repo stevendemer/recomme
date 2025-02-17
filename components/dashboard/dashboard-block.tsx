@@ -89,7 +89,7 @@ export function DashboardPage() {
       }
     >
       <AppSidebar />
-      <SidebarInset>
+      <SidebarInset className="flex-1">
         <section className="flex w-full max-w-full grow flex-col gap-8 p-4 rounded-sm min-h-screen items-stretch">
           <div className="grid gap-4 md:grid-cols-3 p-4 auto-rows-min shrink-0 bg-white/30 rounded-sm font-inter actions">
             {banners.map((banner) => (

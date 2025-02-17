@@ -19,28 +19,6 @@ declare module "next-auth" {
   }
 }
 
-// declare module "next-auth/jwt" {
-//   interface JWT {
-//     access_token: string;
-//     refresh_token: string;
-//     refresh_expires_in: number;
-//     expires_in: number;
-//     user: {
-//       sub: string;
-//       email_verified: boolean;
-//       name: string;
-//       telephone: string;
-//       preferred_username: string;
-//       org_name: string;
-//       given_name: string;
-//       family_name: string;
-//       email: string;
-//       id: string;
-//     };
-//     error?: string | null;
-//   }
-// }
-
 export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
     signIn: "/login",
@@ -64,14 +42,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
 
     async jwt({ token, account, profile }) {
-      // console.log("inside jwt is ", token);
-      console.log("profile is ", profile);
-
       if (account && profile) {
-        // token.accessToken = account.access_token;
-        // token.sub = account.userId;
-        // token.name = account.name;
-        // token.email = account.email;
         return {
           ...token,
           accessToken: account.access_token,
@@ -79,6 +50,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           id: profile.sub,
           email: profile.email,
           name: profile.name,
+          given_name: profile.given_name,
         };
       }
       return token;

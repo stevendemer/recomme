@@ -107,12 +107,7 @@ export default function ApproachPage() {
       <div className="max-w-screen-lg mx-auto px-4 py-2">
         {isValid && !isSubmitting ? (
           <Link href="/dashboard" passHref>
-            <SubmitButton
-              onClick={() => {
-                console.log("all answers are ", answers);
-              }}
-              className="w-full"
-            >
+            <SubmitButton onClick={() => {}} className="w-full">
               Continue
             </SubmitButton>
           </Link>

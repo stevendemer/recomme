@@ -11,6 +11,7 @@ import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import house from "@/public/assets/house.svg";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import ImageSelectionCard from "../cards/image-selection-card";
 
 interface IProp {
   step: {
@@ -89,7 +90,6 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
       : !!form.watch(data?.title);
 
   function onSubmit(data: any) {
-    // console.log(data);
     onVote();
   }
 
@@ -129,36 +129,52 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                         process.env.NEXT_PUBLIC_API_URL + value.src;
                       const isSelected = selectedItems.includes(value.text);
 
-                      // console.log("image url is ", baseUrl);
+                      const [src, extension] = value.src.split(".");
 
+                      const imagePath = isSelected
+                        ? `${src}_checked.${extension}`
+                        : value.src;
+
+                      // return (
+                      //   <Card
+                      //     onClick={() =>
+                      //       handleSelection(value.text, field.onChange)
+                      //     }
+                      //     key={index}
+                      //     className={cn(
+                      //       "flex flex-col justify-center duration-75 shadow w-full items-center sm:flex-[0_0_calc(30%-15px)] cursor-pointer transition-colors",
+                      //       isSelected
+                      //         ? "bg-[#65D9BD] text-white"
+                      //         : "bg-white text-black"
+                      //     )}
+                      //   >
+                      //     <CardContent className="pointer-events-none hidden md:flex flex-wrap relative aspect-square">
+                      //       <Image
+                      //         src={process.env.NEXT_PUBLIC_API_URL + imagePath}
+                      //         alt={value.text ?? "alt"}
+                      //         fill
+                      //         className="object-scale-down object-center"
+                      //         priority
+                      //       />
+                      //     </CardContent>
+                      //     <CardFooter>
+                      //       <p className="text-center flex-wrap  whitespace-normal font-bold font-rubik md:text-lg text-sm">
+                      //         {value.text}
+                      //       </p>
+                      //     </CardFooter>
+                      //   </Card>
+                      //   // </div>
+                      // );
                       return (
-                        <Card
-                          onClick={() =>
-                            handleSelection(value.text, field.onChange)
-                          }
+                        <ImageSelectionCard
                           key={index}
-                          className={cn(
-                            "flex flex-col justify-center duration-200 transition-all w-full items-center sm:flex-[0_0_calc(30%-15px)] cursor-pointer",
-                            isSelected
-                              ? "bg-[#65D9BD] text-white"
-                              : "bg-white text-black"
-                          )}
-                        >
-                          <CardContent className="pointer-events-none hidden md:flex flex-wrap relative aspect-square">
-                            <Image
-                              src={baseUrl}
-                              alt={value.text ?? "alt"}
-                              fill
-                              className="object-scale-down object-center"
-                            />
-                          </CardContent>
-                          <CardFooter>
-                            <p className="text-center flex-wrap  whitespace-normal font-bold font-rubik md:text-lg text-sm">
-                              {value.text}
-                            </p>
-                          </CardFooter>
-                        </Card>
-                        // </div>
+                          value={value}
+                          isSelected={selectedItems.includes(value.text)}
+                          onSelect={(text) =>
+                            handleSelection(text, field.onChange)
+                          }
+                          baseUrl={process.env.NEXT_PUBLIC_API_URL!}
+                        />
                       );
                     })
                   : data.options.map((value: any, index: number) => (

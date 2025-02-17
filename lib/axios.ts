@@ -36,7 +36,6 @@ api.interceptors.response.use(
   (error: AxiosError) => {
     const originalReq = error.config as AxiosRequestConfig;
 
-    // console.log("Inside response interceptor ", originalReq);
     if (error.response?.status === 403 || error.response?.status === 401) {
       // request for a new token
       const searchParams = new URLSearchParams();

@@ -3,7 +3,6 @@
 TODO LIST
 
 - CONVINCE SOMEONE TO JOIN PAGE
--
 
 ## Instructions
 
@@ -16,3 +15,10 @@ REAL ID: masterpiece
 CLIENT ID: recomme-backend
 CLIENT SECRET: f9YlfkpmLQekZJNBhcN8VdiQIQe0mvXm
 HOSTING URL: https://sso.ecoop.cloud/
+
+TODO
+
+- Form submission
+- Logout button
+- Dynamic recomm (approach form)
+- User register after authentication (auth js flow)
