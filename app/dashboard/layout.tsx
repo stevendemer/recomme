@@ -49,7 +49,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           mulish.variable
         )}
       >
-        <div className="flex h-screen md:overflow-hidden overflow-y-auto gradient-bg font-body justify-center">
+        <div className="flex h-screen overflow-y-auto gradient-bg font-body justify-center">
           <main className="flex-1 p-4">
             <Tour />
             {children}

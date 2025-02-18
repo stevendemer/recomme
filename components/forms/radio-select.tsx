@@ -90,6 +90,9 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
       : !!form.watch(data?.title);
 
   function onSubmit(data: any) {
+    // before changing step, store the results
+    console.log("Form submitted data is ", data);
+
     onVote();
   }
 

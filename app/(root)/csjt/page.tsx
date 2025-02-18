@@ -81,19 +81,19 @@ export default function ConvinceJoinPage() {
       </div>
       <div className="flex items-center w-full p-4 max-w-screen-md">
         <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 w-full h-full shrink-0 auto-rows-fr place-items-center">
-          {cards.map((card, index) => (
+          {cards.map((card) => (
             <Link
-              className="shadow-sm rounded-lg border-border border p-4 flex flex-col text-center font-body h-full w-full cursor-default bg-white"
+              className="shadow-sm rounded-lg border-border border p-4 flex flex-col text-center font-body h-full w-full cursor-default max-w-lg bg-white"
               key={card.id}
               href={card.href}
             >
-              <div className="flex items-center justify-center h-48 relative aspect-video">
+              <div className="sm:h-48 h-20 relative">
                 <Image
                   src={card.icon}
                   alt=""
-                  fill
                   className="object-contain"
                   priority
+                  fill
                 />
               </div>
               <div className="flex flex-col justify-center h-auto">
