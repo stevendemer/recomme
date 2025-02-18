@@ -118,12 +118,12 @@ export default function ProfilingCard({
   return (
     <div className="flex flex-col items-center flex-1 w-full h-full">
       {/* Text Section */}
-      <h2 className="text-lg sm:text-4xl text-center font-sans text-black px-2 whitespace-normal">
+      <h2 className="text-lg sm:text-2xl text-center font-sans text-black px-2 whitespace-normal text-pretty">
         {data.text}
       </h2>
 
       {/* Main Card Container */}
-      <div className="w-full max-w-xl px-4 sm:px-12 relative h-full flex justify-center items-center flex-1">
+      <div className="w-full max-w-[80vw] px-4 sm:px-12 relative h-full flex justify-center items-center flex-1">
         {/* Action Buttons */}
         <div className="absolute sm:block hidden left-0 top-1/2 -translate-y-1/2 z-20">
           <button
@@ -168,9 +168,8 @@ export default function ProfilingCard({
             }}
             onDragEnd={handleDragEnd}
           >
-            <div className="pointer-events-none aspect-video rounded-sm overflow-hidden">
+            <div className="pointer-events-none aspect-square sm:aspect-video rounded-sm overflow-hidden">
               <Image
-                fill
                 alt={data.text ?? "alt"}
                 className="object-cover object-center w-full h-full rounded-sm"
                 src={`${process.env.NEXT_PUBLIC_API_URL}${data.src}`}
@@ -180,6 +179,7 @@ export default function ProfilingCard({
                   gridColumn: 1,
                   gridRow: 1,
                 }}
+                fill
               />
             </div>
           </motion.div>

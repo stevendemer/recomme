@@ -106,7 +106,9 @@ export default function Profiling() {
         if (currentStep + 1 < data.selects.length) {
           setCurrentStep(currentStep + 1);
         } else {
-          moveToNextType("card");
+          // moveToNextType("card");
+          // move to the prepare page
+          push("/benefits");
         }
         break;
 
@@ -114,7 +116,8 @@ export default function Profiling() {
         if (currentStep + 1 < data.cards[0].images.length) {
           setCurrentStep(currentStep + 1);
         } else {
-          moveToNextType("range");
+          // moveToNextType("range");
+          push("/convince-to-join?page=1");
         }
         break;
 
@@ -192,7 +195,7 @@ export default function Profiling() {
           className={"w-full h-full"}
         >
           {components[currentType as keyof typeof components] || (
-            <div className={"text-2xl text-center w-full"}>
+            <div className={"text-xl text-center w-full"}>
               Component type not found !
             </div>
           )}

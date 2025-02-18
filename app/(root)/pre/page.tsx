@@ -27,7 +27,7 @@ const cards = [
     icon: userHome,
     selectedIcon: userHouseToggle,
     p: "They need more information and reassurance to make a final decision.",
-    href: "/profiling",
+    href: "/profiling?type=range",
   },
   {
     id: 2,
@@ -125,15 +125,26 @@ const PrePage = () => {
                 )}
               >
                 {/* image container */}
-                <div className="flex items-center justify-center h-40">
+                <div className="flex items-center justify-center h-40 relative">
                   <Image
-                    src={
-                      selectedIndex === index ? card.selectedIcon : card.icon
-                    }
                     alt=""
-                    // className="object-scale-down object-center w-auto h-full max-h-[300px]"
-                    className="object-contain w-auto"
+                    src={card.selectedIcon}
+                    className={cn(
+                      "object-contain object-center",
+                      selectedIndex !== index && "hidden"
+                    )}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority
+                  />
+                  <Image
+                    alt=""
+                    src={card.selectedIcon}
+                    className={cn(
+                      "object-contain object-center",
+                      selectedIndex === index && "hidden"
+                    )}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority
                   />
                 </div>
                 <div className="gap-2 flex flex-col justify-center h-auto">

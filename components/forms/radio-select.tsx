@@ -184,7 +184,7 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                       <div
                         key={index}
                         className={cn(
-                          "p-2 rounded-sm border shadow-lg flex  w-full h-full flex-col items-center justify-center transition-colors duration-200 text-black",
+                          "p-2 rounded-3xl border hover:shadow-lg flex w-full h-full flex-col items-center justify-center  duration-300 text-black transition-all",
                           field.value === value
                             ? "bg-[#65D9BD] text-white"
                             : "bg-white text-black"

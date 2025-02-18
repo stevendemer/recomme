@@ -7,12 +7,13 @@ import user from "@/public/assets/user.svg";
 import userArrow from "@/public/assets/user-arrow.svg";
 import userCircle from "@/public/assets/user-circle.svg";
 import third from "@/public/assets/third.svg";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { use, useState } from "react";
+import { redirect, useRouter, useSearchParams } from "next/navigation";
 import userWhite from "@/public/assets/user-white.svg";
 import arrowWhite from "@/public/assets/arrow-white.svg";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import SubmitButton from "@/components/submit-button";
 
 const cards = [
   {
@@ -38,10 +39,33 @@ const cards = [
   },
 ];
 
+const content = [
+  {
+    id: 1,
+    text: "Thanks so much! Now, I’m fully equipped and ready to help you turn your vision into reality. Let’s work together to achieve your goals, step by step, and create impactful, sustainable results.",
+    hasButton: true,
+  },
+  {
+    id: 2,
+    text: "So, let me see, you are mainly here because you'd like to:",
+    hasCards: true,
+  },
+  {
+    id: 3,
+    text: `Perfect! You've come to the right place. I have some great strategies and tips to help you boost your community engagement and  attract new members.
+    Shall we explore some effective methods to make your community irresistible to potential members?`,
+    hasCards: true,
+  },
+];
+
 export default function ConvinceToJoinPage() {
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const searchParams = useSearchParams();
+
+  const page = parseInt(searchParams.get("page") || "1", 10);
+
   return (
-    <div className="w-full h-full grid grid-rows-[1fr,auto] gap-8 font-inter">
+    <div className="w-full h-full grid grid-rows-[1fr,auto] gap-8 font-inter ">
       {/* Main Content */}
       <div className="w-full grid grid-areas-[stack] place-items-center">
         {/* Cloud Background */}
@@ -50,16 +74,16 @@ export default function ConvinceToJoinPage() {
             src={bigCloud}
             alt=""
             fill
-            className="object-contain object-top"
+            className="object-contain object-top w-full h-full"
             priority
           />
         </div>
 
         {/* Content Layer */}
-        <div className="[grid-area:stack] z-10 w-full max-w-screen-lg px-4 grid gap-20 place-items-center">
+        <div className="[grid-area:stack] z-10 w-full max-w-screen-lg px-4 grid gap-14 place-items-center">
           {/* Message Box */}
-          <div className="bg-white/40 backdrop-blur-lg shadow-lg rounded-sm p-6 lg:p-12 w-full gap-8">
-            <div className="flex gap-4  items-start">
+          <div className="bg-white/50 backdrop-blur-lg shadow-lg rounded-sm p-6 sm:p-16 w-full gap-8">
+            <div className="flex gap-4 items-start">
               <Image
                 alt=""
                 src={flowerIcon}
@@ -68,50 +92,61 @@ export default function ConvinceToJoinPage() {
                 height={32}
               />
               <div className="flex flex-col items-start space-y-2">
-                <div className="lg:text-lg text-sm text-gray-800 whitespace-normal">
+                {/* <div className="lg:text-lg text-sm text-gray-800 whitespace-normal">
                   Thanks! Now, I&apos;m all set to help you achieve your goals.
                 </div>
                 <div className="text-sm lg:text-lg text-gray-800 whitespace-normal">
                   So, let me see, you are mainly here because you&apos;d like
                   to:
+                </div> */}
+                <div className="sm:text-lg text-sm text-gray-900 whitespace-normal text-pretty">
+                  {content[page - 1].text}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Cards Section */}
-          <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 font-body justify-center  mx-auto">
-            {cards.map((card, index) => (
-              <Link
-                key={card.id}
-                href={card.href}
-                passHref
-                onClick={() => setSelectedIndex(index)}
-                className={cn(
-                  "bg-white/80 shadow-md rounded-sm p-8 lg:p-16 flex flex-col items-center cursor-pointer transition-colors duration-300",
-                  selectedIndex === index ? "bg-[#65D9BD] text-white" : ""
-                )}
-              >
-                <div className="flex flex-col shrink-0 items-center h-full">
-                  <Image
-                    src={
-                      selectedIndex === index ? card.selectedIcon : card.icon
-                    }
-                    alt=""
-                    className="object-contain object-center h-full w-20"
-                  />
-                  <h3
-                    className={cn(
-                      "mt-4 font-bold text-gray-700 text-lg text-center",
-                      selectedIndex === index ? "text-white" : ""
-                    )}
-                  >
-                    {card.title}
-                  </h3>
-                </div>
+          {content[page - 1].hasCards && (
+            <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 font-body justify-center  mx-auto">
+              {cards.map((card, index) => (
+                <Link
+                  key={card.id}
+                  href={card.href}
+                  passHref
+                  onClick={() => setSelectedIndex(index)}
+                  className={cn(
+                    "bg-white/80 shadow-md rounded-sm p-8 lg:p-16 flex flex-col items-center cursor-pointer transition-colors duration-300",
+                    selectedIndex === index ? "bg-[#65D9BD] text-white" : ""
+                  )}
+                >
+                  <div className="flex flex-col shrink-0 items-center h-full">
+                    <Image
+                      src={
+                        selectedIndex === index ? card.selectedIcon : card.icon
+                      }
+                      alt=""
+                      className="object-contain object-center h-full w-20"
+                    />
+                    <h3
+                      className={cn(
+                        "mt-4 font-bold text-gray-700 text-lg text-center",
+                        selectedIndex === index ? "text-white" : ""
+                      )}
+                    >
+                      {card.title}
+                    </h3>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+          {content[page - 1].hasButton && (
+            <div className="max-w-md px-4">
+              <Link href="/convince-to-join?page=2">
+                <SubmitButton className="w-full">Continue</SubmitButton>
               </Link>
-            ))}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

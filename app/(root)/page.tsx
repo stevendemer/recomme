@@ -38,7 +38,7 @@ export default async function Home() {
 
         {/* Message Box */}
         <div className="[grid-area:stack] w-full px-4">
-          <div className="bg-white/40 backdrop-blur-sm p-10 rounded-2xl w-full max-w-screen-sm">
+          <div className="bg-white/50 backdrop-blur-sm p-10 rounded-2xl w-full max-w-screen-sm">
             <div className="flex gap-x-4 items-start">
               <Image
                 src={flower}

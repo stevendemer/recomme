@@ -28,7 +28,7 @@ export default function ImageSelectionCard({
       <Card
         onClick={() => onSelect(value.text)}
         className={cn(
-          "flex flex-col justify-center duration-75 shadow w-full items-center sm:flex-[0_0_calc(30%-15px)] cursor-pointer transition-colors",
+          "flex flex-col justify-center duration-300  w-full items-center sm:flex-[0_0_calc(30%-15px)] cursor-pointer transition-all hover:shadow-lg rounded-3xl",
           isSelected ? "bg-[#65D9BD] text-white" : "bg-white text-black"
         )}
       >

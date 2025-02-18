@@ -8,6 +8,7 @@ import { Providers } from "@/components/providers";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import BackButton from "@/components/back-button";
+import ResponsiveContainer from "@/components/responsive-container";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -66,14 +67,8 @@ export default async function RootLayout({
         )}
       >
         <Providers>
-          <main className="gradient-bg backdrop-blur-lg  p-2 grid place-items-center h-full relative min-h-screen">
-            <div className="bg-white/30 backdrop-blur-lg rounded-sm p-4 lg:p-6 w-full max-w-screen-xl h-[80vh]">
-              <div className=" bg-white/70 w-full rounded-sm shadow-lg p-1 h-full grid place-items-center">
-                <div className="w-full h-full overflow-y-auto grid place-items-center">
-                  <div className="w-full font-body">{children}</div>
-                </div>
-              </div>
-            </div>
+          <main className="gradient-bg backdrop-blur-lg p-2 grid place-items-center h-full relative min-h-screen">
+            <ResponsiveContainer>{children}</ResponsiveContainer>
           </main>
           <Toaster />
         </Providers>
