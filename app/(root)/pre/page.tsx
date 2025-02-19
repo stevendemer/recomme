@@ -85,7 +85,7 @@ const PrePage = () => {
 
           {/* Tabs Section */}
           <div className="flex flex-col sm:flex-row justify-center items-center space-x-6 font-body m-2 min-w-max flex-wrap sm:flex-nowrap">
-            <div className=" text-black rounded-full gap-2 flex flex-col items-center p-2 shadow-sm">
+            <div className=" text-black rounded-full gap-2 flex flex-col items-center p-2 ">
               <div className="bg-amber-400 rounded-full flex items-center justify-center w-8 h-8">
                 <Image
                   width={20}

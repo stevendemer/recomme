@@ -65,88 +65,82 @@ export default function ConvinceToJoinPage() {
   const page = parseInt(searchParams.get("page") || "1", 10);
 
   return (
-    <div className="w-full h-full grid grid-rows-[1fr,auto] gap-8 font-inter ">
+    <div className="w-full h-full grid grid-rows-[1fr,auto] gap-4 font-inter">
       {/* Main Content */}
-      <div className="w-full grid grid-areas-[stack] place-items-center">
+      <div className="w-full grid place-items-start h-full">
         {/* Cloud Background */}
-        <div className="[grid-area:stack] w-full h-full">
-          <Image
-            src={bigCloud}
-            alt=""
-            fill
-            className="object-contain object-top w-full h-full"
-            priority
-          />
-        </div>
+        {/* <div className="grid-areas-[stack] w-full h-full place-items-center relative"> */}
 
-        {/* Content Layer */}
-        <div className="[grid-area:stack] z-10 w-full max-w-screen-lg px-4 grid gap-14 place-items-center">
-          {/* Message Box */}
-          <div className="bg-white/50 backdrop-blur-lg shadow-lg rounded-sm p-6 sm:p-16 w-full gap-8">
-            <div className="flex gap-4 items-start">
-              <Image
-                alt=""
-                src={flowerIcon}
-                className="object-contain object-top flex-shrink-0"
-                width={32}
-                height={32}
-              />
-              <div className="flex flex-col items-start space-y-2">
-                {/* <div className="lg:text-lg text-sm text-gray-800 whitespace-normal">
-                  Thanks! Now, I&apos;m all set to help you achieve your goals.
-                </div>
-                <div className="text-sm lg:text-lg text-gray-800 whitespace-normal">
-                  So, let me see, you are mainly here because you&apos;d like
-                  to:
-                </div> */}
-                <div className="sm:text-lg text-sm text-gray-900 whitespace-normal text-pretty">
-                  {content[page - 1].text}
+        <div className="w-full h-full grid grid-areas-[stack]">
+          <div className="[grid-area:stack]">
+            <Image src={bigCloud} alt="" fill priority />
+          </div>
+          {/* Content Layer */}
+          <div className="[grid-area:stack] z-10 w-full max-w-screen-lg px-4 grid gap-14 place-items-center">
+            {/* Message Box */}
+            <div className="bg-white/50 backdrop-blur-lg shadow-lg rounded-sm p-6 sm:p-16 w-full gap-8">
+              <div className="flex flex-col items-start justify-center w-full">
+                <div className="flex flex-row gap-4 items-start">
+                  <div className="relative aspect-video">
+                    <Image
+                      alt=""
+                      src={flowerIcon}
+                      className="object-contain object-top"
+                    />
+                  </div>
+                  <div className="flex flex-col items-start space-y-2">
+                    <div className="sm:text-lg text-sm text-black whitespace-normal text-pretty leading-tight font-body">
+                      {content[page - 1].text}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {content[page - 1].hasCards && (
-            <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 font-body justify-center  mx-auto">
-              {cards.map((card, index) => (
-                <Link
-                  key={card.id}
-                  href={card.href}
-                  passHref
-                  onClick={() => setSelectedIndex(index)}
-                  className={cn(
-                    "bg-white/80 shadow-md rounded-sm p-8 lg:p-16 flex flex-col items-center cursor-pointer transition-colors duration-300",
-                    selectedIndex === index ? "bg-[#65D9BD] text-white" : ""
-                  )}
-                >
-                  <div className="flex flex-col shrink-0 items-center h-full">
-                    <Image
-                      src={
-                        selectedIndex === index ? card.selectedIcon : card.icon
-                      }
-                      alt=""
-                      className="object-contain object-center h-full w-20"
-                    />
-                    <h3
-                      className={cn(
-                        "mt-4 font-bold text-gray-700 text-lg text-center",
-                        selectedIndex === index ? "text-white" : ""
-                      )}
-                    >
-                      {card.title}
-                    </h3>
-                  </div>
+            {content[page - 1].hasCards && (
+              <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 font-body justify-center  mx-auto">
+                {cards.map((card, index) => (
+                  <Link
+                    key={card.id}
+                    href={card.href}
+                    passHref
+                    onClick={() => setSelectedIndex(index)}
+                    className={cn(
+                      "bg-white/80 shadow-md rounded-sm p-8 lg:p-16 flex flex-col items-center cursor-pointer transition-colors duration-300",
+                      selectedIndex === index ? "bg-[#65D9BD] text-white" : ""
+                    )}
+                  >
+                    <div className="flex flex-col shrink-0 items-center h-full">
+                      <Image
+                        src={
+                          selectedIndex === index
+                            ? card.selectedIcon
+                            : card.icon
+                        }
+                        alt=""
+                        className="object-contain object-center h-full w-20"
+                      />
+                      <h3
+                        className={cn(
+                          "mt-4 font-bold text-gray-700 text-lg text-center",
+                          selectedIndex === index ? "text-white" : ""
+                        )}
+                      >
+                        {card.title}
+                      </h3>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+            {content[page - 1].hasButton && (
+              <div className="max-w-md px-4">
+                <Link href="/convince-to-join?page=2">
+                  <SubmitButton className="w-full">Continue</SubmitButton>
                 </Link>
-              ))}
-            </div>
-          )}
-          {content[page - 1].hasButton && (
-            <div className="max-w-md px-4">
-              <Link href="/convince-to-join?page=2">
-                <SubmitButton className="w-full">Continue</SubmitButton>
-              </Link>
-            </div>
-          )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

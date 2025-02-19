@@ -26,10 +26,10 @@ export function LogoButton() {
           <DropdownMenuTrigger asChild>
             <Button
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-              variant="ghost"
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground "
+              variant="link"
             >
-              <Image alt="" src={alec} fill />
+              <Image className="object-scale-down" alt="" src={alec} fill />
             </Button>
           </DropdownMenuTrigger>
         </DropdownMenu>
