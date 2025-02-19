@@ -20,6 +20,8 @@ import userQuestionToggle from "@/public/assets/user-question-toggle.svg";
 import userTogglex from "@/public/assets/user-toggle-x.svg";
 import BackButton from "@/components/back-button";
 
+import userHomeX from "@/public/assets/user-home-x.svg";
+
 const cards = [
   {
     id: 1,
@@ -48,7 +50,6 @@ const cards = [
 ];
 
 const PrePage = () => {
-  const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   return (
@@ -63,7 +64,7 @@ const PrePage = () => {
         {/* Content Layer */}
         <div className="[grid-area:stack] z-10 w-full max-w-screen-lg xl:p-6 grid xl:gap-3">
           {/* Header Section */}
-          <div className="flex items-center flex-col justify-center font-body">
+          <div className="flex items-center flex-col justify-center font-body gap-2 p-4">
             <Image
               src={userArrow}
               alt="User Icon"
@@ -71,7 +72,7 @@ const PrePage = () => {
               height={60}
               className="mx-auto mb-4"
             />
-            <h1 className="lg:text-xl text-lg font-bold text-gray-800">
+            <h1 className="lg:text-2xl text-lg font-bold text-gray-800">
               Convince someone to join
             </h1>
             <p className="text-gray-600 mt-2 text-ellipsis mx-auto text-pretty">
@@ -83,9 +84,9 @@ const PrePage = () => {
           </div>
 
           {/* Tabs Section */}
-          <div className="grid grid-cols-2 gap-5 font-body m-2">
-            <div className="bg-white text-black rounded-full shadow-md gap-x-2 flex items-center justify-center p-2 border-border border">
-              <div className="bg-amber-200 rounded-full flex items-center justify-center w-8 h-8">
+          <div className="flex flex-col sm:flex-row justify-center items-center space-x-6 font-body m-2 min-w-max flex-wrap sm:flex-nowrap">
+            <div className=" text-black rounded-full gap-2 flex flex-col items-center p-2 shadow-sm">
+              <div className="bg-amber-400 rounded-full flex items-center justify-center w-8 h-8">
                 <Image
                   width={20}
                   height={20}
@@ -96,9 +97,45 @@ const PrePage = () => {
               </div>
               <p className="font-bold">Enrolment</p>
             </div>
+            <div className=" text-black rounded-full gap-2 flex flex-col items-center p-2">
+              <div className="bg-amber-400 rounded-full flex items-center justify-center w-8 h-8">
+                <Image
+                  width={20}
+                  height={20}
+                  className="object-cover object-center"
+                  alt=""
+                  src={userCircle}
+                />
+              </div>
+              <p className="font-bold">Onboarding</p>
+            </div>
+            <div className=" text-black rounded-full gap-2 flex flex-col items-center p-2 ">
+              <div className="bg-gray-400 rounded-full flex items-center justify-center w-8 h-8">
+                <Image
+                  width={20}
+                  height={20}
+                  className="object-cover object-center"
+                  alt=""
+                  src={userCircle}
+                />
+              </div>
+              <p className="font-bold">Engagement</p>
+            </div>
+            <div className=" text-black rounded-full gap-2 flex flex-col items-center p-2 ">
+              <div className="bg-gray-400 rounded-full flex items-center justify-center w-8 h-8">
+                <Image
+                  width={20}
+                  height={20}
+                  className="object-cover object-center"
+                  alt=""
+                  src={userCircle}
+                />
+              </div>
+              <p className="font-bold">Consolidation</p>
+            </div>
 
-            <div className="bg-white flex items-center justify-center text-black rounded-full shadow-md gap-x-2 p-2 border-border border">
-              <div className="bg-amber-200 rounded-full flex items-center justify-center w-8 h-8">
+            <div className=" flex flex-col items-center text-black rounded-full gap-2 p-2 ">
+              <div className="bg-gray-400 rounded-full flex items-center justify-center w-8 h-8">
                 <Image
                   width={20}
                   height={20}
@@ -107,7 +144,19 @@ const PrePage = () => {
                   src={userCircle}
                 />
               </div>
-              <p className="font-bold">Onboarding</p>
+              <p className="font-bold">Proactivity</p>
+            </div>
+            <div className=" flex flex-col items-center text-black rounded-full gap-2 p-2 ">
+              <div className="bg-gray-400 rounded-full flex items-center justify-center w-8 h-8">
+                <Image
+                  width={20}
+                  height={20}
+                  className="object-contain object-center"
+                  alt=""
+                  src={userCircle}
+                />
+              </div>
+              <p className="font-bold">Mentoring</p>
             </div>
           </div>
 
@@ -120,46 +169,57 @@ const PrePage = () => {
                 key={card.id}
                 passHref
                 className={cn(
-                  "bg-white shadow-lg rounded-lg p-2 lg:p-6 flex flex-col text-center transition-colors duration-200 font-body sm:max-w-md w-full h-full",
-                  selectedIndex === index && "bg-[#65D9BD] text-white"
+                  "bg-white shadow-lg rounded-md p-2 lg:p-4 flex flex-col text-center transition-colors duration-200 font-body sm:max-w-md w-full h-full relative",
+                  selectedIndex === index
+                    ? "bg-[#65D9BD] text-white"
+                    : "bg-white text-gray-700"
                 )}
               >
                 {/* image container */}
-                <div className="flex items-center justify-center h-40 relative">
-                  <Image
-                    alt=""
-                    src={card.selectedIcon}
-                    className={cn(
-                      "object-contain object-center",
-                      selectedIndex !== index && "hidden"
-                    )}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    priority
-                  />
-                  <Image
-                    alt=""
-                    src={card.selectedIcon}
-                    className={cn(
-                      "object-contain object-center",
-                      selectedIndex === index && "hidden"
-                    )}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    priority
-                  />
+                <div className="flex items-center justify-between space-x-4 h-40 w-full relative">
+                  <div className="relative w-full h-full">
+                    <Image
+                      alt=""
+                      src={card.selectedIcon}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority
+                      className={cn(
+                        "object-scale-down",
+                        selectedIndex !== index && "hidden"
+                      )}
+                      width={300}
+                      height={300}
+                    />
+                    <Image
+                      alt=""
+                      src={card.icon}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority
+                      className={cn(
+                        "object-scale-down",
+                        selectedIndex === index && "hidden"
+                      )}
+                      width={300}
+                      height={300}
+                    />
+                  </div>
                 </div>
                 <div className="gap-2 flex flex-col justify-center h-auto">
                   <h2
                     className={cn(
-                      "mt-4 text-sm lg:text-lg font-bold text-gray-700",
-                      selectedIndex === index && "text-white"
+                      "text-sm lg:text-lg font-bold",
+                      selectedIndex === index ? "text-white" : "text-gray-700"
                     )}
                   >
                     {card.title}
                   </h2>
                   <p
                     className={cn(
-                      "mt-2 text-gray-500 text-sm tracking-wide",
-                      selectedIndex === index && "text-white"
+                      "mt-2 text-sm tracking-wide",
+                      selectedIndex === index
+                        ? "text-white"
+                        : "text-gray-600/70"
+                      // selectedIndex === index && "text-white"
                     )}
                   >
                     {card.p}

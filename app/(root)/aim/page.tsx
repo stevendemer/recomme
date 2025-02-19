@@ -1,20 +1,14 @@
 "use client";
 import Image from "next/image";
 import user from "@/public/assets/user-arrow.png";
-import { Button } from "@/components/ui/button";
-import { IconArrowLeft } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import SubmitButton from "@/components/submit-button";
 import { useState } from "react";
 import Link from "next/link";
-import house from "@/public/assets/house.svg";
 import userHome from "@/public/assets/user-home.svg";
 import userHomeQuestion from "@/public/assets/user-home-question.svg";
 import userHomeX from "@/public/assets/user-home-x.svg";
-import userWhite from "@/public/assets/user-white.svg";
-import arrowWhite from "@/public/assets/arrow-white.svg";
 import { cn } from "@/lib/utils";
-import userHomex from "@/public/assets/user-home-x.svg";
 
 import userHouseToggle from "@/public/assets/user-house-toggle.svg";
 import userQuestionToggle from "@/public/assets/user-question-toggle.svg";
@@ -53,7 +47,7 @@ export default function AimPage() {
   ];
 
   return (
-    <div className="w-full h-full grid grid-rows-[1fr,auto] gap-4 place-content-center">
+    <div className="w-full h-full grid grid-rows-[1fr,auto] gap-6 place-content-center">
       {/* Main Content */}
       <div className="w-full grid grid-areas-[stack] place-items-center">
         {/* Content Layer */}
@@ -118,7 +112,9 @@ export default function AimPage() {
                   <p
                     className={cn(
                       "text-md tracking-wide",
-                      selectedIndex === index ? "text-white" : "text-gray-700"
+                      selectedIndex === index
+                        ? "text-white"
+                        : "text-gray-600/70"
                     )}
                   >
                     {card.body}

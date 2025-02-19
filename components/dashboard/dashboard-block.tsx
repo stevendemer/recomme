@@ -134,14 +134,14 @@ export function DashboardPage() {
                 <h2 className="text-sm text-gray-600 font-bold">
                   {card.title}
                 </h2>
-                <button
+                <div
                   className={cn(
                     "rounded-lg px-9 py-1 text-white text-sm font-bold",
                     card.color
                   )}
                 >
                   10
-                </button>
+                </div>
               </div>
             ))}
           </div>
