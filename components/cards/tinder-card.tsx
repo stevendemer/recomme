@@ -5,7 +5,7 @@ import {
   useAnimation,
   useMotionValue,
   useTransform,
-} from "framer-motion";
+} from "motion/react";
 // import { FaHeart, FaTimes } from "react-icons/fa";
 import { Button } from "../ui/button";
 import Image from "next/image";

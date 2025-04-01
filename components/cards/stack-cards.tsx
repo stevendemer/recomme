@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { AnimatePresence, useAnimation } from "framer-motion";
+import { motion } from "motion/react";
+import { AnimatePresence, useAnimation } from "motion/react";
 import { useState } from "react";
 import SwipingCard from "./swiping-card";
 

@@ -6,7 +6,7 @@ import axios, {
 } from "axios";
 
 /**
- * API logic for token management
+ * HTTP logic for token management
  */
 
 export const api = axios.create({
