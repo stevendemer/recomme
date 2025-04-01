@@ -75,6 +75,25 @@ const config = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        darkgray: "#ababab",
+        white: "#fff",
+        black: "#000",
+        darkcyan: "#2a898f",
+        // gray: "#181818",
+        mediumorchid: "#9e47b7",
+        mediumpurple: "#b786f6",
+        salmon: "#e37f6b",
+        sandybrown: "#f3ae4f",
+        goldenrod: "#f2c947",
+        khaki: "#f7de80",
+        aquamarine: "#49dfad",
+        darkslategray: {
+          "100": "#4b4b4b",
+          "200": "#2d2d2d",
+        },
+        slategray: "#6c7894",
+        dimgray: "#555",
+        limegreen: "#65D9BD",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -99,6 +118,7 @@ const config = {
           },
         },
       },
+
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",

@@ -56,8 +56,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token;
     },
     async session({ session, token }) {
-      // send properties to the client
-
       if (token) {
         session.access_token = token.accessToken as string | undefined;
         session.refresh_token = token.refreshToken as string | undefined;
@@ -70,7 +68,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         };
       }
 
-      // console.log("session is ", session);
+      console.log("session is ", session);
 
       return session;
     },

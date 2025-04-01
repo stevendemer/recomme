@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";
+import { motion } from "motion/react";
 
 interface StepsProps {
   steps: { category: string; count: number }[];
@@ -40,42 +41,49 @@ export default function Steps({
   const stepsCount = getStepsToShow();
 
   return (
-    <div className="flex shrink max-w-full flex-col gap-4 justify-center p-4 mb-3 absolute -top-2 left-0 right-0">
-      <div className="flex justify-center">
-        <div className="flex items-center mt-2">
-          {Array.from({ length: stepsCount }).map((_, index) => {
-            const isActive = index === currentStep;
-            const isNext = index === currentStep;
-            const isCompleted = index < currentStep;
-            const isLast = index === stepsCount - 1;
+    <nav className="w-full flex shrink-0 flex-col justify-center items-center p-4 mb-3 absolute -top-2 left-0 right-0">
+      <ol className="flex flex-row mt-2 flex-nowrap sm:gap-0 sm:gap-x-3 justify-center w-full overflow-x-auto ">
+        {Array.from({ length: stepsCount }).map((_, index) => {
+          const isActive = index === currentStep;
+          const isNext = index === currentStep;
+          const isCompleted = index < currentStep;
+          const isLast = index === stepsCount - 1;
 
-            return (
-              <div
-                className="flex items-center justify-center font-mulish"
-                key={index}
+          return (
+            <div
+              className="flex items-center justify-center font-mulish"
+              key={index}
+            >
+              <motion.div
+                initial={{
+                  backgroundColor: "#D1D5DB",
+                }}
+                animate={{
+                  backgroundColor:
+                    isActive || isNext
+                      ? "#65D9BD"
+                      : isCompleted
+                      ? "#2A898F"
+                      : "#D1D5DB",
+                }}
+                className={cn(
+                  "flex items-center justify-center sm:w-8 sm:h-8 w-6 h-6 rounded-xl font-bold text-gray-400",
+                  isActive || isNext || isCompleted ? "text-slate-100" : ""
+                )}
               >
+                {index + 1}
+              </motion.div>
+              {!isLast && (
                 <div
                   className={cn(
-                    "flex items-center justify-center sm:w-8 sm:h-8 w-6 h-6 rounded-xl bg-gray-300 text-gray-400/80 font-bold",
-                    isActive && "bg-[#65D9BD] text-slate-100",
-                    isNext && "bg-[#65D9BD] text-slate-100",
-                    isCompleted && "bg-[#2A898F] text-slate-100"
+                    "sm:w-8 w-2 border-t-2 border-teal-400 mx-2 rounded-full"
                   )}
-                >
-                  {index + 1}
-                </div>
-                {!isLast && (
-                  <div
-                    className={cn(
-                      "w-8 border-t-2 border-teal-400 mx-2 rounded-full"
-                    )}
-                  />
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
+                />
+              )}
+            </div>
+          );
+        })}
+      </ol>
+    </nav>
   );
 }

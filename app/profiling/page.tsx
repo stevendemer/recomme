@@ -4,17 +4,24 @@ import Steps from "@/components/steps";
 import { useGetElements } from "@/hooks/use-get-elemenets";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MoveLeftIcon } from "lucide-react";
 
 const ProfilingCard = dynamic(
-  () => import("@/components/cards/profiling-card")
+  () => import("@/components/cards/profiling-card"),
+  {
+    ssr: false,
+  }
 );
-const RadioSelect = dynamic(() => import("@/components/forms/radio-select"));
-const ImageSlider = dynamic(() => import("@/components/image-slider"));
+const RadioSelect = dynamic(() => import("@/components/forms/radio-select"), {
+  ssr: false,
+});
+const ImageSlider = dynamic(() => import("@/components/image-slider"), {
+  ssr: false,
+});
 
 interface GroupProgress {
   groupIndex: number;
@@ -196,7 +203,7 @@ export default function Profiling() {
         >
           {components[currentType as keyof typeof components] || (
             <div className={"text-xl text-center w-full"}>
-              Component type not found !
+              Invalid profiling type entered
             </div>
           )}
         </motion.div>
@@ -205,7 +212,7 @@ export default function Profiling() {
   };
 
   return (
-    <div className="w-full flex flex-col justify-between items-center h-full overflow-y-auto scrollbar-hide">
+    <div className="w-full flex flex-col justify-between items-center h-full flex-nowrap">
       <Steps
         totalGroups={currentType === "range" ? data.ranges.length : undefined}
         currentGroup={data?.ranges[Number(searchParams.get("page"))]}

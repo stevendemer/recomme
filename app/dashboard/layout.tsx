@@ -5,8 +5,6 @@ import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 
 import { Inter, Ramaraja, Mulish, Rubik } from "next/font/google";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/dashboard/app-sidebar";
 
 const Tour = dynamic(() => import("../../components/tour"), { ssr: false });
 
@@ -42,19 +40,17 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "antialiased bg-gray-200 min-h-screen",
+          "antialiased bg-gray-200 min-h-screen overflow-auto scrollbar-hide w-full",
           rubik.variable,
           ram.variable,
           inter.variable,
           mulish.variable
         )}
       >
-        <div className="flex h-screen overflow-y-auto gradient-bg font-body justify-center">
-          <main className="flex-1 p-4">
-            <Tour />
-            {children}
-          </main>
-        </div>
+        <main className="flex gradient-bg font-inter sm:flex-col flex-row flex-wrap">
+          <Tour />
+          {children}
+        </main>
       </body>
     </html>
   );

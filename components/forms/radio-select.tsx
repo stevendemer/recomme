@@ -12,6 +12,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import house from "@/public/assets/house.svg";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import ImageSelectionCard from "../cards/image-selection-card";
+import RadioCard from "./radio-card";
 
 interface IProp {
   step: {
@@ -100,7 +101,7 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
 
   return (
     <Form {...form}>
-      <div className="h-full flex flex-col items-center justify-between gap-4">
+      <div className="h-full flex flex-col items-center justify-between gap-4 relative">
         <h2 className="text-lg lg:text-4xl text-center text-black font-sans">
           {data?.title}
         </h2>
@@ -176,7 +177,6 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                           onSelect={(text) =>
                             handleSelection(text, field.onChange)
                           }
-                          baseUrl={process.env.NEXT_PUBLIC_API_URL!}
                         />
                       );
                     })
@@ -184,13 +184,11 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                       <div
                         key={index}
                         className={cn(
-                          "p-2 rounded-3xl border hover:shadow-lg flex w-full h-full flex-col items-center justify-center  duration-300 text-black transition-all",
+                          "p-2 rounded-[30px] border hover:shadow-lg flex w-full h-[120px] sm:h-[200px] flex-col items-center justify-center  duration-300 text-black transition-all",
                           field.value === value
-                            ? "bg-[#65D9BD] text-white"
+                            ? "bg-limegreen text-white"
                             : "bg-white text-black"
                         )}
-                        // onClick={() => handleSelection(value, field.onChange)}
-                        // onClick={() => field.onChange(value)} // click updates the radio button
                       >
                         <Label
                           className="flex flex-col items-center justify-center w-full cursor-pointer"
@@ -204,7 +202,7 @@ export default function RadioSelect({ data, onVote, ...props }: any) {
                             className={cn(
                               "focus-visible:ring-offset-2 focus-visible:outline-none focus-visible:ring-2",
                               field.value === value
-                                ? "border-[#65D9BD] data-[state=checked]:border-white data-[state=checked]:bg-[#65D9BD]"
+                                ? "border-limegreen data-[state=checked]:border-white data-[state=checked]:bg-limegreen"
                                 : "border-black data-[state=checked]:bg-black"
                             )}
                           />

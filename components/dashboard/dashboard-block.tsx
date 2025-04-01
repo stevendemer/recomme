@@ -27,53 +27,45 @@ import group from "@/public/assets/group.svg";
 import user from "@/public/assets/user.svg";
 import userCircle from "@/public/assets/user-circle.svg";
 import { cn } from "@/lib/utils";
+import SubmitButton from "../submit-button";
 
 const cards = [
   {
-    id: 1,
     title: "Enrolment",
-    color: "bg-amber-300",
+    color: "bg-khaki",
   },
   {
-    id: 2,
     title: "Onboarding",
-    color: "bg-amber-400",
+    color: "bg-goldenrod",
   },
   {
-    id: 3,
     title: "Engagement",
-    color: "bg-orange-400",
+    color: "bg-sandybrown",
   },
   {
-    id: 4,
     title: "Consolidation",
-    color: "bg-red-500",
+    color: "bg-salmon",
   },
   {
-    id: 5,
     title: "Proactivity",
-    color: "bg-purple-400",
+    color: "bg-mediumpurple",
   },
   {
-    id: 6,
     title: "Mentoring",
-    color: "bg-purple-700",
+    color: "bg-mediumorchid",
   },
 ];
 
 const banners = [
   {
-    id: 1,
     title: "Convince someone to join",
     image: userArrow,
   },
   {
-    id: 2,
     title: "Improve participation",
     image: group,
   },
   {
-    id: 3,
     title: "Organise a meeting",
     image: third,
   },
@@ -84,18 +76,22 @@ export function DashboardPage() {
     <SidebarProvider
       style={
         {
-          "--sidebar-width": "20rem",
+          "--sidebar-width": "18rem",
+          "--sidebar-width-mobile": "12rem",
+          "--sidebar-height": "63rem",
         } as React.CSSProperties
       }
     >
-      <AppSidebar />
-      <SidebarInset>
-        <section className="flex w-full max-w-full grow flex-col gap-8 p-4 rounded-sm min-h-screen items-stretch">
-          <div className="grid gap-4 md:grid-cols-3 p-6 auto-rows-min shrink-0 bg-white/30 rounded-sm font-inter actions">
-            {banners.map((banner) => (
+      <section className="flex justify-start items-start w-full gap-4 h-full">
+        <AppSidebar />
+        <div className="flex w-full max-w-full grow flex-col gap-6 rounded-sm font-inter p-4">
+          <div className="grid gap-4 md:grid-cols-3 auto-rows-min shrink-0 bg-white/30 rounded-[50px] font-inter actions p-6">
+            {banners.map((banner, index) => (
               <div
-                key={banner.id}
-                className="flex justify-center items-center space-x-4 p-8 rounded-sm shrink bg-white/80"
+                key={index}
+                className={cn(
+                  "flex justify-center items-center space-x-4 p-8 rounded-[30px] shrink bg-white/80"
+                )}
               >
                 <Image
                   className="object-scale-down"
@@ -109,17 +105,17 @@ export function DashboardPage() {
             ))}
           </div>
 
-          <div className="grid max-w-full w-full gap-4 sm:grid-cols-2 grid-cols-1 md:grid-cols-6 items-center justify-center shrink-0 members bg-white/30 p-6 rounded-md">
-            {cards.map((card) => (
+          <div className="max-w-full w-full gap-2 flex flex-col sm:flex-row items-stretch justify-between members bg-white/30 p-6 rounded-[50px] flex-shrink-0 auto-rows-min">
+            {cards.map((card, index) => (
               <div
                 className={cn(
-                  "flex flex-col justify-center items-center rounded-lg relative bg-white/80 aspect-square w-full p-2 sm:h-36"
+                  "flex flex-col justify-center items-center rounded-[30px] relative bg-white/80 sm:h-[160px] sm:w-[175px] w-[175px] h-[175px] gap-2 p-2"
                 )}
-                key={card.id}
+                key={index}
               >
                 <div
                   className={cn(
-                    "rounded-sm flex justify-center items-center p-2",
+                    `rounded-sm flex justify-center items-center p-2`,
                     card.color
                   )}
                 >
@@ -136,7 +132,7 @@ export function DashboardPage() {
                 </h2>
                 <div
                   className={cn(
-                    "rounded-lg px-9 py-1 text-white text-sm font-bold",
+                    `rounded-lg px-8 py-1 text-white text-sm font-bold mix-blend-normal`,
                     card.color
                   )}
                 >
@@ -145,48 +141,48 @@ export function DashboardPage() {
               </div>
             ))}
           </div>
-          <div className="grid md:grid-cols-3 auto-rows-min gap-4 backdrop-blur-lg rounded-md">
-            <div className="bg-white/30 p-8 flex grow justify-center relative items-center rounded-sm flex-col graph col-span-full md:col-span-2">
+          <div className="grid md:grid-cols-3 auto-rows-min  gap-4 backdrop-blur-lg rounded-md">
+            <div className="bg-white/30 p-8 flex grow justify-center relative items-center rounded-[50px] flex-col graph col-span-full md:col-span-2">
               <Graph />
             </div>
-            <div className="bg-white/30 backdrop-blur-lg flex justify-center items-baseline relative rounded-md sm:shrink-0 p-8">
-              <div className="flex flex-col items-baseline gap-3 p-3 font-body recom h-full w-full bg-white/80 rounded-md space-y-4">
-                <h2 className="text-2xl text-gray-700 p-6 font-bold">
-                  Recommendation
-                </h2>
-                <div className="flex flex-col sm:flex-row items-baseline bg-white p-10 rounded-sm w-full sm:max-w-2xl shadow-md">
-                  {" "}
-                  <div className="flex flex-col gap-6">
-                    <h2 className="font-bold text-pretty whitespace-normal">
-                      Acknowledge his expertise
-                    </h2>
-                    <div className="text-sm font-inter whitespace-normal text-pretty overflow-hidden max-w-xs font-normal">
-                      Compliment his knowledge and ask for his opinion on green
-                      tech
+            <div className="bg-white/30 backdrop-blur-lg flex justify-center items-baseline relative rounded-[50px] sm:shrink-0 p-8">
+              <div className="font-body recom bg-white/80 rounded-[30px] space-y-4 relative w-full h-full">
+                <div className="flex flex-col items-start gap-4 p-3 w-full h-full mx-auto">
+                  <h2 className="lg:text-2xl text-xl text-gray-700 pt-6 pb-6 sm:pl-12 font-bold">
+                    Recommendation
+                  </h2>
+                  <div className="flex flex-col sm:flex-row items-center mx-auto bg-white p-8 rounded-[30px] w-full sm:max-w-2xl sm:w-fit sm:h-48 shadow-lg relative">
+                    {" "}
+                    <div className="flex flex-col gap-6">
+                      <h2 className="font-bold text-pretty whitespace-normal text-md">
+                        Acknowledge his expertise
+                      </h2>
+                      <div className="text-sm font-inter whitespace-normal text-pretty overflow-hidden max-w-xs font-medium">
+                        Compliment his knowledge and ask for his opinion on
+                        green tech
+                      </div>
                     </div>
+                    <SubmitButton>Acknowledge</SubmitButton>
                   </div>
-                  <button className="py-4 px-6 font-medium transform group rounded-full bg-black text-white font-inter text-sm">
-                    Acknowledge
-                  </button>
-                </div>
 
-                <div className="flex items-baseline bg-white p-10 rounded-sm w-full sm:max-w-2xl shadow-md">
-                  <div className="flex flex-col gap-6">
-                    <h2 className="font-bold">Appreciate contributions</h2>
-                    <div className="text-sm font-inter whitespace-normal text-pretty overflow-hidden max-w-xs font-normal">
-                      Offer opportunities for him to share insights or get
-                      involved in eco-projects
+                  <div className="flex flex-col sm:flex-row items-center mx-auto bg-white p-8 rounded-[30px] w-full sm:max-w-2xl sm:w-fit sm:h-48 shadow-lg">
+                    <div className="flex flex-col gap-6">
+                      <h2 className="font-bold text-md">
+                        Appreciate contributions
+                      </h2>
+                      <div className="text-sm whitespace-normal text-pretty overflow-hidden max-w-xs font-medium">
+                        Offer opportunities for him to share insights or get
+                        involved in eco-projects
+                      </div>
                     </div>
+                    <SubmitButton>Appreciate</SubmitButton>
                   </div>
-                  <button className="px-6 py-4 font-medium transform group rounded-full bg-black text-white font-inter text-sm">
-                    Appreciate
-                  </button>
                 </div>
               </div>
             </div>
           </div>
-        </section>
-      </SidebarInset>
+        </div>
+      </section>
     </SidebarProvider>
   );
 }

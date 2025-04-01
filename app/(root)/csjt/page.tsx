@@ -80,10 +80,10 @@ export default function ConvinceJoinPage() {
         </div>
       </div>
       <div className="flex items-center w-full p-4 max-w-screen-md">
-        <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 w-full h-full shrink-0 auto-rows-fr place-items-center">
+        <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 w-full h-full shrink-0">
           {cards.map((card) => (
             <Link
-              className="shadow-sm rounded-lg border-border border p-4 flex flex-col text-center font-body h-full w-full cursor-default max-w-lg bg-white"
+              className="shadow-sm rounded-2xl border-border border p-4 flex flex-col text-center font-body h-full w-full cursor-default max-w-lg bg-white"
               key={card.id}
               href={card.href}
             >
@@ -91,7 +91,7 @@ export default function ConvinceJoinPage() {
                 <Image
                   src={card.icon}
                   alt=""
-                  className="object-contain"
+                  className="object-contain "
                   priority
                   fill
                 />

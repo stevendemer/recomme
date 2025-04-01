@@ -10,7 +10,8 @@ import blue from "@/public/assets/blue-globe.png";
 import lime from "@/public/assets/lime-globe.png";
 import cyan from "@/public/assets/cyan-globe.png";
 import orange from "@/public/assets/orange-globe.png";
-import { cn, paginate } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { motion } from "motion/react";
 
 type Inputs = {
   value: number[];
@@ -93,7 +94,9 @@ export default function ImageSlider({
     if (!selectedImage) {
       return (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-2xl">
-          <span className="text-lg font-bold text-gray-500">No image</span>
+          <span className="text-lg font-bold text-gray-500">
+            No icon found !
+          </span>
         </div>
       );
     }
@@ -114,12 +117,12 @@ export default function ImageSlider({
   if (!currentGroup) return null;
 
   return (
-    <div className="flex justify-center items-center w-full h-full max-w-5xl">
+    <div className="flex justify-center items-center w-full h-full max-w-5xl font-sans">
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="grid place-items-center w-full h-full gap-y-2"
       >
-        <h1 className="text-xl font-bold text-center text-[#2A898F] font-ram">
+        <h1 className="text-4xl font-bold text-center text-darkcyan font-sans">
           {currentGroup.title}
         </h1>
 
@@ -130,19 +133,28 @@ export default function ImageSlider({
                 {getImage()}
               </div>
               <div className="w-full md:w-1/2 text-foreground space-y-4">
-                <p className="sm:text-xl text-md font-light font-mulish line-clamp-3 text-ellipsis overflow-hidden">
+                <p className="sm:text-3xl text-md font-light font-mulish line-clamp-3 text-ellipsis overflow-hidden">
                   {currentGroup.items[currentQuestionIndex]?.title}
                 </p>
               </div>
             </div>
-            <div className="w-full bg-white rounded-[32rem] p-4 sm:p-8 mx-auto max-w-4xl">
+            <div className="w-full bg-white rounded-[51px] p-4 sm:p-8 mx-auto max-w-4xl box-border border-darkgray border-solid ">
               <Controller
                 name={"value"}
                 control={form.control}
                 rules={{ required: true }}
                 render={({ field }) => {
                   return (
-                    <>
+                    <motion.div
+                      layout
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
+                    >
                       <Slider
                         id="relatability-slider"
                         min={currentGroup.items[currentQuestionIndex]?.min || 0}
@@ -158,11 +170,11 @@ export default function ImageSlider({
                           "w-full transition-colors duration-200 rounded-xl bg-[#D4D9DF]"
                         )}
                       />
-                    </>
+                    </motion.div>
                   );
                 }}
               />
-              <div className="flex justify-between text-sm  sm:text-lg text-muted-foreground p-2 font-rubik">
+              <div className="flex justify-between text-sm  sm:text-lg text-darkslategray-200 p-2 font-body">
                 <span>Very Unlikely</span>
                 <span>Very Likely</span>
               </div>

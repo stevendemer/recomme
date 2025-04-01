@@ -1,5 +1,5 @@
 "use client";
-import { AnimatePresence, motion, cubicBezier } from "framer-motion";
+import { AnimatePresence, motion, cubicBezier } from "motion/react";
 import { usePathname } from "next/navigation";
 import { PropsWithChildren } from "react";
 

@@ -69,10 +69,6 @@ export default function AimPage() {
           <h2 className="font-sans whitespace-break-spaces text-black text-xl lg:text-3xl text-center">
             What He&apos;s really aiming for:
           </h2>
-
-          {/* Cards Grid */}
-          {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 auto-rows-fr"> */}
-
           <div className="w-full h-full grid grid-cols-1 lg:grid-cols-3 gap-6 font-body place-items-center auto-rows-fr">
             {cards.map((card, index) => (
               <Link
@@ -80,7 +76,7 @@ export default function AimPage() {
                 className={cn(
                   "shadow-lg rounded-lg p-4 flex flex-col  cursor-pointer text-center font-body transition-colors duration-200 h-full w-full",
                   selectedIndex === index
-                    ? "bg-[#65D9BD] text-white"
+                    ? "bg-limegreen text-white"
                     : "bg-white text-gray-700"
                 )}
                 key={card.id}

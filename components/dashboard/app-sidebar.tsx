@@ -69,14 +69,14 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar
-      className="sidebar p-6 bg-white/30 rounded-sm h-auto"
+      className="sidebar p-4 bg-white/20 rounded-[30px] max-w-full h-full sm:h-[99vh] lg:block"
       variant="floating"
       {...props}
     >
       <SidebarHeader>
         <LogoButton />
       </SidebarHeader>
-      <SidebarContent className="font-mulish text-gray-600 p-2 rounded-sm">
+      <SidebarContent className="font-mulish text-gray-600 p-2 rounded-sm ">
         {/* We create a SidebarGroup for each parent. */}
         {data.navMain.map((item) => (
           <SidebarGroup key={item.title}>

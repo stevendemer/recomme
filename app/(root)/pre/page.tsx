@@ -49,11 +49,44 @@ const cards = [
   },
 ];
 
+const tabs = [
+  {
+    icon: userCircle,
+    color: "amber-400",
+    text: "Enrolment",
+  },
+  {
+    icon: userCircle,
+    color: "amber-400",
+    text: "Onboarding",
+  },
+  {
+    icon: userCircle,
+    color: "gray-400",
+    text: "Engagement",
+  },
+  {
+    icon: userCircle,
+    color: "gray-400",
+    text: "Consolidation",
+  },
+  {
+    icon: userCircle,
+    color: "gray-400",
+    text: "Proactivity",
+  },
+  {
+    icon: userCircle,
+    color: "gray-400",
+    text: "Mentoring",
+  },
+];
+
 const PrePage = () => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   return (
-    <div className="w-full h-full grid grid-rows-[auto,1fr,auto] gap-4">
+    <div className="w-full h-full grid grid-rows-[auto_1fr_auto] gap-4">
       {/* Main Content */}
       <div className="w-full grid grid-areas-[stack] place-items-center">
         {/* Back Button - Always on top */}
@@ -62,9 +95,9 @@ const PrePage = () => {
         </div>
 
         {/* Content Layer */}
-        <div className="[grid-area:stack] z-10 w-full max-w-screen-lg xl:p-6 grid xl:gap-3">
+        <div className="[grid-area:stack] z-10 w-full max-w-screen-lg sm:p-3 grid">
           {/* Header Section */}
-          <div className="flex items-center flex-col justify-center font-body gap-2 p-4">
+          <div className="flex items-center flex-col justify-center font-body gap-2 sm:p-0 p-4">
             <Image
               src={userArrow}
               alt="User Icon"
@@ -84,84 +117,33 @@ const PrePage = () => {
           </div>
 
           {/* Tabs Section */}
-          <div className="flex flex-col sm:flex-row justify-center items-center space-x-6 font-body m-2 min-w-max flex-wrap sm:flex-nowrap">
-            <div className=" text-black rounded-full gap-2 flex flex-col items-center p-2 ">
-              <div className="bg-amber-400 rounded-full flex items-center justify-center w-8 h-8">
-                <Image
-                  width={20}
-                  height={20}
-                  className="object-cover object-center"
-                  alt=""
-                  src={userCircle}
-                />
+          <div className="flex flex-col sm:flex-row justify-center items-center space-x-4 font-body m-2 min-w-max flex-wrap sm:flex-nowrap">
+            {tabs.map((t, index) => (
+              <div
+                key={index}
+                className="text-black rounded-full gap-3 flex flex-col items-center p-3"
+              >
+                <div
+                  className={cn(
+                    "rounded-full flex items-center justify-center w-8 h-8",
+                    "bg-" + t.color
+                  )}
+                >
+                  <Image
+                    width={20}
+                    height={20}
+                    className="object-cover object-center"
+                    alt=""
+                    src={t.icon}
+                  />
+                </div>
+                <p className="font-bold">{t.text}</p>
               </div>
-              <p className="font-bold">Enrolment</p>
-            </div>
-            <div className=" text-black rounded-full gap-2 flex flex-col items-center p-2">
-              <div className="bg-amber-400 rounded-full flex items-center justify-center w-8 h-8">
-                <Image
-                  width={20}
-                  height={20}
-                  className="object-cover object-center"
-                  alt=""
-                  src={userCircle}
-                />
-              </div>
-              <p className="font-bold">Onboarding</p>
-            </div>
-            <div className=" text-black rounded-full gap-2 flex flex-col items-center p-2 ">
-              <div className="bg-gray-400 rounded-full flex items-center justify-center w-8 h-8">
-                <Image
-                  width={20}
-                  height={20}
-                  className="object-cover object-center"
-                  alt=""
-                  src={userCircle}
-                />
-              </div>
-              <p className="font-bold">Engagement</p>
-            </div>
-            <div className=" text-black rounded-full gap-2 flex flex-col items-center p-2 ">
-              <div className="bg-gray-400 rounded-full flex items-center justify-center w-8 h-8">
-                <Image
-                  width={20}
-                  height={20}
-                  className="object-cover object-center"
-                  alt=""
-                  src={userCircle}
-                />
-              </div>
-              <p className="font-bold">Consolidation</p>
-            </div>
-
-            <div className=" flex flex-col items-center text-black rounded-full gap-2 p-2 ">
-              <div className="bg-gray-400 rounded-full flex items-center justify-center w-8 h-8">
-                <Image
-                  width={20}
-                  height={20}
-                  className="object-contain object-center"
-                  alt=""
-                  src={userCircle}
-                />
-              </div>
-              <p className="font-bold">Proactivity</p>
-            </div>
-            <div className=" flex flex-col items-center text-black rounded-full gap-2 p-2 ">
-              <div className="bg-gray-400 rounded-full flex items-center justify-center w-8 h-8">
-                <Image
-                  width={20}
-                  height={20}
-                  className="object-contain object-center"
-                  alt=""
-                  src={userCircle}
-                />
-              </div>
-              <p className="font-bold">Mentoring</p>
-            </div>
+            ))}
           </div>
 
           {/* Cards Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 auto-rows-fr h-full place-items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 sm:gap-3 gap-6 auto-rows-fr h-full place-items-center mx-2 sm:mx-0">
             {cards.map((card, index) => (
               <Link
                 onClick={() => setSelectedIndex(index)}
@@ -169,26 +151,26 @@ const PrePage = () => {
                 key={card.id}
                 passHref
                 className={cn(
-                  "bg-white shadow-lg rounded-md p-2 lg:p-4 flex flex-col text-center transition-colors duration-200 font-body sm:max-w-md w-full h-full relative",
+                  "bg-white shadow-md rounded-lg p-3 lg:p-8 flex flex-col text-center transition-all duration-300 font-body sm:max-w-md w-full h-full relative hover:shadow-lg",
                   selectedIndex === index
                     ? "bg-[#65D9BD] text-white"
                     : "bg-white text-gray-700"
                 )}
               >
                 {/* image container */}
-                <div className="flex items-center justify-between space-x-4 h-40 w-full relative">
-                  <div className="relative w-full h-full">
+                <div className="flex items-center justify-center sm:justify-between space-x-4 h-40 w-full relative">
+                  <div className="relative w-full h-full flex items-center  justify-center">
                     <Image
                       alt=""
                       src={card.selectedIcon}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       priority
                       className={cn(
-                        "object-scale-down",
+                        "object-contain max-h-36 max-w-36",
                         selectedIndex !== index && "hidden"
                       )}
-                      width={300}
-                      height={300}
+                      width={200}
+                      height={150}
                     />
                     <Image
                       alt=""
@@ -204,7 +186,7 @@ const PrePage = () => {
                     />
                   </div>
                 </div>
-                <div className="gap-2 flex flex-col justify-center h-auto">
+                <div className="gap-2 flex flex-col justify-start h-auto mt-2">
                   <h2
                     className={cn(
                       "text-sm lg:text-lg font-bold",

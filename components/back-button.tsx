@@ -9,9 +9,9 @@ export default function BackButton() {
   return (
     <button
       onClick={() => router.back()}
-      className="bg-white shadow-md text-[#65D9BD] hover:shadow-xl transition-shadow duration-200 rounded-xl p-3"
+      className="bg-white shadow-xl text-[#65D9BD] hover:shadow-2xl transition-shadow duration-200 rounded-[21px] p-4"
     >
-      <IconArrowLeft className="sm:size-8 size-4" />
+      <IconArrowLeft className="sm:size-8 size-5" />
     </button>
   );
 }

@@ -15,12 +15,13 @@ import {
   animate,
   PanInfo,
   AnimatePresence,
-} from "framer-motion";
+  useDragControls,
+} from "motion/react";
 import Image from "next/image";
 import { Heart, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAtom } from "jotai";
-import { cardAtoms, formAnswersAtom } from "@/app/store";
+import { formAnswersAtom } from "@/app/store";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export interface ICard {
@@ -34,15 +35,18 @@ export default function ProfilingCard({
   currentIndex,
   totalCards,
 }: any) {
-  const x = useMotionValue(0);
-  const controls = useAnimation();
-  const cardElem = useRef(null);
   const [exitPosition, setExitPosition] = useState<"left" | "right" | "">("");
   const [isLast, setIsLast] = useState(false);
+  const [needsReset, setNeedsReset] = useState(false);
+  const [exitX, setExitX] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const x = useMotionValue(0);
+  const controls = useDragControls();
+  const cardElem = useRef(null);
   const { push } = useRouter();
   const params = useSearchParams();
   const pathname = usePathname();
-  const [needsReset, setNeedsReset] = useState(false);
 
   const [answers, setAnswers] = useAtom(formAnswersAtom);
 
@@ -56,11 +60,11 @@ export default function ProfilingCard({
       const resetTimer = setTimeout(() => {
         x.set(0);
         setExitPosition("");
-        controls.set({
-          x: 0,
-          rotate: 0,
-          opacity: 1,
-        });
+        // controls.set({
+        //   x: 0,
+        //   rotate: 0,
+        //   opacity: 1,
+        // });
         setNeedsReset(false);
       }, 200);
 
@@ -68,27 +72,20 @@ export default function ProfilingCard({
     }
   }, [needsReset, controls, x]);
 
-  useEffect(() => {
-    if (params.get("type") === "range") {
-      // push(`${pathname}?${params.toString()}`, { scroll: false });
-      // push(`/convince-to-join`, { scroll: false });
-    }
-  }, [pathname]);
-
   const handleSwipe = async (direction: "left" | "right") => {
     setExitPosition(direction);
 
-    await controls.start({
-      x: direction === "left" ? -offsetBoundary : offsetBoundary,
-      rotate: direction === "left" ? -18 : 18,
-      opacity: 0,
-      transition: {
-        duration: 0.2,
-        type: "spring",
-        stiffness: 300,
-        damping: 30,
-      },
-    });
+    // await controls.start({
+    //   x: direction === "left" ? -offsetBoundary : offsetBoundary,
+    //   // rotate: direction === "left" ? -18 : 18,
+    //   opacity: 0,
+    //   transition: {
+    //     duration: 0.3,
+    //     type: "tween",
+    //     stiffness: 200,
+    //     damping: 30,
+    //   },
+    // });
 
     onVote();
 
@@ -116,14 +113,33 @@ export default function ProfilingCard({
   };
 
   return (
-    <div className="flex flex-col items-center flex-1 w-full h-full">
+    <motion.div
+      layout
+      ref={containerRef}
+      className="flex flex-col items-center flex-1 w-full h-full"
+      initial={{
+        scale: 0.9,
+        opacity: 0,
+      }}
+      animate={{
+        scale: 1,
+        opacity: 1,
+      }}
+      exit={{
+        scale: 0.9,
+        opacity: 0,
+      }}
+      transition={{
+        duration: 0.3,
+      }}
+    >
       {/* Text Section */}
-      <h2 className="text-lg sm:text-2xl text-center font-sans text-black px-2 whitespace-normal text-pretty">
+      <h2 className="text-xl sm:text-4xl text-center font-sans text-black px-2 whitespace-normal text-pretty">
         {data.text}
       </h2>
 
       {/* Main Card Container */}
-      <div className="w-full max-w-[80vw] px-4 sm:px-12 relative h-full flex justify-center items-center flex-1">
+      <div className="w-full max-w-[70vw] sm:max-w-[50vw] px-4 sm:px-12 relative h-full flex justify-center items-center flex-1">
         {/* Action Buttons */}
         <div className="absolute sm:block hidden left-0 top-1/2 -translate-y-1/2 z-20">
           <button
@@ -143,23 +159,39 @@ export default function ProfilingCard({
           </button>
         </div>
 
-        <AnimatePresence mode={"wait"}>
+        <AnimatePresence>
           {/* Card Content */}
           <motion.div
             key={currentIndex}
             className="inset-0 touch-none absolute w-full max-w-md m-auto h-full max-h-[80%]"
-            dragElastic={0.8}
+            dragElastic={0.9}
             ref={cardElem}
             drag="x"
             dragSnapToOrigin
-            animate={controls}
-            dragConstraints={{
-              left: 0,
-              right: 0,
+            // animate={controls}
+            dragControls={controls}
+            // dragConstraints={{
+            //   left: 0,
+            //   right: 0,
+            //   top: 0,
+            //   bottom: 0,
+            // }}
+            initial={{
+              opacity: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              type: "tween",
+              stiffness: 200,
+              damping: 30,
+            }}
+            dragConstraints={containerRef}
+            whileDrag={{
+              scale: 0.8,
+              cursor: "grabbing",
             }}
             whileTap={{
-              scale: 0.95,
-              cursor: "grabbing",
+              scale: 0.8,
             }}
             style={{
               x,
@@ -167,11 +199,14 @@ export default function ProfilingCard({
               rotate,
             }}
             onDragEnd={handleDragEnd}
+            animate={{
+              x: exitX,
+            }}
           >
-            <div className="pointer-events-none aspect-square sm:aspect-video rounded-sm overflow-hidden">
+            <div className="pointer-events-none relative w-full h-full overflow-hidden">
               <Image
                 alt={data.text ?? "alt"}
-                className="object-cover object-center w-full h-full rounded-sm"
+                className="object-cover object-center w-full h-full rounded-[25px]"
                 src={`${process.env.NEXT_PUBLIC_API_URL}${data.src}`}
                 priority
                 sizes="(max-width: 768px) 100vw, 600px"
@@ -179,7 +214,8 @@ export default function ProfilingCard({
                   gridColumn: 1,
                   gridRow: 1,
                 }}
-                fill
+                width={360}
+                height={470}
               />
             </div>
           </motion.div>
@@ -201,6 +237,6 @@ export default function ProfilingCard({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

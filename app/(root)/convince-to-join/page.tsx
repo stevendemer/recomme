@@ -68,9 +68,6 @@ export default function ConvinceToJoinPage() {
     <div className="w-full h-full grid grid-rows-[1fr,auto] gap-4 font-inter">
       {/* Main Content */}
       <div className="w-full grid place-items-start h-full">
-        {/* Cloud Background */}
-        {/* <div className="grid-areas-[stack] w-full h-full place-items-center relative"> */}
-
         <div className="w-full h-full grid grid-areas-[stack]">
           <div className="[grid-area:stack]">
             <Image src={bigCloud} alt="" fill priority />
@@ -78,14 +75,16 @@ export default function ConvinceToJoinPage() {
           {/* Content Layer */}
           <div className="[grid-area:stack] z-10 w-full max-w-screen-lg px-4 grid gap-14 place-items-center">
             {/* Message Box */}
-            <div className="bg-white/50 backdrop-blur-lg shadow-lg rounded-sm p-6 sm:p-16 w-full gap-8">
+            <div className="bg-white/50 backdrop-blur-lg shadow-lg rounded-sm p-6 sm:p-12 w-full gap-8">
               <div className="flex flex-col items-start justify-center w-full">
                 <div className="flex flex-row gap-4 items-start">
-                  <div className="relative aspect-video">
+                  <div className="relative aspect-video flex-shrink-0">
                     <Image
                       alt=""
                       src={flowerIcon}
-                      className="object-contain object-top"
+                      className="object-contain object-center w-full h-full"
+                      width={40}
+                      height={40}
                     />
                   </div>
                   <div className="flex flex-col items-start space-y-2">
@@ -122,7 +121,7 @@ export default function ConvinceToJoinPage() {
                       />
                       <h3
                         className={cn(
-                          "mt-4 font-bold text-gray-700 text-lg text-center",
+                          "mt-4 font-bold text-gray-700 sm:text-lg text-center font-body text-sm",
                           selectedIndex === index ? "text-white" : ""
                         )}
                       >

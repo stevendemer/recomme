@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { motion, useMotionValue, useTransform, PanInfo } from "framer-motion";
+import { motion, useMotionValue, useTransform, PanInfo } from "motion/react";
 import { use, useEffect, useState } from "react";
 // import { IoMdClose } from "react-icons/io";
 // import { FaHeart } from "react-icons/fa";
