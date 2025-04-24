@@ -1,16 +1,34 @@
-## Recomme platform
+# Recomme 🌍⚡
 
-## Instructions:
+_Recruitment and engagement platform for energy communities around the world._
 
-- npm i
-- npm run build (output is .next folder ready for production)
-- npm run dev (dev environment)
-- npm run start (for production)
+## Overview
 
-## TODO:
+**Recomme** is a modern web platform designed to support the recruitment and sustained engagement of members within energy communities globally. Built with cutting-edge web technologies, it provides an intuitive and responsive experience for users, enabling community-driven growth and participation.
 
-- Compare the live version (profiling -> selects) button overlaps with the questions
-- Fix the dashboard layout for mobile screens
-- Hide the scrollbar (tailwind scrollbar)
-- Fix the /pre page dimensions and padding
-- Add the back button on every page
+## Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Forms**: [React Hook Form](https://react-hook-form.com/)
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- Node.js (v18+ recommended)
+- npm or yarn
+
+### Installation
+
+Clone the repo:
+
+```bash
+git clone https://github.com/yourusername/recomme.git
+cd recomme
+pnpm install
+pnpm run dev
+```
