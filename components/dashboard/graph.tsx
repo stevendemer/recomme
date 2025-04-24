@@ -1,6 +1,5 @@
 "use client";
 
-import { Car, TrendingUp } from "lucide-react";
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -23,6 +22,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { useMediaQuery } from "usehooks-ts";
 
 export const description = "A radar chart with dots";
 
@@ -59,12 +59,14 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function Graph({ className }: { className?: string }) {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   return (
     <Card className="rounded-[30px] w-full h-full p-2 bg-white/80">
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="max-sm:min-h-[220px] max-md:min-h-[320px] w-full h-full text-center mx-auto font-inter"
+          className="max-sm:min-h-[20rem] max-md:min-h-[400px] w-full h-full text-center mx-auto font-inter"
         >
           <RadarChart
             margin={{
@@ -87,12 +89,12 @@ export default function Graph({ className }: { className?: string }) {
                     // change this for overlapping label fix
                     y={index === 0 ? y - 30 : y}
                     textAnchor={textAnchor}
-                    fontSize={13}
+                    fontSize={isMobile ? 10 : 12}
                     fontWeight={700}
                     className="font-inter"
                     {...props}
                   >
-                    <tspan x={x} dy={"1rem"} fontSize={13}>
+                    <tspan x={x} dy={"1rem"} fontSize={isMobile ? 10 : 12}>
                       {data.subject}
                     </tspan>
                   </text>
@@ -115,7 +117,7 @@ export default function Graph({ className }: { className?: string }) {
               orientation="middle"
               axisLine={false}
               domain={[1, 5]}
-              fontSize={12}
+              fontSize={isMobile ? 10 : 12}
               fill="hsla(var(--foreground))"
               tickCount={5}
             />

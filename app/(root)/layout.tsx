@@ -67,7 +67,14 @@ export default async function RootLayout({
         )}
       >
         <Providers>
-          <main className="gradient-bg backdrop-blur-lg p-2 grid place-items-center h-full relative min-h-screen">
+          <div className="absolute inset-0 -z-0 pointer-events-none h-full">
+            <div className="absolute top-1/2 left-1/2  w-[200px] h-[700px] rounded-full rotate-12 bg-yellow-400 blur-xl opacity-60 transform -translate-x-1/2 -translate-y-1/2" />
+
+            <div className="absolute top-1/4 left-1/2 w-[200px] h-[550px] rounded-full rotate-45 bg-cyan-400 blur-xl opacity-50 transform -translate-x-1/2 -translate-y-1/2" />
+
+            <div className="absolute bottom-0 top-1/2 rotate-[40deg] right-1/3 w-[300px] h-[550px] rounded-full bg-green-500 blur-xl opacity-50 transform translate-x-1/2 -translate-y-1/2" />
+          </div>
+          <main className="backdrop-blur-sm p-2 grid place-items-center h-full relative min-h-screen">
             <ResponsiveContainer>{children}</ResponsiveContainer>
           </main>
           <Toaster />

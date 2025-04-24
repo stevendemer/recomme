@@ -1,12 +1,11 @@
 "use client";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import SubmitButton from "@/components/submit-button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import { Autocomplete, useLoadScript } from "@react-google-maps/api";
 import usePlacesAutoComplete from "use-places-autocomplete";
-import { useMemo, useState, useEffect, useRef, RefObject } from "react";
+import { useEffect, useRef, RefObject } from "react";
 import { useOnClickOutside, useSessionStorage } from "usehooks-ts";
 import {
   Select,
@@ -19,12 +18,8 @@ import {
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/components/ui/use-toast";
-import ParentContainer from "@/components/parent-container";
 import Spinner from "@/components/spinner";
-import MessageContainer from "@/components/message-container";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { Separator } from "@radix-ui/react-select";
 
 type Inputs = {
   location: string;
@@ -46,6 +41,8 @@ const schema = z.object({
   role: z.enum(["EC Manager", "EC Member", "Other"]).optional(),
 });
 
+// define the libraries outside of component so the reference is static
+const libraries: any[] = ["places"];
 export default function RegistrationPage() {
   const [name, setName] = useSessionStorage("ec-name", "Alec");
 
@@ -108,8 +105,8 @@ export default function RegistrationPage() {
   };
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyA1TOwkhouIi0rVLuXqNHUcgz0hgZFWM1M",
-    libraries: ["places"],
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY!,
+    libraries,
   });
 
   const {
@@ -150,7 +147,6 @@ export default function RegistrationPage() {
   return (
     <section className="w-full h-full flex-shrink-0  flex flex-col items-center justify-center relative space-y-4">
       <form
-        // onSubmit={form.handleSubmit(onSubmit)}
         className="max-w-sm relative sm:w-full space-y-6 justify-around flex flex-col items-center font-body text-foreground"
         onSubmit={form.handleSubmit(onSubmit)}
       >

@@ -14,9 +14,9 @@ export default function ResponsiveContainer({
     <AnimatePresence mode="wait">
       <div
         {...rest}
-        className="bg-white/30 backdrop-blur-lg rounded-sm p-4 lg:p-6 w-full max-w-screen-xl h-[80vh]"
+        className="bg-white/50 backdrop-blur-sm rounded-sm p-4 lg:p-6 w-full max-w-screen-xl h-[80vh]"
       >
-        <div className=" bg-white/50 w-full rounded-sm shadow-lg p-1 h-full grid place-items-center">
+        <div className=" bg-white/60 backdrop-blur-sm backdrop-filter w-full rounded-sm shadow-lg p-1 h-full grid place-items-center">
           <div className="w-full h-full overflow-y-auto grid place-items-center scrollbar-hide">
             <div className="w-full font-body">{children}</div>
           </div>

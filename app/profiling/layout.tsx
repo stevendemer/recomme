@@ -46,15 +46,6 @@ export const metadata: Metadata = {
 };
 
 /**
- * ProfilingLayout is a React functional component that serves as a layout
- * wrapper for the profiling page. It provides a structured HTML document
- * with a head section containing a link to an icon and a body with multiple
- * styling classes applied. The layout includes a Providers component for
- * context management and a main content area where children components
- * can be rendered. The layout is designed with a gradient background,
- * backdrop blur, and responsive flexbox styling to center the content
- * both vertically and horizontally on the screen.
- *
  * @param {PropsWithChildren} props - The component's children elements
  *                                    to be rendered within the layout.
  */

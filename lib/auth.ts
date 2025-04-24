@@ -68,7 +68,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         };
       }
 
-      console.log("session is ", session);
+      // console.log("session is ", session);
 
       return session;
     },
